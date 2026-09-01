@@ -1,0 +1,80 @@
+name: Publish HorizonCheck Release
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out tagged source
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Validate tag and source version
+        id: version
+        shell: bash
+        run: |
+          VERSION="${GITHUB_REF_NAME#v}"
+          SOURCE_VERSION=$(python - <<'PY'
+          import re
+          text=open('horizoncheck.lua', encoding='utf-8').read()
+          m=re.search(r"addon\.version\s*=\s*'([^']+)'", text)
+          if not m:
+              raise SystemExit('Could not find addon.version in horizoncheck.lua')
+          print(m.group(1))
+          PY
+          )
+          if [[ ! "$VERSION" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            echo "Tag must be vX.Y.Z; got $GITHUB_REF_NAME" >&2
+            exit 1
+          fi
+          if [[ "$SOURCE_VERSION" != "$VERSION" ]]; then
+            echo "Tag $GITHUB_REF_NAME does not match source version $SOURCE_VERSION" >&2
+            exit 1
+          fi
+          if ! grep -q "^## v${VERSION}$" CHANGELOG.md; then
+            echo "CHANGELOG.md has no ## v${VERSION} section" >&2
+            exit 1
+          fi
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+
+      - name: Build and validate release ZIP
+        run: |
+          python tools/prepare_release.py \
+            --version "${{ steps.version.outputs.version }}" \
+            --output "HorizonCheck_v${{ steps.version.outputs.version }}.zip"
+
+      - name: Extract release notes from changelog
+        shell: bash
+        run: |
+          python - <<'PY'
+          import re
+          from pathlib import Path
+          version='${{ steps.version.outputs.version }}'
+          text=Path('CHANGELOG.md').read_text(encoding='utf-8')
+          m=re.search(rf'^## v{re.escape(version)}\s*$\n(.*?)(?=^## v|\Z)', text, re.M|re.S)
+          if not m:
+              raise SystemExit(f'No changelog section for v{version}')
+          Path('release-notes.md').write_text(m.group(1).strip()+'\n', encoding='utf-8')
+          PY
+
+      - name: Publish GitHub Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "$GITHUB_REF_NAME" \
+            "HorizonCheck_v${{ steps.version.outputs.version }}.zip" \
+            --title "HorizonCheck v${{ steps.version.outputs.version }}" \
+            --notes-file release-notes.md

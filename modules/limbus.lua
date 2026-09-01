@@ -1,7 +1,6 @@
 local M={};
 local HC;
 local cache={at=0,snapshot=nil};
-local currency_request_at=0;
 
 local JOBS={'WAR','MNK','WHM','BLM','RDM','THF','PLD','DRK','BST','BRD','RNG','SAM','NIN','DRG','SMN','BLU','COR','PUP'};
 
@@ -99,17 +98,8 @@ local function on_currency_packet(e)
 end
 
 local function request_currency()
-    local now=os.time();
-    if now-(tonumber(currency_request_at) or 0)<30 then return false; end
-    currency_request_at=now;
-    return pcall(function()
-        if AshitaCore and AshitaCore.GetPacketManager then
-            local pm=AshitaCore:GetPacketManager();
-            if pm and pm.AddOutgoingPacket and struct and struct.pack then
-                pm:AddOutgoingPacket(0x010F,struct.pack('L',0):totable());
-            end
-        end
-    end);
+    if HC and HC.request_currency then return HC.request_currency(); end
+    return false;
 end
 
 function M.init(ctx)

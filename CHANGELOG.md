@@ -1,3 +1,26 @@
+## v7.9.12
+- Turns **Assault Point Rewards** into a purchase planner: affordable unowned rewards sort to the top, insufficient rewards show exactly how many AP are still needed, and owned rewards move to the bottom.
+- Adds per-area reward summaries with affordable, owned, and remaining counts while preserving the aligned live-AP collapsible headers.
+- Simplifies the normal **Black Coffin** view around the current/next mission, entry cost, live state, and time until the next Conquest tally. Manual Complete/Fail and no-time-limit Capture controls now stay in Developer Mode.
+- Adds GitHub Actions validation on main/PRs and automatic tagged releases. Pushing a matching `vX.Y.Z` tag runs the complete `prepare_release.py` audit suite and publishes the validated ZIP with release notes from `CHANGELOG.md`.
+- Adds repository-wide LF line-ending rules and a shipped `.gitignore` so Windows GitHub Desktop updates stay clean and user/capture files are not committed accidentally.
+
+## v7.9.11
+- Aligns all **Assault Point Rewards** collapsible headers into fixed-width columns so area, progress, AP balance, vendor, and location line up vertically.
+- Right-aligns the live AP balance column for faster scanning while keeping the existing collapsible behavior and automatic Currency refresh.
+
+## v7.9.10
+- Shows the current Assault Point balance directly on each area collapsible header in **Assault Point Rewards**.
+- Reads all five standard area-specific AP pools automatically from the shared native `0x113` Currency payload: Leujaoam, Mamool Ja, Lebros, Periqia, and Ilrusi.
+- Reuses HorizonCheck's globally throttled Currency refresh, so opening the Assault tab does not add duplicate packet requests.
+
+## v7.9.9
+- Updates ISNM Imperial Standing automatically from HorizonXI's native `0x113` Currency payload instead of requiring another Shajaf visit.
+- Uses the capture-verified little-endian ISP field at byte offset `0x7C`; the known sample maps `19 05 00 00` to 1,305 ISP.
+- Adds one shared, throttled Currency refresh for HAAP, Ancient Beastcoins, ISP, and other `0x113` listeners so HorizonCheck does not send duplicate refresh requests.
+- Refreshes Currency data on load and approximately once per minute while HorizonCheck is running; ISNM status now shows `ISP: <value>` instead of the stale `ISP seen` label.
+- Keeps Shajaf eligibility/order evidence separate from numeric ISP, so an automatic balance refresh cannot falsely rewrite ISNM eligibility.
+
 ## v7.9.8
 - Automates the full successful Black Coffin weekly chain using the supplied HorizonXI captures.
 - Halshaob's verified payment/acceptance dialogue now moves each stage from **NEXT** to **ACTIVE**, and Ashu Talif entry moves it to **IN PROGRESS**.

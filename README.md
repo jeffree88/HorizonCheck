@@ -1,3 +1,22 @@
+### v7.9.12 highlights
+- Assault Point rewards now act as a live purchase planner: **AFFORDABLE** items rise to the top, unaffordable items show the exact AP still needed, and owned rewards move below useful purchases.
+- Black Coffin now opens with a compact current/next-step summary plus entry cost and weekly reset timer; manual/capture controls are Developer Mode only.
+- GitHub can now validate every main/PR update and automatically build + publish a release ZIP whenever a matching `vX.Y.Z` tag is pushed.
+
+### v7.9.11 highlights
+- Assault Point Rewards headers now use aligned fixed-width columns so all five areas are easier to scan vertically.
+- Live AP balances are right-aligned, with vendor and Whitegate location columns aligned independently.
+
+### v7.9.10 highlights
+- Assault Point Rewards headers now show your live area balance, for example `Leujaoam Sanctum 0/11 | 2,610 AP | Yahsra - Whitegate L-10`.
+- All five Assault Point pools update automatically from HorizonXI's native Currency data and share the existing one-minute Currency refresh.
+
+### v7.9.9 highlights
+
+- ISNM Imperial Standing now refreshes automatically from HorizonXI's native Currency data; talking to Shajaf is no longer required just to update the ISP number.
+- HorizonCheck shares one throttled Currency refresh across ISP, HAAP, and Ancient Beastcoins to avoid duplicate requests.
+- ISNM eligibility/order state remains based on direct Shajaf/key-item evidence; the automatic ISP balance cannot falsely change eligibility by itself.
+
 ### v7.9.8 highlights
 
 - Black Coffin's three-stage weekly chain now advances automatically from captured live HorizonXI dialogue: `NEXT -> ACTIVE -> IN PROGRESS -> COMPLETE`.

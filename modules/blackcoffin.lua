@@ -297,6 +297,52 @@ function M.status(c)
     return string.format('%d/3 | Next: %s',done,tostring(nxt and nxt.name or '?'));
 end
 
+
+local function weekly_reset_text()
+    local core=HC and HC.modules and HC.modules.core or nil;
+    if not (core and core.seconds_until_weekly_reset) then return 'next Conquest tally'; end
+    local ok,seconds=pcall(core.seconds_until_weekly_reset);
+    if not ok or type(seconds)~='number' then return 'next Conquest tally'; end
+    seconds=math.max(0,seconds);
+    if core.format_duration then
+        local ok2,text=pcall(core.format_duration,seconds);
+        if ok2 and text then return 'in '..tostring(text); end
+    end
+    return 'in '..tostring(math.floor(seconds/60))..'m';
+end
+
+local function step_state_label(b,it)
+    if b.cleared[it.key]==true then return 'COMPLETE'; end
+    if b.locked_out and b.failed_step==it.key then return 'FAILED'; end
+    if not b.locked_out and b.active_step==it.key and b.active_state then return active_label(b.active_state); end
+    local nxt=next_step(b);
+    if not b.locked_out and nxt and nxt.key==it.key then return 'NEXT'; end
+    return 'PENDING';
+end
+
+local function draw_weekly_summary(imgui,b)
+    local done=count_done(b);
+    local reset=weekly_reset_text();
+    if b.locked_out then
+        local failed=step_by_key(b.failed_step);
+        imgui.Text('Weekly status: LOCKED OUT');
+        imgui.TextDisabled('Failed: '..tostring(failed and failed.name or b.failed_step or '?')..' | Reset '..reset);
+        return;
+    end
+    if done>=3 then
+        imgui.Text('Weekly status: COMPLETE');
+        imgui.TextDisabled('3/3 cleared | Reset '..reset);
+        return;
+    end
+    local it=(b.active_step and step_by_key(b.active_step)) or next_step(b);
+    local state=(b.active_step and b.active_state) and active_label(b.active_state) or 'READY';
+    if it then
+        imgui.Text((b.active_step and 'Current: ' or 'Next: ')..tostring(it.name));
+        imgui.TextDisabled('Entry: '..tostring(it.item)..' | Status: '..tostring(state));
+        imgui.TextDisabled('Start: '..tostring(it.npc)..' | Weekly reset '..reset);
+    end
+end
+
 local function draw_capture_button(imgui,it)
     if not (HC.modules.learning and HC.modules.learning.start and HC.modules.learning.stop) then return; end
     local learning=HC.modules.learning;
@@ -327,45 +373,41 @@ local function draw_chain_table(imgui,b,c)
     local developer=(type(c)=='table' and type(c.settings)=='table' and c.settings.developer_mode==true);
     local flags=HC.modules.uikit.table_flags();
     local supported=(imgui.BeginTable and imgui.TableNextColumn and imgui.EndTable);
-    if supported and imgui.BeginTable('##blackcoffin_chain_table',4,flags) then
+    local columns=developer and 4 or 3;
+    if supported and imgui.BeginTable('##blackcoffin_chain_table',columns,flags) then
         if imgui.TableSetupColumn then
-            imgui.TableSetupColumn('Mission',0,0.31);
-            imgui.TableSetupColumn('State',0,0.12);
-            imgui.TableSetupColumn('Start / Entry Cost',0,0.36);
-            imgui.TableSetupColumn('Actions',0,0.21);
+            imgui.TableSetupColumn('Mission',0,developer and 0.29 or 0.34);
+            imgui.TableSetupColumn('State',0,developer and 0.12 or 0.14);
+            imgui.TableSetupColumn('Start / Entry Cost',0,developer and 0.36 or 0.52);
+            if developer then imgui.TableSetupColumn('Manual / Capture',0,0.23); end
         end
         if imgui.TableHeadersRow then imgui.TableHeadersRow(); end
 
-        local nxt=next_step(b);
         for i,it in ipairs(ORDER) do
             local cleared=b.cleared[it.key]==true;
-            local label=cleared and 'COMPLETE' or 'PENDING';
-            if not cleared and not b.locked_out and nxt and nxt.key==it.key then label='NEXT'; end
-            if not cleared and not b.locked_out and b.active_step==it.key and b.active_state then
-                label=active_label(b.active_state);
-            end
-            if b.locked_out and b.failed_step==it.key then label='FAILED'; end
-
+            local label=step_state_label(b,it);
             if imgui.TableNextRow then imgui.TableNextRow(); end
             if imgui.TableSetColumnIndex then imgui.TableSetColumnIndex(0); else imgui.TableNextColumn(); end
             imgui.Text(tostring(i)..'. '..it.name);
 
             if imgui.TableSetColumnIndex then imgui.TableSetColumnIndex(1); else imgui.TableNextColumn(); end
-            if cleared then imgui.Text(label); else imgui.TextDisabled(label); end
+            if cleared or label=='ACTIVE' or label=='IN PROGRESS' then imgui.Text(label); else imgui.TextDisabled(label); end
 
             if imgui.TableSetColumnIndex then imgui.TableSetColumnIndex(2); else imgui.TableNextColumn(); end
             imgui.TextDisabled(it.npc..' | '..it.item);
 
-            if imgui.TableSetColumnIndex then imgui.TableSetColumnIndex(3); else imgui.TableNextColumn(); end
-            if not cleared and not b.locked_out then
-                if imgui.SmallButton('Complete##blackcoffin_done_'..it.key) then M.complete(it.key,'manual UI'); end
-                imgui.SameLine();
-                if imgui.SmallButton('Fail##blackcoffin_fail_'..it.key) then M.fail(it.key,'manual UI'); end
-                if developer and HC.modules.learning and HC.modules.learning.start and HC.modules.learning.stop then
-                    imgui.SameLine(); draw_capture_button(imgui,it);
+            if developer then
+                if imgui.TableSetColumnIndex then imgui.TableSetColumnIndex(3); else imgui.TableNextColumn(); end
+                if not cleared and not b.locked_out then
+                    if imgui.SmallButton('Complete##blackcoffin_done_'..it.key) then M.complete(it.key,'manual UI'); end
+                    imgui.SameLine();
+                    if imgui.SmallButton('Fail##blackcoffin_fail_'..it.key) then M.fail(it.key,'manual UI'); end
+                    if HC.modules.learning and HC.modules.learning.start and HC.modules.learning.stop then
+                        imgui.SameLine(); draw_capture_button(imgui,it);
+                    end
+                else
+                    imgui.TextDisabled('-');
                 end
-            else
-                imgui.TextDisabled('-');
             end
         end
         imgui.EndTable();
@@ -375,20 +417,15 @@ local function draw_chain_table(imgui,b,c)
     -- Compatibility fallback for older ImGui table builds.
     for i,it in ipairs(ORDER) do
         local cleared=b.cleared[it.key]==true;
-        local label=cleared and 'COMPLETE' or 'PENDING';
-        local nxt=next_step(b);
-        if not cleared and not b.locked_out and nxt and nxt.key==it.key then label='NEXT'; end
-        if not cleared and not b.locked_out and b.active_step==it.key and b.active_state then
-            label=active_label(b.active_state);
-        end
-        if b.locked_out and b.failed_step==it.key then label='FAILED'; end
-        imgui.Text(tostring(i)..'. '..it.name..' - '..label);
+        local label=step_state_label(b,it);
+        if cleared or label=='ACTIVE' or label=='IN PROGRESS' then imgui.Text(tostring(i)..'. '..it.name..' - '..label);
+        else imgui.TextDisabled(tostring(i)..'. '..it.name..' - '..label); end
         imgui.TextDisabled('   '..it.npc..' | '..it.item);
-        if not cleared and not b.locked_out then
+        if developer and not cleared and not b.locked_out then
             if imgui.SmallButton('Complete##blackcoffin_done_fallback_'..it.key) then M.complete(it.key,'manual UI'); end
             imgui.SameLine();
             if imgui.SmallButton('Fail##blackcoffin_fail_fallback_'..it.key) then M.fail(it.key,'manual UI'); end
-            if developer and HC.modules.learning and HC.modules.learning.start and HC.modules.learning.stop then
+            if HC.modules.learning and HC.modules.learning.start and HC.modules.learning.stop then
                 imgui.SameLine(); draw_capture_button(imgui,it);
             end
         end
@@ -435,12 +472,13 @@ function M.draw(c)
     local b=account_state();
     sync_character_mirror(c,b);
     local done=count_done(b);
+    local developer=(type(c)=='table' and type(c.settings)=='table' and c.settings.developer_mode==true);
 
     HC.modules.uikit.section_header('Black Coffin Weekly',M.status(c));
-    imgui.TextDisabled('Account-wide: complete all 3 battlefields in order. Resets with the weekly Conquest tally.');
-    imgui.TextDisabled('A carried-over tag can still be used, but it does not advance the new weekly chain.');
-    if b.locked_out then
-        imgui.TextDisabled('FAILED: this account cannot continue the chain until the next weekly reset.');
+    draw_weekly_summary(imgui,b);
+    if developer then
+        imgui.TextDisabled('Developer Mode: manual Complete/Fail and no-time-limit Capture controls are enabled in the chain table.');
+        imgui.TextDisabled('A carried-over tag can still be used, but it does not advance the new weekly chain.');
     end
 
     imgui.Spacing();

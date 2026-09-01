@@ -1,0 +1,37 @@
+name: Validate HorizonCheck
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Read source version
+        id: version
+        shell: bash
+        run: |
+          VERSION=$(python - <<'PY'
+          import re
+          text=open('horizoncheck.lua', encoding='utf-8').read()
+          m=re.search(r"addon\.version\s*=\s*'([^']+)'", text)
+          if not m:
+              raise SystemExit('Could not find addon.version in horizoncheck.lua')
+          print(m.group(1))
+          PY
+          )
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+
+      - name: Run full release validation
+        run: python tools/prepare_release.py --version "${{ steps.version.outputs.version }}" --output "/tmp/HorizonCheck_validation.zip"

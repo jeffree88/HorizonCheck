@@ -1,9 +1,9 @@
--- HorizonCheck v7.9.8
+-- HorizonCheck v7.9.12
 -- Modular rewrite for HorizonXI / Ashita v4.
 
 addon.name = 'horizoncheck';
 addon.author = 'OpenAI';
-addon.version = '7.9.8';
+addon.version = '7.9.12';
 addon.desc = 'HorizonXI daily/weekly activity dashboard.';
 addon.link = 'https://horizonxi.com/';
 
@@ -25,7 +25,7 @@ local function loadmod(name)
 end
 
 local HC = {
-    version = '7.9.8',
+    version = '7.9.12',
     imgui = imgui_ok and imgui or nil,
     chat = chat_ok and chat or nil,
     addon_path = addon.path,
@@ -35,6 +35,27 @@ local HC = {
 };
 
 local hc_msg_last={ text=nil, at=0 };
+
+-- Shared native Currency refresh. HorizonXI answers 0x010F with the full
+-- 0x113 Currency payload, which is consumed by HAAP, Limbus, and ISNM.
+-- Keep one throttle here so individual trackers never spam duplicate requests.
+local currency_request_at=0;
+function HC.request_currency(force)
+    local now=os.time();
+    if force~=true and now-(tonumber(currency_request_at) or 0)<60 then return false; end
+    currency_request_at=now;
+    local ok,sent=pcall(function()
+        if AshitaCore and AshitaCore.GetPacketManager then
+            local pm=AshitaCore:GetPacketManager();
+            if pm and pm.AddOutgoingPacket and struct and struct.pack then
+                pm:AddOutgoingPacket(0x010F,struct.pack('L',0):totable());
+                return true;
+            end
+        end
+        return false;
+    end);
+    return ok and sent==true;
+end
 
 local function notification_category(text)
     local low=string.lower(tostring(text or ''));
@@ -518,6 +539,9 @@ local function profiled_pcall(label,fn,...)
 end
 
 ashita.events.register('d3d_present', 'horizoncheck_present', function()
+    -- Refresh the shared Currency payload automatically while HorizonCheck is
+    -- running. request_currency() is globally throttled to once per minute.
+    if HC.request_currency then pcall(HC.request_currency); end
     if HC.modules.state and HC.modules.state.poll then
         local ok, err, guarded = profiled_pcall('poll.state',HC.modules.state.poll);
         if not ok and not guarded and HC.modules.diagnostics then HC.modules.diagnostics.record_error('state deferred save poll', err); end

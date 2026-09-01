@@ -29,6 +29,47 @@ local function save()
     HC.modules.state.save();
 end
 
+local function u32le(raw,offset)
+    if type(raw)~='string' then return nil; end
+    offset=tonumber(offset) or 0;
+    if #raw < offset+4 then return nil; end
+    local b1,b2,b3,b4=raw:byte(offset+1,offset+4);
+    if not b4 then return nil; end
+    return b1 + b2*256 + b3*65536 + b4*16777216;
+end
+
+local function sync_isp(c,n,source)
+    n=tonumber(n);
+    if not n or n<0 or n>999999999 then return false; end
+    n=math.floor(n);
+    local st=ensure(c);
+    local old=st.last_isp;
+    st.last_isp=n;
+    st.last_isp_at=os.time();
+    st.last_isp_source=tostring(source or 'Currency data');
+
+    -- Currency data proves only the current balance. Do not silently rewrite
+    -- Shajaf eligibility/order evidence from the numeric ISP value alone.
+    if old~=n then
+        if HC.modules.state and HC.modules.state.request_save then HC.modules.state.request_save(1);
+        else save(); end
+    end
+    return old~=n;
+end
+
+local function on_currency_packet(e)
+    if e==nil or e.injected or tonumber(e.id)~=0x113 then return; end
+    -- HorizonXI capture verified: Imperial Standing is a little-endian uint32
+    -- at zero-based byte offset 0x7C in the full 252-byte Currency payload.
+    -- Known sample: 19 05 00 00 => 1305 ISP, followed by 2610 Leujaoam AP.
+    local raw=e.data or e.data_raw;
+    if type(raw)~='string' or #raw<0x80 then raw=e.data_raw or e.data; end
+    if type(raw)~='string' or #raw<0x80 then return; end
+    local isp=u32le(raw,0x7C);
+    if isp==nil then return; end
+    sync_isp(HC.modules.state.get_char(),isp,'Currency data');
+end
+
 local function mark_order_held(c, source, order_name)
     local s=ensure(c);
     local changed=not s.order_held or tostring(s.order_name or '')~=tostring(order_name or '');
@@ -245,6 +286,7 @@ local function on_text(s)
                 st.pending_order_at=nil;
                 st.last_isp=math.floor(isp);
                 st.last_isp_at=os.time();
+                st.last_isp_source='Shajaf dialogue';
                 st.last_source='Shajaf ISP dialogue';
                 if not st.run_in_progress and not st.run_complete then
                     st.state='NO ORDER VERIFIED BY SHAJAF';
@@ -318,9 +360,12 @@ end
 function M.init(ctx)
     HC=ctx;
     HC.modules.packets.register_text('isnm shajaf/order/run',on_text);
+    HC.modules.packets.register(0x113,'isnm_currency',on_currency_packet);
+    if HC.request_currency then pcall(HC.request_currency); end
 end
 
 function M.status(c)
+    if HC and HC.request_currency then pcall(HC.request_currency); end
     local s=ensure(c);
     local out;
     if s.run_complete then
@@ -345,7 +390,7 @@ function M.status(c)
     else
         out='ISNM | NO VERIFIED ORDER';
     end
-    if s.last_isp then out=out..' | ISP seen: '..tostring(s.last_isp); end
+    if s.last_isp then out=out..' | ISP: '..tostring(s.last_isp); end
     return out;
 end
 

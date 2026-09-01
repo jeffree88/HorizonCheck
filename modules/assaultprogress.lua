@@ -97,6 +97,17 @@ local ASSAULT_POINT_REWARDS = {
     },
 };
 
+-- HorizonXI native Currency packet (0x113) Assault Point pools.
+-- Capture-verified ordering immediately after Imperial Standing (0x7C):
+-- Leujaoam, Mamool Ja, Lebros, Periqia, Ilrusi as five little-endian uint32s.
+local ASSAULT_POINT_OFFSETS = {
+    leujaoam=0x80,
+    mamool=0x84,
+    lebros=0x88,
+    periqia=0x8C,
+    ilrusi=0x90,
+};
+
 local ASSAULT_REWARD_LOCATION_SHORT={
     ['INVENTORY']='Inventory',['SAFE']='Safe',['STORAGE']='Storage',['TEMP']='Temp',['LOCKER']='Locker',
     ['SATCHEL']='Satchel',['SACK']='Sack',['CASE']='Case',
@@ -132,6 +143,24 @@ local function assault_reward_location(name)
     return false,'—';
 end
 
+local function format_number(n)
+    n=math.floor(tonumber(n) or 0);
+    local str=tostring(n);
+    local sign='';
+    if str:sub(1,1)=='-' then sign='-'; str=str:sub(2); end
+    local rev=str:reverse():gsub('(%d%d%d)','%1,'):reverse():gsub('^,','');
+    return sign..rev;
+end
+
+local function assault_point_balance(c,area_id)
+    c.assault_progress=type(c.assault_progress)=='table' and c.assault_progress or {};
+    local p=c.assault_progress;
+    p.ap_points=type(p.ap_points)=='table' and p.ap_points or {};
+    local n=tonumber(p.ap_points[tostring(area_id or '')]);
+    if n==nil then return nil; end
+    return math.max(0,math.floor(n));
+end
+
 local function assault_reward_area_progress(area)
     local have=0;
     for _,rec in ipairs(area.items or {}) do
@@ -141,24 +170,54 @@ local function assault_reward_area_progress(area)
     return have,#(area.items or {});
 end
 
+local function assault_reward_rows(c,area)
+    local ap=assault_point_balance(c,area.id);
+    local rows={}; local affordable=0; local owned_count=0;
+    for index,rec in ipairs(area.items or {}) do
+        local item,cost=rec[1],tonumber(rec[2]) or 0;
+        local owned,location=assault_reward_location(item);
+        local status='MISSING'; local need=nil; local bucket=2;
+        if owned==true then
+            status='OWNED'; bucket=3; owned_count=owned_count+1;
+        elseif ap~=nil and ap>=cost then
+            status='AFFORDABLE'; bucket=1; affordable=affordable+1;
+        elseif ap~=nil then
+            need=math.max(0,cost-ap);
+            status='NEED '..format_number(need)..' AP';
+        end
+        rows[#rows+1]={
+            item=item,cost=cost,owned=owned==true,location=location,status=status,
+            need=need,bucket=bucket,index=index,affordable=(status=='AFFORDABLE'),
+        };
+    end
+    table.sort(rows,function(a,b)
+        if a.bucket~=b.bucket then return a.bucket<b.bucket; end
+        if a.cost~=b.cost then return a.cost<b.cost; end
+        return a.index<b.index;
+    end);
+    return rows,{ap=ap,affordable=affordable,owned=owned_count,total=#rows,remaining=math.max(0,#rows-owned_count)};
+end
+
 local function draw_assault_point_rewards(c,focus)
     local imgui=HC.imgui; if not imgui then return; end
     imgui.Spacing();
     imgui.Separator();
     imgui.Spacing();
 
-    local total_have,total_items=0,0;
+    local total_have,total_items,total_affordable=0,0,0;
     for _,area in ipairs(ASSAULT_POINT_REWARDS) do
-        local h,t=assault_reward_area_progress(area);
-        total_have=total_have+h; total_items=total_items+t;
+        local rows,summary=assault_reward_rows(c,area);
+        total_have=total_have+(summary.owned or 0);
+        total_items=total_items+(summary.total or #rows);
+        total_affordable=total_affordable+(summary.affordable or 0);
     end
 
     local flags=rawget(_G,'ImGuiTreeNodeFlags_DefaultOpen') or 0;
     if type(focus)=='table' and focus.section=='rewards' and imgui.SetNextItemOpen then pcall(imgui.SetNextItemOpen,true,rawget(_G,'ImGuiCond_Always') or 1); end
-    if not imgui.CollapsingHeader(string.format('Assault Point Rewards  %d/%d obtained##assault_point_rewards',total_have,total_items),flags) then
+    if not imgui.CollapsingHeader(string.format('Assault Point Rewards  %d/%d obtained | %d affordable##assault_point_rewards',total_have,total_items,total_affordable),flags) then
         return;
     end
-    imgui.TextDisabled('Standard area-specific Assault Point gear. Owned items are detected from inventory/storage/Wardrobes; Porter storage is shown when known.');
+    imgui.TextDisabled('Affordable unowned rewards are listed first. Owned rewards stay at the bottom; AP balances update automatically.');
 
     local table_supported=(imgui.BeginTable~=nil and imgui.TableSetupColumn~=nil
         and imgui.TableHeadersRow~=nil and imgui.TableNextRow~=nil
@@ -166,37 +225,43 @@ local function draw_assault_point_rewards(c,focus)
     local table_flags=(HC.modules.uikit and HC.modules.uikit.table_flags and HC.modules.uikit.table_flags()) or (64+128+512);
 
     for _,area in ipairs(ASSAULT_POINT_REWARDS) do
-        local have,total=assault_reward_area_progress(area);
+        local rows,summary=assault_reward_rows(c,area);
+        local have,total=summary.owned,summary.total;
         imgui.Spacing();
-        local label=string.format('%s  %d/%d  |  %s - %s##assault_rewards_%s',
-            tostring(area.area),have,total,tostring(area.vendor),tostring(area.vendor_pos),tostring(area.id));
+        local ap=summary.ap;
+        local ap_text=(ap~=nil) and (format_number(ap)..' AP') or '? AP';
+        -- Keep the compact header columns visually aligned across all five areas.
+        -- HorizonCheck uses a monospaced UI font, so fixed-width fields make the
+        -- progress, AP balance, vendor, and location columns scan vertically.
+        local label=string.format('%-26s  %2d/%-2d  |  %9s  |  %-12s  |  %s##assault_rewards_%s',
+            tostring(area.area),have,total,ap_text,tostring(area.vendor),tostring(area.vendor_pos),tostring(area.id));
         if type(focus)=='table' and tostring(focus.area or '')==tostring(area.id) and imgui.SetNextItemOpen then pcall(imgui.SetNextItemOpen,true,rawget(_G,'ImGuiCond_Always') or 1); end
         if imgui.CollapsingHeader(label,0) then
+            imgui.TextDisabled(string.format('%d affordable | %d owned | %d remaining',summary.affordable,summary.owned,summary.remaining));
             if table_supported and imgui.BeginTable('##assault_reward_table_'..tostring(area.id),4,table_flags) then
                 imgui.TableSetupColumn('Item',0,0.38);
                 imgui.TableSetupColumn('Cost',0,0.15);
-                imgui.TableSetupColumn('Status',0,0.15);
-                imgui.TableSetupColumn('Location',0,0.32);
+                imgui.TableSetupColumn('Status',0,0.22);
+                imgui.TableSetupColumn('Location',0,0.25);
                 imgui.TableHeadersRow();
-                for _,rec in ipairs(area.items or {}) do
-                    local item,cost=rec[1],tonumber(rec[2]) or 0;
-                    local owned,location=assault_reward_location(item);
+                for _,row in ipairs(rows) do
                     imgui.TableNextRow();
                     imgui.TableSetColumnIndex(0);
-                    if HC.modules.uikit and HC.modules.uikit.collection_item then HC.modules.uikit.collection_item(item,owned); elseif owned then imgui.Text(tostring(item)); else imgui.TextDisabled(tostring(item)); end
+                    if row.owned or row.affordable then imgui.Text(tostring(row.item)); else imgui.TextDisabled(tostring(row.item)); end
                     imgui.TableSetColumnIndex(1);
-                    imgui.TextDisabled(string.format('%s AP',tostring(cost):reverse():gsub('(%d%d%d)','%1,'):reverse():gsub('^,','')));
+                    if row.affordable then imgui.Text(format_number(row.cost)..' AP'); else imgui.TextDisabled(format_number(row.cost)..' AP'); end
                     imgui.TableSetColumnIndex(2);
-                    if HC.modules.uikit and HC.modules.uikit.collection_status then HC.modules.uikit.collection_status(owned,'—'); elseif owned then imgui.Text('✓'); else imgui.TextDisabled('—'); end
+                    if row.owned then imgui.Text('✓ OWNED');
+                    elseif row.affordable then imgui.Text('AFFORDABLE');
+                    else imgui.TextDisabled(tostring(row.status)); end
                     imgui.TableSetColumnIndex(3);
-                    if HC.modules.uikit and HC.modules.uikit.collection_location then HC.modules.uikit.collection_location(location,owned); elseif owned then imgui.TextDisabled(tostring(location)); else imgui.TextDisabled('—'); end
+                    if row.owned and row.location and tostring(row.location)~='' then imgui.TextDisabled(tostring(row.location)); else imgui.TextDisabled('—'); end
                 end
                 imgui.EndTable();
             else
-                for _,rec in ipairs(area.items or {}) do
-                    local owned,location=assault_reward_location(rec[1]);
-                    local line=string.format('%s | %d AP | %s',tostring(rec[1]),tonumber(rec[2]) or 0,owned and tostring(location) or 'MISSING');
-                    if owned then imgui.Text(line); else imgui.TextDisabled(line); end
+                for _,row in ipairs(rows) do
+                    local line=string.format('%s | %s AP | %s',tostring(row.item),format_number(row.cost),tostring(row.status));
+                    if row.owned or row.affordable then imgui.Text(line); else imgui.TextDisabled(line); end
                 end
             end
         end
@@ -323,6 +388,8 @@ local function ensure(c)
     p.sources=type(p.sources)=='table' and p.sources or {};
     p.native_proof=type(p.native_proof)=='table' and p.native_proof or {};
     p.native=type(p.native)=='table' and p.native or {};
+    p.ap_points=type(p.ap_points)=='table' and p.ap_points or {};
+    p.ap_points_at=tonumber(p.ap_points_at);
     -- Player-authored mission notes are permanent per-character state.  Keep
     -- them separate from completion proof so native sync / manual progress
     -- changes can never overwrite or clear the user's text.
@@ -352,6 +419,15 @@ local function u16le(s,pos)
     local a,b=s:byte(pos,pos+1);
     if not a or not b then return nil; end
     return a+(b*256);
+end
+
+local function u32le(s,offset)
+    if type(s)~='string' then return nil; end
+    offset=tonumber(offset) or 0;
+    if #s<offset+4 then return nil; end
+    local b1,b2,b3,b4=s:byte(offset+1,offset+4);
+    if not b4 then return nil; end
+    return b1+(b2*256)+(b3*65536)+(b4*16777216);
 end
 
 local function bytes_to_hex(s)
@@ -670,9 +746,37 @@ local function find_mission(name)
     return nil,nil;
 end
 
+local function on_currency_packet(e)
+    if e==nil or e.injected or tonumber(e.id)~=0x113 then return; end
+    local raw=e.data or e.data_raw;
+    if type(raw)~='string' or #raw<0x94 then raw=e.data_raw or e.data; end
+    if type(raw)~='string' or #raw<0x94 then return; end
+
+    local c=HC.modules.state.get_char();
+    local p=ensure(c);
+    local changed=false;
+    for area_id,offset in pairs(ASSAULT_POINT_OFFSETS) do
+        local n=u32le(raw,offset);
+        if n~=nil and n>=0 and n<=999999999 then
+            n=math.floor(n);
+            if tonumber(p.ap_points[area_id])~=n then
+                p.ap_points[area_id]=n;
+                changed=true;
+            end
+        end
+    end
+    p.ap_points_at=os.time();
+    p.ap_points_source='Currency data';
+    if changed then
+        if HC.modules.state and HC.modules.state.request_save then HC.modules.state.request_save(1);
+        else HC.modules.state.save(); end
+    end
+end
+
 function M.init(ctx)
     HC=ctx;
     if HC.modules.packets and HC.modules.packets.register then
+        HC.modules.packets.register(0x113,'assault point currency',on_currency_packet);
         HC.modules.packets.register(0x056,'assault completed history',function(e)
             local data=nil;
             pcall(function() data=e and (e.data or e.data_raw); end);
@@ -860,6 +964,9 @@ end
 function M.draw(c)
     local imgui=HC.imgui; if not imgui then return; end
     local p=ensure(c);
+    -- Keep the five area-specific AP balances fresh using the same globally
+    -- throttled Currency request shared by ISP, HAAP, and Ancient Beastcoins.
+    if HC.request_currency then pcall(HC.request_currency); end
     local nav=(HC.modules.ui and HC.modules.ui.consume_focus) and HC.modules.ui.consume_focus('assault') or nil;
     local now=os.time();
     if p.native.synced~=true or (now-last_draw_native_sync_at)>=30 then
@@ -1006,6 +1113,7 @@ function M.reward_catalog_entries(c)
     return out;
 end
 
+function M.assault_point_balance(c,area_id) return assault_point_balance(c,area_id); end
 function M.ranks() return RANKS; end
 function M.native_rows() return native_rows(); end
 

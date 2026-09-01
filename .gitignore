@@ -1,1 +1,29 @@
+# HorizonCheck user/account data
+horizoncheck_state.lua
+horizoncheck_state.lua.*
+horizoncheck_outposts_persistent.lua
 
+# Captures / logs / reports
+horizoncheck_capture_*.txt
+horizoncheck_guided_*.txt
+horizoncheck_mission_packets_*.txt
+horizoncheck_learning_*.log
+horizoncheck_audit_*.log
+horizoncheck_release_health_*.txt
+horizoncheck_quest_state_*.txt
+
+# Generated catalog reports
+catalog/reports/
+
+# Temporary files
+*.tmp
+*.write_test
+*.migrate_tmp
+__pycache__/
+*.pyc
+
+# OS/editor junk
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

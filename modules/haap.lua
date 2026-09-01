@@ -239,10 +239,10 @@ function M.draw(c)
     if h.last_verified_at then
         HC.imgui.TextDisabled('Last updated from '..tostring(h.last_source or 'game data')..': '..tostring(math.max(0,os.time()-h.last_verified_at))..'s ago');
     else
-        HC.imgui.TextDisabled('Open the Currency menu or talk to HAAP.I to update your points.');
+        HC.imgui.TextDisabled('Checking the game Currency data automatically...');
     end
     if h.reward_pending then
-        HC.imgui.TextDisabled('Reward claimed - open Currency or talk to HAAP.I to refresh balance.');
+        HC.imgui.TextDisabled('Reward claimed - waiting for the automatic Currency refresh.');
     end
     if type(h.last_change)=='table' and h.last_change.before~=nil and h.last_change.after~=nil then
         local d=tonumber(h.last_change.delta);

@@ -46,6 +46,8 @@ def check_runtime_integration():
     selfheal = (ROOT / "modules" / "selfheal.lua").read_text(encoding="utf-8")
     anniversary = (ROOT / "modules" / "anniversary.lua").read_text(encoding="utf-8")
     blackcoffin = (ROOT / "modules" / "blackcoffin.lua").read_text(encoding="utf-8")
+    isnm = (ROOT / "modules" / "isnm.lua").read_text(encoding="utf-8")
+    assaultprogress = (ROOT / "modules" / "assaultprogress.lua").read_text(encoding="utf-8")
 
     order = re.search(r"local order\s*=\s*\{(.*?)\};", main, re.S)
     if not order:
@@ -234,6 +236,81 @@ def check_runtime_integration():
         errors.append("Black Coffin objective-complete parser block missing")
     elif "b.active_state=='IN PROGRESS'" not in completion_block.group(1):
         errors.append("Black Coffin generic objective-complete text must require an active battlefield run")
+
+    # Currency capture verified Imperial Standing in the native 0x113 payload.
+    # ISNM should consume that balance automatically while preserving separate
+    # Shajaf/key-item eligibility evidence. Currency refresh is shared globally.
+    for token in [
+        "function HC.request_currency(force)",
+        "pm:AddOutgoingPacket(0x010F",
+        "if HC.request_currency then pcall(HC.request_currency); end",
+    ]:
+        if token not in main:
+            errors.append(f"shared Currency refresh contract missing: {token}")
+    for token in [
+        "HC.modules.packets.register(0x113,'isnm_currency',on_currency_packet)",
+        "local isp=u32le(raw,0x7C)",
+        "sync_isp(HC.modules.state.get_char(),isp,'Currency data')",
+        "Currency data proves only the current balance",
+        "out=out..' | ISP: '..tostring(s.last_isp)",
+    ]:
+        if token not in isnm:
+            errors.append(f"ISNM automatic ISP contract missing: {token}")
+    if "ISP seen:" in isnm:
+        errors.append("ISNM status still uses the stale ISP seen label")
+
+    # The same native Currency payload carries five standard Assault Point pools
+    # immediately after Imperial Standing. Their balances should be visible on
+    # each Assault Point Rewards collapsible header without extra packet spam.
+    for token in [
+        "leujaoam=0x80",
+        "mamool=0x84",
+        "lebros=0x88",
+        "periqia=0x8C",
+        "ilrusi=0x90",
+        "HC.modules.packets.register(0x113,'assault point currency',on_currency_packet)",
+        "local ap=assault_point_balance(c,area.id)",
+        "format_number(ap)..' AP'",
+        "%-26s  %2d/%-2d  |  %9s  |  %-12s  |  %s##assault_rewards_%s",
+        "if HC.request_currency then pcall(HC.request_currency); end",
+    ]:
+        if token not in assaultprogress:
+            errors.append(f"Assault Point header/currency contract missing: {token}")
+    for token in [
+        "local function assault_reward_rows(c,area)",
+        "status='AFFORDABLE'",
+        "status='NEED '..format_number(need)..' AP'",
+        "table.sort(rows,function(a,b)",
+        "'%d affordable | %d owned | %d remaining'",
+        "imgui.Text('✓ OWNED')",
+    ]:
+        if token not in assaultprogress:
+            errors.append(f"Assault reward purchase-planner contract missing: {token}")
+
+    for token in [
+        "local function weekly_reset_text()",
+        "local function draw_weekly_summary(imgui,b)",
+        "Weekly status: COMPLETE",
+        "Manual / Capture",
+        "if developer then",
+        "manual Complete/Fail and no-time-limit Capture controls are enabled",
+    ]:
+        if token not in blackcoffin:
+            errors.append(f"Black Coffin simplified UI contract missing: {token}")
+
+    validate_workflow=ROOT / '.github' / 'workflows' / 'validate.yml'
+    release_workflow=ROOT / '.github' / 'workflows' / 'release.yml'
+    if not validate_workflow.is_file():
+        errors.append('GitHub validation workflow missing')
+    if not release_workflow.is_file():
+        errors.append('GitHub release workflow missing')
+    if validate_workflow.is_file() and 'tools/prepare_release.py' not in validate_workflow.read_text(encoding='utf-8'):
+        errors.append('GitHub validation workflow must run prepare_release.py')
+    if release_workflow.is_file():
+        release_text=release_workflow.read_text(encoding='utf-8')
+        for token in ['v*.*.*','tools/prepare_release.py','gh release create','CHANGELOG.md']:
+            if token not in release_text:
+                errors.append(f'GitHub release workflow missing contract: {token}')
 
     # HorizonXI capture proved HasKeyItem(false) for owned KIs, including
     # Cosmo-Cleanse 734. Runtime ownership must therefore return the cached
