@@ -188,8 +188,8 @@ local function draw_fight_details(tier,fight,c,focus_id)
             imgui.TableNextRow(); imgui.TableSetColumnIndex(0);
             if HC.modules.uikit and HC.modules.uikit.collection_item then HC.modules.uikit.collection_item(r[1],info.owned); elseif info.owned then imgui.Text(r[1]); else imgui.TextDisabled(r[1]); end
             imgui.TableSetColumnIndex(1); imgui.TextDisabled(r[2]);
-            imgui.TableSetColumnIndex(2); if HC.modules.uikit and HC.modules.uikit.collection_status then HC.modules.uikit.collection_status(info.owned,'—'); else imgui.TextDisabled(info.owned and '✓' or '—'); end
-            imgui.TableSetColumnIndex(3); if HC.modules.uikit and HC.modules.uikit.collection_location then HC.modules.uikit.collection_location(info.location,info.owned); else imgui.TextDisabled(info.owned and tostring(info.location) or '—'); end
+            imgui.TableSetColumnIndex(2); if HC.modules.uikit and HC.modules.uikit.collection_status then HC.modules.uikit.collection_status(info.owned and 'OWNED' or 'MISSING','MISSING'); else imgui.TextDisabled(info.owned and '✓' or '—'); end
+            imgui.TableSetColumnIndex(3); if HC.modules.uikit and HC.modules.uikit.collection_location then HC.modules.uikit.collection_location(info.location,info.owned and 'OWNED' or 'MISSING'); else imgui.TextDisabled(info.owned and tostring(info.location) or '—'); end
         end
         imgui.EndTable();
     end
@@ -215,9 +215,9 @@ local function draw_reward_collection()
         for _,r in ipairs(rows) do
             local info=item_info(r.item); imgui.TableNextRow(); imgui.TableSetColumnIndex(0); imgui.TextDisabled('T'..r.tier);
             imgui.TableSetColumnIndex(1); imgui.TextDisabled(r.fight);
-            imgui.TableSetColumnIndex(2); if HC.modules.uikit and HC.modules.uikit.collection_item then HC.modules.uikit.collection_item(r.item,info.owned); elseif info.owned then imgui.Text(r.item); else imgui.TextDisabled(r.item); end
-            imgui.TableSetColumnIndex(3); if HC.modules.uikit and HC.modules.uikit.collection_status then HC.modules.uikit.collection_status(info.owned,'—'); else imgui.TextDisabled(info.owned and '✓' or '—'); end
-            imgui.TableSetColumnIndex(4); if HC.modules.uikit and HC.modules.uikit.collection_location then HC.modules.uikit.collection_location(info.location,info.owned); else imgui.TextDisabled(info.owned and tostring(info.location) or '—'); end
+            imgui.TableSetColumnIndex(2); if HC.modules.uikit and HC.modules.uikit.collection_item then HC.modules.uikit.collection_item(r.item,info.owned and 'OWNED' or 'MISSING'); elseif info.owned then imgui.Text(r.item); else imgui.TextDisabled(r.item); end
+            imgui.TableSetColumnIndex(3); if HC.modules.uikit and HC.modules.uikit.collection_status then HC.modules.uikit.collection_status(info.owned and 'OWNED' or 'MISSING','MISSING'); else imgui.TextDisabled(info.owned and '✓' or '—'); end
+            imgui.TableSetColumnIndex(4); if HC.modules.uikit and HC.modules.uikit.collection_location then HC.modules.uikit.collection_location(info.location,info.owned and 'OWNED' or 'MISSING'); else imgui.TextDisabled(info.owned and tostring(info.location) or '—'); end
         end
         imgui.EndTable();
     end

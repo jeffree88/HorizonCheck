@@ -349,9 +349,9 @@ local function draw_boss_gear(snap,force_open)
         for _,r in ipairs(BOSS_GEAR) do
             local info=snap.items[r.item] or {owned=false,location='—'};
             imgui.TableNextRow(); imgui.TableSetColumnIndex(0); imgui.Text(r.set); imgui.TableSetColumnIndex(1); imgui.TextDisabled(r.part);
-            imgui.TableSetColumnIndex(2); if HC.modules.uikit and HC.modules.uikit.collection_item then HC.modules.uikit.collection_item(r.item,info.owned); elseif info.owned then imgui.Text(r.item); else imgui.TextDisabled(r.item); end
-            imgui.TableSetColumnIndex(3); if HC.modules.uikit and HC.modules.uikit.collection_status then HC.modules.uikit.collection_status(info.owned,'—'); elseif info.owned then imgui.Text('✓'); else imgui.TextDisabled('—'); end
-            imgui.TableSetColumnIndex(4); if HC.modules.uikit and HC.modules.uikit.collection_location then HC.modules.uikit.collection_location(info.location,info.owned); else imgui.TextDisabled(info.owned and tostring(info.location) or '—'); end
+            imgui.TableSetColumnIndex(2); if HC.modules.uikit and HC.modules.uikit.collection_item then HC.modules.uikit.collection_item(r.item,info.owned and 'OWNED' or 'MISSING'); elseif info.owned then imgui.Text(r.item); else imgui.TextDisabled(r.item); end
+            imgui.TableSetColumnIndex(3); if HC.modules.uikit and HC.modules.uikit.collection_status then HC.modules.uikit.collection_status(info.owned and 'OWNED' or 'MISSING','MISSING'); elseif info.owned then imgui.Text('✓'); else imgui.TextDisabled('—'); end
+            imgui.TableSetColumnIndex(4); if HC.modules.uikit and HC.modules.uikit.collection_location then HC.modules.uikit.collection_location(info.location,info.owned and 'OWNED' or 'MISSING'); else imgui.TextDisabled(info.owned and tostring(info.location) or '—'); end
         end
         imgui.EndTable();
     end
@@ -382,6 +382,14 @@ function M.catalog_entries(c)
     for _,job in ipairs(JOBS) do add_item(APOLLYON_MATS[job],job..' AF+1'); add_item(TEMENOS_MATS[job],job..' AF+1'); end
     for _,r in ipairs(BOSS_GEAR) do add_item(r.item,r.set); end
     return out;
+end
+
+function M.summary(c)
+    c=c or HC.modules.state.get_char();
+    local snap=build_snapshot(c);
+    local cleanse=snap.cleanse and snap.cleanse.owned;
+    local state=snap.used>=2 and 'COMPLETE' or (cleanse==true and 'READY' or (cleanse==false and 'MISSING' or 'CHECKING'));
+    return {used=snap.used,remaining=snap.remaining,total=2,cleanse=cleanse,state=state};
 end
 
 function M.draw(c)

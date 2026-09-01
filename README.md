@@ -1,3 +1,8 @@
+### v7.9.13 highlights
+- Overview now has an **Account Intelligence** layer that can surface the current Black Coffin step/cost, affordable Assault rewards, and ready Limbus entries alongside normal zone/activity recommendations.
+- Offline daily/avatar/weekly values are reset-safe: stale cycles show as unavailable rather than looking like fresh `0/x` progress, while permanent progression remains saved.
+- Assault, Limbus, and HENM collections begin using one shared HorizonCheck status vocabulary and live/saved freshness language for a more consistent UI.
+
 ### v7.9.12 highlights
 - Assault Point rewards now act as a live purchase planner: **AFFORDABLE** items rise to the top, unaffordable items show the exact AP still needed, and owned rewards move below useful purchases.
 - Black Coffin now opens with a compact current/next-step summary plus entry cost and weekly reset timer; manual/capture controls are Developer Mode only.

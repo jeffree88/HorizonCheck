@@ -1,3 +1,10 @@
+## v7.9.13
+- Adds an **Account Intelligence** layer to Overview: current Black Coffin state/entry cost, affordable Assault rewards from live AP balances, and clear Limbus entry readiness can now compete directly in **What to Do Next**.
+- Makes **What to Do Next** rank signals from current zone, weekly state, held entry items, currencies, and collection ownership instead of relying only on isolated activity rows.
+- Adds reset-safe account freshness semantics: expired daily/avatar/weekly values from offline characters now render as unavailable instead of misleading `0/x` progress, while permanent job/progression data remains saved.
+- Adds a shared UI status vocabulary (`OWNED`, `COMPLETE`, `AVAILABLE`, `AFFORDABLE`, `ACTIVE`, `READY`, `NOT NEEDED`, `LOCKED`, `MISSING`, `CHECKING`) plus shared freshness badges for live/saved/reset data.
+- Migrates Assault reward, Limbus boss-gear, and HENM reward collection rendering onto the shared status framework as the first unified-table pass.
+
 ## v7.9.12
 - Turns **Assault Point Rewards** into a purchase planner: affordable unowned rewards sort to the top, insufficient rewards show exactly how many AP are still needed, and owned rewards move to the bottom.
 - Adds per-area reward summaries with affordable, owned, and remaining counts while preserving the aligned live-AP collapsible headers.

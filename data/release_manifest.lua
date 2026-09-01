@@ -1,5 +1,5 @@
 return {
-    version = '7.9.12',
+    version = '7.9.13',
     state_schema = 24,
     required = {
         'horizoncheck.lua',

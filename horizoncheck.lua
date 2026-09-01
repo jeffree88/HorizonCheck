@@ -1,9 +1,9 @@
--- HorizonCheck v7.9.12
+-- HorizonCheck v7.9.13
 -- Modular rewrite for HorizonXI / Ashita v4.
 
 addon.name = 'horizoncheck';
 addon.author = 'OpenAI';
-addon.version = '7.9.12';
+addon.version = '7.9.13';
 addon.desc = 'HorizonXI daily/weekly activity dashboard.';
 addon.link = 'https://horizonxi.com/';
 
@@ -25,7 +25,7 @@ local function loadmod(name)
 end
 
 local HC = {
-    version = '7.9.12',
+    version = '7.9.13',
     imgui = imgui_ok and imgui or nil,
     chat = chat_ok and chat or nil,
     addon_path = addon.path,
@@ -341,7 +341,7 @@ local function self_test()
         performance_watchdog = { 'sample', 'poll', 'status', 'reset', 'draw' },
         dependencies = { 'invalidate', 'invalidate_many', 'status', 'draw' },
         integrity = { 'scan', 'invalidate', 'poll', 'status', 'draw' },
-        uikit = { 'table_flags', 'window_width', 'wide_enough', 'table_supported', 'section_header', 'section_header_action', 'wrapped_note', 'status_row', 'responsive_two_column', 'collapsing_section', 'progress_label', 'simple_table', 'developer_control' },
+        uikit = { 'table_flags', 'window_width', 'wide_enough', 'table_supported', 'section_header', 'section_header_action', 'wrapped_note', 'status_row', 'responsive_two_column', 'collapsing_section', 'progress_label', 'simple_table', 'normalize_status', 'status_meta', 'draw_status', 'data_freshness', 'data_badge', 'developer_control' },
         zonesync = { 'poll', 'force', 'status', 'draw' },
         synchealth = { 'snapshot', 'status', 'draw', 'invalidate' },
         characterregistry = { 'snapshot', 'status', 'draw', 'remove', 'invalidate' },
@@ -351,7 +351,7 @@ local function self_test()
         catalog_coverage = { 'snapshot', 'issues', 'invalidate', 'draw', 'status', 'work_queue' },
         planner = { 'build', 'draw', 'status', 'classify', 'ranked' },
         search = { 'query', 'draw_bar', 'draw_results', 'text', 'active', 'clear', 'invalidate', 'rebuild', 'status' },
-        smartdashboard = { 'snapshot', 'account_snapshot', 'draw', 'status' },
+        smartdashboard = { 'snapshot', 'account_snapshot', 'intelligence', 'draw', 'status' },
         weekly = { 'draw', 'draw_attention', 'draw_daily_avatars', 'avatar_daily_status' },
         sessions = { 'start', 'recover', 'complete', 'close', 'current' },
         automation = { 'poll', 'status' },

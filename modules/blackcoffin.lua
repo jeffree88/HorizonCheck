@@ -270,6 +270,20 @@ function M.fail(key,source)
     return true;
 end
 
+function M.summary(c)
+    c=c or HC.modules.state.get_char();
+    local b=account_state(); sync_character_mirror(c,b);
+    local done=count_done(b); local active=b.active_step and step_by_key(b.active_step) or nil; local nxt=next_step(b);
+    local current=active or nxt;
+    local state='READY';
+    if b.locked_out then state='LOCKED';
+    elseif done>=3 then state='COMPLETE';
+    elseif active and b.active_state then state=active_label(b.active_state); end
+    return {done=done,total=3,state=state,complete=done>=3,locked=b.locked_out==true,
+        active_key=b.active_step,active_state=b.active_state,current=current,next=nxt,
+        name=current and current.name or nil,item=current and current.item or nil,npc=current and current.npc or nil};
+end
+
 function M.status(c)
     local b=account_state();
     sync_character_mirror(c,b);

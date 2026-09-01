@@ -48,6 +48,9 @@ def check_runtime_integration():
     blackcoffin = (ROOT / "modules" / "blackcoffin.lua").read_text(encoding="utf-8")
     isnm = (ROOT / "modules" / "isnm.lua").read_text(encoding="utf-8")
     assaultprogress = (ROOT / "modules" / "assaultprogress.lua").read_text(encoding="utf-8")
+    smartdashboard = (ROOT / "modules" / "smartdashboard.lua").read_text(encoding="utf-8")
+    uikit = (ROOT / "modules" / "uikit.lua").read_text(encoding="utf-8")
+    limbus = (ROOT / "modules" / "limbus.lua").read_text(encoding="utf-8")
 
     order = re.search(r"local order\s*=\s*\{(.*?)\};", main, re.S)
     if not order:
@@ -297,6 +300,41 @@ def check_runtime_integration():
     ]:
         if token not in blackcoffin:
             errors.append(f"Black Coffin simplified UI contract missing: {token}")
+
+    # v7.9.13 Account Intelligence + unified status/freshness framework.
+    for token in [
+        "function M.normalize_status",
+        "function M.status_meta",
+        "function M.draw_status",
+        "function M.data_freshness",
+        "function M.data_badge",
+        "s=='AFFORDABLE'",
+    ]:
+        if token not in uikit:
+            errors.append(f"unified UI status/freshness contract missing: {token}")
+    for token in [
+        "local function intelligence_rows(c)",
+        "function M.intelligence(c)",
+        "Black Coffin - ",
+        "unowned reward",
+        "Cosmo-Cleanse held",
+        "daily_valid=daily_current",
+        "weekly_valid=weekly_current",
+        "data_badge('saved'",
+    ]:
+        if token not in smartdashboard:
+            errors.append(f"Account Intelligence/reset-safe Overview contract missing: {token}")
+    for token in [
+        "function M.reward_summary(c)",
+        "HC.modules.uikit.collection_item(row.item,row.status)",
+        "HC.modules.uikit.draw_status(row.status",
+    ]:
+        if token not in assaultprogress:
+            errors.append(f"Assault unified status/intelligence contract missing: {token}")
+    if "function M.summary(c)" not in blackcoffin:
+        errors.append("Black Coffin intelligence summary missing")
+    if "function M.summary(c)" not in limbus:
+        errors.append("Limbus intelligence summary missing")
 
     validate_workflow=ROOT / '.github' / 'workflows' / 'validate.yml'
     release_workflow=ROOT / '.github' / 'workflows' / 'release.yml'

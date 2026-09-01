@@ -99,19 +99,89 @@ function M.simple_table(id,columns,rows,min_width)
     imgui.EndTable(); return true;
 end
 
-function M.collection_item(name,owned)
+function M.collection_item(name,state)
     local imgui=HC and HC.imgui or nil; if not imgui then return; end
-    if owned==true then imgui.Text(tostring(name or '')); else imgui.TextDisabled(tostring(name or '')); end
+    local m=M.status_meta(state,{checkmark=false});
+    if m.bright then imgui.Text(tostring(name or '')); else imgui.TextDisabled(tostring(name or '')); end
 end
 
-function M.collection_status(owned,missing_label)
+function M.collection_status(state,missing_label)
     local imgui=HC and HC.imgui or nil; if not imgui then return; end
-    if owned==true then imgui.Text('✓'); else imgui.TextDisabled(tostring(missing_label or '—')); end
+    if type(state)=='boolean' then
+        if state==true then imgui.Text('✓ OWNED'); else imgui.TextDisabled(tostring(missing_label or 'MISSING')); end
+        return;
+    end
+    return M.draw_status(state,{label=(state and tostring(state) or tostring(missing_label or 'MISSING'))});
 end
 
-function M.collection_location(location,owned)
+function M.collection_location(location,state)
     local imgui=HC and HC.imgui or nil; if not imgui then return; end
-    if owned==true and location and tostring(location)~='' then imgui.TextDisabled(tostring(location)); else imgui.TextDisabled('—'); end
+    local m=M.status_meta(state,{checkmark=false});
+    if m.complete and location and tostring(location)~='' and tostring(location)~='—' then imgui.TextDisabled(tostring(location)); else imgui.TextDisabled('—'); end
+end
+
+-- Unified status/freshness vocabulary. Trackers may keep their own raw
+-- lifecycle states, but normal collection/status tables render through this
+-- small shared vocabulary so OWNED / AVAILABLE / LOCKED / MISSING / etc. look
+-- and behave consistently across HorizonCheck.
+local STATUS_ALIASES={
+    ['CLEARED']='COMPLETE',['DONE']='COMPLETE',['VERIFIED']='COMPLETE',
+    ['HELD']='OWNED',['OBTAINED']='OWNED',
+    ['NEXT']='READY',['IN PROGRESS']='ACTIVE',['ACCEPTED']='ACTIVE',
+    ['NEED']='MISSING',['NEEDED']='MISSING',['NOT OWNED']='MISSING',
+    ['UNKNOWN']='CHECKING',['CHECK']='CHECKING',['VERIFY']='CHECKING',
+    ['POOL EMPTY']='LOCKED',['FAILED']='LOCKED',
+};
+
+function M.normalize_status(state,opts)
+    opts=type(opts)=='table' and opts or {};
+    if type(state)=='boolean' then return state and 'OWNED' or tostring(opts.false_state or 'MISSING'); end
+    local s=string.upper(tostring(state or opts.default or 'CHECKING'));
+    s=STATUS_ALIASES[s] or s;
+    if s:find('^NEED ') then return 'MISSING'; end
+    if s=='NEED CARD' or s=='NEED CHIP' or s=='NEED CLEANSE' then return 'MISSING'; end
+    return s;
+end
+
+function M.status_meta(state,opts)
+    opts=type(opts)=='table' and opts or {};
+    local s=M.normalize_status(state,opts);
+    local label=tostring(opts.label or s);
+    local bright=(s=='OWNED' or s=='COMPLETE' or s=='AVAILABLE' or s=='AFFORDABLE' or s=='ACTIVE' or s=='READY' or s=='NOT NEEDED');
+    local complete=(s=='OWNED' or s=='COMPLETE' or s=='NOT NEEDED');
+    local prefix=(complete and opts.checkmark~=false) and '✓ ' or '';
+    return {state=s,label=prefix..label,bright=bright,complete=complete};
+end
+
+function M.draw_status(state,opts)
+    local imgui=HC and HC.imgui or nil; if not imgui then return; end
+    local m=M.status_meta(state,opts);
+    if m.bright then imgui.Text(m.label); else imgui.TextDisabled(m.label); end
+    return m;
+end
+
+function M.data_freshness(kind,opts)
+    opts=type(opts)=='table' and opts or {};
+    kind=string.lower(tostring(kind or 'saved'));
+    if kind=='permanent' then return {state='PERMANENT',label='Permanent',bright=true}; end
+    if opts.current==true then return {state='LIVE',label='Live',bright=true}; end
+    if opts.cycle_valid==false then return {state='EXPIRED',label='Reset',bright=false}; end
+    local at=tonumber(opts.last_seen_at);
+    if not at then return {state='UNKNOWN',label='No saved data',bright=false}; end
+    local age=math.max(0,os.time()-at);
+    local age_label;
+    if age<120 then age_label='just now';
+    elseif age<3600 then age_label=tostring(math.floor(age/60))..'m ago';
+    elseif age<86400 then age_label=tostring(math.floor(age/3600))..'h ago';
+    else age_label=tostring(math.floor(age/86400))..'d ago'; end
+    return {state='SAVED',label='Saved '..age_label,bright=age<3600,age=age};
+end
+
+function M.data_badge(kind,opts)
+    local imgui=HC and HC.imgui or nil; if not imgui then return; end
+    local f=M.data_freshness(kind,opts);
+    if f.bright then imgui.Text(tostring(f.label)); else imgui.TextDisabled(tostring(f.label)); end
+    return f;
 end
 
 function M.developer_control(c,fn)

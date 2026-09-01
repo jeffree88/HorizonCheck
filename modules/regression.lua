@@ -120,6 +120,20 @@ function M.run(announce)
         add('Planner keeps hard blockers BLOCKED',planner.classify('LOCKED',{})=='LOCKED',planner.classify('LOCKED',{}));
     end
 
+    local uikit=HC.modules and HC.modules.uikit or nil;
+    add('Unified status framework integrated',uikit and type(uikit.normalize_status)=='function' and type(uikit.data_freshness)=='function','uikit.normalize_status + data_freshness');
+    if uikit and uikit.normalize_status and uikit.data_freshness then
+        add('Unified status maps held items to OWNED',uikit.normalize_status('HELD')=='OWNED',tostring(uikit.normalize_status('HELD')));
+        add('Unified status maps in-progress work to ACTIVE',uikit.normalize_status('IN PROGRESS')=='ACTIVE',tostring(uikit.normalize_status('IN PROGRESS')));
+        local expired=uikit.data_freshness('saved',{current=false,cycle_valid=false,last_seen_at=os.time()});
+        add('Reset-scoped stale data expires instead of becoming fresh zero progress',expired and expired.state=='EXPIRED',tostring(expired and expired.state));
+        local live=uikit.data_freshness('saved',{current=true,last_seen_at=os.time()});
+        add('Current-character freshness is LIVE',live and live.state=='LIVE',tostring(live and live.state));
+    end
+
+    local dash=HC.modules and HC.modules.smartdashboard or nil;
+    add('Account Intelligence integrated',dash and type(dash.intelligence)=='function','smartdashboard.intelligence');
+
     if announce and HC then
         HC.msg(string.format('Regression suite: %d passed, %d failed.',last.passed,last.failed));
         for _,row in ipairs(last.rows) do

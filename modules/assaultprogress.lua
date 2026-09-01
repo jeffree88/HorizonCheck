@@ -247,11 +247,12 @@ local function draw_assault_point_rewards(c,focus)
                 for _,row in ipairs(rows) do
                     imgui.TableNextRow();
                     imgui.TableSetColumnIndex(0);
-                    if row.owned or row.affordable then imgui.Text(tostring(row.item)); else imgui.TextDisabled(tostring(row.item)); end
+                    if HC.modules.uikit and HC.modules.uikit.collection_item then HC.modules.uikit.collection_item(row.item,row.status); elseif row.owned or row.affordable then imgui.Text(tostring(row.item)); else imgui.TextDisabled(tostring(row.item)); end
                     imgui.TableSetColumnIndex(1);
                     if row.affordable then imgui.Text(format_number(row.cost)..' AP'); else imgui.TextDisabled(format_number(row.cost)..' AP'); end
                     imgui.TableSetColumnIndex(2);
-                    if row.owned then imgui.Text('✓ OWNED');
+                    if HC.modules.uikit and HC.modules.uikit.draw_status then HC.modules.uikit.draw_status(row.status,{label=row.status});
+                    elseif row.owned then imgui.Text('✓ OWNED');
                     elseif row.affordable then imgui.Text('AFFORDABLE');
                     else imgui.TextDisabled(tostring(row.status)); end
                     imgui.TableSetColumnIndex(3);
@@ -1110,6 +1111,24 @@ function M.reward_catalog_entries(c)
             };
         end
     end
+    return out;
+end
+
+function M.reward_summary(c)
+    c=c or HC.modules.state.get_char();
+    local out={areas={},affordable=0,owned=0,total=0,remaining=0};
+    for _,area in ipairs(ASSAULT_POINT_REWARDS) do
+        local _,summary=assault_reward_rows(c,area);
+        local row={id=area.id,area=area.area,vendor=area.vendor,vendor_pos=area.vendor_pos,ap=summary.ap,
+            affordable=summary.affordable,owned=summary.owned,total=summary.total,remaining=summary.remaining};
+        out.areas[#out.areas+1]=row;
+        out.affordable=out.affordable+(summary.affordable or 0); out.owned=out.owned+(summary.owned or 0);
+        out.total=out.total+(summary.total or 0); out.remaining=out.remaining+(summary.remaining or 0);
+    end
+    table.sort(out.areas,function(a,b)
+        if (a.affordable or 0)~=(b.affordable or 0) then return (a.affordable or 0)>(b.affordable or 0); end
+        return tostring(a.area)<tostring(b.area);
+    end);
     return out;
 end
 

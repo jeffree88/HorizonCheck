@@ -137,7 +137,7 @@ local function saved_cycle_activity(cc,current_day,current_week)
     local weekly_done,weekly_total=saved_flag_count(weekly,ACCOUNT_WEEKLY_IDS);
     local avatars=type(daily.avatar_fights)=='table' and daily.avatar_fights or {};
     local avatar_done=0; for _,name in ipairs(ACCOUNT_AVATAR_NAMES) do if avatars[name]==true then avatar_done=avatar_done+1; end end
-    return {daily_done=daily_done,daily_total=daily_total,avatar_done=avatar_done,avatar_total=#ACCOUNT_AVATAR_NAMES,weekly_task_done=weekly_done,weekly_task_total=weekly_total};
+    return {daily_done=daily_done,daily_total=daily_total,avatar_done=avatar_done,avatar_total=#ACCOUNT_AVATAR_NAMES,weekly_task_done=weekly_done,weekly_task_total=weekly_total,daily_valid=daily_current,weekly_valid=weekly_current};
 end
 
 local function account_dynamis_limits(cc,account_used,current_week)
@@ -193,7 +193,7 @@ function M.account_snapshot(force)
             local activity=saved_cycle_activity(cc,day,week);
             local row={name=tostring(name),current=current_row,dynamis_used=du,dynamis_cap=dcap,
                 limbus_used=lu,daily_done=activity.daily_done,daily_total=activity.daily_total,avatar_done=activity.avatar_done,avatar_total=activity.avatar_total,
-                weekly_task_done=activity.weekly_task_done,weekly_task_total=activity.weekly_task_total,
+                weekly_task_done=activity.weekly_task_done,weekly_task_total=activity.weekly_task_total,daily_valid=activity.daily_valid,weekly_valid=activity.weekly_valid,
                 mission_done=md,mission_total=mt,outposts_have=oh,outposts_total=ot,
                 anniversary_done=ad,anniversary_total=at,seasonal_done=sd,seasonal_total=st,
                 jobs_75=tonumber(profile.jobs_75) or 0,jobs_total=tonumber(profile.jobs_total) or 0,
@@ -294,7 +294,8 @@ local function saved_character_count()
     return n;
 end
 
-local function draw_account_count(imgui,done,total)
+local function draw_account_count(imgui,done,total,valid)
+    if valid==false then imgui.TextDisabled('—'); return; end
     done=tonumber(done) or 0; total=tonumber(total) or 0; local label=string.format('%d/%d',done,total);
     if total>0 and done>=total then imgui.Text(label); else imgui.TextDisabled(label); end
 end
@@ -317,7 +318,7 @@ local function draw_account_overview(imgui,c)
     local shared=string.format('Shared resources: Dynamis %d/%d used | %d remaining',a.dynamis_used or 0,a.dynamis_cap or 3,a.dynamis_remaining or 0);
     if a.assault_tags~=nil then shared=shared..' | Assault Tags '..tostring(a.assault_tags)..'/4'..((tonumber(a.assault_tags) or 0)>=4 and ' CAPPED' or ''); end
     imgui.TextDisabled(shared);
-    imgui.TextDisabled('Offline characters use compact saved summaries only; HorizonCheck does not scan another character\'s live inventory or quest state.');
+    imgui.TextDisabled('Reset-scoped values expire automatically at the daily/weekly reset. Permanent progression stays saved; offline live data is clearly marked as last known.');
 
     imgui.TextDisabled('Sort:'); imgui.SameLine();
     if imgui.SmallButton((account_sort=='name' and '[Name]' or 'Name')..'##hc_account_sort_name') then set_account_sort('name'); a=M.account_snapshot(true); end
@@ -338,7 +339,7 @@ local function draw_account_overview(imgui,c)
         imgui.TableSetupColumn('Weekly',0,0.11);
         imgui.TableSetupColumn('Dynamis',0,0.11);
         imgui.TableSetupColumn('Limbus',0,0.11);
-        imgui.TableSetupColumn('Last Seen',0,0.13);
+        imgui.TableSetupColumn('Data',0,0.13);
         imgui.TableHeadersRow();
 
         for _,r in ipairs(a.rows or {}) do
@@ -354,21 +355,21 @@ local function draw_account_overview(imgui,c)
             imgui.Text(string.format('%d/%d',r.jobs_75 or 0,r.jobs_total or 0));
 
             imgui.TableSetColumnIndex(2);
-            draw_account_count(imgui,r.daily_done,r.daily_total);
+            draw_account_count(imgui,r.daily_done,r.daily_total,r.daily_valid);
             if imgui.IsItemHovered and imgui.IsItemHovered() and imgui.SetTooltip then
-                imgui.SetTooltip('Daily Objectives completed this Japanese-midnight cycle.');
+                imgui.SetTooltip(r.daily_valid==false and 'This saved daily cycle has expired; HorizonCheck does not carry it into the current reset.' or 'Daily Objectives completed this Japanese-midnight cycle.');
             end
 
             imgui.TableSetColumnIndex(3);
-            draw_account_count(imgui,r.avatar_done,r.avatar_total);
+            draw_account_count(imgui,r.avatar_done,r.avatar_total,r.daily_valid);
             if imgui.IsItemHovered and imgui.IsItemHovered() and imgui.SetTooltip then
-                imgui.SetTooltip('Prime-avatar fights completed today.');
+                imgui.SetTooltip(r.daily_valid==false and 'This saved avatar cycle has expired; HorizonCheck does not carry it into the current reset.' or 'Prime-avatar fights completed today.');
             end
 
             imgui.TableSetColumnIndex(4);
-            draw_account_count(imgui,r.weekly_task_done,r.weekly_task_total);
+            draw_account_count(imgui,r.weekly_task_done,r.weekly_task_total,r.weekly_valid);
             if imgui.IsItemHovered and imgui.IsItemHovered() and imgui.SetTooltip then
-                imgui.SetTooltip('Weekly Objectives excluding the separate Dynamis and Limbus entry counters.');
+                imgui.SetTooltip(r.weekly_valid==false and 'This saved weekly cycle has expired; HorizonCheck does not carry it into the current Conquest week.' or 'Weekly Objectives excluding the separate Dynamis and Limbus entry counters.');
             end
 
             imgui.TableSetColumnIndex(5);
@@ -382,7 +383,7 @@ local function draw_account_overview(imgui,c)
             draw_account_count(imgui,r.limbus_used,2);
 
             imgui.TableSetColumnIndex(7);
-            imgui.TextDisabled(age_label(r.last_seen_at,r.current));
+            if HC.modules.uikit and HC.modules.uikit.data_badge then HC.modules.uikit.data_badge('saved',{current=r.current,last_seen_at=r.last_seen_at}); else imgui.TextDisabled(age_label(r.last_seen_at,r.current)); end
         end
         imgui.EndTable();
     else
@@ -393,9 +394,9 @@ local function draw_account_overview(imgui,c)
                 '%s Lv.%d | Jobs 75 %d/%d | Daily %d/%d | Avatars %d/%d | Weekly %d/%d | Dynamis %d/%d | Limbus %d/2 | Seen %s',
                 tostring(r.job or '---'),tonumber(r.level) or 0,
                 r.jobs_75 or 0,r.jobs_total or 0,
-                r.daily_done or 0,r.daily_total or 4,
-                r.avatar_done or 0,r.avatar_total or 8,
-                r.weekly_task_done or 0,r.weekly_task_total or 8,
+                r.daily_valid==false and 0 or (r.daily_done or 0),r.daily_valid==false and 0 or (r.daily_total or 4),
+                r.daily_valid==false and 0 or (r.avatar_done or 0),r.daily_valid==false and 0 or (r.avatar_total or 8),
+                r.weekly_valid==false and 0 or (r.weekly_task_done or 0),r.weekly_valid==false and 0 or (r.weekly_task_total or 8),
                 r.dynamis_used or 0,r.dynamis_cap or 0,
                 r.limbus_used or 0,
                 age_label(r.last_seen_at,r.current)
@@ -578,26 +579,79 @@ local function draw_zone_intelligence(imgui,c)
 end
 
 
+local function intelligence_rows(c)
+    local out={};
+    local function push(tier,score,text,tab,focus,reason)
+        out[#out+1]={tier=tier,score=score,priority=10,text=text,tab=tab,focus=focus,reason=reason,source='intelligence'};
+    end
+
+    local bc=HC.modules.blackcoffin;
+    if bc and bc.summary then
+        local ok,b=pcall(bc.summary,c);
+        if ok and type(b)=='table' and not b.complete and not b.locked and b.name then
+            local tier=(b.state=='ACTIVE' or b.state=='IN PROGRESS') and 'DO NOW' or 'READY';
+            local text='Black Coffin - '..tostring(b.state)..': '..tostring(b.name);
+            if b.item then text=text..' | '..tostring(b.item); end
+            push(tier,tier=='DO NOW' and 175 or 125,text,'blackcoffin',nil,'current weekly chain state');
+        end
+    end
+
+    local apm=HC.modules.assaultprogress;
+    if apm and apm.reward_summary then
+        local ok,a=pcall(apm.reward_summary,c);
+        if ok and type(a)=='table' then
+            local shown=0;
+            for _,area in ipairs(a.areas or {}) do
+                if (tonumber(area.affordable) or 0)>0 and shown<2 then
+                    shown=shown+1;
+                    local ap=tonumber(area.ap);
+                    local text=string.format('%s - %d unowned reward%s affordable%s',tostring(area.area),tonumber(area.affordable) or 0,(tonumber(area.affordable) or 0)==1 and '' or 's',ap and (' | '..tostring(ap)..' AP') or '');
+                    push('READY',110-(shown-1)*5,text,'assault',{section='rewards',area=area.id},'live Assault Point balance + current collection ownership');
+                end
+            end
+        end
+    end
+
+    -- Limbus already contributes an action through systems.lua. Only enrich it
+    -- here when entry state is especially clear and there is no stronger Black
+    -- Coffin/Assault signal competing for the compact six-row Overview.
+    local lm=HC.modules.limbus;
+    if lm and lm.summary then
+        local ok,l=pcall(lm.summary,c);
+        if ok and type(l)=='table' and (tonumber(l.remaining) or 0)>0 and l.cleanse==true then
+            push('READY',92,string.format('Limbus - %d entr%s available | Cosmo-Cleanse held',tonumber(l.remaining) or 0,(tonumber(l.remaining) or 0)==1 and 'y' or 'ies'),'limbus',nil,'current weekly entry count + held entry key item');
+        end
+    end
+    return out;
+end
+
+function M.intelligence(c)
+    return intelligence_rows(c or HC.modules.state.get_char());
+end
+
 local function simple_action_rows(c)
     local p=HC.modules and HC.modules.planner or nil;
     if not (p and p.build) then return {},nil; end
     local ok,model=pcall(p.build,c,false);
     if not ok or type(model)~='table' then return {},nil; end
     local rows={};
+    for _,r in ipairs(intelligence_rows(c)) do rows[#rows+1]=r; end
     for _,tier in ipairs({'DO NOW','READY'}) do
-        local tmp={};
-        for _,r in ipairs((model.groups and model.groups[tier]) or {}) do
-            r.tier=tier;
-            tmp[#tmp+1]=r;
-        end
-        table.sort(tmp,function(a,b)
-            local as=tonumber(a.score) or 0; local bs=tonumber(b.score) or 0;
-            if as~=bs then return as>bs; end
-            return (tonumber(a.priority) or 100)<(tonumber(b.priority) or 100);
-        end);
-        for _,r in ipairs(tmp) do rows[#rows+1]=r; end
+        for _,r in ipairs((model.groups and model.groups[tier]) or {}) do r.tier=tier; rows[#rows+1]=r; end
     end
-    return rows,model;
+    table.sort(rows,function(a,b)
+        local at=(a.tier=='DO NOW') and 0 or 1; local bt=(b.tier=='DO NOW') and 0 or 1;
+        if at~=bt then return at<bt; end
+        local as=tonumber(a.score) or 0; local bs=tonumber(b.score) or 0;
+        if as~=bs then return as>bs; end
+        return (tonumber(a.priority) or 100)<(tonumber(b.priority) or 100);
+    end);
+    local deduped,seen={},{};
+    for _,r in ipairs(rows) do
+        local key=string.lower(tostring(r.text or '')):gsub('%s+',' ');
+        if not seen[key] then seen[key]=true; deduped[#deduped+1]=r; end
+    end
+    return deduped,model;
 end
 
 local function simple_priority_label(row,index)
@@ -609,6 +663,7 @@ end
 local function draw_simple_next(imgui,c)
     if HC.modules.uikit then HC.modules.uikit.section_header('What to Do Next'); else imgui.Text('What to Do Next'); imgui.Separator(); end
     local rows,model=simple_action_rows(c);
+    imgui.TextDisabled('Prioritized from current zone, weekly state, entry items, currencies, and collection ownership.');
     if #rows==0 then
         imgui.Text('Nothing urgent right now.');
         imgui.TextDisabled('Open Daily / Weekly, Quests, or another activity tab whenever you want to pick something specific.');
