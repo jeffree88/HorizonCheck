@@ -1,3 +1,15 @@
+## v7.9.8
+- Automates the full successful Black Coffin weekly chain using the supplied HorizonXI captures.
+- Halshaob's verified payment/acceptance dialogue now moves each stage from **NEXT** to **ACTIVE**, and Ashu Talif entry moves it to **IN PROGRESS**.
+- The verified `Objective complete. You may return on the lifeboat.` system message now completes the active stage automatically and advances the next mission; finishing Targeting the Captain marks the weekly chain **3/3 COMPLETE**.
+- Keeps manual Complete/Fail buttons as fallback controls and keeps Black Coffin Capture in manual-stop, no-time-limit mode.
+- Adds release regression checks so the generic objective-complete line can only advance Black Coffin while a tracked Ashu Talif run is already in progress.
+
+## v7.9.7
+- Changes Black Coffin **Capture** to manual-stop mode with no automatic timeout.
+- A Black Coffin capture now keeps running until **Stop** is pressed (or `/hcheck learn stop` is used), so long battlefield runs can be captured in one report.
+- Updates the Black Coffin capture tooltip to make the no-time-limit behavior explicit.
+
 ## v7.9.6
 - Combines the two **Account / Characters** tables into one compact account-status table.
 - Keeps **Jobs at 75**, **Daily**, **Avatars**, **Weekly**, **Dynamis**, **Limbus**, and **Last Seen** on one row per character.

@@ -1,9 +1,9 @@
--- HorizonCheck v7.9.6
+-- HorizonCheck v7.9.8
 -- Modular rewrite for HorizonXI / Ashita v4.
 
 addon.name = 'horizoncheck';
 addon.author = 'OpenAI';
-addon.version = '7.9.6';
+addon.version = '7.9.8';
 addon.desc = 'HorizonXI daily/weekly activity dashboard.';
 addon.link = 'https://horizonxi.com/';
 
@@ -25,7 +25,7 @@ local function loadmod(name)
 end
 
 local HC = {
-    version = '7.9.6',
+    version = '7.9.8',
     imgui = imgui_ok and imgui or nil,
     chat = chat_ok and chat or nil,
     addon_path = addon.path,

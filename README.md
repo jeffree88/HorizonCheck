@@ -1,3 +1,10 @@
+### v7.9.8 highlights
+
+- Black Coffin's three-stage weekly chain now advances automatically from captured live HorizonXI dialogue: `NEXT -> ACTIVE -> IN PROGRESS -> COMPLETE`.
+- Scouting the Ashu Talif, Royal Painter Escort, and Targeting the Captain all use Halshaob's confirmed acceptance line and the battlefield's confirmed objective-complete message.
+- Completing the third stage automatically marks Black Coffin `3/3 COMPLETE`; manual Complete/Fail controls remain available as fallback.
+- Black Coffin Capture remains manual-stop with no time limit for future verification runs.
+
 ### v7.8.17 highlights
 
 - Character Info's compact Job Progression rows no longer show aggregate gear counts.

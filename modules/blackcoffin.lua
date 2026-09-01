@@ -162,6 +162,13 @@ local function next_step(b)
     return nil;
 end
 
+local function active_label(state)
+    state=tostring(state or '');
+    if state=='ACCEPTED' or state=='ACTIVE' then return 'ACTIVE'; end
+    if state=='IN PROGRESS' then return 'IN PROGRESS'; end
+    return state;
+end
+
 local function sync_character_mirror(c,b)
     c.weekly=type(c.weekly)=='table' and c.weekly or {};
     -- The Weekly / Conquest checkbox represents whether this week's Black
@@ -220,6 +227,14 @@ function M.complete(key,source)
     b.last_source=source or 'manual';
     b.active_step=nil;
     b.active_state=nil;
+    b.accepted_at=nil;
+    b.entered_at=nil;
+    b.time_limit_seconds=nil;
+    b.time_limit_verified_at=nil;
+    if count_done(b)>=3 then
+        b.completed_at=b.last_completed_at;
+        b.completed_source=b.last_source;
+    end
     lifecycle(c,key,'CLEARED',source or 'manual',nil,{completed=true});
     sync_character_mirror(c,b);
     HC.modules.state.save();
@@ -241,6 +256,10 @@ function M.fail(key,source)
     b.failed_source=source or 'manual';
     b.active_step=nil;
     b.active_state=nil;
+    b.accepted_at=nil;
+    b.entered_at=nil;
+    b.time_limit_seconds=nil;
+    b.time_limit_verified_at=nil;
     lifecycle(c,key or 'weekly','LOCKED',source or 'manual',nil,{failed=true,weekly_lockout=true});
     sync_character_mirror(c,b);
     HC.modules.state.save();
@@ -268,7 +287,7 @@ function M.status(c)
 
     if b.active_step and b.active_state then
         local it=step_by_key(b.active_step);
-        return string.format('%d/3 | %s | %s',done,tostring(b.active_state),tostring(it and it.name or b.active_step));
+        return string.format('%d/3 | %s | %s',done,active_label(b.active_state),tostring(it and it.name or b.active_step));
     end
 
     local nxt=next_step(b);
@@ -297,9 +316,9 @@ local function draw_capture_button(imgui,it)
     end
     if imgui.IsItemHovered and imgui.IsItemHovered() and imgui.SetTooltip then
         if active_here then
-            imgui.SetTooltip('Stop the evidence capture for '..tostring(it.name)..'.');
+            imgui.SetTooltip('Stop the manual capture for '..tostring(it.name)..'.');
         else
-            imgui.SetTooltip('Capture packets/text for '..tostring(it.name)..' and tag the report to this mission.');
+            imgui.SetTooltip('Start a manual capture for '..tostring(it.name)..'. It runs until you press Stop; there is no time limit.');
         end
     end
 end
@@ -322,6 +341,9 @@ local function draw_chain_table(imgui,b,c)
             local cleared=b.cleared[it.key]==true;
             local label=cleared and 'COMPLETE' or 'PENDING';
             if not cleared and not b.locked_out and nxt and nxt.key==it.key then label='NEXT'; end
+            if not cleared and not b.locked_out and b.active_step==it.key and b.active_state then
+                label=active_label(b.active_state);
+            end
             if b.locked_out and b.failed_step==it.key then label='FAILED'; end
 
             if imgui.TableNextRow then imgui.TableNextRow(); end
@@ -356,6 +378,9 @@ local function draw_chain_table(imgui,b,c)
         local label=cleared and 'COMPLETE' or 'PENDING';
         local nxt=next_step(b);
         if not cleared and not b.locked_out and nxt and nxt.key==it.key then label='NEXT'; end
+        if not cleared and not b.locked_out and b.active_step==it.key and b.active_state then
+            label=active_label(b.active_state);
+        end
         if b.locked_out and b.failed_step==it.key then label='FAILED'; end
         imgui.Text(tostring(i)..'. '..it.name..' - '..label);
         imgui.TextDisabled('   '..it.npc..' | '..it.item);
@@ -448,9 +473,14 @@ local function on_text(s)
         local key=mission_key_from_text(s);
         if key then
             b.active_step=key;
-            b.active_state='ACCEPTED';
+            b.active_state='ACTIVE';
             b.accepted_at=now;
             b.accepted_source='Halshaob mission acceptance';
+            -- A new acceptance starts a fresh run. Clear any transient timing
+            -- fields left behind by an earlier stage before the invasion begins.
+            b.entered_at=nil;
+            b.time_limit_seconds=nil;
+            b.time_limit_verified_at=nil;
             lifecycle(c,key,'READY',b.accepted_source,now+(6*60*60),{phase='accepted'});
             HC.modules.state.save();
             return;
@@ -475,6 +505,24 @@ local function on_text(s)
         b.time_limit_seconds=30*60;
         b.time_limit_verified_at=now;
         HC.modules.state.save();
+        return;
+    end
+
+    -- Capture-verified success signal shared by all three Ashu Talif stages.
+    -- Only honor it while HorizonCheck has an active Black Coffin battlefield
+    -- run, because the text itself does not include the mission name.
+    if b.active_state=='IN PROGRESS'
+        and b.active_step
+        and s:find('objective complete.',1,true)
+        and s:find('return on the lifeboat',1,true) then
+        local key=b.active_step;
+        if M.complete(key,'Ashu Talif objective complete') then
+            local finished=account_state();
+            finished.last_objective_complete_at=now;
+            finished.last_objective_complete_step=key;
+            HC.modules.state.save();
+        end
+        return;
     end
 end
 

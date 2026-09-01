@@ -23,7 +23,7 @@ local PROFILES = {
     chocobo = { seconds = 0, manual_stop = true, desc = 'Chocobo Riding Game full attempt: pickup, ride, zone transitions, finish time, and reward. Manual stop only.' },
     anniversary = { seconds = 0, manual_stop = true, desc = 'Anniversary quest-guide evidence: capture NPC riddle, counter, turn-in, assignment, and completion dialogue while testing Anniversary automation. Manual stop only.' },
     daily_avatar = { seconds = 0, manual_stop = true, desc = 'Daily Avatar Fight evidence: capture tuning-fork/key-item state, avatar battlefield interaction, completion, and post-fight reset behavior. Manual stop only.' },
-    blackcoffin = { seconds = 180, desc = 'Black Coffin rotation quest pickup, progress, and completion interaction.' },
+    blackcoffin = { seconds = 0, manual_stop = true, desc = 'Black Coffin rotation quest pickup, progress, and completion interaction. Manual stop only.' },
     outposts = { seconds = 180, desc = 'Outpost Teleporter / Conquest Overseer menu for learning completed Supply Run ownership.' },
     tags = { seconds = 150, desc = 'Rytaal Assault Tag menu/count interaction. Use /hcheck learn known <0-4> after checking your known stored-tag count.' },
     uninvited = { seconds = 0, manual_stop = true, desc = 'Uninvited Guests: manually capture entry, completion/reward, or weekly lockout evidence. Stop when the interaction/run segment is finished.' },

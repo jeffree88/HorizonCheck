@@ -45,6 +45,7 @@ def check_runtime_integration():
     wizard = (ROOT / "modules" / "capturewizard.lua").read_text(encoding="utf-8")
     selfheal = (ROOT / "modules" / "selfheal.lua").read_text(encoding="utf-8")
     anniversary = (ROOT / "modules" / "anniversary.lua").read_text(encoding="utf-8")
+    blackcoffin = (ROOT / "modules" / "blackcoffin.lua").read_text(encoding="utf-8")
 
     order = re.search(r"local order\s*=\s*\{(.*?)\};", main, re.S)
     if not order:
@@ -210,6 +211,29 @@ def check_runtime_integration():
         errors.append("Maat normal dialogue must not confirm an individual job victory")
     if "battlefield clear time:" not in skills.lower() or "shattering stars" not in skills.lower():
         errors.append("Maat auto-win detector must require Shattering Stars battlefield clear evidence")
+
+    # Black Coffin live captures verify all three Halshaob acceptance lines and
+    # the shared Ashu Talif successful battlefield completion message. The
+    # generic completion line is only authoritative while a Black Coffin run is
+    # already IN PROGRESS, then the current active stage advances automatically.
+    for token in [
+        "in exchange fer lettin' you take on",
+        "b.active_state='ACTIVE'",
+        "the order has been given to invade the ashu talif!",
+        "b.active_state='IN PROGRESS'",
+        "s:find('objective complete.',1,true)",
+        "s:find('return on the lifeboat',1,true)",
+        "M.complete(key,'Ashu Talif objective complete')",
+        "finished.last_objective_complete_step=key",
+    ]:
+        if token not in blackcoffin:
+            errors.append(f"Black Coffin automatic progression contract missing: {token}")
+
+    completion_block = re.search(r"Capture-verified success signal shared by all three Ashu Talif stages(.*?)end\nend", blackcoffin, re.S)
+    if not completion_block:
+        errors.append("Black Coffin objective-complete parser block missing")
+    elif "b.active_state=='IN PROGRESS'" not in completion_block.group(1):
+        errors.append("Black Coffin generic objective-complete text must require an active battlefield run")
 
     # HorizonXI capture proved HasKeyItem(false) for owned KIs, including
     # Cosmo-Cleanse 734. Runtime ownership must therefore return the cached
