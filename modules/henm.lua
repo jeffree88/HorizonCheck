@@ -88,29 +88,15 @@ local function item_info(name)
     local now=os.time();
     cache.items=type(cache.items)=='table' and cache.items or {};
     local cached=cache.items[name];
-    if cached and now-(tonumber(cached.at) or 0)<2 then return cached; end
-    local out={name=name,count=0,owned=false,location='—',at=now};
-    local s=HC.modules.skills;
-    if not s or not s.collection_item_locations then cache.items[name]=out; return out; end
-    local ok,rows,available=pcall(s.collection_item_locations,name,false);
-    if not ok or available~=true then out.location='Checking...'; cache.items[name]=out; return out; end
-    local locs={};
-    if type(rows)=='table' then
-        for _,row in ipairs(rows) do
-            local n=math.max(0,tonumber(row and row.count) or 0);
-            if n>0 then
-                out.count=out.count+n;
-                local label=LOC_SHORT[tostring(row.label or '')] or tostring(row.label or '');
-                locs[#locs+1]=label..(n>1 and (' x'..tostring(n)) or '');
-            end
-        end
-    end
-    out.owned=out.count>0;
-    if out.owned then out.location=table.concat(locs,', '); end
-    if not out.owned and s.collection_item_location then
-        local ok2,loc,available2=pcall(s.collection_item_location,name,false);
-        if ok2 and available2==true and loc=='STORED' then out.owned=true; out.location='Porter Moogle'; end
-    end
+    local token=HC.modules.ownership and HC.modules.ownership.status and HC.modules.ownership.status().token or nil;
+    if cached and cached.token==token and now-(tonumber(cached.at) or 0)<2 then return cached; end
+    local out={name=name,count=0,owned=false,location='—',at=now,token=token};
+    local own=HC.modules.ownership;
+    if not own or not own.current then cache.items[name]=out; return out; end
+    local info=own.current(name,false);
+    if not info.known then out.location='Checking...'; cache.items[name]=out; return out; end
+    out.count=tonumber(info.count) or 0; out.owned=info.owned==true;
+    out.location=out.owned and tostring(info.location or 'Owned') or '—';
     cache.items[name]=out; return out;
 end
 
@@ -181,8 +167,10 @@ local function draw_fight_details(tier,fight,c,focus_id)
     imgui.Spacing();
     imgui.Text('Rewards');
     local tf=(HC.modules.uikit and HC.modules.uikit.table_flags and HC.modules.uikit.table_flags()) or (64+128+512);
-    if imgui.BeginTable and imgui.BeginTable('##henm_rewards_'..fight.id,4,tf) then
-        imgui.TableSetupColumn('Item',0,0.38); imgui.TableSetupColumn('Type',0,0.18); imgui.TableSetupColumn('Status',0,0.12); imgui.TableSetupColumn('Location',0,0.32); imgui.TableHeadersRow();
+    local ui=HC.modules.uikit;
+    if ui and ui.table_begin and ui.table_begin('##henm_rewards_'..fight.id,{
+        {label='Item',width=0.38},{label='Type',width=0.18},{label='Status',width=0.14},{label='Location',width=0.30},
+    }) then
         for _,r in ipairs(fight.rewards or {}) do
             local info=item_info(r[1]);
             imgui.TableNextRow(); imgui.TableSetColumnIndex(0);
@@ -191,7 +179,7 @@ local function draw_fight_details(tier,fight,c,focus_id)
             imgui.TableSetColumnIndex(2); if HC.modules.uikit and HC.modules.uikit.collection_status then HC.modules.uikit.collection_status(info.owned and 'OWNED' or 'MISSING','MISSING'); else imgui.TextDisabled(info.owned and '✓' or '—'); end
             imgui.TableSetColumnIndex(3); if HC.modules.uikit and HC.modules.uikit.collection_location then HC.modules.uikit.collection_location(info.location,info.owned and 'OWNED' or 'MISSING'); else imgui.TextDisabled(info.owned and tostring(info.location) or '—'); end
         end
-        imgui.EndTable();
+        if ui and ui.end_table then ui.end_table(); else imgui.EndTable(); end
     end
 end
 
@@ -210,8 +198,10 @@ local function draw_reward_collection()
     if not imgui.CollapsingHeader(string.format('HENM Reward Collection  %d/%d obtained##henm_collection',have,#rows)) then return; end
     imgui.TextDisabled('Items turn white when HorizonCheck finds them in inventory, storage, wardrobes, or known Porter storage. Consumables/currency can naturally disappear after use.');
     local tf=(HC.modules.uikit and HC.modules.uikit.table_flags and HC.modules.uikit.table_flags()) or (64+128+512);
-    if imgui.BeginTable and imgui.BeginTable('##henm_collection_table',5,tf) then
-        imgui.TableSetupColumn('Tier',0,0.07); imgui.TableSetupColumn('Fight',0,0.24); imgui.TableSetupColumn('Item',0,0.31); imgui.TableSetupColumn('Status',0,0.10); imgui.TableSetupColumn('Location',0,0.28); imgui.TableHeadersRow();
+    local ui=HC.modules.uikit;
+    if ui and ui.table_begin and ui.table_begin('##henm_collection_table',{
+        {label='Tier',width=0.07},{label='Fight',width=0.24},{label='Item',width=0.31},{label='Status',width=0.12},{label='Location',width=0.26},
+    }) then
         for _,r in ipairs(rows) do
             local info=item_info(r.item); imgui.TableNextRow(); imgui.TableSetColumnIndex(0); imgui.TextDisabled('T'..r.tier);
             imgui.TableSetColumnIndex(1); imgui.TextDisabled(r.fight);
@@ -219,7 +209,7 @@ local function draw_reward_collection()
             imgui.TableSetColumnIndex(3); if HC.modules.uikit and HC.modules.uikit.collection_status then HC.modules.uikit.collection_status(info.owned and 'OWNED' or 'MISSING','MISSING'); else imgui.TextDisabled(info.owned and '✓' or '—'); end
             imgui.TableSetColumnIndex(4); if HC.modules.uikit and HC.modules.uikit.collection_location then HC.modules.uikit.collection_location(info.location,info.owned and 'OWNED' or 'MISSING'); else imgui.TextDisabled(info.owned and tostring(info.location) or '—'); end
         end
-        imgui.EndTable();
+        if ui and ui.end_table then ui.end_table(); else imgui.EndTable(); end
     end
 end
 

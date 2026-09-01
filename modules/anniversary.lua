@@ -309,7 +309,7 @@ local function merge_item_ids(out,seen,ids)
 end
 
 local function anniv_2024_resolve_ids(name)
-    local skills=HC.modules and HC.modules.skills or nil;
+    local own=HC.modules and HC.modules.ownership or nil;
     local base=anniv_2024_inventory_base(name);
     local cached=anniv_2024_resolved_ids[base];
     if cached~=nil then return cached; end
@@ -317,8 +317,8 @@ local function anniv_2024_resolve_ids(name)
     local out={}; local seen={};
     merge_item_ids(out,seen,ANNIV_2024_FIXED_IDS[base]);
     local candidates=anniv_2024_inventory_aliases(base);
-    if skills and skills.collection_resolve_ids then
-        local ok,ids=pcall(skills.collection_resolve_ids,candidates);
+    if own and own.resolve_ids then
+        local ok,ids=pcall(own.resolve_ids,candidates);
         if ok then merge_item_ids(out,seen,ids); end
     end
     anniv_2024_resolved_ids[base]=out;
@@ -341,10 +341,10 @@ local function anniv_2024_warm_id_registry()
 end
 
 local function anniv_2024_item_location(name)
-    local skills=HC.modules and HC.modules.skills or nil;
-    if not skills or not skills.collection_item_location then return nil; end
+    local own=HC.modules and HC.modules.ownership or nil;
+    if not own or not own.current then return nil; end
     local now=os.time();
-    local token=(skills.collection_scan_token and skills.collection_scan_token()) or 'na';
+    local token=(own.status and own.status().token) or 'na';
     if anniv_2024_location_cache.token~=token or (now-tonumber(anniv_2024_location_cache.at or 0))>=ANNIV_2024_LOCATION_TTL then
         anniv_2024_location_cache={token=token,at=now,rows={}};
     end
@@ -355,15 +355,14 @@ local function anniv_2024_item_location(name)
     local aliases=anniv_2024_inventory_aliases(key);
     local ids=anniv_2024_resolve_ids(key);
     local loc,scan_ok=nil,false;
-    if skills.collection_item_location_ids and #ids>0 then
-        -- Exact IDs are authoritative. Names are retained only as compatibility
-        -- fallback inside the shared collection helper.
-        loc,scan_ok=skills.collection_item_location_ids(ids,aliases,false);
-    else
-        loc,scan_ok=skills.collection_item_location(aliases,false);
+    if own.location_ids and #ids>0 then
+        loc,scan_ok=own.location_ids(ids,aliases,false);
     end
-    -- The first lookup may have refreshed the shared inventory scan/token.
-    local refreshed=(skills.collection_scan_token and skills.collection_scan_token()) or token;
+    if loc==nil then
+        local info=own.current(aliases,false);
+        scan_ok=info.known==true; loc=info.owned and info.location or nil;
+    end
+    local refreshed=(own.status and own.status().token) or token;
     if refreshed~=anniv_2024_location_cache.token then
         anniv_2024_location_cache={token=refreshed,at=now,rows={}};
     end

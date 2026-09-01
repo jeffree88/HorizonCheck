@@ -1,9 +1,9 @@
--- HorizonCheck v7.9.13
+-- HorizonCheck v7.9.15
 -- Modular rewrite for HorizonXI / Ashita v4.
 
 addon.name = 'horizoncheck';
 addon.author = 'OpenAI';
-addon.version = '7.9.13';
+addon.version = '7.9.15';
 addon.desc = 'HorizonXI daily/weekly activity dashboard.';
 addon.link = 'https://horizonxi.com/';
 
@@ -25,7 +25,7 @@ local function loadmod(name)
 end
 
 local HC = {
-    version = '7.9.13',
+    version = '7.9.15',
     imgui = imgui_ok and imgui or nil,
     chat = chat_ok and chat or nil,
     addon_path = addon.path,
@@ -241,6 +241,7 @@ local order = {
     'rings',
     'enm',
     'skills',
+    'ownership',
     'dynamis',
     'limbus',
     'henm',
@@ -314,7 +315,7 @@ local function self_test()
     local required = {
         core = { 'character_name', 'weekly_key', 'daily_key' },
         userdata = { 'path', 'root', 'dirs', 'status', 'external', 'cleanup_legacy' },
-        state = { 'get_char', 'profile_name', 'profile_ready', 'save', 'request_save', 'poll', 'migrate', 'reconcile', 'health', 'onboarding', 'reset_ui_settings', 'audit', 'audit_recent', 'initialization_summary', 'current_schema', 'storage_status', 'validate', 'migration_status', 'restore_latest_migration_backup', 'cleanup_retired', 'cleanup_status', 'draw_cleanup' },
+        state = { 'get_char', 'profile_name', 'profile_ready', 'save', 'request_save', 'poll', 'migrate', 'reconcile', 'health', 'onboarding', 'reset_ui_settings', 'audit', 'audit_recent', 'initialization_summary', 'current_schema', 'storage_status', 'validate', 'migration_status', 'restore_latest_migration_backup', 'cleanup_retired', 'cleanup_all_retired', 'cleanup_status', 'draw_cleanup' },
         timeline = { 'record', 'transition', 'recent', 'player_recent', 'undo', 'draw', 'status' },
         runtimeguard = { 'pcall', 'draw', 'retry', 'retry_all', 'snapshot', 'status', 'draw_status' },
         packets = { 'on_packet', 'on_text' },
@@ -322,6 +323,7 @@ local function self_test()
         keyitems = { 'probe', 'status', 'draw', 'ownership_name', 'ownership_id', 'evidence_key', 'poll', 'index_status', 'permanent_snapshot', 'known_id' },
         assault = { 'status', 'packet_status', 'sync_status' },
         assaultprogress = { 'count', 'is_complete', 'sync_native_history', 'native_status', 'native_diagnostics', 'draw_native_diagnostics', 'native_rows' },
+        ownership = { 'resolve_ids', 'current', 'owned', 'location', 'location_ids', 'count', 'account', 'refresh', 'status' },
         eco = { 'sync_status' },
         fame = { 'status', 'sync_status' },
         haap = { 'status' },
@@ -341,7 +343,7 @@ local function self_test()
         performance_watchdog = { 'sample', 'poll', 'status', 'reset', 'draw' },
         dependencies = { 'invalidate', 'invalidate_many', 'status', 'draw' },
         integrity = { 'scan', 'invalidate', 'poll', 'status', 'draw' },
-        uikit = { 'table_flags', 'window_width', 'wide_enough', 'table_supported', 'section_header', 'section_header_action', 'wrapped_note', 'status_row', 'responsive_two_column', 'collapsing_section', 'progress_label', 'simple_table', 'normalize_status', 'status_meta', 'draw_status', 'data_freshness', 'data_badge', 'developer_control' },
+        uikit = { 'table_flags', 'window_width', 'wide_enough', 'table_supported', 'section_header', 'section_header_action', 'wrapped_note', 'status_row', 'responsive_two_column', 'collapsing_section', 'progress_label', 'simple_table', 'table_begin', 'table_row', 'table_cell', 'end_table', 'collection_row', 'normalize_status', 'status_meta', 'draw_status', 'data_freshness', 'data_badge', 'developer_control' },
         zonesync = { 'poll', 'force', 'status', 'draw' },
         synchealth = { 'snapshot', 'status', 'draw', 'invalidate' },
         characterregistry = { 'snapshot', 'status', 'draw', 'remove', 'invalidate' },
@@ -538,56 +540,78 @@ local function profiled_pcall(label,fn,...)
     return pcall(fn,...);
 end
 
+-- v7.9.14: central low-cadence present scheduler. Most HorizonCheck polls
+-- already self-throttle, but calling ten guarded/profiled functions every D3D
+-- frame still created avoidable pcall/os.clock/os.time overhead. Keep the only
+-- genuinely incremental startup task (the key-item resource index) frame-paced
+-- until it finishes, then run normal background work at task-appropriate rates.
+local present_poll_at={};
+local function present_due(name,interval,now_clock)
+    interval=tonumber(interval) or 0;
+    if interval<=0 then return true; end
+    local last=tonumber(present_poll_at[name]) or -1000000;
+    if now_clock-last<interval then return false; end
+    present_poll_at[name]=now_clock;
+    return true;
+end
+
+local function run_present_poll(name,interval,module_name,error_label,now_clock,...)
+    if not present_due(name,interval,now_clock) then return; end
+    local m=HC.modules[module_name];
+    if not m or type(m.poll)~='function' then return; end
+    local ok,err,guarded=profiled_pcall('poll.'..name,m.poll,...);
+    if not ok and not guarded and HC.modules.diagnostics then
+        HC.modules.diagnostics.record_error(error_label,err);
+    end
+end
+
 ashita.events.register('d3d_present', 'horizoncheck_present', function()
-    -- Refresh the shared Currency payload automatically while HorizonCheck is
-    -- running. request_currency() is globally throttled to once per minute.
-    if HC.request_currency then pcall(HC.request_currency); end
-    if HC.modules.state and HC.modules.state.poll then
-        local ok, err, guarded = profiled_pcall('poll.state',HC.modules.state.poll);
-        if not ok and not guarded and HC.modules.diagnostics then HC.modules.diagnostics.record_error('state deferred save poll', err); end
+    local now_clock=os.clock();
+
+    -- The request itself is throttled to once per minute. Checking it once per
+    -- second is enough and avoids a function+pcall on every rendered frame.
+    if present_due('currency',1.0,now_clock) and HC.request_currency then pcall(HC.request_currency); end
+
+    run_present_poll('state',0.25,'state','state deferred save poll',now_clock);
+
+    -- Preserve the deliberately incremental one-time KI resource index. Once
+    -- complete, 10 Hz is ample for deferred 0x055 reconciliation.
+    local ki_interval=0.10;
+    local ki=HC.modules.keyitems;
+    if ki and ki.index_status then
+        local ok,st=pcall(ki.index_status);
+        if ok and type(st)=='table' and st.complete~=true then ki_interval=0; end
     end
-    if HC.modules.keyitems and HC.modules.keyitems.poll then
-        local ok, err, guarded = profiled_pcall('poll.keyitems',HC.modules.keyitems.poll);
-        if not ok and not guarded and HC.modules.diagnostics then HC.modules.diagnostics.record_error('keyitems incremental poll', err); end
+    run_present_poll('keyitems',ki_interval,'keyitems','keyitems incremental poll',now_clock);
+
+    run_present_poll('learning',0.10,'learning','learning poll',now_clock);
+    run_present_poll('capturewizard',0.10,'capturewizard','capture wizard poll',now_clock);
+    run_present_poll('automation',0.50,'automation','automation poll',now_clock);
+    run_present_poll('progression',0.50,'progression','progression poll',now_clock);
+    run_present_poll('integrity',0.50,'integrity','state integrity poll',now_clock);
+    run_present_poll('performance_watchdog',5.0,'performance_watchdog','performance watchdog poll',now_clock);
+    run_present_poll('selfheal',5.0,'selfheal','self-healing provider poll',now_clock);
+    run_present_poll('zonesync',0.50,'zonesync','zone sync poll',now_clock);
+    run_present_poll('plantpots',0.25,'plantpots','plantpots poll',now_clock);
+
+    -- Account inventory snapshots only matter while the UI is visible and the
+    -- item locator has its own change-token cache. Poll it here instead of from
+    -- every UI frame.
+    if HC.ui.open[1] and present_due('itemlocator',1.0,now_clock) then
+        local il=HC.modules.itemlocator;
+        if il and il.poll then
+            local c=HC.modules.state and HC.modules.state.get_char and HC.modules.state.get_char() or nil;
+            if c then
+                local ok,err,guarded=profiled_pcall('poll.itemlocator',il.poll,c);
+                if not ok and not guarded and HC.modules.diagnostics then HC.modules.diagnostics.record_error('item locator poll',err); end
+            end
+        end
     end
-    if HC.modules.learning and HC.modules.learning.poll then
-        local ok, err, guarded = profiled_pcall('poll.learning',HC.modules.learning.poll);
-        if not ok and not guarded and HC.modules.diagnostics then HC.modules.diagnostics.record_error('learning poll', err); end
-    end
-    if HC.modules.capturewizard and HC.modules.capturewizard.poll then
-        local ok, err, guarded = profiled_pcall('poll.capturewizard',HC.modules.capturewizard.poll);
-        if not ok and not guarded and HC.modules.diagnostics then HC.modules.diagnostics.record_error('capture wizard poll', err); end
-    end
-    if HC.modules.automation and HC.modules.automation.poll then
-        local ok, err, guarded = profiled_pcall('poll.automation',HC.modules.automation.poll);
-        if not ok and not guarded and HC.modules.diagnostics then HC.modules.diagnostics.record_error('automation poll', err); end
-    end
-    if HC.modules.progression and HC.modules.progression.poll then
-        local ok, err, guarded = profiled_pcall('poll.progression',HC.modules.progression.poll);
-        if not ok and not guarded and HC.modules.diagnostics then HC.modules.diagnostics.record_error('progression poll', err); end
-    end
-    if HC.modules.integrity and HC.modules.integrity.poll then
-        local ok, err, guarded = profiled_pcall('poll.integrity',HC.modules.integrity.poll);
-        if not ok and not guarded and HC.modules.diagnostics then HC.modules.diagnostics.record_error('state integrity poll', err); end
-    end
-    if HC.modules.performance_watchdog and HC.modules.performance_watchdog.poll then
-        local ok, err, guarded = profiled_pcall('poll.performance_watchdog',HC.modules.performance_watchdog.poll);
-        if not ok and not guarded and HC.modules.diagnostics then HC.modules.diagnostics.record_error('performance watchdog poll', err); end
-    end
-    if HC.modules.selfheal and HC.modules.selfheal.poll then
-        local ok, err, guarded = profiled_pcall('poll.selfheal',HC.modules.selfheal.poll);
-        if not ok and not guarded and HC.modules.diagnostics then HC.modules.diagnostics.record_error('self-healing provider poll', err); end
-    end
-    if HC.modules.zonesync and HC.modules.zonesync.poll then
-        local ok, err, guarded = profiled_pcall('poll.zonesync',HC.modules.zonesync.poll);
-        if not ok and not guarded and HC.modules.diagnostics then HC.modules.diagnostics.record_error('zone sync poll', err); end
-    end
-    if HC.modules.plantpots and HC.modules.plantpots.poll then
-        local ok, err, guarded = profiled_pcall('poll.plantpots',HC.modules.plantpots.poll);
-        if not ok and not guarded and HC.modules.diagnostics then HC.modules.diagnostics.record_error('plantpots poll', err); end
-    end
+
+    -- Skip the guarded/profiler UI boundary entirely while the window is closed.
+    -- Hotkey/input handling is event-driven and does not require draw calls.
     local u = HC.modules.ui;
-    if u and u.draw then
+    if HC.ui.open[1] and u and u.draw then
         local ok, err, guarded = profiled_pcall('ui.main',u.draw);
         if not ok then
             if not guarded and HC.modules.diagnostics then
@@ -596,9 +620,6 @@ ashita.events.register('d3d_present', 'horizoncheck_present', function()
             HC.ui.open[1] = true;
             HC.ui.show_diagnostics_tab = true;
             HC.msg('UI module error captured. Diagnostics remain in the main HorizonCheck window.');
-            -- Surface the actual runtime reason as well; the old generic-only
-            -- message made field reports impossible to diagnose when a binding
-            -- differed from the release-test stub.
             if err ~= nil then HC.msg('UI error: '..tostring(err)); end
         end
     end

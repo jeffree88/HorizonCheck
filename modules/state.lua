@@ -981,6 +981,24 @@ function M.cleanup_retired(c,save_after)
     return deepcopy(r);
 end
 
+function M.cleanup_all_retired(save_after)
+    local total=0; local characters=0; local keys={};
+    state.chars=type(state.chars)=='table' and state.chars or {};
+    for name,cc in pairs(state.chars) do
+        if type(cc)=='table' then
+            local r=cleanup_retired_character_state(cc);
+            if (tonumber(r.removed) or 0)>0 then
+                characters=characters+1; total=total+(tonumber(r.removed) or 0);
+                for _,k in ipairs(r.keys or {}) do keys[#keys+1]=tostring(name)..'.'..tostring(k); end
+            end
+        end
+    end
+    state.account=type(state.account)=='table' and state.account or {};
+    state.account.last_state_cleanup={at=os.time(),schema=CURRENT_SCHEMA,removed=total,characters=characters};
+    if total>0 and save_after~=false then M.request_save(1); end
+    return {removed=total,characters=characters,keys=keys,schema=CURRENT_SCHEMA};
+end
+
 function M.cleanup_status(c)
     c=c or M.get_char(); local s=type(c.state_cleanup)=='table' and c.state_cleanup or {};
     return deepcopy({at=s.last_at,removed=tonumber(s.removed) or 0,keys=s.keys or {},schema=tonumber(s.schema) or 0});

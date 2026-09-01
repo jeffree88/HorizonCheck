@@ -144,22 +144,18 @@ local function reward_item_ids(reward)
     local key=tostring(reward.id or reward.name or '');
     if reward_id_cache[key]~=nil then return reward_id_cache[key]; end
     local ids={};
-    if HC.modules.skills and HC.modules.skills.collection_resolve_ids then
-        ids=HC.modules.skills.collection_resolve_ids(aliases(reward)) or {};
+    if HC.modules.ownership and HC.modules.ownership.resolve_ids then
+        ids=HC.modules.ownership.resolve_ids(aliases(reward)) or {};
     end
     reward_id_cache[key]=ids;
     return ids;
 end
 
 local function current_location(reward)
-    if not HC.modules.skills then return nil,false,nil; end
-    local ids=reward_item_ids(reward);
-    if HC.modules.skills.collection_item_location_ids then
-        local loc,ok,matched=HC.modules.skills.collection_item_location_ids(ids,aliases(reward),false);
-        if loc or ok==false then return loc,ok,matched; end
-    end
-    if not HC.modules.skills.collection_item_location then return nil,false,nil; end
-    return HC.modules.skills.collection_item_location(aliases(reward),false);
+    local own=HC.modules.ownership;
+    if not own or not own.current then return nil,false,nil; end
+    local info=own.current(aliases(reward),false);
+    return info.owned and info.location or nil,info.known,info.matched;
 end
 
 -- Cache the full Seasonal ownership view so reward rows, event counts and

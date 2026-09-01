@@ -48,10 +48,11 @@ local function invalidate_target(target,source,reason)
         pcall(m.seasonal.invalidate);
     elseif target=='history' and m.historyimport and m.historyimport.invalidate then
         pcall(m.historyimport.invalidate);
-    elseif target=='progression' then
-        -- Progression facts are reconciled by authoritative event handlers or
-        -- staged zone/integrity passes. Do not rebuild them inside an invalidator.
-        -- Downstream views are still dirtied by the source graph.
+    elseif target=='progression' and m.progression and m.progression.invalidate then
+        -- Mark progression dirty only. The progression engine batches bursts and
+        -- reconciles on its low-cadence poll instead of rebuilding synchronously
+        -- inside packet/inventory invalidation paths.
+        pcall(m.progression.invalidate,source,reason);
     elseif target=='integrity' and m.integrity and m.integrity.invalidate then
         pcall(m.integrity.invalidate,source,reason);
     end

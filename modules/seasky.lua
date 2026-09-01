@@ -254,8 +254,9 @@ local function display_rows(items,is_sky)
 end
 
 local function collection_location(item)
-    if not HC.modules.skills or not HC.modules.skills.collection_item_location then return nil,false,nil; end
-    return HC.modules.skills.collection_item_location(item.name,false);
+    local own=HC.modules.ownership; if not own or not own.current then return nil,false,nil; end
+    local info=own.current(item.name,false);
+    return info.owned and info.location or nil,info.known,info.matched;
 end
 
 local function unique_catalog(groups)
@@ -557,10 +558,9 @@ local function science_item_state(c,rec,snap)
 end
 
 local function science_material_count(name)
-    if not HC.modules.skills or not HC.modules.skills.collection_item_count then return nil,false; end
-    local ok,count,available=pcall(HC.modules.skills.collection_item_count,name,false);
-    if not ok then return nil,false; end
-    return count,available;
+    local own=HC.modules.ownership; if not own or not own.current then return nil,false; end
+    local info=own.current(name,false); if not info.known then return nil,false; end
+    return tonumber(info.count) or 0,true;
 end
 
 local SCIENCE_LOCATION_SHORT={
@@ -571,18 +571,16 @@ local SCIENCE_LOCATION_SHORT={
 };
 
 local function science_material_locations(name)
-    if not HC.modules.skills or not HC.modules.skills.collection_item_locations then return '',false; end
-    local ok,rows,available=pcall(HC.modules.skills.collection_item_locations,name,false);
-    if not ok or available~=true or type(rows)~='table' then return '',false; end
+    local own=HC.modules.ownership; if not own or not own.current then return '',false; end
+    local info=own.current(name,false); if not info.known then return '',false; end
+    if not info.owned then return '',true; end
     local parts={};
-    for _,row in ipairs(rows) do
-        local count=math.max(0,tonumber(row and row.count) or 0);
-        if count>0 then
-            local raw=tostring(row.label or '');
-            local label=SCIENCE_LOCATION_SHORT[raw] or raw;
-            parts[#parts+1]=string.format('%s(%d)',label,count);
-        end
+    for _,row in ipairs(info.locations or {}) do
+        local raw=tostring(row.location or '');
+        local label=SCIENCE_LOCATION_SHORT[string.upper(raw)] or raw;
+        parts[#parts+1]=string.format('%s(%d)',label,math.max(0,tonumber(row.count) or 0));
     end
+    if #parts==0 and info.location and info.location~='—' then parts[1]=tostring(info.location); end
     if #parts==0 then return '',true; end
     return ' - '..table.concat(parts,', '),true;
 end

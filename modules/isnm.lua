@@ -365,7 +365,6 @@ function M.init(ctx)
 end
 
 function M.status(c)
-    if HC and HC.request_currency then pcall(HC.request_currency); end
     local s=ensure(c);
     local out;
     if s.run_complete then

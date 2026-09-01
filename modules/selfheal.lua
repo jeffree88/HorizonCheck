@@ -162,6 +162,100 @@ local function scan_reset_keys(c,rows,repair)
     return 0;
 end
 
+
+local function copy_missing(dst,src,depth)
+    depth=tonumber(depth) or 0; if depth>8 or type(dst)~='table' or type(src)~='table' then return 0; end
+    local changed=0;
+    for k,v in pairs(src) do
+        if dst[k]==nil then
+            if type(v)=='table' then local t={}; copy_missing(t,v,depth+1); dst[k]=t; else dst[k]=v; end
+            changed=changed+1;
+        elseif type(dst[k])=='table' and type(v)=='table' then
+            changed=changed+copy_missing(dst[k],v,depth+1);
+        end
+    end
+    return changed;
+end
+
+local function profile_seen(cc)
+    if type(cc)~='table' then return 0; end
+    local p=type(cc.overview_profile)=='table' and cc.overview_profile or {};
+    local candidates={p.last_seen_at,cc.last_seen_at,cc.updated_at,cc.state_health and cc.state_health.last_checked_at};
+    local best=0; for _,v in ipairs(candidates) do best=math.max(best,tonumber(v) or 0); end
+    return best;
+end
+
+local function scan_duplicate_profiles(c,rows,repair)
+    local st=HC.modules.state; if not st or not st.raw then return 0; end
+    local raw=st.raw(); raw.chars=type(raw.chars)=='table' and raw.chars or {};
+    local groups={};
+    for name,cc in pairs(raw.chars) do
+        if type(name)=='string' and name~='' and type(cc)=='table' then
+            local key=string.lower(name); groups[key]=groups[key] or {}; groups[key][#groups[key]+1]={name=name,cc=cc};
+        end
+    end
+    local repaired=0; local current=tostring(st.profile_name and st.profile_name() or '');
+    for key,g in pairs(groups) do
+        if #g>1 then
+            table.sort(g,function(a,b)
+                if a.name==current and b.name~=current then return true; end
+                if b.name==current and a.name~=current then return false; end
+                local aa,bb=profile_seen(a.cc),profile_seen(b.cc); if aa~=bb then return aa>bb; end
+                return a.name<b.name;
+            end);
+            local keep=g[1]; local names={}; for _,x in ipairs(g) do names[#names+1]=x.name; end
+            local issue=add_issue(rows,'DUPLICATE_CHARACTER_PROFILE','chars:'..key,'Duplicate Saved Character Profile',
+                'Case-insensitive duplicate records found: '..table.concat(names,', ')..'. Keeping '..keep.name..'.','saved character registry',true);
+            if repair then
+                local merged=0;
+                for i=2,#g do merged=merged+copy_missing(keep.cc,g[i].cc,0); raw.chars[g[i].name]=nil; end
+                issue.resolved=true; issue.repair='Merged missing fields into '..keep.name..' and removed '..tostring(#g-1)..' duplicate record(s).';
+                timeline_repair(c,'Duplicate Character Profiles Repaired',table.concat(names,', ')..' -> '..keep.name,'character registry','case-insensitive duplicate');
+                repaired=repaired+1;
+            end
+        end
+    end
+    return repaired;
+end
+
+local function scan_blackcoffin_chain(c,rows,repair)
+    local st=HC.modules.state; if not st or not st.get_account_weekly then return 0; end
+    local aw=st.get_account_weekly(); local b=type(aw.black_coffin)=='table' and aw.black_coffin or nil;
+    if not b then return 0; end
+    b.cleared=type(b.cleared)=='table' and b.cleared or {};
+    local changed=false; local detail={};
+    if b.cleared.captain==true and b.cleared.painter~=true then detail[#detail+1]='captain clear without painter'; if repair then b.cleared.painter=true; changed=true; end end
+    if (b.cleared.captain==true or b.cleared.painter==true) and b.cleared.scouting~=true then detail[#detail+1]='later clear without scouting'; if repair then b.cleared.scouting=true; changed=true; end end
+    local done=(b.cleared.scouting==true and 1 or 0)+(b.cleared.painter==true and 1 or 0)+(b.cleared.captain==true and 1 or 0);
+    if done>=3 and b.locked_out==true then detail[#detail+1]='complete chain also marked locked out'; if repair then b.locked_out=false; b.failed_step=nil; b.failed_at=nil; b.failed_source=nil; changed=true; end end
+    if b.locked_out==true and (b.active_step~=nil or b.active_state~=nil or b.accepted_at~=nil or b.entered_at~=nil) then
+        detail[#detail+1]='weekly lockout still has active mission state';
+        if repair then b.active_step=nil; b.active_state=nil; b.accepted_at=nil; b.entered_at=nil; b.time_limit_seconds=nil; b.time_limit_verified_at=nil; changed=true; end
+    end
+    local terminal=(done>=3 or b.locked_out==true);
+    c.weekly=type(c.weekly)=='table' and c.weekly or {};
+    if terminal and c.weekly.black_coffin~=true then detail[#detail+1]='character weekly mirror missing terminal state'; if repair then c.weekly.black_coffin=true; changed=true; end
+    elseif not terminal and c.weekly.black_coffin==true then detail[#detail+1]='character weekly mirror falsely complete'; if repair then c.weekly.black_coffin=nil; changed=true; end end
+    if #detail==0 then return 0; end
+    local issue=add_issue(rows,'BLACK_COFFIN_CHAIN','weekly:blackcoffin','Black Coffin Weekly Chain',table.concat(detail,'; '),'account-weekly chain order',true);
+    if repair then
+        issue.resolved=true; issue.repair='Normalized chain order, terminal lockout/completion, and character mirror.';
+        if changed then timeline_repair(c,'Black Coffin Chain Repaired',table.concat(detail,'; '),'Black Coffin chain rules'); return 1; end
+    end
+    return 0;
+end
+
+local function scan_retired_fields(c,rows,repair)
+    local st=HC.modules.state; if not st or not st.cleanup_all_retired then return 0; end
+    if not repair then return 0; end
+    local ok,res=pcall(st.cleanup_all_retired,false); if not ok or type(res)~='table' or (tonumber(res.removed) or 0)<=0 then return 0; end
+    local issue=add_issue(rows,'RETIRED_STATE','state:retired_fields','Retired Saved-State Fields',
+        string.format('%d retired presentation/cache field(s) remained across %d character profile(s).',tonumber(res.removed) or 0,tonumber(res.characters) or 0),'safe state cleanup registry',true);
+    issue.resolved=true; issue.repair='Removed retired fields without touching progression/evidence.';
+    timeline_repair(c,'Retired State Cleaned',tostring(res.removed)..' field(s) pruned across saved profiles','safe state cleanup registry');
+    return 1;
+end
+
 local function refresh_derived(c)
     -- Repairs update authoritative/normalized state first. Downstream caches are
     -- dirtied through the dependency graph and rebuild lazily on demand; do not
@@ -182,6 +276,9 @@ end
 function M.scan(c,repair,reason)
     c=c or HC.modules.state.get_char(); ensure(c); local rows={}; local repairs=0;
     repairs=repairs+scan_reset_keys(c,rows,repair==true);
+    repairs=repairs+scan_duplicate_profiles(c,rows,repair==true);
+    repairs=repairs+scan_retired_fields(c,rows,repair==true);
+    repairs=repairs+scan_blackcoffin_chain(c,rows,repair==true);
     repairs=repairs+scan_native(c,rows,repair==true);
     repairs=repairs+scan_limbus(c,rows,repair==true);
     repairs=repairs+scan_unlock_progression(c,rows,repair==true);
@@ -216,7 +313,7 @@ function M.draw(c)
     local imgui=HC and HC.imgui or nil; if not imgui then return; end
     c=c or HC.modules.state.get_char(); local s=M.status(c);
     imgui.Text('Self-Healing State / Contradiction Engine');
-    imgui.TextDisabled('Repairs stale derived state using canonical availability, authoritative key-item ownership, permanent unlock proof, and reset scope. Raw packet evidence is never deleted.');
+    imgui.TextDisabled('Repairs stale/contradictory state using canonical availability, authoritative ownership, reset scope, chain rules, duplicate-profile cleanup, and safe legacy pruning. Raw packet evidence is never deleted.');
     if imgui.Button('Scan & Repair Now##hc_selfheal_run') then M.scan(c,true,'diagnostics manual repair'); s=M.status(c); end
     imgui.SameLine(); if imgui.Button('Audit Only##hc_selfheal_audit') then M.scan(c,false,'diagnostics audit'); s=M.status(c); end
     imgui.Text(string.format('Last scan: %s | repairs %d | unresolved %d',s.at and os.date('%H:%M:%S',s.at) or 'never',tonumber(s.repairs) or 0,tonumber(s.unresolved) or 0));

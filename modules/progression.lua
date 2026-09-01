@@ -3,6 +3,11 @@ local HC;
 
 local facts_by_char={};
 local last_poll=0;
+local dirty=true;
+local dirty_due=0;
+local dirty_sources={};
+local BATCH_SECONDS=1;
+local FALLBACK_SECONDS=60;
 
 local CANONICAL={
     UNKNOWN=true,LOCKED=true,AVAILABLE=true,PREP=true,READY=true,ACTIVE=true,COMPLETE=true,COOLDOWN=true,
@@ -108,28 +113,35 @@ end
 
 local function transition_if_changed(c,key,label,res,reason)
     local p=ensure_progression(c); local old=p.last_states[key]; local new=res and res.state or 'UNKNOWN';
-    if old~=nil and old~=new and HC.modules.timeline and HC.modules.timeline.transition then
+    local changed=(old~=new);
+    if old~=nil and changed and HC.modules.timeline and HC.modules.timeline.transition then
         HC.modules.timeline.transition(c,key,label or key,old,new,{
             source=res.source or reason or 'progression engine',evidence=res.evidence,scope='character',dedupe_seconds=1,
         });
     end
     p.last_states[key]=new;
+    return changed;
 end
 
 local function observe_systems(c)
     local systems=HC.modules.systems;
-    if not systems or not systems.snapshot then return; end
-    local ok,snap=pcall(systems.snapshot,c,true); if not ok or type(snap)~='table' then return; end
+    if not systems or not systems.snapshot then return false; end
+    -- Reuse Systems' shared snapshot cache. Forcing this every reconcile rebuilt
+    -- all activity engines even when no authoritative input had changed.
+    local ok,snap=pcall(systems.snapshot,c,false); if not ok or type(snap)~='table' then return false; end
+    local changed=false;
     for id,row in pairs(snap.systems or {}) do
         local key='system:'..tostring(id);
         local res=M.observe(c,key,row.state,{source='system engine',source_type='system_engine',rank=70,
             detail=row.reason,evidence=row.reset,meta={label=row.label,id=id}});
-        transition_if_changed(c,key,row.label or id,res,'system engine');
+        if transition_if_changed(c,key,row.label or id,res,'system engine') then changed=true; end
     end
+    return changed;
 end
 
 local function observe_critical_kis(c)
-    local ki=HC.modules.keyitems; if not ki or not ki.ownership_id then return; end
+    local ki=HC.modules.keyitems; if not ki or not ki.ownership_id then return false; end
+    local changed=false;
     for _,def in ipairs(CRITICAL_KI) do
         local ok,owned,err,id,source=pcall(ki.ownership_id,def.id,def.name);
         if ok then
@@ -137,32 +149,48 @@ local function observe_critical_kis(c)
             if owned==true then state=def.owned_state or 'READY'; elseif owned==false then state='AVAILABLE'; end
             local res=M.observe(c,def.key,state,{source=source or 'key-item ownership',detail=err,evidence='KI '..tostring(id or def.id),
                 meta={id=id or def.id,name=def.name,owned=owned}});
-            transition_if_changed(c,def.key,def.name,res,'key-item ownership');
+            if transition_if_changed(c,def.key,def.name,res,'key-item ownership') then changed=true; end
         end
     end
+    return changed;
 end
 
 local function observe_unlocks(c)
-    local u=HC.modules.unlocks; if not u or not u.snapshot then return; end
-    local ok,s=pcall(u.snapshot,c,false); if not ok or type(s)~='table' then return; end
+    local u=HC.modules.unlocks; if not u or not u.snapshot then return false; end
+    local ok,s=pcall(u.snapshot,c,false); if not ok or type(s)~='table' then return false; end
+    local changed=false;
     for _,r in ipairs(s.rows or {}) do
         local state='UNKNOWN'; if r.owned==true then state='COMPLETE'; elseif r.owned==false then state='AVAILABLE'; end
         local source_type=(tostring(r.source or ''):find('0x055',1,true) and 'server_bitmap') or (tostring(r.source or ''):find('saved',1,true) and 'saved_permanent') or 'system_engine';
         local res=M.observe(c,'unlock:'..tostring(r.key),state,{source='unlock registry: '..tostring(r.source or ''),source_type=source_type,
             detail=r.category,evidence='KI '..tostring(r.id or '?'),meta={id=r.id,name=r.name,category=r.category,owned=r.owned}});
-        transition_if_changed(c,'unlock:'..tostring(r.key),r.name,res,'unlock registry');
+        if transition_if_changed(c,'unlock:'..tostring(r.key),r.name,res,'unlock registry') then changed=true; end
     end
+    return changed;
 end
 
 function M.reconcile(c,opts)
     c=c or HC.modules.state.get_char(); opts=type(opts)=='table' and opts or {};
-    local p=ensure_progression(c);
-    observe_systems(c);
-    observe_critical_kis(c);
-    observe_unlocks(c);
+    local p=ensure_progression(c); local changed=false;
+    if observe_systems(c) then changed=true; end
+    if observe_critical_kis(c) then changed=true; end
+    if observe_unlocks(c) then changed=true; end
     p.last_reconcile_at=os.time(); p.last_reason=tostring(opts.reason or 'periodic reconcile');
-    if HC.modules.state and HC.modules.state.request_save then HC.modules.state.request_save(1); end
+    if changed and HC.modules.state and HC.modules.state.request_save then HC.modules.state.request_save(1); end
+    dirty=false; dirty_due=0; dirty_sources={}; last_poll=p.last_reconcile_at;
+    if HC.modules.profiler and HC.modules.profiler.bump then
+        HC.modules.profiler.bump('progression.reconcile');
+        if changed then HC.modules.profiler.bump('progression.changed'); end
+    end
     return M.snapshot(c);
+end
+
+function M.invalidate(source,reason)
+    dirty=true;
+    dirty_due=os.time()+BATCH_SECONDS;
+    dirty_sources[tostring(source or 'unknown')]=tostring(reason or 'authoritative state changed');
+    if HC and HC.modules and HC.modules.profiler and HC.modules.profiler.bump then HC.modules.profiler.bump('progression.invalidate'); end
+    return true;
 end
 
 function M.snapshot(c)
@@ -178,9 +206,14 @@ function M.all(c) return M.snapshot(c).records; end
 function M.source_rank(name) return rank_for(name,{}); end
 
 function M.poll()
-    local now=os.time(); if now-last_poll<5 then return; end; last_poll=now;
     if not HC.modules.state or not HC.modules.state.profile_ready or not HC.modules.state.profile_ready() then return; end
-    pcall(M.reconcile,HC.modules.state.get_char(),{reason='live reconcile'});
+    local now=os.time();
+    if dirty and now>=dirty_due then
+        return M.reconcile(HC.modules.state.get_char(),{reason='event-driven reconcile'});
+    end
+    if not dirty and (last_poll==0 or now-last_poll>=FALLBACK_SECONDS) then
+        return M.reconcile(HC.modules.state.get_char(),{reason='fallback safety reconcile'});
+    end
 end
 
 function M.draw(c)
@@ -209,5 +242,5 @@ function M.command(w)
     HC.msg('Progression state engine reconciled '..tostring(n)..' fact(s).'); return true;
 end
 
-function M.init(ctx) HC=ctx; end
+function M.init(ctx) HC=ctx; dirty=true; dirty_due=0; last_poll=0; end
 return M;

@@ -7,6 +7,8 @@ local last_poll=0;
 local last_status={state='WAITING',zone_id=nil,zone_name=nil,last_completed_at=nil,phase=0,reason='not initialized'};
 
 local PHASE_DELAYS={1,3,6};
+local HISTORY_REFRESH_SECONDS=600;
+local history_session_synced={};
 
 local function zone_id()
     local a=HC and HC.modules and HC.modules.automation or nil;
@@ -56,7 +58,11 @@ local function phase_two(c)
     if HC.modules.keyitems and HC.modules.keyitems.publish_all_evidence then pcall(HC.modules.keyitems.publish_all_evidence); end
     if HC.modules.evidence and HC.modules.evidence.refresh then pcall(HC.modules.evidence.refresh); end
     if HC.modules.unlocks and HC.modules.unlocks.refresh then pcall(HC.modules.unlocks.refresh,c,true); end
-    if HC.modules.seasonal and HC.modules.seasonal.reconcile then pcall(HC.modules.seasonal.reconcile,c,true); end
+    -- Seasonal ownership ultimately depends on the shared inventory update token.
+    -- A forced zone-time reconcile walked every inventory/wardrobe container even
+    -- when the Events tab was closed. Invalidate its small view cache here and
+    -- let the existing collection scanner rebuild lazily on demand.
+    if HC.modules.seasonal and HC.modules.seasonal.invalidate then pcall(HC.modules.seasonal.invalidate,c); end
     if HC.modules.dependencies and HC.modules.dependencies.invalidate_many then
         pcall(HC.modules.dependencies.invalidate_many,{'keyitems','unlocks','seasonal'},'zone phase 2 authoritative ownership');
     end
@@ -66,7 +72,22 @@ local function phase_two(c)
 end
 
 local function phase_three(c)
-    if HC.modules.historyimport and HC.modules.historyimport.reconcile then pcall(HC.modules.historyimport.reconcile,c,true,'zone snapshot historical import'); end
+    -- Historical backfill is permanent data. Run it once each session, then only
+    -- as a low-frequency safety refresh instead of rescanning completed quests,
+    -- missions and job levels on every zone transition.
+    if HC.modules.historyimport and HC.modules.historyimport.reconcile then
+        local ck=tostring(HC.modules.core and HC.modules.core.character_name and HC.modules.core.character_name() or 'Unknown');
+        local due=history_session_synced[ck]~=true;
+        if not due and HC.modules.historyimport.status then
+            local ok,hs=pcall(HC.modules.historyimport.status,c);
+            local at=ok and type(hs)=='table' and tonumber(hs.at) or 0;
+            due=(at==0 or os.time()-at>=HISTORY_REFRESH_SECONDS);
+        end
+        if due then
+            pcall(HC.modules.historyimport.reconcile,c,false,'zone snapshot historical import');
+            history_session_synced[ck]=true;
+        end
+    end
     if HC.modules.systems and HC.modules.systems.snapshot then pcall(HC.modules.systems.snapshot,c,true); end
     local heal=nil;
     if HC.modules.selfheal and HC.modules.selfheal.scan then

@@ -1,3 +1,13 @@
+### v7.9.15 highlights
+- HorizonCheck now has one **Universal Ownership Engine** for collection checks across inventory, storage, wardrobes, Porter Moogle proof, and saved offline-character snapshots.
+- The self-healing pass can automatically normalize duplicate saved profiles, retired cache/UI fields, and contradictory Black Coffin weekly-chain state.
+- Assault, Limbus, and HENM collection tables begin using shared table/layout primitives so spacing, widths, status, and location columns stay visually consistent.
+
+### v7.9.14 highlights
+- Background work is now centrally scheduled instead of invoking every poll on every rendered frame; closed-window idle overhead is also reduced.
+- Progression reconciliation is event-driven and only saves when state actually changes, with a low-frequency safety pass instead of a five-second rebuild loop.
+- Zone changes avoid forced Seasonal inventory scans and repeated historical backfills; Currency refresh is owned by one shared scheduler rather than individual rendered views.
+
 ### v7.9.13 highlights
 - Overview now has an **Account Intelligence** layer that can surface the current Black Coffin step/cost, affordable Assault rewards, and ready Limbus entries alongside normal zone/activity recommendations.
 - Offline daily/avatar/weekly values are reset-safe: stale cycles show as unavailable rather than looking like fresh `0/x` progress, while permanent progression remains saved.

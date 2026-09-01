@@ -44,6 +44,11 @@ def check_runtime_integration():
     coverage = (ROOT / "modules" / "catalog_coverage.lua").read_text(encoding="utf-8")
     wizard = (ROOT / "modules" / "capturewizard.lua").read_text(encoding="utf-8")
     selfheal = (ROOT / "modules" / "selfheal.lua").read_text(encoding="utf-8")
+    ownership = (ROOT / "modules" / "ownership.lua").read_text(encoding="utf-8")
+    state = (ROOT / "modules" / "state.lua").read_text(encoding="utf-8")
+    henm = (ROOT / "modules" / "henm.lua").read_text(encoding="utf-8")
+    seasonal = (ROOT / "modules" / "seasonal.lua").read_text(encoding="utf-8")
+    seasky = (ROOT / "modules" / "seasky.lua").read_text(encoding="utf-8")
     anniversary = (ROOT / "modules" / "anniversary.lua").read_text(encoding="utf-8")
     blackcoffin = (ROOT / "modules" / "blackcoffin.lua").read_text(encoding="utf-8")
     isnm = (ROOT / "modules" / "isnm.lua").read_text(encoding="utf-8")
@@ -51,6 +56,10 @@ def check_runtime_integration():
     smartdashboard = (ROOT / "modules" / "smartdashboard.lua").read_text(encoding="utf-8")
     uikit = (ROOT / "modules" / "uikit.lua").read_text(encoding="utf-8")
     limbus = (ROOT / "modules" / "limbus.lua").read_text(encoding="utf-8")
+    ui = (ROOT / "modules" / "ui.lua").read_text(encoding="utf-8")
+    progression = (ROOT / "modules" / "progression.lua").read_text(encoding="utf-8")
+    dependencies = (ROOT / "modules" / "dependencies.lua").read_text(encoding="utf-8")
+    zonesync = (ROOT / "modules" / "zonesync.lua").read_text(encoding="utf-8")
 
     order = re.search(r"local order\s*=\s*\{(.*?)\};", main, re.S)
     if not order:
@@ -61,7 +70,7 @@ def check_runtime_integration():
             errors.append("evidence must load before keyitems")
         if body.find("'regression'") < 0:
             errors.append("regression module missing from load order")
-        for mod in ("'questgraph'", "'systems'", "'catalog_integrity'", "'canonical'", "'catalog_coverage'", "'capturewizard'", "'selfheal'"):
+        for mod in ("'questgraph'", "'systems'", "'catalog_integrity'", "'canonical'", "'catalog_coverage'", "'capturewizard'", "'selfheal'", "'ownership'"):
             if body.find(mod) < 0:
                 errors.append(f"{mod.strip(chr(39))} module missing from load order")
         if body.find("'questgraph'") >= 0 and body.find("'quests'") >= 0 and body.find("'questgraph'") < body.find("'quests'"):
@@ -246,7 +255,6 @@ def check_runtime_integration():
     for token in [
         "function HC.request_currency(force)",
         "pm:AddOutgoingPacket(0x010F",
-        "if HC.request_currency then pcall(HC.request_currency); end",
     ]:
         if token not in main:
             errors.append(f"shared Currency refresh contract missing: {token}")
@@ -275,7 +283,6 @@ def check_runtime_integration():
         "local ap=assault_point_balance(c,area.id)",
         "format_number(ap)..' AP'",
         "%-26s  %2d/%-2d  |  %9s  |  %-12s  |  %s##assault_rewards_%s",
-        "if HC.request_currency then pcall(HC.request_currency); end",
     ]:
         if token not in assaultprogress:
             errors.append(f"Assault Point header/currency contract missing: {token}")
@@ -335,6 +342,79 @@ def check_runtime_integration():
         errors.append("Black Coffin intelligence summary missing")
     if "function M.summary(c)" not in limbus:
         errors.append("Limbus intelligence summary missing")
+
+    # v7.9.15 stability / polish contracts: a single ownership facade, safe
+    # self-healing for duplicate/legacy/chain contradictions, and shared table
+    # primitives used by the large collection screens.
+    for token in [
+        "function M.resolve_ids", "function M.current(input,force)", "function M.account(input,opts)",
+        "function M.location_ids", "PORTER MOOGLE", "item_locator_snapshot",
+    ]:
+        if token not in ownership:
+            errors.append(f"v7.9.15 universal ownership contract missing: {token}")
+    for token in [
+        "scan_duplicate_profiles", "DUPLICATE_CHARACTER_PROFILE", "scan_blackcoffin_chain",
+        "BLACK_COFFIN_CHAIN", "scan_retired_fields", "cleanup_all_retired",
+    ]:
+        if token not in selfheal and token not in state:
+            errors.append(f"v7.9.15 self-healing contract missing: {token}")
+    for token in ["function M.table_begin", "function M.table_cell", "function M.collection_row", "function M.section_gap"]:
+        if token not in uikit:
+            errors.append(f"v7.9.15 UI consistency primitive missing: {token}")
+    for module_name,module_text in [("Assault",assaultprogress),("Limbus",limbus),("HENM",henm)]:
+        if "ui.table_begin" not in module_text:
+            errors.append(f"v7.9.15 {module_name} table is not using shared UI table primitives")
+    for module_name,module_text in [("Assault",assaultprogress),("Limbus",limbus),("HENM",henm),("Seasonal",seasonal),("Sea/Sky",seasky),("Anniversary",anniversary)]:
+        if "HC.modules.skills.collection_item_" in module_text or "HC.modules.skills.collection_resolve_ids" in module_text:
+            errors.append(f"v7.9.15 {module_name} bypasses the universal ownership engine")
+
+    # v7.9.14 performance / cleanup contracts. The D3D present hook should no
+    # longer guarded-call every background subsystem every frame, and expensive
+    # progression/history/inventory work should be event-driven or lazy.
+    for token in [
+        "local present_poll_at={}",
+        "local function present_due",
+        "local function run_present_poll",
+        "present_due('currency',1.0",
+        "run_present_poll('state',0.25",
+        "run_present_poll('zonesync',0.50",
+        "present_due('itemlocator',1.0",
+        "if HC.ui.open[1] and u and u.draw then",
+    ]:
+        if token not in main:
+            errors.append(f"v7.9.14 present scheduler contract missing: {token}")
+    if "itemlocator.poll" in ui:
+        errors.append("v7.9.14 item locator still polls from every UI draw")
+    for token in [
+        "local BATCH_SECONDS=1",
+        "local FALLBACK_SECONDS=60",
+        "function M.invalidate(source,reason)",
+        "systems.snapshot,c,false",
+        "if changed and HC.modules.state and HC.modules.state.request_save",
+        "event-driven reconcile",
+    ]:
+        if token not in progression:
+            errors.append(f"v7.9.14 progression performance contract missing: {token}")
+    if "systems.snapshot,c,true" in progression:
+        errors.append("v7.9.14 progression still force-rebuilds Systems snapshot")
+    if "m.progression.invalidate" not in dependencies:
+        errors.append("v7.9.14 dependency graph does not dirty Progression lazily")
+    for token in [
+        "local HISTORY_REFRESH_SECONDS=600",
+        "local history_session_synced={}",
+        "HC.modules.seasonal.invalidate",
+        "history_session_synced[ck]~=true",
+    ]:
+        if token not in zonesync:
+            errors.append(f"v7.9.14 zone-sync performance contract missing: {token}")
+    if "HC.modules.seasonal.reconcile,c,true" in zonesync:
+        errors.append("v7.9.14 zone sync still force-scans Seasonal inventory")
+    if "HC.request_currency" in assaultprogress:
+        errors.append("v7.9.14 Assault rendering still requests Currency directly")
+    if "function M.status(c)\n    if HC and HC.request_currency" in isnm:
+        errors.append("v7.9.14 ISNM status still requests Currency on read")
+    if "last_verified_at or os.time()" in limbus:
+        errors.append("v7.9.14 Limbus draw still requests Currency on render")
 
     validate_workflow=ROOT / '.github' / 'workflows' / 'validate.yml'
     release_workflow=ROOT / '.github' / 'workflows' / 'release.yml'

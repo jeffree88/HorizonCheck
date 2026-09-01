@@ -98,14 +98,15 @@ local function catalog_id_matches(q)
     local ids={}; local names={};
     local search=HC.modules and HC.modules.search or nil;
     local skills=HC.modules and HC.modules.skills or nil;
-    if not (search and search.query and skills and skills.collection_resolve_ids) then return ids,names; end
+    local own=HC.modules and HC.modules.ownership or nil;
+    if not (search and search.query and own and own.resolve_ids) then return ids,names; end
     local c=HC.modules.state and HC.modules.state.get_char and HC.modules.state.get_char() or {};
     local ok,rows=pcall(search.query,q,c,80);
     if not ok then return ids,names; end
     for _,row in ipairs(rows or {}) do
         local kind=tostring(row.kind or '');
         if kind=='Job Gear' or kind=='Sea / Sky' or kind=='Assault Reward' or kind=='Limbus Item' or kind=='HENM Reward' or kind=='Event Reward' then
-            local okid,resolved=pcall(skills.collection_resolve_ids,row.name);
+            local okid,resolved=pcall(own.resolve_ids,row.name);
             if okid then
                 for _,id in ipairs(resolved or {}) do
                     id=tonumber(id); if id then ids[id]=true; names[id]=names[id] or tostring(row.name); end

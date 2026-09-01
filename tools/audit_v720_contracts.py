@@ -26,10 +26,10 @@ checks=[
  ('catalog score', 'HorizonXI Catalog Verification Score' in coverage and 'completion_evidence' in coverage and 'waits' in coverage),
  ('catalog score diagnostics', 'Catalog coverage: %.1f%% verified' in diag),
  ('Anniversary 2024 live locations', 'draw_2024_item_location(name)' in anniversary and "[OWNED - '..tostring(loc)..']" in anniversary),
- ('Anniversary black chocobo feather exact ID', "['Black Chocobo Feather']={845}" in anniversary and "'Black C. Feather'" in anniversary and 'collection_item_location_ids(ids,aliases,false)' in anniversary),
- ('Anniversary full ID registry', 'anniv_2024_warm_id_registry' in anniversary and 'anniv_2024_resolve_ids' in anniversary and 'pcall(skills.collection_resolve_ids,candidates)' in anniversary and 'item_id_registry_status' in anniversary),
+ ('Anniversary black chocobo feather exact ID', "['Black Chocobo Feather']={845}" in anniversary and "'Black C. Feather'" in anniversary and ('collection_item_location_ids(ids,aliases,false)' in anniversary or 'own.location_ids(ids,aliases,false)' in anniversary)),
+ ('Anniversary full ID registry', 'anniv_2024_warm_id_registry' in anniversary and 'anniv_2024_resolve_ids' in anniversary and ('pcall(skills.collection_resolve_ids,candidates)' in anniversary or 'pcall(own.resolve_ids,candidates)' in anniversary) and 'item_id_registry_status' in anniversary),
  ('Anniversary guide label normalization', "while base:match('%s*%b()%s*$')" in anniversary and "gsub('%s+[xX]%d+%s*$','')" in anniversary),
- ('Anniversary locations reuse shared collection scan', ('collection_item_location_ids(ids,aliases,false)' in anniversary or 'collection_item_location(aliases,false)' in anniversary) and 'collection_scan_token' in anniversary),
+ ('Anniversary locations reuse shared collection scan', ((('collection_item_location_ids(ids,aliases,false)' in anniversary or 'collection_item_location(aliases,false)' in anniversary) and 'collection_scan_token' in anniversary) or (('own.location_ids(ids,aliases,false)' in anniversary or 'own.current(aliases,false)' in anniversary) and 'own.status' in anniversary))),
  ('Anniversary quantity suffix normalization', "gsub('%s+[xX]%d+%s*$','')" in anniversary),
 ]
 for label,ok in checks:

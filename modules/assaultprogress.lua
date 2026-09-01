@@ -116,30 +116,11 @@ local ASSAULT_REWARD_LOCATION_SHORT={
 };
 
 local function assault_reward_location(name)
-    if not HC.modules.skills or not HC.modules.skills.collection_item_locations then
-        return false,'Inventory scan unavailable';
-    end
-    local ok,rows,available=pcall(HC.modules.skills.collection_item_locations,name,false);
-    if not ok or available~=true then return false,'Checking...'; end
-    local parts={}; local total=0;
-    if type(rows)=='table' then
-        for _,row in ipairs(rows) do
-            local count=math.max(0,tonumber(row and row.count) or 0);
-            if count>0 then
-                total=total+count;
-                local raw=tostring(row.label or '');
-                parts[#parts+1]=(ASSAULT_REWARD_LOCATION_SHORT[raw] or raw)..(count>1 and (' x'..tostring(count)) or '');
-            end
-        end
-    end
-    if total>0 then return true,table.concat(parts,', '); end
-
-    -- Porter Moogle / non-physical collection proof is useful fallback context
-    -- even though the requested display focuses on inventory and wardrobes.
-    if HC.modules.skills.collection_item_location then
-        local ok2,loc,available2=pcall(HC.modules.skills.collection_item_location,name,false);
-        if ok2 and available2==true and loc=='STORED' then return true,'Porter Moogle'; end
-    end
+    local own=HC.modules.ownership;
+    if not own or not own.current then return false,'Inventory scan unavailable'; end
+    local info=own.current(name,false);
+    if not info.known then return false,'Checking...'; end
+    if info.owned then return true,tostring(info.location or 'Owned'); end
     return false,'—';
 end
 
@@ -238,12 +219,11 @@ local function draw_assault_point_rewards(c,focus)
         if type(focus)=='table' and tostring(focus.area or '')==tostring(area.id) and imgui.SetNextItemOpen then pcall(imgui.SetNextItemOpen,true,rawget(_G,'ImGuiCond_Always') or 1); end
         if imgui.CollapsingHeader(label,0) then
             imgui.TextDisabled(string.format('%d affordable | %d owned | %d remaining',summary.affordable,summary.owned,summary.remaining));
-            if table_supported and imgui.BeginTable('##assault_reward_table_'..tostring(area.id),4,table_flags) then
-                imgui.TableSetupColumn('Item',0,0.38);
-                imgui.TableSetupColumn('Cost',0,0.15);
-                imgui.TableSetupColumn('Status',0,0.22);
-                imgui.TableSetupColumn('Location',0,0.25);
-                imgui.TableHeadersRow();
+            local ui=HC.modules.uikit;
+            local began=(ui and ui.table_begin and ui.table_begin('##assault_reward_table_'..tostring(area.id),{
+                {label='Item',width=0.38},{label='Cost',width=0.15},{label='Status',width=0.22},{label='Location',width=0.25},
+            })) or false;
+            if began then
                 for _,row in ipairs(rows) do
                     imgui.TableNextRow();
                     imgui.TableSetColumnIndex(0);
@@ -258,7 +238,7 @@ local function draw_assault_point_rewards(c,focus)
                     imgui.TableSetColumnIndex(3);
                     if row.owned and row.location and tostring(row.location)~='' then imgui.TextDisabled(tostring(row.location)); else imgui.TextDisabled('—'); end
                 end
-                imgui.EndTable();
+                if ui and ui.end_table then ui.end_table(); else imgui.EndTable(); end
             else
                 for _,row in ipairs(rows) do
                     local line=string.format('%s | %s AP | %s',tostring(row.item),format_number(row.cost),tostring(row.status));
@@ -965,9 +945,8 @@ end
 function M.draw(c)
     local imgui=HC.imgui; if not imgui then return; end
     local p=ensure(c);
-    -- Keep the five area-specific AP balances fresh using the same globally
-    -- throttled Currency request shared by ISP, HAAP, and Ancient Beastcoins.
-    if HC.request_currency then pcall(HC.request_currency); end
+    -- Currency refresh is owned by the shared present scheduler. Rendering this
+    -- tab never sends duplicate refresh requests.
     local nav=(HC.modules.ui and HC.modules.ui.consume_focus) and HC.modules.ui.consume_focus('assault') or nil;
     local now=os.time();
     if p.native.synced~=true or (now-last_draw_native_sync_at)>=30 then

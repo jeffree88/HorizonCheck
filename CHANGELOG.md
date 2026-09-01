@@ -1,3 +1,20 @@
+## v7.9.15
+- Adds a **Universal Ownership Engine** that becomes the shared item-ownership path for Assault rewards, Limbus, HENM, Seasonal Events, Sea/Sky, Anniversary items, and Account Item Locator ID resolution. It reuses the existing cached inventory/wardrobe scan and includes Porter Moogle proof plus saved offline-character snapshots.
+- Adds account-wide ownership queries that distinguish **live current-character** ownership from **saved offline-character** locations instead of treating old snapshots as live data.
+- Expands the self-healing engine to repair case-insensitive duplicate saved character profiles, safely prune retired presentation/cache fields across every saved character, and normalize impossible Black Coffin chain/lockout/mirror combinations.
+- Adds shared UI table primitives and begins migrating large collection tables onto the same widths/header/status treatment, including Assault Point rewards, Limbus boss armor, and HENM reward tables.
+- Routes collection-heavy modules through the ownership facade rather than each module calling the low-level skills inventory helpers directly, reducing duplicated ownership logic and future Wardrobe/Porter detection inconsistencies.
+- Extends release regressions to enforce the universal ownership path, self-healing repairs, and shared table primitives.
+
+## v7.9.14
+- Adds a central low-cadence **present scheduler** so HorizonCheck no longer guarded/profiled-calls every background subsystem on every rendered frame. Time-sensitive capture/KI work stays responsive while saves, integrity, zone sync, automation, Currency refresh, and other background polls run only as often as needed.
+- Skips the entire protected UI draw boundary while the HorizonCheck window is closed, reducing idle addon overhead without changing the Shift+C hotkey or event-driven tracking.
+- Moves **Account Item Locator** refresh out of the per-frame UI path and into a one-second visible-window scheduler; its existing inventory update token still prevents unnecessary container scans.
+- Converts the central **Progression** engine from a forced five-second rebuild/save loop to batched event-driven invalidation with a 60-second safety reconcile. Systems snapshots are reused from cache and state is saved only when a progression state actually changes.
+- Removes render-time Currency refresh calls from Assault rewards, ISNM status, and Limbus; the shared Currency scheduler remains the single refresh owner for ISP, AP, HAAP, and Ancient Beastcoins.
+- Reduces zone-transition work: Seasonal collection ownership is invalidated and rebuilt lazily instead of force-scanning inventory during zone reconciliation, while permanent historical backfill runs once per character each session and then at most every ten minutes.
+- Expands release performance contracts/regressions to protect the scheduler, lazy zone work, event-driven progression, and no-duplicate Currency behavior from future regressions.
+
 ## v7.9.13
 - Adds an **Account Intelligence** layer to Overview: current Black Coffin state/entry cost, affordable Assault rewards from live AP balances, and clear Limbus entry readiness can now compete directly in **What to Do Next**.
 - Makes **What to Do Next** rank signals from current zone, weekly state, held entry items, currencies, and collection ownership instead of relying only on isolated activity rows.

@@ -110,6 +110,9 @@ function M.run(announce)
     local healer=HC.modules and HC.modules.selfheal or nil;
     add('Self-healing contradiction engine integrated',healer and type(healer.scan)=='function' and type(healer.status)=='function','selfheal.scan + status');
 
+    local ownership=HC.modules and HC.modules.ownership or nil;
+    add('Universal ownership engine integrated',ownership and type(ownership.current)=='function' and type(ownership.account)=='function' and type(ownership.resolve_ids)=='function','ownership.current + account + resolve_ids');
+
     local planner=HC.modules and HC.modules.planner or nil;
     add('Planner module integrated',planner and type(planner.build)=='function' and type(planner.classify)=='function','planner.build + classify');
     if planner and planner.classify then
@@ -122,6 +125,7 @@ function M.run(announce)
 
     local uikit=HC.modules and HC.modules.uikit or nil;
     add('Unified status framework integrated',uikit and type(uikit.normalize_status)=='function' and type(uikit.data_freshness)=='function','uikit.normalize_status + data_freshness');
+    add('Unified table primitives integrated',uikit and type(uikit.table_begin)=='function' and type(uikit.table_cell)=='function' and type(uikit.collection_row)=='function','uikit.table_begin + table_cell + collection_row');
     if uikit and uikit.normalize_status and uikit.data_freshness then
         add('Unified status maps held items to OWNED',uikit.normalize_status('HELD')=='OWNED',tostring(uikit.normalize_status('HELD')));
         add('Unified status maps in-progress work to ACTIVE',uikit.normalize_status('IN PROGRESS')=='ACTIVE',tostring(uikit.normalize_status('IN PROGRESS')));

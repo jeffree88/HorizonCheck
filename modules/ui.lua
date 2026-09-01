@@ -296,7 +296,6 @@ function M.draw()
     local imgui=HC.imgui; if imgui==nil then return; end
     if HC.ui.open[1] then
         local c=HC.modules.state.get_char();
-        if HC.modules.itemlocator and HC.modules.itemlocator.poll then pcall(HC.modules.itemlocator.poll,c); end
             local density_style_count=push_density_style(c,imgui);
             local color_style_count=push_shared_color_style(imgui);
             apply_main_window_first_use_defaults(imgui);

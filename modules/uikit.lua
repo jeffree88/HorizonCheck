@@ -184,6 +184,73 @@ function M.data_badge(kind,opts)
     return f;
 end
 
+
+-- Shared table/cell primitives for the v7.9.15 visual consistency pass.  These
+-- keep header setup, widths, and bright/dim status treatment identical across
+-- large collection screens without forcing each module to duplicate ImGui
+-- boilerplate.
+function M.table_begin(id,columns,opts)
+    local imgui=HC and HC.imgui or nil; opts=type(opts)=='table' and opts or {};
+    if not imgui or not M.table_supported(imgui) or type(columns)~='table' then return false; end
+    if opts.min_width and not M.wide_enough(imgui,opts.min_width) then return false; end
+    if not imgui.BeginTable(tostring(id),#columns,opts.flags or M.table_flags()) then return false; end
+    if imgui.TableSetupColumn and imgui.TableHeadersRow then
+        for _,col in ipairs(columns) do
+            local label=type(col)=='table' and (col.label or col[1]) or col;
+            local width=type(col)=='table' and (col.width or col[2]) or 0;
+            imgui.TableSetupColumn(tostring(label or ''),0,tonumber(width) or 0);
+        end
+        if opts.headers~=false then imgui.TableHeadersRow(); end
+    end
+    return true;
+end
+
+function M.table_row()
+    local imgui=HC and HC.imgui or nil; if not imgui then return; end
+    if imgui.TableNextRow then imgui.TableNextRow(); end
+end
+
+function M.table_cell(index,text,state,opts)
+    local imgui=HC and HC.imgui or nil; if not imgui then return; end
+    opts=type(opts)=='table' and opts or {};
+    if imgui.TableSetColumnIndex then imgui.TableSetColumnIndex(math.max(0,(tonumber(index) or 1)-1)); else imgui.TableNextColumn(); end
+    if type(text)=='function' then text(); return; end
+    local value=tostring(text or '');
+    if opts.disabled==true then imgui.TextDisabled(value); return; end
+    if state~=nil then
+        local m=M.status_meta(state,{checkmark=false});
+        if m.bright then imgui.Text(value); else imgui.TextDisabled(value); end
+    else
+        imgui.Text(value);
+    end
+end
+
+function M.end_table()
+    local imgui=HC and HC.imgui or nil; if imgui and imgui.EndTable then imgui.EndTable(); end
+end
+
+function M.collection_columns(extra)
+    local cols={{label='Item',width=0.36},{label='Status',width=0.16},{label='Location',width=0.28}};
+    if type(extra)=='table' then
+        for _,col in ipairs(extra) do cols[#cols+1]=col; end
+    end
+    return cols;
+end
+
+function M.collection_row(item,state,location,opts)
+    local imgui=HC and HC.imgui or nil; if not imgui then return; end
+    opts=type(opts)=='table' and opts or {};
+    M.table_row();
+    M.table_cell(opts.item_col or 1,function() M.collection_item(item,state); end);
+    M.table_cell(opts.status_col or 2,function() M.collection_status(state,opts.missing_label or 'MISSING'); end);
+    M.table_cell(opts.location_col or 3,function() M.collection_location(location,state); end);
+end
+
+function M.section_gap()
+    local imgui=HC and HC.imgui or nil; if not imgui then return; end
+    imgui.Spacing(); imgui.Separator(); imgui.Spacing();
+end
+
 function M.developer_control(c,fn)
     if type(c)=='table' and type(c.settings)=='table' and c.settings.developer_mode==true and type(fn)=='function' then fn(); return true; end
     return false;
