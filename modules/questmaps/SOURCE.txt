@@ -1,0 +1,4 @@
+Quest display-name maps were derived from FFXI DAT quest names using the public ffxi-chronicle quest map tables by jintawk.
+Source: https://github.com/jintawk/ffxi-chronicle
+The Chronicle project README states its quest data is sourced from BG Wiki under CC BY-NC-SA 3.0.
+HorizonCheck uses these names only as display metadata; live ACTIVE state is decoded from FFXI packet 0x056.

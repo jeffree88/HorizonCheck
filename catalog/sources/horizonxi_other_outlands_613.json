@@ -1,0 +1,1386 @@
+[
+  {
+    "log_id": 4,
+    "quest_id": 19,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki regional quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Other_Quests",
+    "start_npc": "Abelard",
+    "start_zone": "Selbina (G-9)",
+    "reward": "Map of the Crawlers' Nest",
+    "requirements": {
+      "fame": 1
+    },
+    "next_step": "Speak with Abelard at Selbina (G-9) to begin or continue this quest.",
+    "keywords": "Map Abelard Selbina G-9 Map of the Crawlers' Nest An Explorer's Footsteps"
+  },
+  {
+    "log_id": 4,
+    "quest_id": 20,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki regional quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Other_Quests",
+    "start_npc": "Vuntar",
+    "start_zone": "Selbina (H-9)",
+    "reward": "800-3,000 gil",
+    "requirements": {
+      "fame": 1
+    },
+    "next_step": "Speak with Vuntar at Selbina (H-9) to begin or continue this quest.",
+    "keywords": "General Vuntar Selbina H-9 800-3,000 gil Cargo"
+  },
+  {
+    "log_id": 4,
+    "quest_id": 16,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki regional quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Other_Quests",
+    "start_npc": "Romeo",
+    "start_zone": "Selbina (G-9)",
+    "reward": "Wastebasket",
+    "requirements": {
+      "fame": 1
+    },
+    "next_step": "Speak with Romeo at Selbina (G-9) to begin or continue this quest.",
+    "keywords": "General Romeo Selbina G-9 Wastebasket Donate to Recycling"
+  },
+  {
+    "log_id": 4,
+    "quest_id": 18,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki regional quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Other_Quests",
+    "start_npc": "Melyon",
+    "start_zone": "Selbina (I-9)",
+    "reward": "100-600 gil",
+    "requirements": {
+      "fame": 1
+    },
+    "next_step": "Speak with Melyon at Selbina (I-9) to begin or continue this quest.",
+    "keywords": "General Melyon Selbina I-9 100-600 gil Only the Best"
+  },
+  {
+    "log_id": 4,
+    "quest_id": 25,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki regional quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Other_Quests",
+    "start_npc": "Devean",
+    "start_zone": "Selbina (I-9)",
+    "reward": "Power Sandals",
+    "requirements": {
+      "fame": 1
+    },
+    "next_step": "Speak with Devean at Selbina (I-9) to begin or continue this quest.",
+    "keywords": "General Devean Selbina I-9 Power Sandals Test My Mettle"
+  },
+  {
+    "log_id": 4,
+    "quest_id": 23,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki regional quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Other_Quests",
+    "start_npc": "Thunder Hawk",
+    "start_zone": "Selbina (G-9)",
+    "reward": "Map of the Ranguemont Pass",
+    "next_step": "Speak with Thunder Hawk at Selbina (G-9) to begin or continue this quest.",
+    "keywords": "Map Thunder Hawk Selbina G-9 Map of the Ranguemont Pass The Rescue"
+  },
+  {
+    "log_id": 4,
+    "quest_id": 24,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki regional quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Other_Quests",
+    "start_npc": "Isacio",
+    "start_zone": "Selbina (G-10)",
+    "reward": "Support Job unlocked",
+    "next_step": "Speak with Isacio at Selbina (G-10) to begin or continue this quest.",
+    "keywords": "SJ Isacio Selbina G-10 Support Job unlocked Elder Memories/The Old Lady"
+  },
+  {
+    "log_id": 4,
+    "quest_id": 17,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki regional quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Other_Quests",
+    "start_npc": "Yaya",
+    "start_zone": "Selbina (H-9)",
+    "reward": "Amber Earring",
+    "next_step": "Speak with Yaya at Selbina (H-9) to begin or continue this quest.",
+    "keywords": "General Yaya Selbina H-9 Amber Earring Under the Sea"
+  },
+  {
+    "log_id": 4,
+    "quest_id": 21,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki regional quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Other_Quests",
+    "start_npc": "Oswald",
+    "start_zone": "Selbina (I-9)",
+    "reward": "Sleep Dagger",
+    "next_step": "Speak with Oswald at Selbina (I-9) to begin or continue this quest.",
+    "keywords": "General Oswald Selbina I-9 Sleep Dagger The Gift"
+  },
+  {
+    "log_id": 4,
+    "quest_id": 22,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki regional quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Other_Quests",
+    "start_npc": "Oswald",
+    "start_zone": "Selbina (I-9)",
+    "reward": "Glass Fiber Fishing Rod",
+    "next_step": "Speak with Oswald at Selbina (I-9) to begin or continue this quest.",
+    "keywords": "General Oswald Selbina I-9 Glass Fiber Fishing Rod The Real Gift"
+  },
+  {
+    "log_id": 4,
+    "quest_id": 26,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki regional quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Other_Quests",
+    "start_npc": "Zaldon",
+    "start_zone": "Selbina (H-9)",
+    "reward": "See Quest Page",
+    "next_step": "Speak with Zaldon at Selbina (H-9) to begin or continue this quest.",
+    "keywords": "General Zaldon Selbina H-9 See Quest Page Inside the Belly"
+  },
+  {
+    "log_id": 4,
+    "quest_id": 29,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki regional quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Other_Quests",
+    "start_npc": "Fyi Chalmwoh",
+    "start_zone": "Mhaura (G-8)",
+    "reward": "Mannequin",
+    "requirements": {
+      "fame": 1
+    },
+    "next_step": "Speak with Fyi Chalmwoh at Mhaura (G-8) to begin or continue this quest.",
+    "keywords": "General Fyi Chalmwoh Mhaura G-8 Mannequin It's Raining Mannequins"
+  },
+  {
+    "log_id": 4,
+    "quest_id": 30,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki regional quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Other_Quests",
+    "start_npc": "Keshab-Menjab",
+    "start_zone": "Mhaura (H-9)",
+    "reward": "1,500 gil",
+    "requirements": {
+      "fame": 1
+    },
+    "next_step": "Speak with Keshab-Menjab at Mhaura (H-9) to begin or continue this quest.",
+    "keywords": "General Keshab-Menjab Mhaura H-9 1,500 gil Recycling Rods"
+  },
+  {
+    "log_id": 4,
+    "quest_id": 1,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki regional quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Other_Quests",
+    "start_npc": "Rycharde",
+    "start_zone": "Mhaura (I-8)",
+    "reward": "1,500 gil",
+    "requirements": {
+      "fame": 2
+    },
+    "next_step": "Speak with Rycharde at Mhaura (I-8) to begin or continue this quest.",
+    "keywords": "General Rycharde Mhaura I-8 1,500 gil Way of the Cook"
+  },
+  {
+    "log_id": 4,
+    "quest_id": 3,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki regional quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Other_Quests",
+    "start_npc": "Rycharde",
+    "start_zone": "Mhaura (I-8)",
+    "reward": "Map of the Toraimarai Canal",
+    "requirements": {
+      "fame": 3
+    },
+    "next_step": "Speak with Rycharde at Mhaura (I-8) to begin or continue this quest.",
+    "keywords": "Map Rycharde Mhaura I-8 Map of the Toraimarai Canal His Name Is Valgeir"
+  },
+  {
+    "log_id": 4,
+    "quest_id": 28,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki regional quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Other_Quests",
+    "start_npc": "Lacia",
+    "start_zone": "Mhaura (I-9)",
+    "reward": "Ramuh unlocked",
+    "requirements": {
+      "fame": 3
+    },
+    "next_step": "Speak with Lacia at Mhaura (I-9) to begin or continue this quest.",
+    "keywords": "Avatar Lacia Mhaura I-9 Ramuh unlocked Trial-Size Trial by Lightning"
+  },
+  {
+    "log_id": 4,
+    "quest_id": 4,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki regional quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Other_Quests",
+    "start_npc": "Take",
+    "start_zone": "Mhaura (I-8)",
+    "reward": "Tableware Set",
+    "requirements": {
+      "fame": 3
+    },
+    "next_step": "Speak with Take at Mhaura (I-8) to begin or continue this quest.",
+    "keywords": "General Take Mhaura I-8 Tableware Set Expertise"
+  },
+  {
+    "log_id": 4,
+    "quest_id": 7,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki regional quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Other_Quests",
+    "start_npc": "Orlando",
+    "start_zone": "Mhaura (G-9)",
+    "reward": "100-900 gil",
+    "requirements": {
+      "fame": 3
+    },
+    "next_step": "Speak with Orlando at Mhaura (G-9) to begin or continue this quest.",
+    "keywords": "General Orlando Mhaura G-9 100-900 gil Orlando's Antiques"
+  },
+  {
+    "log_id": 4,
+    "quest_id": 2,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki regional quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Other_Quests",
+    "start_npc": "Rycharde",
+    "start_zone": "Mhaura (I-8)",
+    "reward": "2,100 gil",
+    "requirements": {
+      "fame": 3
+    },
+    "next_step": "Speak with Rycharde at Mhaura (I-8) to begin or continue this quest.",
+    "keywords": "General Rycharde Mhaura I-8 2,100 gil Unending Chase"
+  },
+  {
+    "log_id": 4,
+    "quest_id": 8,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki regional quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Other_Quests",
+    "start_npc": "Blandine",
+    "start_zone": "Mhaura (I-9)",
+    "reward": "Map of Bostaunieux Oubliette",
+    "requirements": {
+      "fame": 4
+    },
+    "next_step": "Speak with Blandine at Mhaura (I-9) to begin or continue this quest.",
+    "keywords": "Map Blandine Mhaura I-9 Map of Bostaunieux Oubliette The Sand Charm"
+  },
+  {
+    "log_id": 4,
+    "quest_id": 5,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki regional quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Other_Quests",
+    "start_npc": "Rycharde",
+    "start_zone": "Mhaura (I-8)",
+    "reward": "3,000 gil",
+    "requirements": {
+      "fame": 5
+    },
+    "next_step": "Speak with Rycharde at Mhaura (I-8) to begin or continue this quest.",
+    "keywords": "General Rycharde Mhaura I-8 3,000 gil The Clue"
+  },
+  {
+    "log_id": 4,
+    "quest_id": 27,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki regional quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Other_Quests",
+    "start_npc": "Ripapa",
+    "start_zone": "Mhaura (I-9)",
+    "reward": "Ramuh unlocked",
+    "requirements": {
+      "fame": 6
+    },
+    "next_step": "Speak with Ripapa at Mhaura (I-9) to begin or continue this quest.",
+    "keywords": "Avatar Ripapa Mhaura I-9 Ramuh unlocked Trial by Lightning"
+  },
+  {
+    "log_id": 4,
+    "quest_id": 10,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki regional quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Other_Quests",
+    "start_npc": "Vera",
+    "start_zone": "Mhaura (G-10)",
+    "reward": "Support Job unlocked",
+    "next_step": "Speak with Vera at Mhaura (G-10) to begin or continue this quest.",
+    "keywords": "SJ Vera Mhaura G-10 Support Job unlocked The Old Lady"
+  },
+  {
+    "log_id": 4,
+    "quest_id": 9,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki regional quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Other_Quests",
+    "start_npc": "Nereus",
+    "start_zone": "Mhaura (I-8)",
+    "reward": "2,160 gil",
+    "next_step": "Speak with Nereus at Mhaura (I-8) to begin or continue this quest.",
+    "keywords": "General Nereus Mhaura I-8 2,160 gil A Potter's Preference"
+  },
+  {
+    "log_id": 4,
+    "quest_id": 11,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki regional quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Other_Quests",
+    "start_npc": "Katsunaga",
+    "start_zone": "Mhaura (H-9)",
+    "reward": "See Quest Page",
+    "next_step": "Speak with Katsunaga at Mhaura (H-9) to begin or continue this quest.",
+    "keywords": "General Katsunaga Mhaura H-9 See Quest Page Fisherman's Heart"
+  },
+  {
+    "log_id": 4,
+    "quest_id": 0,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki regional quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Other_Quests",
+    "start_npc": "Rycharde",
+    "start_zone": "Mhaura (I-8)",
+    "reward": "1,500 gil",
+    "next_step": "Speak with Rycharde at Mhaura (I-8) to begin or continue this quest.",
+    "keywords": "General Rycharde Mhaura I-8 1,500 gil Rycharde the Chef"
+  },
+  {
+    "log_id": 4,
+    "quest_id": 6,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki regional quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Other_Quests",
+    "start_npc": "Rycharde",
+    "start_zone": "Mhaura (I-8)",
+    "reward": "Tea Set",
+    "next_step": "Speak with Rycharde at Mhaura (I-8) to begin or continue this quest.",
+    "keywords": "General Rycharde Mhaura I-8 Tea Set The Basics"
+  },
+  {
+    "log_id": 4,
+    "quest_id": 72,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki regional quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Other_Quests",
+    "start_npc": "Elysia",
+    "start_zone": "Tavnazian Safehold (G-10)",
+    "reward": "Map of Tavnazia",
+    "next_step": "Speak with Elysia at Tavnazian Safehold (G-10) to begin or continue this quest.",
+    "keywords": "Map Elysia Tavnazian Safehold G-10 Map of Tavnazia Unforgiven"
+  },
+  {
+    "log_id": 4,
+    "quest_id": 69,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki regional quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Other_Quests",
+    "start_npc": "Epinolle",
+    "start_zone": "Tavnazian Safehold (F-8)",
+    "reward": "Map of Cape Riverne",
+    "next_step": "Speak with Epinolle at Tavnazian Safehold (F-8) to begin or continue this quest.",
+    "keywords": "Map Epinolle Tavnazian Safehold F-8 Map of Cape Riverne Go! Go! Gobmuffin!"
+  },
+  {
+    "log_id": 4,
+    "quest_id": 68,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki regional quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Other_Quests",
+    "start_npc": "Nivorajean",
+    "start_zone": "Tavnazian Safehold (I-9)",
+    "reward": "Map of the Sacrarium",
+    "next_step": "Speak with Nivorajean at Tavnazian Safehold (I-9) to begin or continue this quest.",
+    "keywords": "Map Nivorajean Tavnazian Safehold I-9 Map of the Sacrarium Paradise, Salvation, and Maps"
+  },
+  {
+    "log_id": 4,
+    "quest_id": 64,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki regional quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Other_Quests",
+    "start_npc": "Quelveuiat",
+    "start_zone": "Tavnazian Safehold (I-10)",
+    "reward": "2,100 gil",
+    "next_step": "Speak with Quelveuiat at Tavnazian Safehold (I-10) to begin or continue this quest.",
+    "keywords": "General Quelveuiat Tavnazian Safehold I-10 2,100 gil A Hard Day's Knight"
+  },
+  {
+    "log_id": 4,
+    "quest_id": 71,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki regional quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Other_Quests",
+    "start_npc": "Ferchinne",
+    "start_zone": "Tavnazian Safehold (G-9)",
+    "reward": "Mistmelt",
+    "next_step": "Speak with Ferchinne at Tavnazian Safehold (G-9) to begin or continue this quest.",
+    "keywords": "General Ferchinne Tavnazian Safehold G-9 Mistmelt Fly High"
+  },
+  {
+    "log_id": 4,
+    "quest_id": 77,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki regional quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Other_Quests",
+    "start_npc": "Enaremand",
+    "start_zone": "Tavnazian Safehold (J-7)",
+    "reward": "Mannequin Pumps",
+    "next_step": "Speak with Enaremand at Tavnazian Safehold (J-7) to begin or continue this quest.",
+    "keywords": "General Enaremand Tavnazian Safehold J-7 Mannequin Pumps Behind the Smile"
+  },
+  {
+    "log_id": 4,
+    "quest_id": 78,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki regional quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Other_Quests",
+    "start_npc": "Enaremand",
+    "start_zone": "Tavnazian Safehold (J-7)",
+    "reward": "Mannequin pose unlocked",
+    "next_step": "Speak with Enaremand at Tavnazian Safehold (J-7) to begin or continue this quest.",
+    "keywords": "General Enaremand Tavnazian Safehold J-7 Mannequin pose unlocked Knocking on Forbidden Doors"
+  },
+  {
+    "log_id": 4,
+    "quest_id": 73,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki regional quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Other_Quests",
+    "start_npc": "Jonette",
+    "start_zone": "Tavnazian Safehold (G-9)",
+    "reward": "Page from Miratete's Memoirs",
+    "next_step": "Speak with Jonette at Tavnazian Safehold (G-9) to begin or continue this quest.",
+    "keywords": "General Jonette Tavnazian Safehold G-9 Page from Miratete's Memoirs Secrets of Ovens Lost"
+  },
+  {
+    "log_id": 4,
+    "quest_id": 75,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki regional quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Other_Quests",
+    "start_npc": "Despachiaire",
+    "start_zone": "Tavnazian Safehold (K-10)",
+    "reward": "Elegant Ribbon",
+    "next_step": "Speak with Despachiaire at Tavnazian Safehold (K-10) to begin or continue this quest.",
+    "keywords": "General Despachiaire Tavnazian Safehold K-10 Elegant Ribbon Elderly Pursuits"
+  },
+  {
+    "log_id": 4,
+    "quest_id": 82,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki regional quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Other_Quests",
+    "start_npc": "Despachiaire",
+    "start_zone": "Tavnazian Safehold (K-10)",
+    "reward": "10,000 gil",
+    "next_step": "Speak with Despachiaire at Tavnazian Safehold (K-10) to begin or continue this quest.",
+    "keywords": "General Despachiaire Tavnazian Safehold K-10 10,000 gil Tango with a Tracker"
+  },
+  {
+    "log_id": 4,
+    "quest_id": 83,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki regional quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Other_Quests",
+    "start_npc": "Despachiaire",
+    "start_zone": "Tavnazian Safehold (K-10)",
+    "reward": "Varies",
+    "next_step": "Speak with Despachiaire at Tavnazian Safehold (K-10) to begin or continue this quest.",
+    "keywords": "General Despachiaire Tavnazian Safehold K-10 Varies Requiem of Sin"
+  },
+  {
+    "log_id": 4,
+    "quest_id": 66,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki regional quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Other_Quests",
+    "start_npc": "Frescheque",
+    "start_zone": "Tavnazian Safehold (H-8)",
+    "reward": "Yinyang Lorgnette",
+    "next_step": "Speak with Frescheque at Tavnazian Safehold (H-8) to begin or continue this quest.",
+    "keywords": "General Frescheque Tavnazian Safehold H-8 Yinyang Lorgnette A Bitter Past"
+  },
+  {
+    "log_id": 4,
+    "quest_id": 80,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki regional quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Other_Quests",
+    "start_npc": "Tressia",
+    "start_zone": "Tavnazian Safehold (J-6)",
+    "reward": "Gramary Cape",
+    "next_step": "Speak with Tressia at Tavnazian Safehold (J-6) to begin or continue this quest.",
+    "keywords": "General Tressia Tavnazian Safehold J-6 Gramary Cape In Search of the Truth"
+  },
+  {
+    "log_id": 4,
+    "quest_id": 76,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki regional quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Other_Quests",
+    "start_npc": "Yurim",
+    "start_zone": "Tavnazian Safehold (J-8)",
+    "reward": "See Quest Page",
+    "next_step": "Speak with Yurim at Tavnazian Safehold (J-8) to begin or continue this quest.",
+    "keywords": "General Yurim Tavnazian Safehold J-8 See Quest Page In the Name of Science"
+  },
+  {
+    "log_id": 4,
+    "quest_id": 74,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki regional quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Other_Quests",
+    "start_npc": "Chemioue",
+    "start_zone": "Tavnazian Safehold (J-6)",
+    "reward": "Powerful Rope",
+    "next_step": "Speak with Chemioue at Tavnazian Safehold (J-6) to begin or continue this quest.",
+    "keywords": "General Chemioue Tavnazian Safehold J-6 Powerful Rope Petals for Parelbriaux"
+  },
+  {
+    "log_id": 4,
+    "quest_id": 67,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki regional quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Other_Quests",
+    "start_npc": "Equette",
+    "start_zone": "Tavnazian Safehold (I-9)",
+    "reward": "Memento Muffler",
+    "next_step": "Speak with Equette at Tavnazian Safehold (I-9) to begin or continue this quest.",
+    "keywords": "General Equette Tavnazian Safehold I-9 Memento Muffler The Call of the Sea"
+  },
+  {
+    "log_id": 4,
+    "quest_id": 81,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki regional quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Other_Quests",
+    "start_npc": "Justinius",
+    "start_zone": "Tavnazian Safehold (J-6)",
+    "reward": "Varies",
+    "next_step": "Speak with Justinius at Tavnazian Safehold (J-6) to begin or continue this quest.",
+    "keywords": "General Justinius Tavnazian Safehold J-6 Varies Uninvited Guests"
+  },
+  {
+    "log_id": 4,
+    "quest_id": 65,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki regional quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Other_Quests",
+    "start_npc": "Despachiaire",
+    "start_zone": "Tavnazian Safehold (K-10)",
+    "reward": "4,000 gil",
+    "next_step": "Speak with Despachiaire at Tavnazian Safehold (K-10) to begin or continue this quest.",
+    "keywords": "General Despachiaire Tavnazian Safehold K-10 4,000 gil X Marks the Spot"
+  },
+  {
+    "log_id": 4,
+    "quest_id": 32,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki regional quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Other_Quests",
+    "start_npc": "???",
+    "start_zone": "La Theine Plateau (G-6)",
+    "reward": "See Quest Page",
+    "next_step": "Speak with ??? at La Theine Plateau (G-6) to begin or continue this quest.",
+    "keywords": "General ??? La Theine Plateau G-6 See Quest Page Waking the Beast"
+  },
+  {
+    "log_id": 4,
+    "quest_id": 108,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki regional quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Other_Quests",
+    "start_npc": "Hooknox",
+    "start_zone": "Altar Room",
+    "reward": "Tsoo's Headgear",
+    "next_step": "Speak with Hooknox at Altar Room to begin or continue this quest.",
+    "keywords": "General Hooknox Altar Room Tsoo's Headgear A Moral Manifest?"
+  },
+  {
+    "log_id": 4,
+    "quest_id": 106,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki regional quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Other_Quests",
+    "start_npc": "Loo Kohor",
+    "start_zone": "Monastic Cavern (G-7)",
+    "reward": "Gadzradd's Helm",
+    "next_step": "Speak with Loo Kohor at Monastic Cavern (G-7) to begin or continue this quest.",
+    "keywords": "General Loo Kohor Monastic Cavern G-7 Gadzradd's Helm An Understanding Overlord?"
+  },
+  {
+    "log_id": 4,
+    "quest_id": 107,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki regional quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Other_Quests",
+    "start_npc": "Raptorlegs Gedwad",
+    "start_zone": "Qulun Dome (F-7)",
+    "reward": "Da'Vhu's Barbut",
+    "next_step": "Speak with Raptorlegs Gedwad at Qulun Dome (F-7) to begin or continue this quest.",
+    "keywords": "General Raptorlegs Gedwad Qulun Dome F-7 Da'Vhu's Barbut An Affable Adamantking?"
+  },
+  {
+    "log_id": 4,
+    "quest_id": 109,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki regional quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Other_Quests",
+    "start_npc": "Gu'Zho Thunderblade",
+    "start_zone": "Oldton Movalpolos (E-13)",
+    "reward": "Choplix's Coif",
+    "next_step": "Speak with Gu'Zho Thunderblade at Oldton Movalpolos (E-13) to begin or continue this quest.",
+    "keywords": "General Gu'Zho Thunderblade Oldton Movalpolos E-13 Choplix's Coif A Generous General?"
+  },
+  {
+    "log_id": 4,
+    "quest_id": 103,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki regional quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Other_Quests",
+    "start_npc": "Koblakiq",
+    "start_zone": "Oldton Movalpolos (H-11)",
+    "reward": "4,000 gil",
+    "next_step": "Speak with Koblakiq at Oldton Movalpolos (H-11) to begin or continue this quest.",
+    "keywords": "General Koblakiq Oldton Movalpolos H-11 4,000 gil Missionary Moblin"
+  },
+  {
+    "log_id": 4,
+    "quest_id": 104,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki regional quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Other_Quests",
+    "start_npc": "Koblakiq",
+    "start_zone": "Oldton Movalpolos (H-11)",
+    "reward": "Jaguar Mantle",
+    "next_step": "Speak with Koblakiq at Oldton Movalpolos (H-11) to begin or continue this quest.",
+    "keywords": "General Koblakiq Oldton Movalpolos H-11 Jaguar Mantle For the Birds"
+  },
+  {
+    "log_id": 4,
+    "quest_id": 105,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki regional quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Other_Quests",
+    "start_npc": "Koblakiq",
+    "start_zone": "Oldton Movalpolos (H-11)",
+    "reward": "Goblin Grenade",
+    "next_step": "Speak with Koblakiq at Oldton Movalpolos (H-11) to begin or continue this quest.",
+    "keywords": "General Koblakiq Oldton Movalpolos H-11 Goblin Grenade Better the Demon You Know"
+  },
+  {
+    "log_id": 4,
+    "quest_id": 79,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki regional quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Other_Quests",
+    "start_npc": "Stone Monument",
+    "start_zone": "Riverne - Site #A01 (C-7)",
+    "reward": "Minstrel's Dagger",
+    "next_step": "Speak with Stone Monument at Riverne - Site #A01 (C-7) to begin or continue this quest.",
+    "keywords": "General Stone Monument Riverne - Site #A01 C-7 Minstrel's Dagger Confessions of a Bellmaker"
+  },
+  {
+    "log_id": 4,
+    "quest_id": 97,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki regional quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Other_Quests",
+    "start_npc": "Anguenet",
+    "start_zone": "Carpenters' Landing (J-10)",
+    "reward": "Blackened Muddy Siredon",
+    "next_step": "Speak with Anguenet at Carpenters' Landing (J-10) to begin or continue this quest.",
+    "keywords": "General Anguenet Carpenters' Landing J-10 Blackened Muddy Siredon Mithran Delicacies"
+  },
+  {
+    "log_id": 4,
+    "quest_id": 96,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki regional quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Other_Quests",
+    "start_npc": "Buffalostalker Dodzbraz",
+    "start_zone": "Uleguerand Range (F-9)",
+    "reward": "Shu'Meyo Salt",
+    "next_step": "Speak with Buffalostalker Dodzbraz at Uleguerand Range (F-9) to begin or continue this quest.",
+    "keywords": "General Buffalostalker Dodzbraz Uleguerand Range F-9 Shu'Meyo Salt Bombs Away!"
+  },
+  {
+    "log_id": 5,
+    "quest_id": 14,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki regional quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Outlands_Quests",
+    "start_npc": "Swift",
+    "start_zone": "Kazham (H-7)",
+    "reward": "500 gil",
+    "requirements": {
+      "fame": 1
+    },
+    "next_step": "Speak with Swift at Kazham (H-7) to begin or continue this quest.",
+    "keywords": "General Swift Kazham H-7 500 gil A Discerning Eye (Kazham)"
+  },
+  {
+    "log_id": 5,
+    "quest_id": 15,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki regional quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Outlands_Quests",
+    "start_npc": "Dodmos",
+    "start_zone": "Kazham (J-9)",
+    "reward": "Ifrit unlocked",
+    "requirements": {
+      "fame": 2
+    },
+    "next_step": "Speak with Dodmos at Kazham (J-9) to begin or continue this quest.",
+    "keywords": "Avatar Dodmos Kazham J-9 Ifrit unlocked Trial-Size Trial by Fire"
+  },
+  {
+    "log_id": 5,
+    "quest_id": 7,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki regional quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Outlands_Quests",
+    "start_npc": "Rauteinot",
+    "start_zone": "Kazham (G-9)",
+    "reward": "Teleport-Yhoat scroll",
+    "requirements": {
+      "fame": 3
+    },
+    "next_step": "Speak with Rauteinot at Kazham (G-9) to begin or continue this quest.",
+    "keywords": "Scroll Rauteinot Kazham G-9 Teleport-Yhoat scroll Missionary Man"
+  },
+  {
+    "log_id": 5,
+    "quest_id": 12,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki regional quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Outlands_Quests",
+    "start_npc": "Ronta-Onta",
+    "start_zone": "Kazham (J-9)",
+    "reward": "Ifrit unlocked",
+    "requirements": {
+      "fame": 6
+    },
+    "next_step": "Speak with Ronta-Onta at Kazham (J-9) to begin or continue this quest.",
+    "keywords": "Avatar Ronta-Onta Kazham J-9 Ifrit unlocked Trial by Fire"
+  },
+  {
+    "log_id": 5,
+    "quest_id": 3,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki regional quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Outlands_Quests",
+    "start_npc": "Jakoh Wahcondalo",
+    "start_zone": "Kazham (J-9)",
+    "reward": "3000 gil",
+    "requirements": {
+      "fame": 6
+    },
+    "next_step": "Speak with Jakoh Wahcondalo at Kazham (J-9) to begin or continue this quest.",
+    "keywords": "General Jakoh Wahcondalo Kazham J-9 3000 gil A Question of Taste"
+  },
+  {
+    "log_id": 5,
+    "quest_id": 8,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki regional quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Outlands_Quests",
+    "start_npc": "Magriffon",
+    "start_zone": "Kazham (I-7)",
+    "requirements": {
+      "fame": 6
+    },
+    "next_step": "Speak with Magriffon at Kazham (I-7) to begin or continue this quest.",
+    "keywords": "General Magriffon Kazham I-7 Gullible's Travels"
+  },
+  {
+    "log_id": 5,
+    "quest_id": 1,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki regional quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Outlands_Quests",
+    "start_npc": "Soun Abralah",
+    "start_zone": "Kazham (H-9)",
+    "requirements": {
+      "fame": 6
+    },
+    "next_step": "Speak with Soun Abralah at Kazham (H-9) to begin or continue this quest.",
+    "keywords": "General Soun Abralah Kazham H-9 The Firebloom Tree"
+  },
+  {
+    "log_id": 5,
+    "quest_id": 9,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki regional quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Outlands_Quests",
+    "start_npc": "Magriffon",
+    "start_zone": "Kazham (I-7)",
+    "reward": "Rafflesia Nectar x3",
+    "requirements": {
+      "fame": 7
+    },
+    "next_step": "Speak with Magriffon at Kazham (I-7) to begin or continue this quest.",
+    "keywords": "General Magriffon Kazham I-7 Rafflesia Nectar x3 Even More Gullible's Travels"
+  },
+  {
+    "log_id": 5,
+    "quest_id": 2,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki regional quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Outlands_Quests",
+    "start_npc": "Hari Pakhroib",
+    "start_zone": "Kazham (I-11)",
+    "reward": "5000 gil",
+    "requirements": {
+      "fame": 7
+    },
+    "next_step": "Speak with Hari Pakhroib at Kazham (I-11) to begin or continue this quest.",
+    "keywords": "General Hari Pakhroib Kazham I-11 5000 gil Greetings to the Guardian"
+  },
+  {
+    "log_id": 5,
+    "quest_id": 13,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki regional quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Outlands_Quests",
+    "start_npc": "Jakoh Wahcondalo",
+    "start_zone": "Kazham (J-9)",
+    "reward": "Evisceration unlocked",
+    "next_step": "Speak with Jakoh Wahcondalo at Kazham (J-9) to begin or continue this quest.",
+    "keywords": "WS Jakoh Wahcondalo Kazham J-9 Evisceration unlocked Cloak and Dagger"
+  },
+  {
+    "log_id": 5,
+    "quest_id": 11,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki regional quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Outlands_Quests",
+    "start_npc": "Lulupp",
+    "start_zone": "Kazham (G-7)",
+    "reward": "Opo-opo Crown",
+    "next_step": "Speak with Lulupp at Kazham (G-7) to begin or continue this quest.",
+    "keywords": "General Lulupp Kazham G-7 Opo-opo Crown The Opo-opo and I"
+  },
+  {
+    "log_id": 5,
+    "quest_id": 10,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki regional quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Outlands_Quests",
+    "start_npc": "Gatih Mijurabi",
+    "start_zone": "Kazham (I-8)",
+    "reward": "Mithran Stone",
+    "next_step": "Speak with Gatih Mijurabi at Kazham (I-8) to begin or continue this quest.",
+    "keywords": "General Gatih Mijurabi Kazham I-8 Mithran Stone Personal Hygiene"
+  },
+  {
+    "log_id": 5,
+    "quest_id": 4,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki regional quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Outlands_Quests",
+    "start_npc": "Jakoh Wahcondalo",
+    "start_zone": "Kazham (J-9)",
+    "reward": "11000 gil",
+    "next_step": "Speak with Jakoh Wahcondalo at Kazham (J-9) to begin or continue this quest.",
+    "keywords": "General Jakoh Wahcondalo Kazham J-9 11000 gil Everyone's Grudging"
+  },
+  {
+    "log_id": 5,
+    "quest_id": 6,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki regional quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Outlands_Quests",
+    "start_npc": "Mhebi Juhbily",
+    "start_zone": "Kazham (I-10)",
+    "reward": "7200 gil",
+    "next_step": "Speak with Mhebi Juhbily at Kazham (I-10) to begin or continue this quest.",
+    "keywords": "General Mhebi Juhbily Kazham I-10 7200 gil You Call That a Knife?"
+  },
+  {
+    "log_id": 5,
+    "quest_id": 134,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki regional quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Outlands_Quests",
+    "start_npc": "Magephaud",
+    "start_zone": "Norg (I-8)",
+    "reward": "Tonberry Key",
+    "requirements": {
+      "fame": 2
+    },
+    "next_step": "Speak with Magephaud at Norg (I-8) to begin or continue this quest.",
+    "keywords": "General Magephaud Norg I-8 Tonberry Key Everyone's Grudge"
+  },
+  {
+    "log_id": 5,
+    "quest_id": 148,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki regional quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Outlands_Quests",
+    "start_npc": "Verctissa",
+    "start_zone": "Norg (H-9)",
+    "reward": "Leviathan unlocked",
+    "requirements": {
+      "fame": 2
+    },
+    "next_step": "Speak with Verctissa at Norg (H-9) to begin or continue this quest.",
+    "keywords": "Avatar Verctissa Norg H-9 Leviathan unlocked Trial-Size Trial by Water"
+  },
+  {
+    "log_id": 5,
+    "quest_id": 137,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki regional quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Outlands_Quests",
+    "start_npc": "Keal",
+    "start_zone": "Norg (H-8)",
+    "reward": "Tonko: Ichi scroll",
+    "requirements": {
+      "fame": 3
+    },
+    "next_step": "Speak with Keal at Norg (H-8) to begin or continue this quest.",
+    "keywords": "Scroll Keal Norg H-8 Tonko: Ichi scroll It's Not Your Vault"
+  },
+  {
+    "log_id": 5,
+    "quest_id": 138,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki regional quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Outlands_Quests",
+    "start_npc": "Heiji",
+    "start_zone": "Norg (I-7)",
+    "reward": "Kurayami: Ichi scroll",
+    "requirements": {
+      "fame": 3
+    },
+    "next_step": "Speak with Heiji at Norg (I-7) to begin or continue this quest.",
+    "keywords": "Scroll Heiji Norg I-7 Kurayami: Ichi scroll Like a Shining Subligar"
+  },
+  {
+    "log_id": 5,
+    "quest_id": 139,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki regional quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Outlands_Quests",
+    "start_npc": "Heizo",
+    "start_zone": "Norg (H-7)",
+    "reward": "Dokumori: Ichi scroll",
+    "requirements": {
+      "fame": 3
+    },
+    "next_step": "Speak with Heizo at Norg (H-7) to begin or continue this quest.",
+    "keywords": "Scroll Heizo Norg H-7 Dokumori: Ichi scroll Like Shining Leggings"
+  },
+  {
+    "log_id": 5,
+    "quest_id": 135,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki regional quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Outlands_Quests",
+    "start_npc": "Shivivi",
+    "start_zone": "Norg (J-8)",
+    "reward": "Jubaku: Ichi scroll",
+    "requirements": {
+      "fame": 3
+    },
+    "next_step": "Speak with Shivivi at Norg (J-8) to begin or continue this quest.",
+    "keywords": "Scroll Shivivi Norg J-8 Jubaku: Ichi scroll Secret of the Damp Scroll"
+  },
+  {
+    "log_id": 5,
+    "quest_id": 132,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki regional quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Outlands_Quests",
+    "start_npc": "Washu",
+    "start_zone": "Norg (J-8)",
+    "reward": "Hojo: Ichi scroll",
+    "requirements": {
+      "fame": 4
+    },
+    "next_step": "Speak with Washu at Norg (J-8) to begin or continue this quest.",
+    "keywords": "Scroll Washu Norg J-8 Hojo: Ichi scroll Stop Your Whining"
+  },
+  {
+    "log_id": 5,
+    "quest_id": 136,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki regional quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Outlands_Quests",
+    "start_npc": "Laisrean",
+    "start_zone": "Norg (H-7)",
+    "reward": "Utsusemi: Ichi scroll",
+    "requirements": {
+      "fame": 4
+    },
+    "next_step": "Speak with Laisrean at Norg (H-7) to begin or continue this quest.",
+    "keywords": "Scroll Laisrean Norg H-7 Utsusemi: Ichi scroll The Sahagin's Stash"
+  },
+  {
+    "log_id": 5,
+    "quest_id": 133,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki regional quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Outlands_Quests",
+    "start_npc": "Edal-Tahdal",
+    "start_zone": "Norg (H-9)",
+    "reward": "Leviathan unlocked",
+    "requirements": {
+      "fame": 4
+    },
+    "next_step": "Speak with Edal-Tahdal at Norg (H-9) to begin or continue this quest.",
+    "keywords": "Avatar Edal-Tahdal Norg H-9 Leviathan unlocked Trial by Water"
+  },
+  {
+    "log_id": 5,
+    "quest_id": 149,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki regional quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Outlands_Quests",
+    "start_npc": "Stray Cloud",
+    "start_zone": "Norg (H-9)",
+    "reward": "Light Buckler",
+    "requirements": {
+      "fame": 4
+    },
+    "next_step": "Speak with Stray Cloud at Norg (H-9) to begin or continue this quest.",
+    "keywords": "General Stray Cloud Norg H-9 Light Buckler An Undying Pledge"
+  },
+  {
+    "log_id": 5,
+    "quest_id": 131,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki regional quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Outlands_Quests",
+    "start_npc": "Mamaulabion",
+    "start_zone": "Norg (G-6)",
+    "reward": "Evoker's Ring",
+    "requirements": {
+      "fame": 4
+    },
+    "next_step": "Speak with Mamaulabion at Norg (G-6) to begin or continue this quest.",
+    "keywords": "General Mamaulabion Norg G-6 Evoker's Ring Mama Mia"
+  },
+  {
+    "log_id": 5,
+    "quest_id": 129,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki regional quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Outlands_Quests",
+    "start_npc": "Jaucribaix",
+    "start_zone": "Norg (K-8)",
+    "reward": "Samurai unlocked",
+    "next_step": "Speak with Jaucribaix at Norg (K-8) to begin or continue this quest.",
+    "keywords": "SAM Flag Jaucribaix Norg K-8 Samurai unlocked Forge Your Destiny"
+  },
+  {
+    "log_id": 5,
+    "quest_id": 147,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki regional quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Outlands_Quests",
+    "start_npc": "Ryoma",
+    "start_zone": "Norg (H-8)",
+    "reward": "Blade: Ku unlocked",
+    "next_step": "Speak with Ryoma at Norg (H-8) to begin or continue this quest.",
+    "keywords": "WS Ryoma Norg H-8 Blade: Ku unlocked Bugi Soden"
+  },
+  {
+    "log_id": 5,
+    "quest_id": 146,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki regional quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Outlands_Quests",
+    "start_npc": "Jaucribaix",
+    "start_zone": "Norg (K-8)",
+    "reward": "Tachi: Kasha unlocked",
+    "next_step": "Speak with Jaucribaix at Norg (K-8) to begin or continue this quest.",
+    "keywords": "WS Jaucribaix Norg K-8 Tachi: Kasha unlocked The Potential Within"
+  },
+  {
+    "log_id": 5,
+    "quest_id": 143,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki regional quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Outlands_Quests",
+    "start_npc": "Ryoma",
+    "start_zone": "Norg (H-8)",
+    "reward": "Anju and Zushio",
+    "next_step": "Speak with Ryoma at Norg (H-8) to begin or continue this quest.",
+    "keywords": "NIN AF1 Ryoma Norg H-8 Anju and Zushio 20 in Pirate Years"
+  },
+  {
+    "log_id": 5,
+    "quest_id": 144,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki regional quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Outlands_Quests",
+    "start_npc": "Ryoma",
+    "start_zone": "Norg (H-8)",
+    "reward": "Ninja Hakama",
+    "next_step": "Speak with Ryoma at Norg (H-8) to begin or continue this quest.",
+    "keywords": "NIN AF2 Ryoma Norg H-8 Ninja Hakama I'll Take the Big Box"
+  },
+  {
+    "log_id": 5,
+    "quest_id": 145,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki regional quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Outlands_Quests",
+    "start_npc": "Ryoma",
+    "start_zone": "Norg (H-8)",
+    "reward": "Ninja Chainmail",
+    "next_step": "Speak with Ryoma at Norg (H-8) to begin or continue this quest.",
+    "keywords": "NIN AF3 Ryoma Norg H-8 Ninja Chainmail True Will"
+  },
+  {
+    "log_id": 5,
+    "quest_id": 140,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki regional quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Outlands_Quests",
+    "start_npc": "Jaucribaix",
+    "start_zone": "Norg (K-8)",
+    "reward": "Magoroku",
+    "next_step": "Speak with Jaucribaix at Norg (K-8) to begin or continue this quest.",
+    "keywords": "SAM AF1 Jaucribaix Norg K-8 Magoroku The Sacred Katana"
+  },
+  {
+    "log_id": 5,
+    "quest_id": 141,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki regional quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Outlands_Quests",
+    "start_npc": "Jaucribaix",
+    "start_zone": "Norg (K-8)",
+    "reward": "Myochin Sune-Ate",
+    "next_step": "Speak with Jaucribaix at Norg (K-8) to begin or continue this quest.",
+    "keywords": "SAM AF2 Jaucribaix Norg K-8 Myochin Sune-Ate Yomi Okuri"
+  },
+  {
+    "log_id": 5,
+    "quest_id": 142,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki regional quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Outlands_Quests",
+    "start_npc": "Jaucribaix",
+    "start_zone": "Norg (K-8)",
+    "reward": "Myochin Kabuto",
+    "next_step": "Speak with Jaucribaix at Norg (K-8) to begin or continue this quest.",
+    "keywords": "SAM AF3 Jaucribaix Norg K-8 Myochin Kabuto A Thief in Norg!?"
+  },
+  {
+    "log_id": 5,
+    "quest_id": 130,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki regional quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Outlands_Quests",
+    "start_npc": "Muzaffar",
+    "start_zone": "Norg (I-8)",
+    "reward": "Varies",
+    "next_step": "Speak with Muzaffar at Norg (I-8) to begin or continue this quest.",
+    "keywords": "General Muzaffar Norg I-8 Varies Black Market"
+  },
+  {
+    "log_id": 5,
+    "quest_id": 197,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki regional quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Outlands_Quests",
+    "start_npc": "Rahi Fohlatti",
+    "start_zone": "Rabao (G-9)",
+    "reward": "Garuda unlocked",
+    "requirements": {
+      "fame": 2
+    },
+    "next_step": "Speak with Rahi Fohlatti at Rabao (G-9) to begin or continue this quest.",
+    "keywords": "Avatar Rahi Fohlatti Rabao G-9 Garuda unlocked Trial-Size Trial by Wind"
+  },
+  {
+    "log_id": 5,
+    "quest_id": 194,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki regional quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Outlands_Quests",
+    "start_npc": "Agado-Pugado",
+    "start_zone": "Rabao (G-9)",
+    "reward": "Garuda unlocked",
+    "requirements": {
+      "fame": 6
+    },
+    "next_step": "Speak with Agado-Pugado at Rabao (G-9) to begin or continue this quest.",
+    "keywords": "Avatar Agado-Pugado Rabao G-9 Garuda unlocked Trial by Wind"
+  },
+  {
+    "log_id": 5,
+    "quest_id": 193,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki regional quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Outlands_Quests",
+    "start_npc": "Alfesar",
+    "start_zone": "Rabao (H-7)",
+    "reward": "Teleport-Altep scroll",
+    "next_step": "Speak with Alfesar at Rabao (H-7) to begin or continue this quest.",
+    "keywords": "Scroll Alfesar Rabao H-7 Teleport-Altep scroll The Missing Piece"
+  },
+  {
+    "log_id": 5,
+    "quest_id": 201,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki regional quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Outlands_Quests",
+    "start_npc": "Irmilant",
+    "start_zone": "Rabao (G-7)",
+    "reward": "Ebisu Fishing Rod",
+    "next_step": "Speak with Irmilant at Rabao (G-7) to begin or continue this quest.",
+    "keywords": "General Irmilant Rabao G-7 Ebisu Fishing Rod Indomitable Spirit"
+  },
+  {
+    "log_id": 5,
+    "quest_id": 196,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki regional quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Outlands_Quests",
+    "start_npc": "Irmilant",
+    "start_zone": "Rabao (G-7)",
+    "reward": "Lu Shang's Fishing Rod",
+    "next_step": "Speak with Irmilant at Rabao (G-7) to begin or continue this quest.",
+    "keywords": "General Irmilant Rabao G-7 Lu Shang's Fishing Rod The Immortal Lu Shang"
+  },
+  {
+    "log_id": 5,
+    "quest_id": 199,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki regional quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Outlands_Quests",
+    "start_npc": "Zoriboh",
+    "start_zone": "Rabao (F-6)",
+    "reward": "Venerer Ring, 4000 gil",
+    "next_step": "Speak with Zoriboh at Rabao (F-6) to begin or continue this quest.",
+    "keywords": "General Zoriboh Rabao F-6 Venerer Ring, 4000 gil Chasing Dreams"
+  },
+  {
+    "log_id": 5,
+    "quest_id": 200,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki regional quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Outlands_Quests",
+    "start_npc": "Zoriboh",
+    "start_zone": "Rabao (F-6)",
+    "reward": "Deluxe Carbine, 3000 gil",
+    "next_step": "Speak with Zoriboh at Rabao (F-6) to begin or continue this quest.",
+    "keywords": "General Zoriboh Rabao F-6 Deluxe Carbine, 3000 gil The Search for Goldmane"
+  },
+  {
+    "log_id": 5,
+    "quest_id": 192,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki regional quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Outlands_Quests",
+    "start_npc": "Edigey",
+    "start_zone": "Rabao (F-9)",
+    "reward": "Dotanuki, 1800 gil",
+    "next_step": "Speak with Edigey at Rabao (F-9) to begin or continue this quest.",
+    "keywords": "General Edigey Rabao F-9 Dotanuki, 1800 gil Don't Forget the Antidote"
+  },
+  {
+    "log_id": 5,
+    "quest_id": 195,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki regional quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Outlands_Quests",
+    "start_npc": "Datta",
+    "start_zone": "Rabao (F-7)",
+    "reward": "8000 gil",
+    "next_step": "Speak with Datta at Rabao (F-7) to begin or continue this quest.",
+    "keywords": "General Datta Rabao F-7 8000 gil The Kuftal Tour"
+  },
+  {
+    "log_id": 5,
+    "quest_id": 203,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki regional quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Outlands_Quests",
+    "start_npc": "Jordenaux",
+    "start_zone": "Rabao (F-8)",
+    "reward": "Lu Shang's Fishing Rod +1",
+    "next_step": "Speak with Jordenaux at Rabao (F-8) to begin or continue this quest.",
+    "keywords": "General Jordenaux Rabao F-8 Lu Shang's Fishing Rod +1 Thanks for All the Fish"
+  },
+  {
+    "log_id": 5,
+    "quest_id": 202,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki regional quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Outlands_Quests",
+    "start_npc": "Irmilant",
+    "start_zone": "Rabao (G-7)",
+    "reward": "Ebisu Fishing Rod +1",
+    "next_step": "Speak with Irmilant at Rabao (G-7) to begin or continue this quest.",
+    "keywords": "General Irmilant Rabao G-7 Ebisu Fishing Rod +1 Fish Favors the Bold"
+  },
+  {
+    "log_id": 5,
+    "quest_id": 161,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki regional quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Outlands_Quests",
+    "start_npc": "Cermet Headstone",
+    "start_zone": "Cape Teriggan (H-5)",
+    "reward": "Flagellant's Rope",
+    "next_step": "Speak with Cermet Headstone at Cape Teriggan (H-5) to begin or continue this quest.",
+    "keywords": "General Cermet Headstone Cape Teriggan H-5 Flagellant's Rope Wandering Souls"
+  },
+  {
+    "log_id": 5,
+    "quest_id": 162,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki regional quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Outlands_Quests",
+    "start_npc": "Cermet Headstone",
+    "start_zone": "The Sanctuary of Zi'Tah (I-7)",
+    "reward": "Bat Earring",
+    "next_step": "Speak with Cermet Headstone at The Sanctuary of Zi'Tah (I-7) to begin or continue this quest.",
+    "keywords": "General Cermet Headstone The Sanctuary of Zi'Tah I-7 Bat Earring Soul Searching"
+  },
+  {
+    "log_id": 5,
+    "quest_id": 164,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki regional quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Outlands_Quests",
+    "start_npc": "Yve'noile",
+    "start_zone": "The Shrine of Ru'Avitau (G/H-11)",
+    "reward": "See Quest Page",
+    "next_step": "Speak with Yve'noile at The Shrine of Ru'Avitau (G/H-11) to begin or continue this quest.",
+    "keywords": "General Yve'noile The Shrine of Ru'Avitau G/H-11 See Quest Page Divine Might"
+  },
+  {
+    "log_id": 5,
+    "quest_id": 160,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki regional quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Outlands_Quests",
+    "start_npc": "Cermet Headstone",
+    "start_zone": "Yuhtunga Jungle (I-6)",
+    "reward": "Opo-opo Necklace",
+    "next_step": "Speak with Cermet Headstone at Yuhtunga Jungle (I-6) to begin or continue this quest.",
+    "keywords": "General Cermet Headstone Yuhtunga Jungle I-6 Opo-opo Necklace Wrath of the Opo-opos"
+  }
+]

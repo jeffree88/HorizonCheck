@@ -1,0 +1,659 @@
+[
+  {
+    "name": "Cosmo-Cleanse bitmap makes Limbus ready",
+    "steps": [
+      {
+        "op": "bitmap",
+        "id": 734,
+        "owned": true
+      },
+      {
+        "op": "reconcile_unlock",
+        "id": 734,
+        "sticky": false
+      },
+      {
+        "op": "limbus_state"
+      }
+    ],
+    "expect": {
+      "limbus": "READY",
+      "ki_734": true
+    }
+  },
+  {
+    "name": "Permanent Dynamis proof survives API false",
+    "steps": [
+      {
+        "op": "bitmap",
+        "id": 486,
+        "owned": true
+      },
+      {
+        "op": "reconcile_unlock",
+        "id": 486,
+        "sticky": true
+      },
+      {
+        "op": "bitmap_clear"
+      },
+      {
+        "op": "api",
+        "id": 486,
+        "owned": false
+      },
+      {
+        "op": "resolve",
+        "id": 486
+      }
+    ],
+    "expect": {
+      "resolved_486": true,
+      "proof_486": true
+    }
+  },
+  {
+    "name": "Weekly reset clears lockouts not permanent proof",
+    "steps": [
+      {
+        "op": "proof",
+        "id": 486,
+        "owned": true
+      },
+      {
+        "op": "weekly",
+        "dynamis_character": 2,
+        "dynamis_account": 3,
+        "limbus": 2
+      },
+      {
+        "op": "weekly_reset"
+      }
+    ],
+    "expect": {
+      "dynamis_character": 0,
+      "dynamis_account": 0,
+      "limbus_used": 0,
+      "proof_486": true
+    }
+  },
+  {
+    "name": "Future ToAU content is non-actionable",
+    "steps": [
+      {
+        "op": "mission_availability",
+        "series": "toau",
+        "number": 19,
+        "cap": 18
+      },
+      {
+        "op": "mission_availability",
+        "series": "toau",
+        "number": 18,
+        "cap": 18
+      }
+    ],
+    "expect": {
+      "toau_19": "FUTURE",
+      "toau_18": "AVAILABLE"
+    }
+  },
+  {
+    "name": "Zone sync runs three phases once",
+    "steps": [
+      {
+        "op": "zone",
+        "id": 230
+      },
+      {
+        "op": "zone_phase",
+        "phase": 1
+      },
+      {
+        "op": "zone_phase",
+        "phase": 2
+      },
+      {
+        "op": "zone_phase",
+        "phase": 3
+      },
+      {
+        "op": "zone_phase",
+        "phase": 3
+      }
+    ],
+    "expect": {
+      "zone_phase": 3,
+      "phase1_runs": 1,
+      "phase2_runs": 1,
+      "phase3_runs": 1
+    }
+  },
+  {
+    "name": "Timeline dedupes identical immediate event",
+    "steps": [
+      {
+        "op": "timeline",
+        "key": "dynamis:sandoria",
+        "state": "COMPLETE"
+      },
+      {
+        "op": "timeline",
+        "key": "dynamis:sandoria",
+        "state": "COMPLETE"
+      }
+    ],
+    "expect": {
+      "timeline_count": 1
+    }
+  },
+  {
+    "name": "Planner boosts current-zone ready quest",
+    "steps": [
+      {
+        "op": "planner_row",
+        "tier": "READY",
+        "here": true,
+        "category": "quest",
+        "text": "Quest here: Test Quest"
+      },
+      {
+        "op": "planner_row",
+        "tier": "READY",
+        "here": false,
+        "category": "activity",
+        "text": "Remote Activity"
+      },
+      {
+        "op": "planner_rank"
+      }
+    ],
+    "expect": {
+      "planner_first": "Quest here: Test Quest"
+    }
+  },
+  {
+    "name": "Search covers quest mission unlock system",
+    "steps": [
+      {
+        "op": "search_add",
+        "kind": "Quest",
+        "name": "Shattering Stars"
+      },
+      {
+        "op": "search_add",
+        "kind": "Mission",
+        "name": "Passing Glory"
+      },
+      {
+        "op": "search_add",
+        "kind": "Unlock",
+        "name": "Cosmo-Cleanse"
+      },
+      {
+        "op": "search_add",
+        "kind": "System",
+        "name": "Dynamis"
+      },
+      {
+        "op": "search",
+        "query": "cosmo"
+      }
+    ],
+    "expect": {
+      "search_count": 1,
+      "search_first": "Cosmo-Cleanse"
+    }
+  },
+  {
+    "name": "Unavailable canonical quest blocks reused native bit",
+    "steps": [
+      {
+        "op": "canonical",
+        "key": "3:92",
+        "policy": "BLOCK",
+        "content": "UNAVAILABLE"
+      },
+      {
+        "op": "native_bit",
+        "key": "3:92",
+        "active": true
+      },
+      {
+        "op": "quest_resolve",
+        "key": "3:92"
+      }
+    ],
+    "expect": {
+      "quest_3:92": "LOCKED"
+    }
+  },
+  {
+    "name": "Unverified native mapping is quarantined instead of active",
+    "steps": [
+      {
+        "op": "canonical",
+        "key": "3:77",
+        "policy": "QUARANTINE",
+        "content": "UNVERIFIED"
+      },
+      {
+        "op": "native_bit",
+        "key": "3:77",
+        "active": true
+      },
+      {
+        "op": "quest_resolve",
+        "key": "3:77"
+      }
+    ],
+    "expect": {
+      "quest_3:77": "ID QUARANTINED"
+    }
+  },
+  {
+    "name": "Self-heal repairs stale derived quest state",
+    "steps": [
+      {
+        "op": "canonical",
+        "key": "3:92",
+        "policy": "BLOCK",
+        "content": "UNAVAILABLE"
+      },
+      {
+        "op": "native_bit",
+        "key": "3:92",
+        "active": true
+      },
+      {
+        "op": "derived",
+        "key": "3:92",
+        "state": "ACTIVE"
+      },
+      {
+        "op": "selfheal",
+        "key": "3:92"
+      }
+    ],
+    "expect": {
+      "derived_3:92": "LOCKED"
+    }
+  },
+  {
+    "name": "Guided capture gives high confidence on native transition",
+    "steps": [
+      {
+        "op": "guided",
+        "key": "quest_start",
+        "before": false,
+        "after": true,
+        "packets": 1,
+        "text": 2
+      }
+    ],
+    "expect": {
+      "guided_quest_start": "HIGH"
+    }
+  },
+  {
+    "name": "Self-heal native quarantine is idempotent",
+    "steps": [
+      {
+        "op": "canonical",
+        "key": "3:92",
+        "policy": "BLOCK",
+        "content": "UNAVAILABLE"
+      },
+      {
+        "op": "native_bit",
+        "key": "3:92",
+        "active": true
+      },
+      {
+        "op": "derived",
+        "key": "3:92",
+        "state": "ACTIVE"
+      },
+      {
+        "op": "selfheal",
+        "key": "3:92"
+      },
+      {
+        "op": "selfheal",
+        "key": "3:92"
+      }
+    ],
+    "expect": {
+      "derived_3:92": "LOCKED",
+      "selfheal_repairs": 1
+    }
+  },
+  {
+    "name": "Future canonical mission is blocked from native authority",
+    "steps": [
+      {
+        "op": "canonical_mission",
+        "series": "toau",
+        "number": 19,
+        "content": "FUTURE"
+      }
+    ],
+    "expect": {
+      "canonical_mission_toau_19": "BLOCK"
+    }
+  },
+  {
+    "name": "Native Assault history imports old clears without erasing saved proof",
+    "steps": [
+      {
+        "op": "assault_manual",
+        "id": 2
+      },
+      {
+        "op": "assault_native",
+        "ids": [
+          1,
+          10,
+          31,
+          50
+        ]
+      },
+      {
+        "op": "assault_native",
+        "ids": [
+          1,
+          10
+        ]
+      }
+    ],
+    "expect": {
+      "assault_count": 5,
+      "assault_native_imported": 4
+    }
+  },
+  {
+    "name": "Failed state migration restores pre-migration backup",
+    "steps": [
+      {
+        "op": "state_seed",
+        "schema": 22,
+        "value": 7
+      },
+      {
+        "op": "migration_backup"
+      },
+      {
+        "op": "migration_apply",
+        "schema": 23,
+        "value": 99
+      },
+      {
+        "op": "migration_validate",
+        "valid": false
+      }
+    ],
+    "expect": {
+      "state_schema": 22,
+      "state_value": 7,
+      "migration_backup_created": true,
+      "migration_rolled_back": true
+    }
+  },
+  {
+    "name": "Runtime guard pauses only the repeatedly failing operation",
+    "steps": [
+      {
+        "op": "guard_call",
+        "name": "quests",
+        "ok": false
+      },
+      {
+        "op": "guard_call",
+        "name": "quests",
+        "ok": false
+      },
+      {
+        "op": "guard_call",
+        "name": "quests",
+        "ok": false
+      },
+      {
+        "op": "guard_call",
+        "name": "enm",
+        "ok": true
+      }
+    ],
+    "expect": {
+      "guard_quests": "PAUSED",
+      "guard_enm": "READY",
+      "guard_total_errors": 3
+    }
+  },
+  {
+    "name": "Duplicate runtime errors collapse into one diagnostic row",
+    "steps": [
+      {
+        "op": "error_event",
+        "where": "quests",
+        "error": "attempt to call nil value"
+      },
+      {
+        "op": "error_event",
+        "where": "quests",
+        "error": "attempt to call nil value"
+      },
+      {
+        "op": "error_event",
+        "where": "quests",
+        "error": "attempt to call nil value"
+      }
+    ],
+    "expect": {
+      "error_distinct": 1,
+      "error_total": 3,
+      "error_suppressed": 2
+    }
+  },
+  {
+    "name": "Dynamis row completes at the current character limit even with one account slot left",
+    "steps": [
+      {
+        "op": "weekly",
+        "dynamis_character": 2,
+        "dynamis_account": 2
+      }
+    ],
+    "expect": {
+      "dynamis_effective_cap": 2,
+      "dynamis_character_remaining": 0,
+      "dynamis_character_complete": true
+    }
+  },
+  {
+    "name": "Untouched alt receives only the one remaining account Dynamis entry",
+    "steps": [
+      {
+        "op": "weekly",
+        "dynamis_character": 0,
+        "dynamis_account": 2
+      }
+    ],
+    "expect": {
+      "dynamis_effective_cap": 1,
+      "dynamis_character_remaining": 1,
+      "dynamis_character_complete": false
+    }
+  },
+  {
+    "name": "Initial synchronization completes only after every core source is ready",
+    "steps": [
+      {
+        "op": "setup_component",
+        "name": "character"
+      },
+      {
+        "op": "setup_component",
+        "name": "storage"
+      },
+      {
+        "op": "setup_component",
+        "name": "schema"
+      },
+      {
+        "op": "setup_component",
+        "name": "manifest"
+      },
+      {
+        "op": "setup_component",
+        "name": "missions"
+      },
+      {
+        "op": "setup_component",
+        "name": "keyitems"
+      },
+      {
+        "op": "setup_component",
+        "name": "assault"
+      },
+      {
+        "op": "setup_component",
+        "name": "zonesync"
+      },
+      {
+        "op": "setup_component",
+        "name": "progression"
+      },
+      {
+        "op": "setup_check"
+      }
+    ],
+    "expect": {
+      "setup_complete": true
+    }
+  },
+  {
+    "name": "First ENM owned snapshot does not invent a timer",
+    "steps": [
+      {
+        "op": "enm_ki_observe",
+        "id": "bearclaw",
+        "owned": true
+      }
+    ],
+    "expect": {
+      "enm_timer_count_bearclaw": 0
+    }
+  },
+  {
+    "name": "Observed ENM KI transition starts one passive timer",
+    "steps": [
+      {
+        "op": "enm_ki_observe",
+        "id": "bearclaw",
+        "owned": false
+      },
+      {
+        "op": "enm_ki_hint",
+        "id": "bearclaw"
+      },
+      {
+        "op": "enm_ki_observe",
+        "id": "bearclaw",
+        "owned": true
+      },
+      {
+        "op": "enm_ki_observe",
+        "id": "bearclaw",
+        "owned": true
+      }
+    ],
+    "expect": {
+      "enm_timer_count_bearclaw": 1,
+      "enm_timer_confidence_bearclaw": "PASSIVE VERIFIED"
+    }
+  },
+  {
+    "name": "Empty Attention remains hidden when no urgent activities exist",
+    "steps": [],
+    "expect": {
+      "attention_visible": false
+    }
+  },
+  {
+    "name": "Critical activity makes Attention visible",
+    "steps": [
+      {
+        "op": "attention_add",
+        "urgency": "CRITICAL",
+        "text": "Assault Tags capped"
+      }
+    ],
+    "expect": {
+      "attention_visible": true
+    }
+  },
+  {
+    "name": "Tracent riddle dialogue records requests without completing turn-in",
+    "steps": [
+      {
+        "op": "anniversary_riddle",
+        "npc": "tracent",
+        "item": 1
+      },
+      {
+        "op": "anniversary_riddle",
+        "npc": "tracent",
+        "item": 2
+      },
+      {
+        "op": "anniversary_riddle",
+        "npc": "tracent",
+        "item": 3
+      },
+      {
+        "op": "anniversary_riddle",
+        "npc": "tracent",
+        "item": 4
+      }
+    ],
+    "expect": {
+      "anniversary_tracent_status": "ITEMS REQUESTED",
+      "anniversary_tracent_requested_count": 4,
+      "anniversary_tracent_items_complete": 0
+    }
+  },
+  {
+    "name": "Tracent counter dialogue confirms the four-item turn-in",
+    "steps": [
+      {
+        "op": "anniversary_counter",
+        "npc": "tracent",
+        "completed": 4834,
+        "remaining": 4830
+      }
+    ],
+    "expect": {
+      "anniversary_tracent_status": "TURN-IN COMPLETE",
+      "anniversary_tracent_items_complete": 4,
+      "anniversary_tracent_completed": 4834,
+      "anniversary_tracent_remaining": 4830
+    }
+  },
+  {
+    "name": "Drowsy counter dialogue confirms the four-item turn-in",
+    "steps": [
+      {
+        "op": "anniversary_counter",
+        "npc": "drowsy",
+        "completed": 102,
+        "remaining": 348
+      }
+    ],
+    "expect": {
+      "anniversary_drowsy_status": "TURN-IN COMPLETE",
+      "anniversary_drowsy_items_complete": 4,
+      "anniversary_drowsy_completed": 102,
+      "anniversary_drowsy_remaining": 348
+    }
+  }
+]

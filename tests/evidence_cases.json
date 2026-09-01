@@ -1,0 +1,171 @@
+[
+  {
+    "name": "no evidence stays unknown",
+    "rows": [],
+    "expected": {
+      "value": null,
+      "source": "no evidence"
+    }
+  },
+  {
+    "name": "bitmap true beats API false",
+    "rows": [
+      {
+        "value": false,
+        "source": "Ashita HasKeyItem",
+        "rank": 60,
+        "at": 100,
+        "seq": 1
+      },
+      {
+        "value": true,
+        "source": "0x055 bitmap",
+        "rank": 90,
+        "at": 90,
+        "seq": 2
+      }
+    ],
+    "expected": {
+      "value": true,
+      "source": "0x055 bitmap",
+      "conflict": true
+    }
+  },
+  {
+    "name": "fresh bitmap false clears saved consumable state",
+    "rows": [
+      {
+        "value": true,
+        "source": "saved packet state",
+        "rank": 75,
+        "at": 100,
+        "seq": 1
+      },
+      {
+        "value": false,
+        "source": "0x055 bitmap",
+        "rank": 90,
+        "at": 110,
+        "seq": 2
+      }
+    ],
+    "expected": {
+      "value": false,
+      "source": "0x055 bitmap",
+      "conflict": true
+    }
+  },
+  {
+    "name": "live true supersedes stale saved consumable false",
+    "rows": [
+      {
+        "value": false,
+        "source": "saved packet state",
+        "rank": 50,
+        "at": 100,
+        "seq": 1
+      },
+      {
+        "value": true,
+        "source": "Ashita HasKeyItem",
+        "rank": 60,
+        "at": 110,
+        "seq": 2
+      }
+    ],
+    "expected": {
+      "value": true,
+      "source": "Ashita HasKeyItem",
+      "conflict": true
+    }
+  },
+  {
+    "name": "permanent proof beats API false negative",
+    "rows": [
+      {
+        "value": true,
+        "source": "permanent proof",
+        "rank": 100,
+        "at": 80,
+        "seq": 1
+      },
+      {
+        "value": false,
+        "source": "Ashita HasKeyItem",
+        "rank": 60,
+        "at": 120,
+        "seq": 2
+      }
+    ],
+    "expected": {
+      "value": true,
+      "source": "permanent proof",
+      "conflict": true
+    }
+  },
+  {
+    "name": "newer equal rank wins",
+    "rows": [
+      {
+        "value": true,
+        "source": "0x055 bitmap",
+        "rank": 90,
+        "at": 100,
+        "seq": 1
+      },
+      {
+        "value": false,
+        "source": "0x055 bitmap",
+        "rank": 90,
+        "at": 120,
+        "seq": 2
+      }
+    ],
+    "expected": {
+      "value": false,
+      "source": "0x055 bitmap",
+      "conflict": true
+    }
+  },
+  {
+    "name": "unknown does not overwrite confirmed true",
+    "rows": [
+      {
+        "value": true,
+        "source": "saved confirmed state",
+        "rank": 75,
+        "at": 100,
+        "seq": 1
+      },
+      {
+        "value": null,
+        "source": "table not received",
+        "rank": 0,
+        "at": 200,
+        "seq": 2
+      }
+    ],
+    "expected": {
+      "value": true,
+      "source": "saved confirmed state",
+      "conflict": false
+    }
+  },
+  {
+    "name": "numeric fact resolves without boolean coercion",
+    "rows": [
+      {
+        "value": 9,
+        "source": "fame dialogue",
+        "rank": 90,
+        "at": 100,
+        "seq": 1
+      }
+    ],
+    "expected": {
+      "value": 9,
+      "source": "fame dialogue",
+      "conflict": false
+    }
+  }
+]

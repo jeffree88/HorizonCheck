@@ -1,0 +1,1460 @@
+[
+  {
+    "log_id": 0,
+    "quest_id": 61,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=The%20Rumor",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "The Rumor San d'Oria HorizonXI Wiki catalog reference"
+  },
+  {
+    "log_id": 0,
+    "quest_id": 75,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=The%20Rivalry/The%20Competition",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "The Rivalry/The Competition San d'Oria HorizonXI Wiki catalog reference"
+  },
+  {
+    "log_id": 0,
+    "quest_id": 76,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=The%20Competition",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "The Competition San d'Oria HorizonXI Wiki catalog reference"
+  },
+  {
+    "log_id": 0,
+    "quest_id": 81,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=Lufet%27s%20Lake%20Salt",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "Lufet's Lake Salt San d'Oria HorizonXI Wiki catalog reference"
+  },
+  {
+    "log_id": 0,
+    "quest_id": 92,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=Under%20Oath",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "Under Oath San d'Oria HorizonXI Wiki catalog reference"
+  },
+  {
+    "log_id": 0,
+    "quest_id": 97,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=Eco-Warrior",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "Eco-Warrior San d'Oria HorizonXI Wiki catalog reference"
+  },
+  {
+    "log_id": 0,
+    "quest_id": 99,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=Souls%20in%20Shadow",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "Souls in Shadow San d'Oria HorizonXI Wiki catalog reference"
+  },
+  {
+    "log_id": 0,
+    "quest_id": 100,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=A%20Taste%20for%20Meat",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "A Taste for Meat San d'Oria HorizonXI Wiki catalog reference"
+  },
+  {
+    "log_id": 0,
+    "quest_id": 104,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=A%20Discerning%20Eye%20%28San%20d%27Oria%29",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "A Discerning Eye (San d'Oria) San d'Oria HorizonXI Wiki catalog reference"
+  },
+  {
+    "log_id": 0,
+    "quest_id": 107,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=Trial-Size%20Trial%20by%20Ice",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "Trial-Size Trial by Ice San d'Oria HorizonXI Wiki catalog reference"
+  },
+  {
+    "log_id": 0,
+    "quest_id": 113,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=Lure%20of%20the%20Wildcat%20%28San%20d%27Oria%29",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "Lure of the Wildcat (San d'Oria) San d'Oria HorizonXI Wiki catalog reference"
+  },
+  {
+    "log_id": 0,
+    "quest_id": 114,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=Atelloune%27s%20Lament",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "Atelloune's Lament San d'Oria HorizonXI Wiki catalog reference"
+  },
+  {
+    "log_id": 0,
+    "quest_id": 117,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=Thick%20Shells",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "Thick Shells San d'Oria HorizonXI Wiki catalog reference"
+  },
+  {
+    "log_id": 0,
+    "quest_id": 119,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=Trust%3A%20San%20d%27Oria",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "Trust: San d'Oria San d'Oria HorizonXI Wiki catalog reference"
+  },
+  {
+    "log_id": 1,
+    "quest_id": 71,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=A%20Discerning%20Eye%20%28Bastok%29",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "A Discerning Eye (Bastok) Bastok HorizonXI Wiki catalog reference"
+  },
+  {
+    "log_id": 1,
+    "quest_id": 83,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=Bait%20and%20Switch",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "Bait and Switch Bastok HorizonXI Wiki catalog reference"
+  },
+  {
+    "log_id": 1,
+    "quest_id": 87,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=A%20Proper%20Burial",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "A Proper Burial Bastok HorizonXI Wiki catalog reference"
+  },
+  {
+    "log_id": 1,
+    "quest_id": 88,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=Fully%20Mental%20Alchemist",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "Fully Mental Alchemist Bastok HorizonXI Wiki catalog reference"
+  },
+  {
+    "log_id": 1,
+    "quest_id": 92,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=Trust%3A%20Bastok",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "Trust: Bastok Bastok HorizonXI Wiki catalog reference"
+  },
+  {
+    "log_id": 2,
+    "quest_id": 22,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=Windurst%20Quest%20%2322",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "Windurst Quest #22 Windurst HorizonXI Wiki catalog reference"
+  },
+  {
+    "log_id": 2,
+    "quest_id": 54,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=Windurst%20Quest%20%2354",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "Windurst Quest #54 Windurst HorizonXI Wiki catalog reference"
+  },
+  {
+    "log_id": 2,
+    "quest_id": 55,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=Windurst%20Quest%20%2355",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "Windurst Quest #55 Windurst HorizonXI Wiki catalog reference"
+  },
+  {
+    "log_id": 2,
+    "quest_id": 56,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=Windurst%20Quest%20%2356",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "Windurst Quest #56 Windurst HorizonXI Wiki catalog reference"
+  },
+  {
+    "log_id": 2,
+    "quest_id": 57,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=Windurst%20Quest%20%2357",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "Windurst Quest #57 Windurst HorizonXI Wiki catalog reference"
+  },
+  {
+    "log_id": 2,
+    "quest_id": 58,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=Windurst%20Quest%20%2358",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "Windurst Quest #58 Windurst HorizonXI Wiki catalog reference"
+  },
+  {
+    "log_id": 2,
+    "quest_id": 59,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=Windurst%20Quest%20%2359",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "Windurst Quest #59 Windurst HorizonXI Wiki catalog reference"
+  },
+  {
+    "log_id": 2,
+    "quest_id": 94,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=Lure%20of%20the%20Wildcat%20%28Windurst%29",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "Lure of the Wildcat (Windurst) Windurst HorizonXI Wiki catalog reference"
+  },
+  {
+    "log_id": 2,
+    "quest_id": 95,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=Babban%20Ny%20Mheillea",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "Babban Ny Mheillea Windurst HorizonXI Wiki catalog reference"
+  },
+  {
+    "log_id": 2,
+    "quest_id": 96,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=Trust%3A%20Windurst",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "Trust: Windurst Windurst HorizonXI Wiki catalog reference"
+  },
+  {
+    "log_id": 2,
+    "quest_id": 99,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=Windurst%20Quest%20%2399",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "Windurst Quest #99 Windurst HorizonXI Wiki catalog reference"
+  },
+  {
+    "log_id": 3,
+    "quest_id": 33,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=Mystery%20of%20Fire",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "Mystery of Fire Jeuno HorizonXI Wiki catalog reference"
+  },
+  {
+    "log_id": 3,
+    "quest_id": 34,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=Mystery%20of%20Water",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "Mystery of Water Jeuno HorizonXI Wiki catalog reference"
+  },
+  {
+    "log_id": 3,
+    "quest_id": 35,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=Mystery%20of%20Earth",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "Mystery of Earth Jeuno HorizonXI Wiki catalog reference"
+  },
+  {
+    "log_id": 3,
+    "quest_id": 36,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=Mystery%20of%20Wind",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "Mystery of Wind Jeuno HorizonXI Wiki catalog reference"
+  },
+  {
+    "log_id": 3,
+    "quest_id": 37,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=Mystery%20of%20Ice",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "Mystery of Ice Jeuno HorizonXI Wiki catalog reference"
+  },
+  {
+    "log_id": 3,
+    "quest_id": 38,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=Mystery%20of%20Lightning",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "Mystery of Lightning Jeuno HorizonXI Wiki catalog reference"
+  },
+  {
+    "log_id": 3,
+    "quest_id": 39,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=Mystery%20of%20Light",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "Mystery of Light Jeuno HorizonXI Wiki catalog reference"
+  },
+  {
+    "log_id": 3,
+    "quest_id": 40,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=Mystery%20of%20Darkness",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "Mystery of Darkness Jeuno HorizonXI Wiki catalog reference"
+  },
+  {
+    "log_id": 3,
+    "quest_id": 77,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=Unlisted%20Qualities",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "Unlisted Qualities Jeuno HorizonXI Wiki catalog reference"
+  },
+  {
+    "log_id": 3,
+    "quest_id": 78,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=Girl%20in%20the%20Looking%20Glass",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "Girl in the Looking Glass Jeuno HorizonXI Wiki catalog reference"
+  },
+  {
+    "log_id": 3,
+    "quest_id": 79,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=Mirror%2C%20Mirror",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "Mirror, Mirror Jeuno HorizonXI Wiki catalog reference"
+  },
+  {
+    "log_id": 3,
+    "quest_id": 80,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=Past%20Reflections",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "Past Reflections Jeuno HorizonXI Wiki catalog reference"
+  },
+  {
+    "log_id": 3,
+    "quest_id": 81,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=Blighted%20Gloom",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "Blighted Gloom Jeuno HorizonXI Wiki catalog reference"
+  },
+  {
+    "log_id": 3,
+    "quest_id": 82,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=Blessed%20Radiance",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "Blessed Radiance Jeuno HorizonXI Wiki catalog reference"
+  },
+  {
+    "log_id": 3,
+    "quest_id": 83,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=Mirror%20Images",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "Mirror Images Jeuno HorizonXI Wiki catalog reference"
+  },
+  {
+    "log_id": 3,
+    "quest_id": 84,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=Chameleon%20Capers",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "Chameleon Capers Jeuno HorizonXI Wiki catalog reference"
+  },
+  {
+    "log_id": 3,
+    "quest_id": 85,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=Regaining%20Trust",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "Regaining Trust Jeuno HorizonXI Wiki catalog reference"
+  },
+  {
+    "log_id": 3,
+    "quest_id": 86,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=Storms%20of%20Fate",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "Storms of Fate Jeuno HorizonXI Wiki catalog reference"
+  },
+  {
+    "log_id": 3,
+    "quest_id": 87,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=Mixed%20Signals",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "Mixed Signals Jeuno HorizonXI Wiki catalog reference"
+  },
+  {
+    "log_id": 3,
+    "quest_id": 88,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=Shadows%20of%20the%20Departed",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "Shadows of the Departed Jeuno HorizonXI Wiki catalog reference"
+  },
+  {
+    "log_id": 3,
+    "quest_id": 89,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=Apocalypse%20Nigh",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "Apocalypse Nigh Jeuno HorizonXI Wiki catalog reference"
+  },
+  {
+    "log_id": 3,
+    "quest_id": 90,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=Lure%20of%20the%20Wildcat%20%28Jeuno%29",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "Lure of the Wildcat (Jeuno) Jeuno HorizonXI Wiki catalog reference"
+  },
+  {
+    "log_id": 3,
+    "quest_id": 91,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=The%20Road%20to%20Aht%20Urhgan",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "The Road to Aht Urhgan Jeuno HorizonXI Wiki catalog reference"
+  },
+  {
+    "log_id": 3,
+    "quest_id": 93,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=The%20Gobbiebag%20Part%20VII",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "The Gobbiebag Part VII Jeuno HorizonXI Wiki catalog reference"
+  },
+  {
+    "log_id": 3,
+    "quest_id": 94,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=The%20Gobbiebag%20Part%20VIII",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "The Gobbiebag Part VIII Jeuno HorizonXI Wiki catalog reference"
+  },
+  {
+    "log_id": 3,
+    "quest_id": 95,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=Lakeside%20Minuet",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "Lakeside Minuet Jeuno HorizonXI Wiki catalog reference"
+  },
+  {
+    "log_id": 3,
+    "quest_id": 96,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=The%20Unfinished%20Waltz",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "The Unfinished Waltz Jeuno HorizonXI Wiki catalog reference"
+  },
+  {
+    "log_id": 3,
+    "quest_id": 97,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=The%20Road%20to%20Divadom",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "The Road to Divadom Jeuno HorizonXI Wiki catalog reference"
+  },
+  {
+    "log_id": 3,
+    "quest_id": 98,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=Comeback%20Queen",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "Comeback Queen Jeuno HorizonXI Wiki catalog reference"
+  },
+  {
+    "log_id": 3,
+    "quest_id": 99,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=A%20Furious%20Finale",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "A Furious Finale Jeuno HorizonXI Wiki catalog reference"
+  },
+  {
+    "log_id": 3,
+    "quest_id": 100,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=The%20Miraculous%20Dale",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "The Miraculous Dale Jeuno HorizonXI Wiki catalog reference"
+  },
+  {
+    "log_id": 3,
+    "quest_id": 101,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=Clash%20of%20the%20Comrades",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "Clash of the Comrades Jeuno HorizonXI Wiki catalog reference"
+  },
+  {
+    "log_id": 3,
+    "quest_id": 102,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=Unlocking%20a%20Myth%20%28Warrior%29",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "Unlocking a Myth (Warrior) Jeuno HorizonXI Wiki catalog reference"
+  },
+  {
+    "log_id": 3,
+    "quest_id": 103,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=Unlocking%20a%20Myth%20%28Monk%29",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "Unlocking a Myth (Monk) Jeuno HorizonXI Wiki catalog reference"
+  },
+  {
+    "log_id": 3,
+    "quest_id": 104,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=Unlocking%20a%20Myth%20%28White%20Mage%29",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "Unlocking a Myth (White Mage) Jeuno HorizonXI Wiki catalog reference"
+  },
+  {
+    "log_id": 3,
+    "quest_id": 105,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=Unlocking%20a%20Myth%20%28Black%20Mage%29",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "Unlocking a Myth (Black Mage) Jeuno HorizonXI Wiki catalog reference"
+  },
+  {
+    "log_id": 3,
+    "quest_id": 106,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=Unlocking%20a%20Myth%20%28Red%20Mage%29",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "Unlocking a Myth (Red Mage) Jeuno HorizonXI Wiki catalog reference"
+  },
+  {
+    "log_id": 3,
+    "quest_id": 107,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=Unlocking%20a%20Myth%20%28Thief%29",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "Unlocking a Myth (Thief) Jeuno HorizonXI Wiki catalog reference"
+  },
+  {
+    "log_id": 3,
+    "quest_id": 108,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=Unlocking%20a%20Myth%20%28Paladin%29",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "Unlocking a Myth (Paladin) Jeuno HorizonXI Wiki catalog reference"
+  },
+  {
+    "log_id": 3,
+    "quest_id": 109,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=Unlocking%20a%20Myth%20%28Dark%20Knight%29",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "Unlocking a Myth (Dark Knight) Jeuno HorizonXI Wiki catalog reference"
+  },
+  {
+    "log_id": 3,
+    "quest_id": 110,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=Unlocking%20a%20Myth%20%28Beastmaster%29",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "Unlocking a Myth (Beastmaster) Jeuno HorizonXI Wiki catalog reference"
+  },
+  {
+    "log_id": 3,
+    "quest_id": 111,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=Unlocking%20a%20Myth%20%28Bard%29",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "Unlocking a Myth (Bard) Jeuno HorizonXI Wiki catalog reference"
+  },
+  {
+    "log_id": 3,
+    "quest_id": 112,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=Unlocking%20a%20Myth%20%28Ranger%29",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "Unlocking a Myth (Ranger) Jeuno HorizonXI Wiki catalog reference"
+  },
+  {
+    "log_id": 3,
+    "quest_id": 113,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=Unlocking%20a%20Myth%20%28Samurai%29",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "Unlocking a Myth (Samurai) Jeuno HorizonXI Wiki catalog reference"
+  },
+  {
+    "log_id": 3,
+    "quest_id": 114,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=Unlocking%20a%20Myth%20%28Ninja%29",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "Unlocking a Myth (Ninja) Jeuno HorizonXI Wiki catalog reference"
+  },
+  {
+    "log_id": 3,
+    "quest_id": 115,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=Unlocking%20a%20Myth%20%28Dragoon%29",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "Unlocking a Myth (Dragoon) Jeuno HorizonXI Wiki catalog reference"
+  },
+  {
+    "log_id": 3,
+    "quest_id": 116,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=Unlocking%20a%20Myth%20%28Summoner%29",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "Unlocking a Myth (Summoner) Jeuno HorizonXI Wiki catalog reference"
+  },
+  {
+    "log_id": 3,
+    "quest_id": 117,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=Unlocking%20a%20Myth%20%28Blue%20Mage%29",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "Unlocking a Myth (Blue Mage) Jeuno HorizonXI Wiki catalog reference"
+  },
+  {
+    "log_id": 3,
+    "quest_id": 118,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=Unlocking%20a%20Myth%20%28Corsair%29",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "Unlocking a Myth (Corsair) Jeuno HorizonXI Wiki catalog reference"
+  },
+  {
+    "log_id": 3,
+    "quest_id": 119,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=Unlocking%20a%20Myth%20%28Puppetmaster%29",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "Unlocking a Myth (Puppetmaster) Jeuno HorizonXI Wiki catalog reference"
+  },
+  {
+    "log_id": 3,
+    "quest_id": 120,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=Unlocking%20a%20Myth%20%28Dancer%29",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "Unlocking a Myth (Dancer) Jeuno HorizonXI Wiki catalog reference"
+  },
+  {
+    "log_id": 3,
+    "quest_id": 121,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=Unlocking%20a%20Myth%20%28Scholar%29",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "Unlocking a Myth (Scholar) Jeuno HorizonXI Wiki catalog reference"
+  },
+  {
+    "log_id": 3,
+    "quest_id": 122,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=JNQuest",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "JNQuest Jeuno HorizonXI Wiki catalog reference"
+  },
+  {
+    "log_id": 3,
+    "quest_id": 123,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=The%20Gobbiebag%20Part%20IX",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "The Gobbiebag Part IX Jeuno HorizonXI Wiki catalog reference"
+  },
+  {
+    "log_id": 3,
+    "quest_id": 124,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=The%20Gobbiebag%20Part%20X",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "The Gobbiebag Part X Jeuno HorizonXI Wiki catalog reference"
+  },
+  {
+    "log_id": 3,
+    "quest_id": 125,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=JNQuest",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "JNQuest Jeuno HorizonXI Wiki catalog reference"
+  },
+  {
+    "log_id": 3,
+    "quest_id": 126,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=JNQuest",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "JNQuest Jeuno HorizonXI Wiki catalog reference"
+  },
+  {
+    "log_id": 3,
+    "quest_id": 127,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=JNQuest",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "JNQuest Jeuno HorizonXI Wiki catalog reference"
+  },
+  {
+    "log_id": 3,
+    "quest_id": 133,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=New%20Worlds%20Await",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "New Worlds Await Jeuno HorizonXI Wiki catalog reference"
+  },
+  {
+    "log_id": 3,
+    "quest_id": 134,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=Expanding%20Horizons",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "Expanding Horizons Jeuno HorizonXI Wiki catalog reference"
+  },
+  {
+    "log_id": 3,
+    "quest_id": 135,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=Beyond%20the%20Stars",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "Beyond the Stars Jeuno HorizonXI Wiki catalog reference"
+  },
+  {
+    "log_id": 3,
+    "quest_id": 136,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=Dormant%20Powers%20Dislodged",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "Dormant Powers Dislodged Jeuno HorizonXI Wiki catalog reference"
+  },
+  {
+    "log_id": 3,
+    "quest_id": 137,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=Beyond%20Infinity",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "Beyond Infinity Jeuno HorizonXI Wiki catalog reference"
+  },
+  {
+    "log_id": 3,
+    "quest_id": 160,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=A%20Trial%20in%20Tandem",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "A Trial in Tandem Jeuno HorizonXI Wiki catalog reference"
+  },
+  {
+    "log_id": 3,
+    "quest_id": 161,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=A%20Trial%20in%20Tandem%2C%20Redux",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "A Trial in Tandem, Redux Jeuno HorizonXI Wiki catalog reference"
+  },
+  {
+    "log_id": 3,
+    "quest_id": 162,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=Yet%20Another%20Trial%20in%20Tandem",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "Yet Another Trial in Tandem Jeuno HorizonXI Wiki catalog reference"
+  },
+  {
+    "log_id": 3,
+    "quest_id": 163,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=A%20Quaternary%20Trial%20in%20Tandem",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "A Quaternary Trial in Tandem Jeuno HorizonXI Wiki catalog reference"
+  },
+  {
+    "log_id": 3,
+    "quest_id": 164,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=A%20Trial%20in%20Tandem%20Revisited",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "A Trial in Tandem Revisited Jeuno HorizonXI Wiki catalog reference"
+  },
+  {
+    "log_id": 3,
+    "quest_id": 166,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=All%20in%20the%20Cards",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "All in the Cards Jeuno HorizonXI Wiki catalog reference"
+  },
+  {
+    "log_id": 3,
+    "quest_id": 167,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=Martial%20Mastery",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "Martial Mastery Jeuno HorizonXI Wiki catalog reference"
+  },
+  {
+    "log_id": 3,
+    "quest_id": 168,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=VW%20Op.%20%23115%3A%20Valkurm%20Duster",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "VW Op. #115: Valkurm Duster Jeuno HorizonXI Wiki catalog reference"
+  },
+  {
+    "log_id": 3,
+    "quest_id": 169,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=VW%20Op.%20%23118%3A%20Buburimu%20Squall",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "VW Op. #118: Buburimu Squall Jeuno HorizonXI Wiki catalog reference"
+  },
+  {
+    "log_id": 3,
+    "quest_id": 170,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=Prelude%20to%20Puissance",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "Prelude to Puissance Jeuno HorizonXI Wiki catalog reference"
+  },
+  {
+    "log_id": 3,
+    "quest_id": 171,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=Researchers%20from%20the%20West",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "Researchers from the West Jeuno HorizonXI Wiki catalog reference"
+  },
+  {
+    "log_id": 3,
+    "quest_id": 172,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=Middle%20Lands%20Investigation",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "Middle Lands Investigation Jeuno HorizonXI Wiki catalog reference"
+  },
+  {
+    "log_id": 3,
+    "quest_id": 173,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=Further%20Founts",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "Further Founts Jeuno HorizonXI Wiki catalog reference"
+  },
+  {
+    "log_id": 3,
+    "quest_id": 174,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=Beam%20Me%20Up...No%2C%20Not%20There%21",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "Beam Me Up...No, Not There! Jeuno HorizonXI Wiki catalog reference"
+  },
+  {
+    "log_id": 3,
+    "quest_id": 175,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=Now%20Recording...",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "Now Recording... Jeuno HorizonXI Wiki catalog reference"
+  },
+  {
+    "log_id": 3,
+    "quest_id": 176,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=Teleports%20by%20Twilight",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "Teleports by Twilight Jeuno HorizonXI Wiki catalog reference"
+  },
+  {
+    "log_id": 3,
+    "quest_id": 177,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=Shifty%20Shades%20of%20Prey",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "Shifty Shades of Prey Jeuno HorizonXI Wiki catalog reference"
+  },
+  {
+    "log_id": 3,
+    "quest_id": 178,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=To%20Kill%20Mocking%20Birds",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "To Kill Mocking Birds Jeuno HorizonXI Wiki catalog reference"
+  },
+  {
+    "log_id": 3,
+    "quest_id": 179,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=Full%20Speed%20Ahead%21",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "Full Speed Ahead! Jeuno HorizonXI Wiki catalog reference"
+  },
+  {
+    "log_id": 3,
+    "quest_id": 186,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=The%20Flying%20Machine%20of%20Eld",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "The Flying Machine of Eld Jeuno HorizonXI Wiki catalog reference"
+  },
+  {
+    "log_id": 4,
+    "quest_id": 31,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=Picture%20Perfect",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "Picture Perfect Other Areas HorizonXI Wiki catalog reference"
+  },
+  {
+    "log_id": 4,
+    "quest_id": 33,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=Survival%20of%20the%20Wisest",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "Survival of the Wisest Other Areas HorizonXI Wiki catalog reference"
+  },
+  {
+    "log_id": 4,
+    "quest_id": 34,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=Monstrosity",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "Monstrosity Other Areas HorizonXI Wiki catalog reference"
+  },
+  {
+    "log_id": 4,
+    "quest_id": 35,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=Kupofried%27s%20H2H%20Moogle%20Magic",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "Kupofried's H2H Moogle Magic Other Areas HorizonXI Wiki catalog reference"
+  },
+  {
+    "log_id": 4,
+    "quest_id": 36,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=Kupofried%27s%20Dagger%20Moogle%20Magic",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "Kupofried's Dagger Moogle Magic Other Areas HorizonXI Wiki catalog reference"
+  },
+  {
+    "log_id": 4,
+    "quest_id": 37,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=Kupofried%27s%20Sword%20Moogle%20Magic",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "Kupofried's Sword Moogle Magic Other Areas HorizonXI Wiki catalog reference"
+  },
+  {
+    "log_id": 4,
+    "quest_id": 38,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=Kupofried%27s%20Great%20Sword%20Moogle%20Magic",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "Kupofried's Great Sword Moogle Magic Other Areas HorizonXI Wiki catalog reference"
+  },
+  {
+    "log_id": 4,
+    "quest_id": 39,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=Kupofried%27s%20Axe%20Moogle%20Magic",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "Kupofried's Axe Moogle Magic Other Areas HorizonXI Wiki catalog reference"
+  },
+  {
+    "log_id": 4,
+    "quest_id": 40,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=Kupofried%27s%20Great%20Axe%20Moogle%20Magic",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "Kupofried's Great Axe Moogle Magic Other Areas HorizonXI Wiki catalog reference"
+  },
+  {
+    "log_id": 4,
+    "quest_id": 41,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=Kupofried%27s%20Scythe%20Moogle%20Magic",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "Kupofried's Scythe Moogle Magic Other Areas HorizonXI Wiki catalog reference"
+  },
+  {
+    "log_id": 4,
+    "quest_id": 42,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=Kupofried%27s%20Polearm%20Moogle%20Magic",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "Kupofried's Polearm Moogle Magic Other Areas HorizonXI Wiki catalog reference"
+  },
+  {
+    "log_id": 4,
+    "quest_id": 43,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=Kupofried%27s%20Katana%20Moogle%20Magic",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "Kupofried's Katana Moogle Magic Other Areas HorizonXI Wiki catalog reference"
+  },
+  {
+    "log_id": 4,
+    "quest_id": 44,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=Kupofried%27s%20Great%20Katana%20Moogle%20Magic",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "Kupofried's Great Katana Moogle Magic Other Areas HorizonXI Wiki catalog reference"
+  },
+  {
+    "log_id": 4,
+    "quest_id": 45,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=Kupofried%27s%20Club%20Moogle%20Magic",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "Kupofried's Club Moogle Magic Other Areas HorizonXI Wiki catalog reference"
+  },
+  {
+    "log_id": 4,
+    "quest_id": 46,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=Kupofried%27s%20Staff%20Moogle%20Magic",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "Kupofried's Staff Moogle Magic Other Areas HorizonXI Wiki catalog reference"
+  },
+  {
+    "log_id": 4,
+    "quest_id": 47,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=Kupofried%27s%20Archery%20Moogle%20Magic",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "Kupofried's Archery Moogle Magic Other Areas HorizonXI Wiki catalog reference"
+  },
+  {
+    "log_id": 4,
+    "quest_id": 48,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=Kupofried%27s%20Marksmanship%20Moogle%20Magic",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "Kupofried's Marksmanship Moogle Magic Other Areas HorizonXI Wiki catalog reference"
+  },
+  {
+    "log_id": 4,
+    "quest_id": 84,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=VW%20Op.%20%23026%3A%20Tavnazian%20Terrors",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "VW Op. #026: Tavnazian Terrors Other Areas HorizonXI Wiki catalog reference"
+  },
+  {
+    "log_id": 4,
+    "quest_id": 85,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=VW%20Op.%20%23004%3A%20Bibiki%20Bombardment",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "VW Op. #004: Bibiki Bombardment Other Areas HorizonXI Wiki catalog reference"
+  },
+  {
+    "log_id": 4,
+    "quest_id": 110,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=Records%20of%20Eminence",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "Records of Eminence Other Areas HorizonXI Wiki catalog reference"
+  },
+  {
+    "log_id": 4,
+    "quest_id": 111,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=Unity%20Concord",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "Unity Concord Other Areas HorizonXI Wiki catalog reference"
+  },
+  {
+    "log_id": 4,
+    "quest_id": 200,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=Titillating%20Tomes",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "Titillating Tomes Other Areas HorizonXI Wiki catalog reference"
+  },
+  {
+    "log_id": 4,
+    "quest_id": 201,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=Release%20the%20Fleece",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "Release the Fleece Other Areas HorizonXI Wiki catalog reference"
+  },
+  {
+    "log_id": 4,
+    "quest_id": 202,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=Feeding%20Frenzy",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "Feeding Frenzy Other Areas HorizonXI Wiki catalog reference"
+  },
+  {
+    "log_id": 4,
+    "quest_id": 203,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=Cry%20Not%2C%20Caretaker",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "Cry Not, Caretaker Other Areas HorizonXI Wiki catalog reference"
+  },
+  {
+    "log_id": 4,
+    "quest_id": 204,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=Chacharoon%27s%20Cheer",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "Chacharoon's Cheer Other Areas HorizonXI Wiki catalog reference"
+  },
+  {
+    "log_id": 4,
+    "quest_id": 205,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=Trial%20of%20the%20Chacharoon",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "Trial of the Chacharoon Other Areas HorizonXI Wiki catalog reference"
+  },
+  {
+    "log_id": 4,
+    "quest_id": 206,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=Doctor%20Chacharoon",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "Doctor Chacharoon Other Areas HorizonXI Wiki catalog reference"
+  },
+  {
+    "log_id": 4,
+    "quest_id": 207,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=Rowing%20Together",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "Rowing Together Other Areas HorizonXI Wiki catalog reference"
+  },
+  {
+    "log_id": 4,
+    "quest_id": 208,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=Glittering%20Gals",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "Glittering Gals Other Areas HorizonXI Wiki catalog reference"
+  },
+  {
+    "log_id": 4,
+    "quest_id": 209,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=Sally%20Forth%21",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "Sally Forth! Other Areas HorizonXI Wiki catalog reference"
+  },
+  {
+    "log_id": 4,
+    "quest_id": 1039,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=Full%20Fields",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "Full Fields Other Areas HorizonXI Wiki catalog reference"
+  },
+  {
+    "log_id": 4,
+    "quest_id": 1040,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=Green%20Groves",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "Green Groves Other Areas HorizonXI Wiki catalog reference"
+  },
+  {
+    "log_id": 4,
+    "quest_id": 1041,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=Mining%20Missive",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "Mining Missive Other Areas HorizonXI Wiki catalog reference"
+  },
+  {
+    "log_id": 4,
+    "quest_id": 1042,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=Pond%20Probing",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "Pond Probing Other Areas HorizonXI Wiki catalog reference"
+  },
+  {
+    "log_id": 4,
+    "quest_id": 1043,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=Coastal%20Chaos",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "Coastal Chaos Other Areas HorizonXI Wiki catalog reference"
+  },
+  {
+    "log_id": 4,
+    "quest_id": 1044,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=Seed%20Sowing",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "Seed Sowing Other Areas HorizonXI Wiki catalog reference"
+  },
+  {
+    "log_id": 4,
+    "quest_id": 1045,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=Flotsam%20Finding",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "Flotsam Finding Other Areas HorizonXI Wiki catalog reference"
+  },
+  {
+    "log_id": 4,
+    "quest_id": 1047,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=Courtesy%20Crustacean",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "Courtesy Crustacean Other Areas HorizonXI Wiki catalog reference"
+  },
+  {
+    "log_id": 4,
+    "quest_id": 1048,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=Trinket%20for%20the%20Tyrant",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "Trinket for the Tyrant Other Areas HorizonXI Wiki catalog reference"
+  },
+  {
+    "log_id": 4,
+    "quest_id": 1049,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=Hypnotic%20Hospitality",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "Hypnotic Hospitality Other Areas HorizonXI Wiki catalog reference"
+  },
+  {
+    "log_id": 5,
+    "quest_id": 100,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=Voidwatch%20Ops%3A%20Border%20Crossing",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "Voidwatch Ops: Border Crossing Outlands HorizonXI Wiki catalog reference"
+  },
+  {
+    "log_id": 5,
+    "quest_id": 101,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=VW%20Op.%20%23054%3A%20Elshimo%20List",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "VW Op. #054: Elshimo List Outlands HorizonXI Wiki catalog reference"
+  },
+  {
+    "log_id": 5,
+    "quest_id": 102,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=VW%20Op.%20%23101%3A%20Detour%20to%20Zepwell",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "VW Op. #101: Detour to Zepwell Outlands HorizonXI Wiki catalog reference"
+  },
+  {
+    "log_id": 5,
+    "quest_id": 103,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=VW%20Op.%20%23115%3A%20Li%27Telor%20Variant",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "VW Op. #115: Li'Telor Variant Outlands HorizonXI Wiki catalog reference"
+  },
+  {
+    "log_id": 5,
+    "quest_id": 104,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=Skyward%20Ho%2C%20Voidwatcher%21",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "Skyward Ho, Voidwatcher! Outlands HorizonXI Wiki catalog reference"
+  },
+  {
+    "log_id": 5,
+    "quest_id": 128,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=The%20Sahagin%27s%20Key",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "The Sahagin's Key Outlands HorizonXI Wiki catalog reference"
+  },
+  {
+    "log_id": 5,
+    "quest_id": 163,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=Divine%20Might",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "Divine Might Outlands HorizonXI Wiki catalog reference"
+  },
+  {
+    "log_id": 5,
+    "quest_id": 165,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki catalog reference fallback",
+    "source_url": "https://horizonffxi.wiki/w/index.php?search=Open%20Sesame",
+    "next_step": "Open the HorizonXI Wiki reference for this quest to verify its NPC, requirements, objectives, and rewards before starting it.",
+    "keywords": "Open Sesame Outlands HorizonXI Wiki catalog reference"
+  }
+]

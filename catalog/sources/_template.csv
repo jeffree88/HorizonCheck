@@ -1,0 +1,2 @@
+log_id,quest_id,source,source_label,source_url,source_date,name,expansion,start_npc,start_zone,repeat_type,objective,items_needed,reward,next_step,keywords,requirements
+0,0,horizonxi,HorizonXI Wiki,,,,,,,,,,,,,"{}"

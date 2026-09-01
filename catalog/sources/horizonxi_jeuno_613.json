@@ -1,0 +1,981 @@
+[
+  {
+    "log_id": 3,
+    "quest_id": 26,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki Jeuno quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Jeuno_Quests",
+    "start_npc": "Garnev",
+    "start_zone": "Lower Jeuno (J-7)",
+    "reward": "Clock tower oil",
+    "requirements": {
+      "fame": 1
+    },
+    "next_step": "Speak with Garnev at Lower Jeuno (J-7) to begin or continue this quest.",
+    "keywords": "General Garnev Lower Jeuno J-7 Clock tower oil Deal with Tenshodo"
+  },
+  {
+    "log_id": 3,
+    "quest_id": 15,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki Jeuno quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Jeuno_Quests",
+    "start_npc": "Zauko",
+    "start_zone": "Lower Jeuno (I-6)",
+    "requirements": {
+      "fame": 1
+    },
+    "next_step": "Speak with Zauko at Lower Jeuno (I-6) to begin or continue this quest.",
+    "keywords": "General Zauko Lower Jeuno I-6 Community Service"
+  },
+  {
+    "log_id": 3,
+    "quest_id": 10,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki Jeuno quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Jeuno_Quests",
+    "start_npc": "Chululu",
+    "start_zone": "Lower Jeuno (I-8)",
+    "reward": "Fortune unlocked",
+    "requirements": {
+      "fame": 2
+    },
+    "next_step": "Speak with Chululu at Lower Jeuno (I-8) to begin or continue this quest.",
+    "keywords": "General Chululu Lower Jeuno I-8 Fortune unlocked Collect Tarut Cards"
+  },
+  {
+    "log_id": 3,
+    "quest_id": 9,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki Jeuno quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Jeuno_Quests",
+    "start_npc": "Kurou-Morou",
+    "start_zone": "Lower Jeuno (I-7)",
+    "reward": "Fortune unlocked",
+    "requirements": {
+      "fame": 2
+    },
+    "next_step": "Speak with Kurou-Morou at Lower Jeuno (I-7) to begin or continue this quest.",
+    "keywords": "General Kurou-Morou Lower Jeuno I-7 Fortune unlocked Your Crystal Ball"
+  },
+  {
+    "log_id": 3,
+    "quest_id": 17,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki Jeuno quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Jeuno_Quests",
+    "start_npc": "Sutarara",
+    "start_zone": "Lower Jeuno (J-7)",
+    "reward": "Tenshodo Member's Card",
+    "requirements": {
+      "fame": 3
+    },
+    "next_step": "Speak with Sutarara at Lower Jeuno (J-7) to begin or continue this quest.",
+    "keywords": "General Sutarara Lower Jeuno J-7 Tenshodo Member's Card Tenshodo Membership"
+  },
+  {
+    "log_id": 3,
+    "quest_id": 41,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki Jeuno quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Jeuno_Quests",
+    "start_npc": "Vola",
+    "start_zone": "Lower Jeuno (J-8)",
+    "reward": "Brown Belt",
+    "requirements": {
+      "fame": 3
+    },
+    "next_step": "Speak with Vola at Lower Jeuno (J-8) to begin or continue this quest.",
+    "keywords": "General Vola Lower Jeuno J-8 Brown Belt Fistful of Fury"
+  },
+  {
+    "log_id": 3,
+    "quest_id": 42,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki Jeuno quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Jeuno_Quests",
+    "start_npc": "Guttrix",
+    "start_zone": "Lower Jeuno (H-10)",
+    "reward": "RSE armor",
+    "requirements": {
+      "fame": 3
+    },
+    "next_step": "Speak with Guttrix at Lower Jeuno (H-10) to begin or continue this quest.",
+    "keywords": "RSE Guttrix Lower Jeuno H-10 RSE armor The Goblin Tailor"
+  },
+  {
+    "log_id": 3,
+    "quest_id": 27,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki Jeuno quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Jeuno_Quests",
+    "start_npc": "Bluffnix",
+    "start_zone": "Lower Jeuno (H-9)",
+    "reward": "Gobbiebag capacity 35",
+    "requirements": {
+      "fame": 3
+    },
+    "next_step": "Speak with Bluffnix at Lower Jeuno (H-9) to begin or continue this quest.",
+    "keywords": "Inventory Bluffnix Lower Jeuno H-9 Gobbiebag capacity 35 The Gobbiebag Part I"
+  },
+  {
+    "log_id": 3,
+    "quest_id": 28,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki Jeuno quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Jeuno_Quests",
+    "start_npc": "Bluffnix",
+    "start_zone": "Lower Jeuno (H-9)",
+    "reward": "Gobbiebag capacity 40",
+    "requirements": {
+      "fame": 3
+    },
+    "next_step": "Speak with Bluffnix at Lower Jeuno (H-9) to begin or continue this quest.",
+    "keywords": "Inventory Bluffnix Lower Jeuno H-9 Gobbiebag capacity 40 The Gobbiebag Part II"
+  },
+  {
+    "log_id": 3,
+    "quest_id": 29,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki Jeuno quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Jeuno_Quests",
+    "start_npc": "Bluffnix",
+    "start_zone": "Lower Jeuno (H-9)",
+    "reward": "Gobbiebag capacity 45",
+    "requirements": {
+      "fame": 3
+    },
+    "next_step": "Speak with Bluffnix at Lower Jeuno (H-9) to begin or continue this quest.",
+    "keywords": "Inventory Bluffnix Lower Jeuno H-9 Gobbiebag capacity 45 The Gobbiebag Part III"
+  },
+  {
+    "log_id": 3,
+    "quest_id": 30,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki Jeuno quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Jeuno_Quests",
+    "start_npc": "Bluffnix",
+    "start_zone": "Lower Jeuno (H-9)",
+    "reward": "Gobbiebag capacity 50",
+    "requirements": {
+      "fame": 3
+    },
+    "next_step": "Speak with Bluffnix at Lower Jeuno (H-9) to begin or continue this quest.",
+    "keywords": "Inventory Bluffnix Lower Jeuno H-9 Gobbiebag capacity 50 The Gobbiebag Part IV"
+  },
+  {
+    "log_id": 3,
+    "quest_id": 13,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki Jeuno quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Jeuno_Quests",
+    "start_npc": "Chululu",
+    "start_zone": "Lower Jeuno (I-8)",
+    "reward": "Chain Choker, 6000 gil",
+    "requirements": {
+      "fame": 4
+    },
+    "next_step": "Speak with Chululu at Lower Jeuno (I-8) to begin or continue this quest.",
+    "keywords": "General Chululu Lower Jeuno I-8 Chain Choker, 6000 gil Rubbish Day"
+  },
+  {
+    "log_id": 3,
+    "quest_id": 7,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki Jeuno quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Jeuno_Quests",
+    "start_npc": "Panta-Putta",
+    "start_zone": "Lower Jeuno (G-10)",
+    "reward": "Mythril Earring",
+    "requirements": {
+      "fame": 4
+    },
+    "next_step": "Speak with Panta-Putta at Lower Jeuno (G-10) to begin or continue this quest.",
+    "keywords": "General Panta-Putta Lower Jeuno G-10 Mythril Earring The Wonder Magic Set"
+  },
+  {
+    "log_id": 3,
+    "quest_id": 16,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki Jeuno quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Jeuno_Quests",
+    "start_npc": "Naruru",
+    "start_zone": "Lower Jeuno (H-10)",
+    "reward": "Mythril Ring, 3000 gil",
+    "requirements": {
+      "fame": 4
+    },
+    "next_step": "Speak with Naruru at Lower Jeuno (H-10) to begin or continue this quest.",
+    "keywords": "General Naruru Lower Jeuno H-10 Mythril Ring, 3000 gil Cook's Pride"
+  },
+  {
+    "log_id": 3,
+    "quest_id": 3,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki Jeuno quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Jeuno_Quests",
+    "start_npc": "Derrick",
+    "start_zone": "Lower Jeuno (H-7)",
+    "requirements": {
+      "fame": 5
+    },
+    "next_step": "Speak with Derrick at Lower Jeuno (H-7) to begin or continue this quest.",
+    "keywords": "General Derrick Lower Jeuno H-7 Save the Clock Tower"
+  },
+  {
+    "log_id": 3,
+    "quest_id": 14,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki Jeuno quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Jeuno_Quests",
+    "start_npc": "Kurou-Morou",
+    "start_zone": "Lower Jeuno (I-7)",
+    "reward": "Garnet Ring, 1200 gil",
+    "requirements": {
+      "fame": 5
+    },
+    "next_step": "Speak with Kurou-Morou at Lower Jeuno (I-7) to begin or continue this quest.",
+    "keywords": "General Kurou-Morou Lower Jeuno I-7 Garnet Ring, 1200 gil Never to Return"
+  },
+  {
+    "log_id": 3,
+    "quest_id": 74,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki Jeuno quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Jeuno_Quests",
+    "start_npc": "Bluffnix",
+    "start_zone": "Lower Jeuno (H-9)",
+    "reward": "Gobbiebag capacity 55",
+    "requirements": {
+      "fame": 6
+    },
+    "next_step": "Speak with Bluffnix at Lower Jeuno (H-9) to begin or continue this quest.",
+    "keywords": "Inventory Bluffnix Lower Jeuno H-9 Gobbiebag capacity 55 The Gobbiebag Part V"
+  },
+  {
+    "log_id": 3,
+    "quest_id": 75,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki Jeuno quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Jeuno_Quests",
+    "start_npc": "Bluffnix",
+    "start_zone": "Lower Jeuno (H-9)",
+    "reward": "Gobbiebag capacity 60",
+    "requirements": {
+      "fame": 6
+    },
+    "next_step": "Speak with Bluffnix at Lower Jeuno (H-9) to begin or continue this quest.",
+    "keywords": "Inventory Bluffnix Lower Jeuno H-9 Gobbiebag capacity 60 The Gobbiebag Part VI"
+  },
+  {
+    "log_id": 3,
+    "quest_id": 67,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki Jeuno quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Jeuno_Quests",
+    "start_npc": "Vola",
+    "start_zone": "Lower Jeuno (J-8)",
+    "reward": "Black Belt",
+    "requirements": {
+      "fame": 6
+    },
+    "next_step": "Speak with Vola at Lower Jeuno (J-8) to begin or continue this quest.",
+    "keywords": "General Vola Lower Jeuno J-8 Black Belt Beat Around the Bushin"
+  },
+  {
+    "log_id": 3,
+    "quest_id": 5,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki Jeuno quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Jeuno_Quests",
+    "start_npc": "Dietmund",
+    "start_zone": "Lower Jeuno (G-11)",
+    "reward": "Beast Whistle, 2100 gil",
+    "next_step": "Speak with Dietmund at Lower Jeuno (G-11) to begin or continue this quest.",
+    "keywords": "BST Flag Dietmund Lower Jeuno G-11 Beast Whistle, 2100 gil Save My Son"
+  },
+  {
+    "log_id": 3,
+    "quest_id": 11,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki Jeuno quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Jeuno_Quests",
+    "start_npc": "Mertaire",
+    "start_zone": "Lower Jeuno (I-8)",
+    "reward": "Poetic Parchment",
+    "next_step": "Speak with Mertaire at Lower Jeuno (I-8) to begin or continue this quest.",
+    "keywords": "BRD Flag Mertaire Lower Jeuno I-8 Poetic Parchment The Old Monument"
+  },
+  {
+    "log_id": 3,
+    "quest_id": 12,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki Jeuno quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Jeuno_Quests",
+    "start_npc": "Mertaire",
+    "start_zone": "Lower Jeuno (I-8)",
+    "reward": "2100 gil",
+    "next_step": "Speak with Mertaire at Lower Jeuno (I-8) to begin or continue this quest.",
+    "keywords": "BRD Flag Mertaire Lower Jeuno I-8 2100 gil A Minstrel in Despair"
+  },
+  {
+    "log_id": 3,
+    "quest_id": 20,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki Jeuno quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Jeuno_Quests",
+    "start_npc": "Mertaire",
+    "start_zone": "Lower Jeuno (I-8)",
+    "reward": "Bard unlocked",
+    "next_step": "Speak with Mertaire at Lower Jeuno (I-8) to begin or continue this quest.",
+    "keywords": "BRD Flag Mertaire Lower Jeuno I-8 Bard unlocked Path of the Bard"
+  },
+  {
+    "log_id": 3,
+    "quest_id": 31,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki Jeuno quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Jeuno_Quests",
+    "start_npc": "Sattal-Mansal",
+    "start_zone": "Lower Jeuno (J-8)",
+    "reward": "Coruscant Rosary",
+    "next_step": "Speak with Sattal-Mansal at Lower Jeuno (J-8) to begin or continue this quest.",
+    "keywords": "General Sattal-Mansal Lower Jeuno J-8 Coruscant Rosary Mysteries of Beadeaux I"
+  },
+  {
+    "log_id": 3,
+    "quest_id": 32,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki Jeuno quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Jeuno_Quests",
+    "start_npc": "Sattal-Mansal",
+    "start_zone": "Lower Jeuno (J-8)",
+    "reward": "Black Matinee Necklace",
+    "next_step": "Speak with Sattal-Mansal at Lower Jeuno (J-8) to begin or continue this quest.",
+    "keywords": "General Sattal-Mansal Lower Jeuno J-8 Black Matinee Necklace Mysteries of Beadeaux II"
+  },
+  {
+    "log_id": 3,
+    "quest_id": 63,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki Jeuno quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Jeuno_Quests",
+    "start_npc": "Mertaire",
+    "start_zone": "Lower Jeuno (I-8)",
+    "reward": "Paper Knife",
+    "next_step": "Speak with Mertaire at Lower Jeuno (I-8) to begin or continue this quest.",
+    "keywords": "BRD AF1 Mertaire Lower Jeuno I-8 Paper Knife Painful Memory"
+  },
+  {
+    "log_id": 3,
+    "quest_id": 64,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki Jeuno quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Jeuno_Quests",
+    "start_npc": "Bki Tbujhja",
+    "start_zone": "Lower Jeuno (H-8)",
+    "reward": "Choral Slippers",
+    "next_step": "Speak with Bki Tbujhja at Lower Jeuno (H-8) to begin or continue this quest.",
+    "keywords": "BRD AF2 Bki Tbujhja Lower Jeuno H-8 Choral Slippers The Requiem"
+  },
+  {
+    "log_id": 3,
+    "quest_id": 62,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki Jeuno quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Jeuno_Quests",
+    "start_npc": "Dietmund",
+    "start_zone": "Lower Jeuno (G-11)",
+    "reward": "Beast Trousers",
+    "next_step": "Speak with Dietmund at Lower Jeuno (G-11) to begin or continue this quest.",
+    "keywords": "BST AF3 Dietmund Lower Jeuno G-11 Beast Trousers A New Dawn"
+  },
+  {
+    "log_id": 3,
+    "quest_id": 71,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki Jeuno quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Jeuno_Quests",
+    "start_npc": "Omer",
+    "start_zone": "Lower Jeuno (G-10)",
+    "reward": "3000 gil",
+    "next_step": "Speak with Omer at Lower Jeuno (G-10) to begin or continue this quest.",
+    "keywords": "General Omer Lower Jeuno G-10 3000 gil Hook, Line, and Sinker"
+  },
+  {
+    "log_id": 3,
+    "quest_id": 69,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki Jeuno quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Jeuno_Quests",
+    "start_npc": "Odasel",
+    "start_zone": "Lower Jeuno (H-9)",
+    "reward": "4800 gil",
+    "next_step": "Speak with Odasel at Lower Jeuno (H-9) to begin or continue this quest.",
+    "keywords": "General Odasel Lower Jeuno H-9 4800 gil In the Mood for Love"
+  },
+  {
+    "log_id": 3,
+    "quest_id": 18,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki Jeuno quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Jeuno_Quests",
+    "start_npc": "Panta-Putta",
+    "start_zone": "Lower Jeuno (G-10)",
+    "reward": "Two of Swords",
+    "next_step": "Speak with Panta-Putta at Lower Jeuno (G-10) to begin or continue this quest.",
+    "keywords": "General Panta-Putta Lower Jeuno G-10 Two of Swords The Lost Cardian"
+  },
+  {
+    "log_id": 3,
+    "quest_id": 8,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki Jeuno quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Jeuno_Quests",
+    "start_npc": "Panta-Putta",
+    "start_zone": "Lower Jeuno (G-10)",
+    "reward": "Green Cape",
+    "next_step": "Speak with Panta-Putta at Lower Jeuno (G-10) to begin or continue this quest.",
+    "keywords": "General Panta-Putta Lower Jeuno G-10 Green Cape The Kind Cardian"
+  },
+  {
+    "log_id": 3,
+    "quest_id": 4,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki Jeuno quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Jeuno_Quests",
+    "start_npc": "Brutus",
+    "start_zone": "Upper Jeuno (G-7)",
+    "reward": "Chocobo License",
+    "requirements": {
+      "fame": 1
+    },
+    "next_step": "Speak with Brutus at Upper Jeuno (G-7) to begin or continue this quest.",
+    "keywords": "Fast Travel Brutus Upper Jeuno G-7 Chocobo License Chocobo's Wounds"
+  },
+  {
+    "log_id": 3,
+    "quest_id": 0,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki Jeuno quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Jeuno_Quests",
+    "start_npc": "Baudin",
+    "start_zone": "Upper Jeuno (G-8)",
+    "reward": "Crest of Davoi",
+    "requirements": {
+      "fame": 2
+    },
+    "next_step": "Speak with Baudin at Upper Jeuno (G-8) to begin or continue this quest.",
+    "keywords": "Story Baudin Upper Jeuno G-8 Crest of Davoi Crest of Davoi"
+  },
+  {
+    "log_id": 3,
+    "quest_id": 1,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki Jeuno quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Jeuno_Quests",
+    "start_npc": "Baudin",
+    "start_zone": "Upper Jeuno (G-8)",
+    "reward": "Holy Mace, 3000 gil",
+    "requirements": {
+      "fame": 4
+    },
+    "next_step": "Speak with Baudin at Upper Jeuno (G-8) to begin or continue this quest.",
+    "keywords": "General Baudin Upper Jeuno G-8 Holy Mace, 3000 gil Save My Sister"
+  },
+  {
+    "log_id": 3,
+    "quest_id": 22,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki Jeuno quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Jeuno_Quests",
+    "start_npc": "Rouliette",
+    "start_zone": "Upper Jeuno (H-9)",
+    "reward": "Holy Candle",
+    "requirements": {
+      "fame": 4
+    },
+    "next_step": "Speak with Rouliette at Upper Jeuno (H-9) to begin or continue this quest.",
+    "keywords": "General Rouliette Upper Jeuno H-9 Holy Candle Candle-making"
+  },
+  {
+    "log_id": 3,
+    "quest_id": 6,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki Jeuno quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Jeuno_Quests",
+    "start_npc": "Ilumida",
+    "start_zone": "Upper Jeuno (G-8)",
+    "reward": "Flower Necklace",
+    "requirements": {
+      "fame": 4
+    },
+    "next_step": "Speak with Ilumida at Upper Jeuno (G-8) to begin or continue this quest.",
+    "keywords": "General Ilumida Upper Jeuno G-8 Flower Necklace A Candlelight Vigil"
+  },
+  {
+    "log_id": 3,
+    "quest_id": 2,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki Jeuno quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Jeuno_Quests",
+    "start_npc": "Galmut",
+    "start_zone": "Upper Jeuno (J/H-7)",
+    "reward": "Engineer's Gloves, 1200 gil",
+    "requirements": {
+      "fame": 5
+    },
+    "next_step": "Speak with Galmut at Upper Jeuno (J/H-7) to begin or continue this quest.",
+    "keywords": "General Galmut Upper Jeuno J/H-7 Engineer's Gloves, 1200 gil A Clock Most Delicate"
+  },
+  {
+    "log_id": 3,
+    "quest_id": 21,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki Jeuno quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Jeuno_Quests",
+    "start_npc": "Galmut",
+    "start_zone": "Upper Jeuno (J/H-7)",
+    "reward": "Time Hammer, 1200 gil",
+    "requirements": {
+      "fame": 5
+    },
+    "next_step": "Speak with Galmut at Upper Jeuno (J/H-7) to begin or continue this quest.",
+    "keywords": "General Galmut Upper Jeuno J/H-7 Time Hammer, 1200 gil The Clockmaster"
+  },
+  {
+    "log_id": 3,
+    "quest_id": 66,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki Jeuno quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Jeuno_Quests",
+    "start_npc": "Ilumida",
+    "start_zone": "Upper Jeuno (G-8)",
+    "reward": "Sleepga II scroll",
+    "requirements": {
+      "fame": 7
+    },
+    "next_step": "Speak with Ilumida at Upper Jeuno (G-8) to begin or continue this quest.",
+    "keywords": "Scroll Ilumida Upper Jeuno G-8 Sleepga II scroll Searching for the Right Words"
+  },
+  {
+    "log_id": 3,
+    "quest_id": 19,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki Jeuno quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Jeuno_Quests",
+    "start_npc": "Brutus",
+    "start_zone": "Upper Jeuno (G-7)",
+    "reward": "Beastmaster unlocked",
+    "next_step": "Speak with Brutus at Upper Jeuno (G-7) to begin or continue this quest.",
+    "keywords": "BST Flag Brutus Upper Jeuno G-7 Beastmaster unlocked Path of the Beastmaster"
+  },
+  {
+    "log_id": 3,
+    "quest_id": 44,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki Jeuno quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Jeuno_Quests",
+    "start_npc": "Guslam",
+    "start_zone": "Upper Jeuno (H-8)",
+    "reward": "Fighter's Mufflers",
+    "next_step": "Speak with Guslam at Upper Jeuno (H-8) to begin or continue this quest.",
+    "keywords": "WAR AF Guslam Upper Jeuno H-8 Fighter's Mufflers Borghertz's Warring Hands"
+  },
+  {
+    "log_id": 3,
+    "quest_id": 45,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki Jeuno quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Jeuno_Quests",
+    "start_npc": "Guslam",
+    "start_zone": "Upper Jeuno (H-8)",
+    "reward": "Temple Gloves",
+    "next_step": "Speak with Guslam at Upper Jeuno (H-8) to begin or continue this quest.",
+    "keywords": "MNK AF Guslam Upper Jeuno H-8 Temple Gloves Borghertz's Striking Hands"
+  },
+  {
+    "log_id": 3,
+    "quest_id": 46,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki Jeuno quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Jeuno_Quests",
+    "start_npc": "Guslam",
+    "start_zone": "Upper Jeuno (H-8)",
+    "reward": "Healer's Mitts",
+    "next_step": "Speak with Guslam at Upper Jeuno (H-8) to begin or continue this quest.",
+    "keywords": "WHM AF Guslam Upper Jeuno H-8 Healer's Mitts Borghertz's Healing Hands"
+  },
+  {
+    "log_id": 3,
+    "quest_id": 47,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki Jeuno quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Jeuno_Quests",
+    "start_npc": "Guslam",
+    "start_zone": "Upper Jeuno (H-8)",
+    "reward": "Wizard's Gloves",
+    "next_step": "Speak with Guslam at Upper Jeuno (H-8) to begin or continue this quest.",
+    "keywords": "BLM AF Guslam Upper Jeuno H-8 Wizard's Gloves Borghertz's Sorcerous Hands"
+  },
+  {
+    "log_id": 3,
+    "quest_id": 48,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki Jeuno quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Jeuno_Quests",
+    "start_npc": "Guslam",
+    "start_zone": "Upper Jeuno (H-8)",
+    "reward": "Warlock's Gloves",
+    "next_step": "Speak with Guslam at Upper Jeuno (H-8) to begin or continue this quest.",
+    "keywords": "RDM AF Guslam Upper Jeuno H-8 Warlock's Gloves Borghertz's Vermillion Hands"
+  },
+  {
+    "log_id": 3,
+    "quest_id": 49,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki Jeuno quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Jeuno_Quests",
+    "start_npc": "Guslam",
+    "start_zone": "Upper Jeuno (H-8)",
+    "reward": "Rogue's Armlets",
+    "next_step": "Speak with Guslam at Upper Jeuno (H-8) to begin or continue this quest.",
+    "keywords": "THF AF Guslam Upper Jeuno H-8 Rogue's Armlets Borghertz's Sneaky Hands"
+  },
+  {
+    "log_id": 3,
+    "quest_id": 50,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki Jeuno quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Jeuno_Quests",
+    "start_npc": "Guslam",
+    "start_zone": "Upper Jeuno (H-8)",
+    "reward": "Gallant Gauntlets",
+    "next_step": "Speak with Guslam at Upper Jeuno (H-8) to begin or continue this quest.",
+    "keywords": "PLD AF Guslam Upper Jeuno H-8 Gallant Gauntlets Borghertz's Stalwart Hands"
+  },
+  {
+    "log_id": 3,
+    "quest_id": 51,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki Jeuno quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Jeuno_Quests",
+    "start_npc": "Guslam",
+    "start_zone": "Upper Jeuno (H-8)",
+    "reward": "Chaos Gauntlets",
+    "next_step": "Speak with Guslam at Upper Jeuno (H-8) to begin or continue this quest.",
+    "keywords": "DRK AF Guslam Upper Jeuno H-8 Chaos Gauntlets Borghertz's Shadowy Hands"
+  },
+  {
+    "log_id": 3,
+    "quest_id": 52,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki Jeuno quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Jeuno_Quests",
+    "start_npc": "Guslam",
+    "start_zone": "Upper Jeuno (H-8)",
+    "reward": "Beast Gloves",
+    "next_step": "Speak with Guslam at Upper Jeuno (H-8) to begin or continue this quest.",
+    "keywords": "BST AF Guslam Upper Jeuno H-8 Beast Gloves Borghertz's Wild Hands"
+  },
+  {
+    "log_id": 3,
+    "quest_id": 53,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki Jeuno quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Jeuno_Quests",
+    "start_npc": "Guslam",
+    "start_zone": "Upper Jeuno (H-8)",
+    "reward": "Choral Cuffs",
+    "next_step": "Speak with Guslam at Upper Jeuno (H-8) to begin or continue this quest.",
+    "keywords": "BRD AF Guslam Upper Jeuno H-8 Choral Cuffs Borghertz's Harmonious Hands"
+  },
+  {
+    "log_id": 3,
+    "quest_id": 54,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki Jeuno quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Jeuno_Quests",
+    "start_npc": "Guslam",
+    "start_zone": "Upper Jeuno (H-8)",
+    "reward": "Hunter's Bracers",
+    "next_step": "Speak with Guslam at Upper Jeuno (H-8) to begin or continue this quest.",
+    "keywords": "RNG AF Guslam Upper Jeuno H-8 Hunter's Bracers Borghertz's Chasing Hands"
+  },
+  {
+    "log_id": 3,
+    "quest_id": 55,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki Jeuno quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Jeuno_Quests",
+    "start_npc": "Guslam",
+    "start_zone": "Upper Jeuno (H-8)",
+    "reward": "Myochin Kote",
+    "next_step": "Speak with Guslam at Upper Jeuno (H-8) to begin or continue this quest.",
+    "keywords": "SAM AF Guslam Upper Jeuno H-8 Myochin Kote Borghertz's Loyal Hands"
+  },
+  {
+    "log_id": 3,
+    "quest_id": 56,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki Jeuno quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Jeuno_Quests",
+    "start_npc": "Guslam",
+    "start_zone": "Upper Jeuno (H-8)",
+    "reward": "Ninja Tekko",
+    "next_step": "Speak with Guslam at Upper Jeuno (H-8) to begin or continue this quest.",
+    "keywords": "NIN AF Guslam Upper Jeuno H-8 Ninja Tekko Borghertz's Lurking Hands"
+  },
+  {
+    "log_id": 3,
+    "quest_id": 57,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki Jeuno quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Jeuno_Quests",
+    "start_npc": "Guslam",
+    "start_zone": "Upper Jeuno (H-8)",
+    "reward": "Drachen Finger Gauntlets",
+    "next_step": "Speak with Guslam at Upper Jeuno (H-8) to begin or continue this quest.",
+    "keywords": "DRG AF Guslam Upper Jeuno H-8 Drachen Finger Gauntlets Borghertz's Dragon Hands"
+  },
+  {
+    "log_id": 3,
+    "quest_id": 58,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki Jeuno quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Jeuno_Quests",
+    "start_npc": "Guslam",
+    "start_zone": "Upper Jeuno (H-8)",
+    "reward": "Evoker's Bracers",
+    "next_step": "Speak with Guslam at Upper Jeuno (H-8) to begin or continue this quest.",
+    "keywords": "SMN AF Guslam Upper Jeuno H-8 Evoker's Bracers Borghertz's Calling Hands"
+  },
+  {
+    "log_id": 3,
+    "quest_id": 60,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki Jeuno quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Jeuno_Quests",
+    "start_npc": "Brutus",
+    "start_zone": "Upper Jeuno (G-7)",
+    "reward": "Barbaroi Axe",
+    "next_step": "Speak with Brutus at Upper Jeuno (G-7) to begin or continue this quest.",
+    "keywords": "BST AF1 Brutus Upper Jeuno G-7 Barbaroi Axe Wings of Gold"
+  },
+  {
+    "log_id": 3,
+    "quest_id": 61,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki Jeuno quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Jeuno_Quests",
+    "start_npc": "Brutus",
+    "start_zone": "Upper Jeuno (G-7)",
+    "reward": "Beast Gaiters",
+    "next_step": "Speak with Brutus at Upper Jeuno (G-7) to begin or continue this quest.",
+    "keywords": "BST AF2 Brutus Upper Jeuno G-7 Beast Gaiters Scattered Into Shadow"
+  },
+  {
+    "log_id": 3,
+    "quest_id": 59,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki Jeuno quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Jeuno_Quests",
+    "start_npc": "Brutus",
+    "start_zone": "Upper Jeuno (G-8)",
+    "reward": "Decimation unlocked",
+    "next_step": "Speak with Brutus at Upper Jeuno (G-8) to begin or continue this quest.",
+    "keywords": "WS Brutus Upper Jeuno G-8 Decimation unlocked Axe the Competition"
+  },
+  {
+    "log_id": 3,
+    "quest_id": 72,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki Jeuno quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Jeuno_Quests",
+    "start_npc": "Nevela",
+    "start_zone": "Upper Jeuno (G-7)",
+    "reward": "5200 gil",
+    "next_step": "Speak with Nevela at Upper Jeuno (G-7) to begin or continue this quest.",
+    "keywords": "General Nevela Upper Jeuno G-7 5200 gil A Chocobo's Tale"
+  },
+  {
+    "log_id": 3,
+    "quest_id": 73,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki Jeuno quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Jeuno_Quests",
+    "start_npc": "Migliorozz",
+    "start_zone": "Upper Jeuno (H-9)",
+    "reward": "3500 gil",
+    "next_step": "Speak with Migliorozz at Upper Jeuno (H-9) to begin or continue this quest.",
+    "keywords": "General Migliorozz Upper Jeuno H-9 3500 gil A Reputation in Ruins"
+  },
+  {
+    "log_id": 3,
+    "quest_id": 70,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki Jeuno quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Jeuno_Quests",
+    "start_npc": "Harith",
+    "start_zone": "Ru'Lude Gardens (H-5)",
+    "reward": "See Quest Page",
+    "requirements": {
+      "fame": 1
+    },
+    "next_step": "Speak with Harith at Ru'Lude Gardens (H-5) to begin or continue this quest.",
+    "keywords": "General Harith Ru'Lude Gardens H-5 See Quest Page Empty Memories"
+  },
+  {
+    "log_id": 3,
+    "quest_id": 24,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki Jeuno quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Jeuno_Quests",
+    "start_npc": "Radeivepart",
+    "start_zone": "Ru'Lude Gardens (H-9)",
+    "reward": "Map of Castle Zvahl",
+    "requirements": {
+      "fame": 4
+    },
+    "next_step": "Speak with Radeivepart at Ru'Lude Gardens (H-9) to begin or continue this quest.",
+    "keywords": "Map Radeivepart Ru'Lude Gardens H-9 Map of Castle Zvahl Northward"
+  },
+  {
+    "log_id": 3,
+    "quest_id": 128,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki Jeuno quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Jeuno_Quests",
+    "start_npc": "Maat",
+    "start_zone": "Ru'Lude Gardens (H-5)",
+    "reward": "Player level cap 55",
+    "next_step": "Speak with Maat at Ru'Lude Gardens (H-5) to begin or continue this quest.",
+    "keywords": "Limit Break Maat Ru'Lude Gardens H-5 Player level cap 55 In Defiant Challenge"
+  },
+  {
+    "log_id": 3,
+    "quest_id": 129,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki Jeuno quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Jeuno_Quests",
+    "start_npc": "Maat",
+    "start_zone": "Ru'Lude Gardens (H-5)",
+    "reward": "Player level cap 60",
+    "next_step": "Speak with Maat at Ru'Lude Gardens (H-5) to begin or continue this quest.",
+    "keywords": "Limit Break Maat Ru'Lude Gardens H-5 Player level cap 60 Atop the Highest Mountains"
+  },
+  {
+    "log_id": 3,
+    "quest_id": 130,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki Jeuno quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Jeuno_Quests",
+    "start_npc": "Maat",
+    "start_zone": "Ru'Lude Gardens (H-5)",
+    "reward": "Player level cap 65",
+    "next_step": "Speak with Maat at Ru'Lude Gardens (H-5) to begin or continue this quest.",
+    "keywords": "Limit Break Maat Ru'Lude Gardens H-5 Player level cap 65 Whence Blows the Wind"
+  },
+  {
+    "log_id": 3,
+    "quest_id": 131,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki Jeuno quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Jeuno_Quests",
+    "start_npc": "Maat",
+    "start_zone": "Ru'Lude Gardens (H-5)",
+    "reward": "Player level cap 70",
+    "next_step": "Speak with Maat at Ru'Lude Gardens (H-5) to begin or continue this quest.",
+    "keywords": "Limit Break Maat Ru'Lude Gardens H-5 Player level cap 70 Riding on the Clouds"
+  },
+  {
+    "log_id": 3,
+    "quest_id": 132,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki Jeuno quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Jeuno_Quests",
+    "start_npc": "Maat",
+    "start_zone": "Ru'Lude Gardens (H-5)",
+    "reward": "Player level cap 75",
+    "next_step": "Speak with Maat at Ru'Lude Gardens (H-5) to begin or continue this quest.",
+    "keywords": "Limit Break Maat Ru'Lude Gardens H-5 Player level cap 75 Shattering Stars"
+  },
+  {
+    "log_id": 3,
+    "quest_id": 76,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki Jeuno quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Jeuno_Quests",
+    "start_npc": "Maat",
+    "start_zone": "Ru'Lude Gardens (H-5)",
+    "reward": "Maat's Cap",
+    "next_step": "Speak with Maat at Ru'Lude Gardens (H-5) to begin or continue this quest.",
+    "keywords": "General Maat Ru'Lude Gardens H-5 Maat's Cap Beyond the Sun"
+  },
+  {
+    "log_id": 3,
+    "quest_id": 68,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki Jeuno quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Jeuno_Quests",
+    "start_npc": "Taillegeas",
+    "start_zone": "Ru'Lude Gardens (I-7)",
+    "reward": "4000 gil",
+    "next_step": "Speak with Taillegeas at Ru'Lude Gardens (I-7) to begin or continue this quest.",
+    "keywords": "General Taillegeas Ru'Lude Gardens I-7 4000 gil Ducal Hospitality"
+  },
+  {
+    "log_id": 3,
+    "quest_id": 43,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki Jeuno quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Jeuno_Quests",
+    "start_npc": "Zona Shodhun",
+    "start_zone": "Port Jeuno (E-8)",
+    "reward": "Mog House exit",
+    "requirements": {
+      "fame": 1
+    },
+    "next_step": "Speak with Zona Shodhun at Port Jeuno (E-8) to begin or continue this quest.",
+    "keywords": "Fast Travel Zona Shodhun Port Jeuno E-8 Mog House exit Pretty Little Things"
+  },
+  {
+    "log_id": 3,
+    "quest_id": 25,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki Jeuno quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Jeuno_Quests",
+    "start_npc": "Imasuke",
+    "start_zone": "Port Jeuno (E-6)",
+    "reward": "Map of Delkfutt's Tower",
+    "requirements": {
+      "fame": 3
+    },
+    "next_step": "Speak with Imasuke at Port Jeuno (E-6) to begin or continue this quest.",
+    "keywords": "Map Imasuke Port Jeuno E-6 Map of Delkfutt's Tower The Antique Collector"
+  },
+  {
+    "log_id": 3,
+    "quest_id": 65,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki Jeuno quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Jeuno_Quests",
+    "start_npc": "Imasuke",
+    "start_zone": "Port Jeuno (E-6)",
+    "reward": "Choral Justaucorps",
+    "next_step": "Speak with Imasuke at Port Jeuno (E-6) to begin or continue this quest.",
+    "keywords": "BRD AF3 Imasuke Port Jeuno E-6 Choral Justaucorps The Circle of Time"
+  },
+  {
+    "log_id": 3,
+    "quest_id": 23,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki Jeuno quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Jeuno_Quests",
+    "start_npc": "Karl",
+    "start_zone": "Port Jeuno (H-8)",
+    "reward": "Wonder Magic Set",
+    "next_step": "Speak with Karl at Port Jeuno (H-8) to begin or continue this quest.",
+    "keywords": "General Karl Port Jeuno H-8 Wonder Magic Set Child's Play"
+  }
+]

@@ -1,0 +1,2537 @@
+[
+  {
+    "log_id": 1,
+    "quest_id": 38,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Bastok_Quests",
+    "start_npc": "Degenhard",
+    "start_zone": "Bastok Markets (I-10)",
+    "reward": "Map of the Dangruf Wadi",
+    "requirements": {
+      "fame": 1
+    },
+    "next_step": "Speak with Degenhard at Bastok Markets (I-10) to begin or continue this quest.",
+    "repeat_type": "Not repeatable",
+    "keywords": "Map Degenhard Bastok Markets I-10 Map of the Dangruf Wadi The Bare Bones"
+  },
+  {
+    "log_id": 1,
+    "quest_id": 14,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Bastok_Quests",
+    "start_npc": "Aquillina",
+    "start_zone": "Bastok Markets (K-9)",
+    "reward": "100 gil",
+    "requirements": {
+      "fame": 1
+    },
+    "next_step": "Speak with Aquillina at Bastok Markets (K-9) to begin or continue this quest.",
+    "repeat_type": "Repeatable",
+    "keywords": "General Aquillina Bastok Markets K-9 100 gil A Flash in the Pan"
+  },
+  {
+    "log_id": 1,
+    "quest_id": 44,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Bastok_Quests",
+    "start_npc": "Brygid",
+    "start_zone": "Bastok Markets (K-9)",
+    "reward": "Gloves",
+    "requirements": {
+      "fame": 1
+    },
+    "next_step": "Speak with Brygid at Bastok Markets (K-9) to begin or continue this quest.",
+    "repeat_type": "Not repeatable",
+    "keywords": "General Brygid Bastok Markets K-9 Gloves Brygid the Stylist"
+  },
+  {
+    "log_id": 1,
+    "quest_id": 74,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Bastok_Quests",
+    "start_npc": "Brygid",
+    "start_zone": "Bastok Markets (K-9)",
+    "reward": "See Quest Page",
+    "requirements": {
+      "fame": 1
+    },
+    "next_step": "Speak with Brygid at Bastok Markets (K-9) to begin or continue this quest.",
+    "repeat_type": "Repeatable",
+    "keywords": "General Brygid Bastok Markets K-9 See Quest Page Brygid the Stylist Returns"
+  },
+  {
+    "log_id": 1,
+    "quest_id": 41,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Bastok_Quests",
+    "start_npc": "Foss",
+    "start_zone": "Bastok Markets (F-7)",
+    "reward": "300 gil",
+    "requirements": {
+      "fame": 1
+    },
+    "next_step": "Speak with Foss at Bastok Markets (F-7) to begin or continue this quest.",
+    "repeat_type": "Repeatable",
+    "keywords": "General Foss Bastok Markets F-7 300 gil Buckets of Gold"
+  },
+  {
+    "log_id": 1,
+    "quest_id": 12,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Bastok_Quests",
+    "start_npc": "Salimah",
+    "start_zone": "Bastok Markets (L-8)",
+    "reward": "350 gil",
+    "requirements": {
+      "fame": 1
+    },
+    "next_step": "Speak with Salimah at Bastok Markets (L-8) to begin or continue this quest.",
+    "repeat_type": "Repeatable",
+    "keywords": "General Salimah Bastok Markets L-8 350 gil Gourmet"
+  },
+  {
+    "log_id": 1,
+    "quest_id": 21,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Bastok_Quests",
+    "start_npc": "Nbu Latteh",
+    "start_zone": "Bastok Markets (J-9)",
+    "reward": "200 gil",
+    "requirements": {
+      "fame": 1
+    },
+    "next_step": "Speak with Nbu Latteh at Bastok Markets (J-9) to begin or continue this quest.",
+    "repeat_type": "Repeatable",
+    "keywords": "General Nbu Latteh Bastok Markets J-9 200 gil Mom, the Adventurer?"
+  },
+  {
+    "log_id": 1,
+    "quest_id": 16,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Bastok_Quests",
+    "start_npc": "Arawn",
+    "start_zone": "Bastok Markets (J-10)",
+    "reward": "Leather Gorget",
+    "requirements": {
+      "fame": 1
+    },
+    "next_step": "Speak with Arawn at Bastok Markets (J-10) to begin or continue this quest.",
+    "repeat_type": "Not repeatable",
+    "keywords": "General Arawn Bastok Markets J-10 Leather Gorget Stamp Hunt"
+  },
+  {
+    "log_id": 1,
+    "quest_id": 11,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Bastok_Quests",
+    "start_npc": "Malene",
+    "start_zone": "Bastok Markets (I-5)",
+    "reward": "500 gil",
+    "requirements": {
+      "fame": 1
+    },
+    "next_step": "Speak with Malene at Bastok Markets (I-5) to begin or continue this quest.",
+    "repeat_type": "Repeatable",
+    "keywords": "General Malene Bastok Markets I-5 500 gil The Cold Light of Day"
+  },
+  {
+    "log_id": 1,
+    "quest_id": 13,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Bastok_Quests",
+    "start_npc": "Michea",
+    "start_zone": "Bastok Markets (F-10)",
+    "reward": "180 gil",
+    "requirements": {
+      "fame": 1
+    },
+    "next_step": "Speak with Michea at Bastok Markets (F-10) to begin or continue this quest.",
+    "repeat_type": "Repeatable",
+    "keywords": "General Michea Bastok Markets F-10 180 gil The Elvaan Goldsmith"
+  },
+  {
+    "log_id": 1,
+    "quest_id": 76,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Bastok_Quests",
+    "start_npc": "Marin",
+    "start_zone": "Bastok Markets (E-10)",
+    "reward": "1500 gil",
+    "requirements": {
+      "fame": 2
+    },
+    "next_step": "Speak with Marin at Bastok Markets (E-10) to begin or continue this quest.",
+    "repeat_type": "Repeatable",
+    "keywords": "Escort Marin Bastok Markets E-10 1500 gil All by Myself"
+  },
+  {
+    "log_id": 1,
+    "quest_id": 10,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Bastok_Quests",
+    "start_npc": "Horatius",
+    "start_zone": "Bastok Markets (I-9)",
+    "reward": "400 gil",
+    "requirements": {
+      "fame": 2
+    },
+    "next_step": "Speak with Horatius at Bastok Markets (I-9) to begin or continue this quest.",
+    "repeat_type": "Repeatable",
+    "keywords": "General Horatius Bastok Markets I-9 400 gil Breaking Stones"
+  },
+  {
+    "log_id": 1,
+    "quest_id": 22,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Bastok_Quests",
+    "start_npc": "Nbu Latteh",
+    "start_zone": "Bastok Markets (J-9)",
+    "reward": "Linen Robe",
+    "requirements": {
+      "fame": 2
+    },
+    "next_step": "Speak with Nbu Latteh at Bastok Markets (J-9) to begin or continue this quest.",
+    "repeat_type": "Not repeatable",
+    "keywords": "General Nbu Latteh Bastok Markets J-9 Linen Robe The Signpost Marks the Spot"
+  },
+  {
+    "log_id": 1,
+    "quest_id": 29,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Bastok_Quests",
+    "start_npc": "Michea",
+    "start_zone": "Bastok Markets (F-10)",
+    "reward": "2200 gil",
+    "requirements": {
+      "fame": 2
+    },
+    "next_step": "Speak with Michea at Bastok Markets (F-10) to begin or continue this quest.",
+    "repeat_type": "Not repeatable",
+    "keywords": "General Michea Bastok Markets F-10 2200 gil Father Figure"
+  },
+  {
+    "log_id": 1,
+    "quest_id": 30,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Bastok_Quests",
+    "start_npc": "Gwill",
+    "start_zone": "Bastok Markets (E-11)",
+    "reward": "Cotton Headband",
+    "requirements": {
+      "fame": 3
+    },
+    "next_step": "Speak with Gwill at Bastok Markets (E-11) to begin or continue this quest.",
+    "repeat_type": "Not repeatable",
+    "keywords": "General Gwill Bastok Markets E-11 Cotton Headband The Return of the Adventurer"
+  },
+  {
+    "log_id": 1,
+    "quest_id": 34,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Bastok_Quests",
+    "start_npc": "Zon-Fobun",
+    "start_zone": "Bastok Markets (G-5)",
+    "reward": "Poison Cesti",
+    "requirements": {
+      "fame": 4
+    },
+    "next_step": "Speak with Zon-Fobun at Bastok Markets (G-5) to begin or continue this quest.",
+    "repeat_type": "Not repeatable",
+    "keywords": "General Zon-Fobun Bastok Markets G-5 Poison Cesti The Curse Collector"
+  },
+  {
+    "log_id": 1,
+    "quest_id": 64,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Bastok_Quests",
+    "start_npc": "Zacc",
+    "start_zone": "Bastok Markets (G-9)",
+    "reward": "Cactus Stems x4",
+    "requirements": {
+      "fame": 5
+    },
+    "next_step": "Speak with Zacc at Bastok Markets (G-9) to begin or continue this quest.",
+    "repeat_type": "Not repeatable",
+    "keywords": "General Zacc Bastok Markets G-9 Cactus Stems x4 Wish Upon a Star"
+  },
+  {
+    "log_id": 1,
+    "quest_id": 85,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Bastok_Quests",
+    "start_npc": "Shamarhaan",
+    "start_zone": "Bastok Markets (F-9)",
+    "reward": "PUP Limit Break",
+    "requirements": {
+      "fame": 1
+    },
+    "next_step": "Speak with Shamarhaan at Bastok Markets (F-9) to begin or continue this quest.",
+    "repeat_type": "Not repeatable",
+    "keywords": "Limit Break Shamarhaan Bastok Markets F-9 PUP Limit Break Achieving True Power"
+  },
+  {
+    "log_id": 1,
+    "quest_id": 37,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Bastok_Quests",
+    "start_npc": "Tami",
+    "start_zone": "Bastok Mines (J-8)",
+    "reward": "Rabbit Mantle",
+    "requirements": {
+      "fame": 1
+    },
+    "next_step": "Speak with Tami at Bastok Mines (J-8) to begin or continue this quest.",
+    "repeat_type": "Repeatable",
+    "keywords": "General Tami Bastok Mines J-8 Rabbit Mantle Groceries"
+  },
+  {
+    "log_id": 1,
+    "quest_id": 6,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Bastok_Quests",
+    "start_npc": "Elki",
+    "start_zone": "Bastok Mines (H-5)",
+    "reward": "Sitabaki",
+    "requirements": {
+      "fame": 1
+    },
+    "next_step": "Speak with Elki at Bastok Mines (H-5) to begin or continue this quest.",
+    "repeat_type": "Not repeatable",
+    "keywords": "General Elki Bastok Mines H-5 Sitabaki Hearts of Mythril"
+  },
+  {
+    "log_id": 1,
+    "quest_id": 39,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Bastok_Quests",
+    "start_npc": "Gerbaum",
+    "start_zone": "Bastok Mines (F-8)",
+    "reward": "150 gil",
+    "requirements": {
+      "fame": 1
+    },
+    "next_step": "Speak with Gerbaum at Bastok Mines (F-8) to begin or continue this quest.",
+    "repeat_type": "Repeatable",
+    "keywords": "General Gerbaum Bastok Mines F-8 150 gil Minesweeper"
+  },
+  {
+    "log_id": 1,
+    "quest_id": 0,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Bastok_Quests",
+    "start_npc": "Wahid",
+    "start_zone": "Bastok Mines (I-8)",
+    "reward": "150 gil",
+    "requirements": {
+      "fame": 1
+    },
+    "next_step": "Speak with Wahid at Bastok Mines (I-8) to begin or continue this quest.",
+    "repeat_type": "Repeatable",
+    "keywords": "General Wahid Bastok Mines I-8 150 gil The Siren's Tear"
+  },
+  {
+    "log_id": 1,
+    "quest_id": 31,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Bastok_Quests",
+    "start_npc": "Black Mud",
+    "start_zone": "Bastok Mines (I-6)",
+    "reward": "2000 gil",
+    "requirements": {
+      "fame": 2
+    },
+    "next_step": "Speak with Black Mud at Bastok Mines (I-6) to begin or continue this quest.",
+    "repeat_type": "Not repeatable",
+    "keywords": "General Black Mud Bastok Mines I-6 2000 gil Drachenfall"
+  },
+  {
+    "log_id": 1,
+    "quest_id": 19,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Bastok_Quests",
+    "start_npc": "Pavvke",
+    "start_zone": "Bastok Mines (I-7)",
+    "reward": "500 gil",
+    "requirements": {
+      "fame": 2
+    },
+    "next_step": "Speak with Pavvke at Bastok Mines (I-7) to begin or continue this quest.",
+    "repeat_type": "Repeatable",
+    "keywords": "General Pavvke Bastok Mines I-7 500 gil Fallen Comrades"
+  },
+  {
+    "log_id": 1,
+    "quest_id": 47,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Bastok_Quests",
+    "start_npc": "Gumbah",
+    "start_zone": "Bastok Mines (J-7)",
+    "reward": "Deathbringer",
+    "requirements": {
+      "fame": 3
+    },
+    "next_step": "Speak with Gumbah at Bastok Mines (J-7) to begin or continue this quest.",
+    "repeat_type": "Not repeatable",
+    "keywords": "DRK AF1 Gumbah Bastok Mines J-7 Deathbringer Blade of Death"
+  },
+  {
+    "log_id": 1,
+    "quest_id": 20,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Bastok_Quests",
+    "start_npc": "Detzo",
+    "start_zone": "Bastok Mines (I-6)",
+    "reward": "Wolf Gorget",
+    "requirements": {
+      "fame": 3
+    },
+    "next_step": "Speak with Detzo at Bastok Mines (I-6) to begin or continue this quest.",
+    "repeat_type": "Not repeatable",
+    "keywords": "General Detzo Bastok Mines I-6 Wolf Gorget Rivals"
+  },
+  {
+    "log_id": 1,
+    "quest_id": 7,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Bastok_Quests",
+    "start_npc": "Elki",
+    "start_zone": "Bastok Mines (H-5)",
+    "reward": "Small Sword",
+    "requirements": {
+      "fame": 3
+    },
+    "next_step": "Speak with Elki at Bastok Mines (H-5) to begin or continue this quest.",
+    "repeat_type": "Not repeatable",
+    "keywords": "General Elki Bastok Mines H-5 Small Sword The Eleventh's Hour"
+  },
+  {
+    "log_id": 1,
+    "quest_id": 32,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Bastok_Quests",
+    "start_npc": "Goraow",
+    "start_zone": "Bastok Mines (I-6)",
+    "reward": "900 gil",
+    "requirements": {
+      "fame": 3
+    },
+    "next_step": "Speak with Goraow at Bastok Mines (I-6) to begin or continue this quest.",
+    "repeat_type": "Repeatable",
+    "keywords": "General Goraow Bastok Mines I-6 900 gil Vengeful Wrath"
+  },
+  {
+    "log_id": 1,
+    "quest_id": 49,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Bastok_Quests",
+    "start_npc": "Virnage",
+    "start_zone": "Bastok Mines (I-5)",
+    "reward": "Teleport-Dem scroll",
+    "requirements": {
+      "fame": 4
+    },
+    "next_step": "Speak with Virnage at Bastok Mines (I-5) to begin or continue this quest.",
+    "repeat_type": "Not repeatable",
+    "keywords": "Scroll Virnage Bastok Mines I-5 Teleport-Dem scroll Altana's Sorrow"
+  },
+  {
+    "log_id": 1,
+    "quest_id": 28,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Bastok_Quests",
+    "start_npc": "Gumbah",
+    "start_zone": "Bastok Mines (J-7)",
+    "reward": "Dark Knight unlocked",
+    "requirements": {
+      "fame": 1
+    },
+    "next_step": "Speak with Gumbah at Bastok Mines (J-7) to begin or continue this quest.",
+    "repeat_type": "Not repeatable",
+    "keywords": "DRK Flag Gumbah Bastok Mines J-7 Dark Knight unlocked Blade of Darkness"
+  },
+  {
+    "log_id": 1,
+    "quest_id": 68,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Bastok_Quests",
+    "start_npc": "Gumbah",
+    "start_zone": "Bastok Mines (J-7)",
+    "reward": "Ground Strike unlocked",
+    "next_step": "Speak with Gumbah at Bastok Mines (J-7) to begin or continue this quest.",
+    "repeat_type": "Not repeatable",
+    "keywords": "WS Gumbah Bastok Mines J-7 Ground Strike unlocked Inheritance"
+  },
+  {
+    "log_id": 1,
+    "quest_id": 90,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Bastok_Quests",
+    "start_npc": "Selliste",
+    "start_zone": "Bastok Mines (K-6)",
+    "reward": "Portafurnace",
+    "next_step": "Speak with Selliste at Bastok Mines (K-6) to begin or continue this quest.",
+    "repeat_type": "Not repeatable",
+    "keywords": "Crafting Selliste Bastok Mines K-6 Portafurnace The Wondrous Whatchamacallit"
+  },
+  {
+    "log_id": 1,
+    "quest_id": 54,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Bastok_Quests",
+    "start_npc": "Phara",
+    "start_zone": "Bastok Mines (J-9)",
+    "reward": "Razor Axe",
+    "next_step": "Speak with Phara at Bastok Mines (J-9) to begin or continue this quest.",
+    "repeat_type": "Repeatable",
+    "keywords": "WAR AF1 Phara Bastok Mines J-9 Razor Axe The Doorman"
+  },
+  {
+    "log_id": 1,
+    "quest_id": 55,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Bastok_Quests",
+    "start_npc": "Deidogg",
+    "start_zone": "Bastok Mines (H-6)",
+    "reward": "Fighter's Calligae",
+    "next_step": "Speak with Deidogg at Bastok Mines (H-6) to begin or continue this quest.",
+    "repeat_type": "Repeatable",
+    "keywords": "WAR AF2 Deidogg Bastok Mines H-6 Fighter's Calligae The Talekeeper's Truth"
+  },
+  {
+    "log_id": 1,
+    "quest_id": 56,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Bastok_Quests",
+    "start_npc": "Deidogg",
+    "start_zone": "Bastok Mines (H-6)",
+    "reward": "Fighter's Lorica",
+    "next_step": "Speak with Deidogg at Bastok Mines (H-6) to begin or continue this quest.",
+    "repeat_type": "Repeatable",
+    "keywords": "WAR AF3 Deidogg Bastok Mines H-6 Fighter's Lorica The Talekeeper's Gift"
+  },
+  {
+    "log_id": 1,
+    "quest_id": 15,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Bastok_Quests",
+    "start_npc": "Hungry Wolf",
+    "start_zone": "Metalworks (G-9)",
+    "reward": "300 gil",
+    "requirements": {
+      "fame": 1
+    },
+    "next_step": "Speak with Hungry Wolf at Metalworks (G-9) to begin or continue this quest.",
+    "keywords": "General Hungry Wolf Metalworks G-9 300 gil Smoke on the Mountain"
+  },
+  {
+    "log_id": 1,
+    "quest_id": 45,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Bastok_Quests",
+    "start_npc": "Izabele",
+    "start_zone": "Metalworks (G-8)",
+    "reward": "500 gil",
+    "requirements": {
+      "fame": 1
+    },
+    "next_step": "Speak with Izabele at Metalworks (G-8) to begin or continue this quest.",
+    "keywords": "General Izabele Metalworks G-8 500 gil The Gustaberg Tour"
+  },
+  {
+    "log_id": 1,
+    "quest_id": 86,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Bastok_Quests",
+    "start_npc": "Ferghus",
+    "start_zone": "Metalworks (G-9)",
+    "reward": "Aileen's Delight",
+    "requirements": {
+      "fame": 1
+    },
+    "next_step": "Speak with Ferghus at Metalworks (G-9) to begin or continue this quest.",
+    "keywords": "General Ferghus Metalworks G-9 Aileen's Delight Too Many Chefs"
+  },
+  {
+    "log_id": 1,
+    "quest_id": 25,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Bastok_Quests",
+    "start_npc": "Unlucky Rat",
+    "start_zone": "Metalworks (G-7)",
+    "reward": "Warp scroll",
+    "requirements": {
+      "fame": 2
+    },
+    "next_step": "Speak with Unlucky Rat at Metalworks (G-7) to begin or continue this quest.",
+    "keywords": "Scroll Unlucky Rat Metalworks G-7 Warp scroll Mean Machine"
+  },
+  {
+    "log_id": 1,
+    "quest_id": 24,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Bastok_Quests",
+    "start_npc": "Baldric",
+    "start_zone": "Metalworks (G-9)",
+    "reward": "300 gil",
+    "requirements": {
+      "fame": 2
+    },
+    "next_step": "Speak with Baldric at Metalworks (G-9) to begin or continue this quest.",
+    "keywords": "General Baldric Metalworks G-9 300 gil Stardust"
+  },
+  {
+    "log_id": 1,
+    "quest_id": 75,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Bastok_Quests",
+    "start_npc": "Ayame",
+    "start_zone": "Metalworks (K-7)",
+    "reward": "2200 gil",
+    "requirements": {
+      "fame": 3
+    },
+    "next_step": "Speak with Ayame at Metalworks (K-7) to begin or continue this quest.",
+    "keywords": "General Ayame Metalworks K-7 2200 gil Out of the Depths"
+  },
+  {
+    "log_id": 1,
+    "quest_id": 79,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Bastok_Quests",
+    "start_npc": "Raibaht",
+    "start_zone": "Metalworks (G-8)",
+    "reward": "2100 gil",
+    "requirements": {
+      "fame": 3
+    },
+    "next_step": "Speak with Raibaht at Metalworks (G-8) to begin or continue this quest.",
+    "keywords": "General Raibaht Metalworks G-8 2100 gil Teak Me to the Stars"
+  },
+  {
+    "log_id": 1,
+    "quest_id": 40,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Bastok_Quests",
+    "start_npc": "Mighty Fist",
+    "start_zone": "Metalworks (G-9)",
+    "reward": "8000 gil",
+    "requirements": {
+      "fame": 3
+    },
+    "next_step": "Speak with Mighty Fist at Metalworks (G-9) to begin or continue this quest.",
+    "keywords": "General Mighty Fist Metalworks G-9 8000 gil The Darksmith"
+  },
+  {
+    "log_id": 1,
+    "quest_id": 33,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Bastok_Quests",
+    "start_npc": "High Bear",
+    "start_zone": "Metalworks (I-8)",
+    "reward": "Chakram",
+    "requirements": {
+      "fame": 4
+    },
+    "next_step": "Speak with High Bear at Metalworks (I-8) to begin or continue this quest.",
+    "keywords": "General High Bear Metalworks I-8 Chakram Beadeaux Smog"
+  },
+  {
+    "log_id": 1,
+    "quest_id": 26,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Bastok_Quests",
+    "start_npc": "Cid",
+    "start_zone": "Metalworks (H-8)",
+    "reward": "Ram Mantle",
+    "requirements": {
+      "fame": 4
+    },
+    "next_step": "Speak with Cid at Metalworks (H-8) to begin or continue this quest.",
+    "keywords": "General Cid Metalworks H-8 Ram Mantle Cid's Secret"
+  },
+  {
+    "log_id": 1,
+    "quest_id": 80,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Bastok_Quests",
+    "start_npc": "Raibaht",
+    "start_zone": "Metalworks (G-8)",
+    "reward": "3000 gil",
+    "requirements": {
+      "fame": 4
+    },
+    "next_step": "Speak with Raibaht at Metalworks (G-8) to begin or continue this quest.",
+    "keywords": "General Raibaht Metalworks G-8 3000 gil Hyper Active"
+  },
+  {
+    "log_id": 1,
+    "quest_id": 77,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Bastok_Quests",
+    "start_npc": "Ayame",
+    "start_zone": "Metalworks (K-7)",
+    "reward": "3000 gil",
+    "requirements": {
+      "fame": 5
+    },
+    "next_step": "Speak with Ayame at Metalworks (K-7) to begin or continue this quest.",
+    "keywords": "General Ayame Metalworks K-7 3000 gil A Question of Faith"
+  },
+  {
+    "log_id": 1,
+    "quest_id": 78,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Bastok_Quests",
+    "start_npc": "Ayame",
+    "start_zone": "Metalworks (K-7)",
+    "reward": "Bowyer Ring, 3000 gil",
+    "requirements": {
+      "fame": 5
+    },
+    "next_step": "Speak with Ayame at Metalworks (K-7) to begin or continue this quest.",
+    "keywords": "General Ayame Metalworks K-7 Bowyer Ring, 3000 gil Return to the Depths"
+  },
+  {
+    "log_id": 1,
+    "quest_id": 81,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Bastok_Quests",
+    "start_npc": "Raibaht",
+    "start_zone": "Metalworks (G-8)",
+    "reward": "3600 gil",
+    "requirements": {
+      "fame": 5
+    },
+    "next_step": "Speak with Raibaht at Metalworks (G-8) to begin or continue this quest.",
+    "keywords": "General Raibaht Metalworks G-8 3600 gil The Naming Game"
+  },
+  {
+    "log_id": 1,
+    "quest_id": 66,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Bastok_Quests",
+    "start_npc": "Iron Eater",
+    "start_zone": "Metalworks (J-8)",
+    "reward": "Steel Cyclone unlocked",
+    "next_step": "Speak with Iron Eater at Metalworks (J-8) to begin or continue this quest.",
+    "keywords": "WS Iron Eater Metalworks J-8 Steel Cyclone unlocked The Weight of Your Limits"
+  },
+  {
+    "log_id": 1,
+    "quest_id": 67,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Bastok_Quests",
+    "start_npc": "Cid",
+    "start_zone": "Metalworks (H-8)",
+    "reward": "Detonator unlocked",
+    "next_step": "Speak with Cid at Metalworks (H-8) to begin or continue this quest.",
+    "keywords": "WS Cid Metalworks H-8 Detonator unlocked Shoot First, Ask Questions Later"
+  },
+  {
+    "log_id": 1,
+    "quest_id": 89,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Bastok_Quests",
+    "start_npc": "Hildolf",
+    "start_zone": "Metalworks (F-8)",
+    "reward": "Synergy Crucible",
+    "next_step": "Speak with Hildolf at Metalworks (F-8) to begin or continue this quest.",
+    "keywords": "Crafting Hildolf Metalworks F-8 Synergy Crucible Synergistic Pursuits"
+  },
+  {
+    "log_id": 1,
+    "quest_id": 57,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Bastok_Quests",
+    "start_npc": "Raibaht",
+    "start_zone": "Metalworks (G-8)",
+    "reward": "Raven Scythe",
+    "next_step": "Speak with Raibaht at Metalworks (G-8) to begin or continue this quest.",
+    "keywords": "DRK AF1 Raibaht Metalworks G-8 Raven Scythe Dark Legacy"
+  },
+  {
+    "log_id": 1,
+    "quest_id": 58,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Bastok_Quests",
+    "start_npc": "Cid",
+    "start_zone": "Metalworks (H-8)",
+    "reward": "Chaos Sollerets",
+    "next_step": "Speak with Cid at Metalworks (H-8) to begin or continue this quest.",
+    "keywords": "DRK AF2 Cid Metalworks H-8 Chaos Sollerets Dark Puppet"
+  },
+  {
+    "log_id": 1,
+    "quest_id": 53,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Bastok_Quests",
+    "start_npc": "Ayame",
+    "start_zone": "Metalworks (K-7)",
+    "reward": "Temple Hose",
+    "next_step": "Speak with Ayame at Metalworks (K-7) to begin or continue this quest.",
+    "keywords": "MNK AF3 Ayame Metalworks K-7 Temple Hose True Strength"
+  },
+  {
+    "log_id": 1,
+    "quest_id": 73,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Bastok_Quests",
+    "start_npc": "Romualdo",
+    "start_zone": "Metalworks (K-9)",
+    "reward": "Fukuro",
+    "next_step": "Speak with Romualdo at Metalworks (K-9) to begin or continue this quest.",
+    "keywords": "General Romualdo Metalworks K-9 Fukuro Faded Promises",
+    "expansion": "Base"
+  },
+  {
+    "log_id": 1,
+    "quest_id": 91,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Bastok_Quests",
+    "start_npc": "Hildolf",
+    "start_zone": "Metalworks (F-8)",
+    "reward": "Fewell",
+    "next_step": "Speak with Hildolf at Metalworks (F-8) to begin or continue this quest.",
+    "keywords": "General Hildolf Metalworks F-8 Fewell Synergistic Support"
+  },
+  {
+    "log_id": 1,
+    "quest_id": 9,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Bastok_Quests",
+    "start_npc": "Gudav",
+    "start_zone": "Port Bastok (H-5)",
+    "reward": "Map of the Gusgen Mines",
+    "requirements": {
+      "fame": 1
+    },
+    "next_step": "Speak with Gudav at Port Bastok (H-5) to begin or continue this quest.",
+    "keywords": "Map Gudav Port Bastok H-5 Map of the Gusgen Mines A Foreman's Best Friend"
+  },
+  {
+    "log_id": 1,
+    "quest_id": 50,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Bastok_Quests",
+    "start_npc": "Valah Molkot",
+    "start_zone": "Port Bastok (J-12)",
+    "reward": "Mog House exit",
+    "requirements": {
+      "fame": 1
+    },
+    "next_step": "Speak with Valah Molkot at Port Bastok (J-12) to begin or continue this quest.",
+    "keywords": "Fast Travel Valah Molkot Port Bastok J-12 Mog House exit A Lady's Heart"
+  },
+  {
+    "log_id": 1,
+    "quest_id": 84,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Bastok_Quests",
+    "start_npc": "Alib-Mufalib",
+    "start_zone": "Port Bastok (K-7)",
+    "reward": "Blue Invitation Card",
+    "requirements": {
+      "fame": 1
+    },
+    "next_step": "Speak with Alib-Mufalib at Port Bastok (K-7) to begin or continue this quest.",
+    "keywords": "Fast Travel Alib-Mufalib Port Bastok K-7 Blue Invitation Card Lure of the Wildcat (Bastok)"
+  },
+  {
+    "log_id": 1,
+    "quest_id": 1,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Bastok_Quests",
+    "start_npc": "Talib",
+    "start_zone": "Port Bastok (F-6)",
+    "reward": "Bronze Knife",
+    "requirements": {
+      "fame": 1
+    },
+    "next_step": "Speak with Talib at Port Bastok (F-6) to begin or continue this quest.",
+    "keywords": "General Talib Port Bastok F-6 Bronze Knife Beauty and the Galka"
+  },
+  {
+    "log_id": 1,
+    "quest_id": 65,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Bastok_Quests",
+    "start_npc": "Raifa",
+    "start_zone": "Port Bastok (D-6)",
+    "reward": "Dragon Chronicles, 5000 gil",
+    "requirements": {
+      "fame": 1
+    },
+    "next_step": "Speak with Raifa at Port Bastok (D-6) to begin or continue this quest.",
+    "keywords": "General Raifa Port Bastok D-6 Dragon Chronicles, 5000 gil Eco-Warrior"
+  },
+  {
+    "log_id": 1,
+    "quest_id": 4,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Bastok_Quests",
+    "start_npc": "Corann",
+    "start_zone": "Port Bastok (K-6)",
+    "reward": "Bronze Subligar",
+    "requirements": {
+      "fame": 1
+    },
+    "next_step": "Speak with Corann at Port Bastok (K-6) to begin or continue this quest.",
+    "keywords": "General Corann Port Bastok K-6 Bronze Subligar The Quadav's Curse"
+  },
+  {
+    "log_id": 1,
+    "quest_id": 36,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Bastok_Quests",
+    "start_npc": "Benita",
+    "start_zone": "Port Bastok (J-6)",
+    "reward": "Traveler's Hat",
+    "requirements": {
+      "fame": 1
+    },
+    "next_step": "Speak with Benita at Port Bastok (J-6) to begin or continue this quest.",
+    "keywords": "General Benita Port Bastok J-6 Traveler's Hat The Wisdom of Elders"
+  },
+  {
+    "log_id": 1,
+    "quest_id": 2,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Bastok_Quests",
+    "start_npc": "Powhatan",
+    "start_zone": "Port Bastok (E-6)",
+    "reward": "Spatha",
+    "requirements": {
+      "fame": 1
+    },
+    "next_step": "Speak with Powhatan at Port Bastok (E-6) to begin or continue this quest.",
+    "keywords": "General Powhatan Port Bastok E-6 Spatha Welcome to Bastok"
+  },
+  {
+    "log_id": 1,
+    "quest_id": 72,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Bastok_Quests",
+    "start_npc": "Ferrol",
+    "start_zone": "Port Bastok (I-7)",
+    "reward": "Titan unlocked",
+    "requirements": {
+      "fame": 2
+    },
+    "next_step": "Speak with Ferrol at Port Bastok (I-7) to begin or continue this quest.",
+    "keywords": "Avatar Ferrol Port Bastok I-7 Titan unlocked Trial-Size Trial by Earth"
+  },
+  {
+    "log_id": 1,
+    "quest_id": 46,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Bastok_Quests",
+    "start_npc": "Yazan",
+    "start_zone": "Port Bastok (H-6)",
+    "reward": "350 gil",
+    "requirements": {
+      "fame": 2
+    },
+    "next_step": "Speak with Yazan at Port Bastok (H-6) to begin or continue this quest.",
+    "keywords": "General Yazan Port Bastok H-6 350 gil Bite the Dust"
+  },
+  {
+    "log_id": 1,
+    "quest_id": 17,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Bastok_Quests",
+    "start_npc": "Qiji",
+    "start_zone": "Port Bastok (I-7)",
+    "reward": "300 gil",
+    "requirements": {
+      "fame": 2
+    },
+    "next_step": "Speak with Qiji at Port Bastok (I-7) to begin or continue this quest.",
+    "keywords": "General Qiji Port Bastok I-7 300 gil Forever to Hold"
+  },
+  {
+    "log_id": 1,
+    "quest_id": 5,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Bastok_Quests",
+    "start_npc": "Ronan",
+    "start_zone": "Port Bastok (K-6)",
+    "reward": "Monk's Headgear",
+    "requirements": {
+      "fame": 2
+    },
+    "next_step": "Speak with Ronan at Port Bastok (K-6) to begin or continue this quest.",
+    "keywords": "General Ronan Port Bastok K-6 Monk's Headgear Out of One's Shell"
+  },
+  {
+    "log_id": 1,
+    "quest_id": 23,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Bastok_Quests",
+    "start_npc": "Evi",
+    "start_zone": "Port Bastok (H-6)",
+    "reward": "Scale Mail",
+    "requirements": {
+      "fame": 2
+    },
+    "next_step": "Speak with Evi at Port Bastok (H-6) to begin or continue this quest.",
+    "keywords": "General Evi Port Bastok H-6 Scale Mail Past Perfect"
+  },
+  {
+    "log_id": 1,
+    "quest_id": 3,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Bastok_Quests",
+    "start_npc": "Powhatan",
+    "start_zone": "Port Bastok (E-6)",
+    "reward": "Targe",
+    "requirements": {
+      "fame": 3
+    },
+    "next_step": "Speak with Powhatan at Port Bastok (E-6) to begin or continue this quest.",
+    "keywords": "General Powhatan Port Bastok E-6 Targe Guest of Hauteur"
+  },
+  {
+    "log_id": 1,
+    "quest_id": 18,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Bastok_Quests",
+    "start_npc": "Romilda",
+    "start_zone": "Port Bastok (I-7)",
+    "reward": "2000 gil",
+    "requirements": {
+      "fame": 3
+    },
+    "next_step": "Speak with Romilda at Port Bastok (I-7) to begin or continue this quest.",
+    "keywords": "General Romilda Port Bastok I-7 2000 gil Till Death Do Us Part"
+  },
+  {
+    "log_id": 1,
+    "quest_id": 35,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Bastok_Quests",
+    "start_npc": "Kurando",
+    "start_zone": "Port Bastok (H-6)",
+    "reward": "Black Neckerchief",
+    "requirements": {
+      "fame": 4
+    },
+    "next_step": "Speak with Kurando at Port Bastok (H-6) to begin or continue this quest.",
+    "keywords": "General Kurando Port Bastok H-6 Black Neckerchief Fear of Flying"
+  },
+  {
+    "log_id": 1,
+    "quest_id": 42,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Bastok_Quests",
+    "start_npc": "Agapito",
+    "start_zone": "Port Bastok (G-6)",
+    "reward": "2100 gil",
+    "requirements": {
+      "fame": 4
+    },
+    "next_step": "Speak with Agapito at Port Bastok (G-6) to begin or continue this quest.",
+    "keywords": "General Agapito Port Bastok G-6 2100 gil The Stars of Ifrit"
+  },
+  {
+    "log_id": 1,
+    "quest_id": 43,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Bastok_Quests",
+    "start_npc": "Carmelo",
+    "start_zone": "Port Bastok (E-6)",
+    "reward": "Lamia Harp",
+    "requirements": {
+      "fame": 5
+    },
+    "next_step": "Speak with Carmelo at Port Bastok (E-6) to begin or continue this quest.",
+    "keywords": "General Carmelo Port Bastok E-6 Lamia Harp Love and Ice"
+  },
+  {
+    "log_id": 1,
+    "quest_id": 27,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Bastok_Quests",
+    "start_npc": "Hilda",
+    "start_zone": "Port Bastok (E-6)",
+    "reward": "Speed Bow",
+    "requirements": {
+      "fame": 5
+    },
+    "next_step": "Speak with Hilda at Port Bastok (E-6) to begin or continue this quest.",
+    "keywords": "General Hilda Port Bastok E-6 Speed Bow The Usual"
+  },
+  {
+    "log_id": 1,
+    "quest_id": 61,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Bastok_Quests",
+    "start_npc": "Juroro",
+    "start_zone": "Port Bastok (I-8)",
+    "reward": "Titan unlocked",
+    "requirements": {
+      "fame": 6
+    },
+    "next_step": "Speak with Juroro at Port Bastok (I-8) to begin or continue this quest.",
+    "keywords": "Avatar Juroro Port Bastok I-8 Titan unlocked Trial by Earth"
+  },
+  {
+    "log_id": 1,
+    "quest_id": 62,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Bastok_Quests",
+    "start_npc": "Carmelo",
+    "start_zone": "Port Bastok (E-6)",
+    "reward": "10000 gil",
+    "requirements": {
+      "fame": 6
+    },
+    "next_step": "Speak with Carmelo at Port Bastok (E-6) to begin or continue this quest.",
+    "keywords": "General Carmelo Port Bastok E-6 10000 gil A Test of True Love"
+  },
+  {
+    "log_id": 1,
+    "quest_id": 70,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Bastok_Quests",
+    "start_npc": "Trilok",
+    "start_zone": "Port Bastok (D-6)",
+    "reward": "Page from Miratete's Memoirs",
+    "requirements": {
+      "fame": 6
+    },
+    "next_step": "Speak with Trilok at Port Bastok (D-6) to begin or continue this quest.",
+    "keywords": "Escort Trilok Port Bastok D-6 Page from Miratete's Memoirs Escort for Hire (Bastok)"
+  },
+  {
+    "log_id": 1,
+    "quest_id": 63,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Bastok_Quests",
+    "start_npc": "Carmelo",
+    "start_zone": "Port Bastok (E-6)",
+    "reward": "Siren Flute",
+    "requirements": {
+      "fame": 7
+    },
+    "next_step": "Speak with Carmelo at Port Bastok (E-6) to begin or continue this quest.",
+    "keywords": "General Carmelo Port Bastok E-6 Siren Flute Lovers in the Dusk"
+  },
+  {
+    "log_id": 1,
+    "quest_id": 60,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Bastok_Quests",
+    "start_npc": "Ensetsu",
+    "start_zone": "Port Bastok (I-5)",
+    "reward": "Ninja unlocked",
+    "next_step": "Speak with Ensetsu at Port Bastok (I-5) to begin or continue this quest.",
+    "keywords": "NIN Flag Ensetsu Port Bastok I-5 Ninja unlocked Ayame and Kaede"
+  },
+  {
+    "log_id": 1,
+    "quest_id": 69,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Bastok_Quests",
+    "start_npc": "Oggbi",
+    "start_zone": "Port Bastok (E-6)",
+    "reward": "Asuran Fists unlocked",
+    "next_step": "Speak with Oggbi at Port Bastok (E-6) to begin or continue this quest.",
+    "keywords": "WS Oggbi Port Bastok E-6 Asuran Fists unlocked The Walls of Your Mind"
+  },
+  {
+    "log_id": 1,
+    "quest_id": 51,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Bastok_Quests",
+    "start_npc": "Oggbi",
+    "start_zone": "Port Bastok (E-6)",
+    "reward": "Beat Cesti",
+    "next_step": "Speak with Oggbi at Port Bastok (E-6) to begin or continue this quest.",
+    "keywords": "MNK AF1 Oggbi Port Bastok E-6 Beat Cesti Ghosts of the Past"
+  },
+  {
+    "log_id": 1,
+    "quest_id": 52,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Bastok_Quests",
+    "start_npc": "Oggbi",
+    "start_zone": "Port Bastok (E-6)",
+    "reward": "Temple Gaiters",
+    "next_step": "Speak with Oggbi at Port Bastok (E-6) to begin or continue this quest.",
+    "keywords": "MNK AF2 Oggbi Port Bastok E-6 Temple Gaiters The First Meeting"
+  },
+  {
+    "log_id": 1,
+    "quest_id": 8,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Bastok_Quests",
+    "start_npc": "Talib",
+    "start_zone": "Port Bastok (F-6)",
+    "reward": "350 gil",
+    "next_step": "Speak with Talib at Port Bastok (F-6) to begin or continue this quest.",
+    "keywords": "General Talib Port Bastok F-6 350 gil Shady Business"
+  },
+  {
+    "log_id": 1,
+    "quest_id": 48,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Bastok_Quests",
+    "start_npc": "Paujean",
+    "start_zone": "Port Bastok (F-6)",
+    "reward": "Purple Belt",
+    "next_step": "Speak with Paujean at Port Bastok (F-6) to begin or continue this quest.",
+    "keywords": "General Paujean Port Bastok F-6 Purple Belt Silence of the Rams",
+    "expansion": "Base"
+  },
+  {
+    "log_id": 1,
+    "quest_id": 82,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Bastok_Quests",
+    "start_npc": "Ghebi Damomohe",
+    "start_zone": "Lower Jeuno (I-7)",
+    "reward": "CCB Polymer Pump",
+    "next_step": "Speak with Ghebi Damomohe at Lower Jeuno (I-7) to begin or continue this quest.",
+    "repeat_type": "Repeatable",
+    "keywords": "General Ghebi Damomohe Lower Jeuno I-7 CCB Polymer Pump Chips"
+  },
+  {
+    "log_id": 1,
+    "quest_id": 59,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Bastok_Quests",
+    "start_npc": "Zeid",
+    "start_zone": "Beadeaux (G-8)",
+    "reward": "Chaos Burgeonet",
+    "next_step": "Speak with Zeid at Beadeaux (G-8) to begin or continue this quest.",
+    "repeat_type": "Not repeatable",
+    "keywords": "DRK AF3 Zeid Beadeaux G-8 Chaos Burgeonet Blade of Evil"
+  },
+  {
+    "log_id": 2,
+    "quest_id": 39,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Windurst_Quests",
+    "start_npc": "Illu Bohjaa",
+    "start_zone": "Windurst Woods (I-6)",
+    "reward": "600 gil",
+    "requirements": {
+      "fame": 1
+    },
+    "next_step": "Speak with Illu Bohjaa at Windurst Woods (I-6) to begin or continue this quest.",
+    "keywords": "General Illu Bohjaa Windurst Woods I-6 600 gil Creepy Crawlies"
+  },
+  {
+    "log_id": 2,
+    "quest_id": 60,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Windurst_Quests",
+    "start_npc": "Tapoh Lihzeh",
+    "start_zone": "Windurst Woods (I-8)",
+    "reward": "150-200 gil",
+    "requirements": {
+      "fame": 1
+    },
+    "next_step": "Speak with Tapoh Lihzeh at Windurst Woods (I-8) to begin or continue this quest.",
+    "keywords": "General Tapoh Lihzeh Windurst Woods I-8 150-200 gil Paying Lip Service"
+  },
+  {
+    "log_id": 2,
+    "quest_id": 24,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Windurst_Quests",
+    "start_npc": "Kopuro-Popuro",
+    "start_zone": "Windurst Woods (H-10)",
+    "reward": "200 gil",
+    "requirements": {
+      "fame": 1
+    },
+    "next_step": "Speak with Kopuro-Popuro at Windurst Woods (H-10) to begin or continue this quest.",
+    "keywords": "General Kopuro-Popuro Windurst Woods H-10 200 gil The All-New C-2000"
+  },
+  {
+    "log_id": 2,
+    "quest_id": 27,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Windurst_Quests",
+    "start_npc": "Kuoh Rhel",
+    "start_zone": "Windurst Woods (K-12)",
+    "reward": "1500 gil",
+    "requirements": {
+      "fame": 2
+    },
+    "next_step": "Speak with Kuoh Rhel at Windurst Woods (K-12) to begin or continue this quest.",
+    "keywords": "General Kuoh Rhel Windurst Woods K-12 1500 gil Chocobilious"
+  },
+  {
+    "log_id": 2,
+    "quest_id": 61,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Windurst_Quests",
+    "start_npc": "Soni-Muni",
+    "start_zone": "Windurst Woods (H-10)",
+    "reward": "1500 gil",
+    "requirements": {
+      "fame": 2
+    },
+    "next_step": "Speak with Soni-Muni at Windurst Woods (H-10) to begin or continue this quest.",
+    "keywords": "General Soni-Muni Windurst Woods H-10 1500 gil The Amazin' Scorpio"
+  },
+  {
+    "log_id": 2,
+    "quest_id": 62,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Windurst_Quests",
+    "start_npc": "Gioh Ajihri",
+    "start_zone": "Windurst Woods (K-5)",
+    "reward": "900 gil",
+    "requirements": {
+      "fame": 2
+    },
+    "next_step": "Speak with Gioh Ajihri at Windurst Woods (K-5) to begin or continue this quest.",
+    "keywords": "General Gioh Ajihri Windurst Woods K-5 900 gil Twinstone Bonding"
+  },
+  {
+    "log_id": 2,
+    "quest_id": 43,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Windurst_Quests",
+    "start_npc": "Kororo",
+    "start_zone": "Windurst Woods (H-9)",
+    "reward": "Tourmaline Earring",
+    "requirements": {
+      "fame": 3
+    },
+    "next_step": "Speak with Kororo at Windurst Woods (H-9) to begin or continue this quest.",
+    "keywords": "General Kororo Windurst Woods H-9 Tourmaline Earring A Greeting Cardian"
+  },
+  {
+    "log_id": 2,
+    "quest_id": 45,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Windurst_Quests",
+    "start_npc": "Kuoh Rhel",
+    "start_zone": "Windurst Woods (K-12)",
+    "reward": "900 gil",
+    "requirements": {
+      "fame": 3
+    },
+    "next_step": "Speak with Kuoh Rhel at Windurst Woods (K-12) to begin or continue this quest.",
+    "keywords": "General Kuoh Rhel Windurst Woods K-12 900 gil In a Stew"
+  },
+  {
+    "log_id": 2,
+    "quest_id": 26,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Windurst_Quests",
+    "start_npc": "Nanaa Mihgo",
+    "start_zone": "Windurst Woods (J-3)",
+    "reward": "2100 gil",
+    "requirements": {
+      "fame": 3
+    },
+    "next_step": "Speak with Nanaa Mihgo at Windurst Woods (J-3) to begin or continue this quest.",
+    "keywords": "General Nanaa Mihgo Windurst Woods J-3 2100 gil Rock Racketeer"
+  },
+  {
+    "log_id": 2,
+    "quest_id": 44,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Windurst_Quests",
+    "start_npc": "Kopuro-Popuro",
+    "start_zone": "Windurst Woods (H-10)",
+    "reward": "Scentless Armlets",
+    "requirements": {
+      "fame": 4
+    },
+    "next_step": "Speak with Kopuro-Popuro at Windurst Woods (H-10) to begin or continue this quest.",
+    "keywords": "General Kopuro-Popuro Windurst Woods H-10 Scentless Armlets Legendary Plan B"
+  },
+  {
+    "log_id": 2,
+    "quest_id": 18,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Windurst_Quests",
+    "start_npc": "Kopuro-Popuro",
+    "start_zone": "Windurst Woods (H-10)",
+    "reward": "600 gil",
+    "requirements": {
+      "fame": 4
+    },
+    "next_step": "Speak with Kopuro-Popuro at Windurst Woods (H-10) to begin or continue this quest.",
+    "keywords": "General Kopuro-Popuro Windurst Woods H-10 600 gil The All-New C-3000"
+  },
+  {
+    "log_id": 2,
+    "quest_id": 47,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Windurst_Quests",
+    "start_npc": "Apururu",
+    "start_zone": "Windurst Woods (H-9)",
+    "reward": "5000 gil",
+    "requirements": {
+      "fame": 6
+    },
+    "next_step": "Speak with Apururu at Windurst Woods (H-9) to begin or continue this quest.",
+    "keywords": "General Apururu Windurst Woods H-9 5000 gil Can Cardians Cry?"
+  },
+  {
+    "log_id": 2,
+    "quest_id": 31,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Windurst_Quests",
+    "start_npc": "Perih Vashai",
+    "start_zone": "Windurst Woods (K-7)",
+    "reward": "Ranger unlocked",
+    "next_step": "Speak with Perih Vashai at Windurst Woods (K-7) to begin or continue this quest.",
+    "keywords": "RNG Flag Perih Vashai Windurst Woods K-7 Ranger unlocked The Fanged One"
+  },
+  {
+    "log_id": 2,
+    "quest_id": 85,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Windurst_Quests",
+    "start_npc": "Perih Vashai",
+    "start_zone": "Windurst Woods (K-7)",
+    "reward": "Empyreal Arrow unlocked",
+    "next_step": "Speak with Perih Vashai at Windurst Woods (K-7) to begin or continue this quest.",
+    "keywords": "WS Perih Vashai Windurst Woods K-7 Empyreal Arrow unlocked From Saplings Grow"
+  },
+  {
+    "log_id": 2,
+    "quest_id": 69,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Windurst_Quests",
+    "start_npc": "Nanaa Mihgo",
+    "start_zone": "Windurst Woods (J-3)",
+    "reward": "Marauder's Knife",
+    "next_step": "Speak with Nanaa Mihgo at Windurst Woods (J-3) to begin or continue this quest.",
+    "keywords": "THF AF1 Nanaa Mihgo Windurst Woods J-3 Marauder's Knife The Tenshodo Showdown"
+  },
+  {
+    "log_id": 2,
+    "quest_id": 70,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Windurst_Quests",
+    "start_npc": "Nanaa Mihgo",
+    "start_zone": "Windurst Woods (J-3)",
+    "reward": "Rogue's Bonnet",
+    "next_step": "Speak with Nanaa Mihgo at Windurst Woods (J-3) to begin or continue this quest.",
+    "keywords": "THF AF2 Nanaa Mihgo Windurst Woods J-3 Rogue's Bonnet As Thick as Thieves"
+  },
+  {
+    "log_id": 2,
+    "quest_id": 71,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Windurst_Quests",
+    "start_npc": "Nanaa Mihgo",
+    "start_zone": "Windurst Woods (J-3)",
+    "reward": "Rogue's Poulaines",
+    "next_step": "Speak with Nanaa Mihgo at Windurst Woods (J-3) to begin or continue this quest.",
+    "keywords": "THF AF3 Nanaa Mihgo Windurst Woods J-3 Rogue's Poulaines Hitting the Marquisate"
+  },
+  {
+    "log_id": 2,
+    "quest_id": 72,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Windurst_Quests",
+    "start_npc": "Perih Vashai",
+    "start_zone": "Windurst Woods (K-7)",
+    "reward": "Sniping Bow",
+    "next_step": "Speak with Perih Vashai at Windurst Woods (K-7) to begin or continue this quest.",
+    "keywords": "RNG AF1 Perih Vashai Windurst Woods K-7 Sniping Bow Sin Hunting"
+  },
+  {
+    "log_id": 2,
+    "quest_id": 73,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Windurst_Quests",
+    "start_npc": "Perih Vashai",
+    "start_zone": "Windurst Woods (K-7)",
+    "reward": "Hunter's Beret",
+    "next_step": "Speak with Perih Vashai at Windurst Woods (K-7) to begin or continue this quest.",
+    "keywords": "RNG AF2 Perih Vashai Windurst Woods K-7 Hunter's Beret Fire and Brimstone"
+  },
+  {
+    "log_id": 2,
+    "quest_id": 74,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Windurst_Quests",
+    "start_npc": "Perih Vashai",
+    "start_zone": "Windurst Woods (K-7)",
+    "reward": "Hunter's Socks",
+    "next_step": "Speak with Perih Vashai at Windurst Woods (K-7) to begin or continue this quest.",
+    "keywords": "RNG AF3 Perih Vashai Windurst Woods K-7 Hunter's Socks Unbridled Passion"
+  },
+  {
+    "log_id": 2,
+    "quest_id": 25,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Windurst_Quests",
+    "start_npc": "Nanaa Mihgo",
+    "start_zone": "Windurst Woods (J-3)",
+    "reward": "200 gil",
+    "next_step": "Speak with Nanaa Mihgo at Windurst Woods (J-3) to begin or continue this quest.",
+    "keywords": "General Nanaa Mihgo Windurst Woods J-3 200 gil Mihgo's Amigo"
+  },
+  {
+    "log_id": 2,
+    "quest_id": 30,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Windurst_Quests",
+    "start_npc": "Hariga-Origa",
+    "start_zone": "Windurst Waters North (F-8)",
+    "reward": "Map of the Horutoto Ruins",
+    "requirements": {
+      "fame": 1
+    },
+    "next_step": "Speak with Hariga-Origa at Windurst Waters North (F-8) to begin or continue this quest.",
+    "keywords": "Map Hariga-Origa Windurst Waters North F-8 Map of the Horutoto Ruins Glyph Hanger"
+  },
+  {
+    "log_id": 2,
+    "quest_id": 7,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Windurst_Quests",
+    "start_npc": "Angelica",
+    "start_zone": "Windurst Waters North (F-10)",
+    "reward": "Ancient Blood",
+    "requirements": {
+      "fame": 1
+    },
+    "next_step": "Speak with Angelica at Windurst Waters North (F-10) to begin or continue this quest.",
+    "keywords": "General Angelica Windurst Waters North F-10 Ancient Blood A Pose by Any Other Name"
+  },
+  {
+    "log_id": 2,
+    "quest_id": 84,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Windurst_Quests",
+    "start_npc": "Lumomo",
+    "start_zone": "Windurst Waters North (F-10)",
+    "reward": "Dragon Chronicles, 10000 gil, 8000 EXP",
+    "requirements": {
+      "fame": 1
+    },
+    "next_step": "Speak with Lumomo at Windurst Waters North (F-10) to begin or continue this quest.",
+    "keywords": "General Lumomo Windurst Waters North F-10 Dragon Chronicles, 10000 gil, 8000 EXP Eco-Warrior"
+  },
+  {
+    "log_id": 2,
+    "quest_id": 5,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Windurst_Quests",
+    "start_npc": "Chamama",
+    "start_zone": "Windurst Waters North (F-10)",
+    "reward": "Bone Hairpin, 200 gil",
+    "requirements": {
+      "fame": 1
+    },
+    "next_step": "Speak with Chamama at Windurst Waters North (F-10) to begin or continue this quest.",
+    "keywords": "General Chamama Windurst Waters North F-10 Bone Hairpin, 200 gil In a Pickle"
+  },
+  {
+    "log_id": 2,
+    "quest_id": 29,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Windurst_Quests",
+    "start_npc": "Mashuu-Ajuu",
+    "start_zone": "Windurst Waters North (K-6)",
+    "reward": "Stationery Set",
+    "requirements": {
+      "fame": 1
+    },
+    "next_step": "Speak with Mashuu-Ajuu at Windurst Waters North (K-6) to begin or continue this quest.",
+    "keywords": "General Mashuu-Ajuu Windurst Waters North K-6 Stationery Set Reap What You Sow"
+  },
+  {
+    "log_id": 2,
+    "quest_id": 28,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Windurst_Quests",
+    "start_npc": "Moreno-Toeno",
+    "start_zone": "Windurst Waters North (L-6)",
+    "reward": "250 gil",
+    "requirements": {
+      "fame": 1
+    },
+    "next_step": "Speak with Moreno-Toeno at Windurst Waters North (L-6) to begin or continue this quest.",
+    "keywords": "General Moreno-Toeno Windurst Waters North L-6 250 gil Teacher's Pet"
+  },
+  {
+    "log_id": 2,
+    "quest_id": 2,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Windurst_Quests",
+    "start_npc": "Ranpi-Monpi",
+    "start_zone": "Windurst Waters North (D-9)",
+    "reward": "400 gil",
+    "requirements": {
+      "fame": 2
+    },
+    "next_step": "Speak with Ranpi-Monpi at Windurst Waters North (D-9) to begin or continue this quest.",
+    "keywords": "General Ranpi-Monpi Windurst Waters North D-9 400 gil A Crisis in the Making"
+  },
+  {
+    "log_id": 2,
+    "quest_id": 20,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Windurst_Quests",
+    "start_npc": "Tosuka-Porika",
+    "start_zone": "Windurst Waters North (G-8)",
+    "reward": "1500 gil",
+    "requirements": {
+      "fame": 2
+    },
+    "next_step": "Speak with Tosuka-Porika at Windurst Waters North (G-8) to begin or continue this quest.",
+    "keywords": "General Tosuka-Porika Windurst Waters North G-8 1500 gil Early Bird Catches the Bookworm"
+  },
+  {
+    "log_id": 2,
+    "quest_id": 4,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Windurst_Quests",
+    "start_npc": "Fuepepe",
+    "start_zone": "Windurst Waters North (L-6)",
+    "reward": "Aspir scroll",
+    "requirements": {
+      "fame": 3
+    },
+    "next_step": "Speak with Fuepepe at Windurst Waters North (L-6) to begin or continue this quest.",
+    "keywords": "Scroll Fuepepe Windurst Waters North L-6 Aspir scroll Making the Grade"
+  },
+  {
+    "log_id": 2,
+    "quest_id": 13,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Windurst_Quests",
+    "start_npc": "Tosuka-Porika",
+    "start_zone": "Windurst Waters North (G-8)",
+    "reward": "2800 gil",
+    "requirements": {
+      "fame": 3
+    },
+    "next_step": "Speak with Tosuka-Porika at Windurst Waters North (G-8) to begin or continue this quest.",
+    "keywords": "General Tosuka-Porika Windurst Waters North G-8 2800 gil Chasing Tales"
+  },
+  {
+    "log_id": 2,
+    "quest_id": 12,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Windurst_Quests",
+    "start_npc": "Hariga-Origa",
+    "start_zone": "Windurst Waters North (F-8)",
+    "reward": "Map of Fei'Yin",
+    "requirements": {
+      "fame": 4
+    },
+    "next_step": "Speak with Hariga-Origa at Windurst Waters North (F-8) to begin or continue this quest.",
+    "keywords": "Map Hariga-Origa Windurst Waters North F-8 Map of Fei'Yin A Smudge on One's Record"
+  },
+  {
+    "log_id": 2,
+    "quest_id": 64,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Windurst_Quests",
+    "start_npc": "Gantineux",
+    "start_zone": "Windurst Waters North (E-10)",
+    "reward": "Teleport-Mea scroll",
+    "requirements": {
+      "fame": 4
+    },
+    "next_step": "Speak with Gantineux at Windurst Waters North (E-10) to begin or continue this quest.",
+    "keywords": "Scroll Gantineux Windurst Waters North E-10 Teleport-Mea scroll Acting in Good Faith"
+  },
+  {
+    "log_id": 2,
+    "quest_id": 46,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Windurst_Quests",
+    "start_npc": "Mashuu-Ajuu",
+    "start_zone": "Windurst Waters North (K-6)",
+    "reward": "Hypno Staff",
+    "requirements": {
+      "fame": 4
+    },
+    "next_step": "Speak with Mashuu-Ajuu at Windurst Waters North (K-6) to begin or continue this quest.",
+    "keywords": "General Mashuu-Ajuu Windurst Waters North K-6 Hypno Staff Let Sleeping Dogs Lie"
+  },
+  {
+    "log_id": 2,
+    "quest_id": 49,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Windurst_Quests",
+    "start_npc": "Ropunono",
+    "start_zone": "Windurst Waters North (F-7)",
+    "reward": "4800 gil",
+    "requirements": {
+      "fame": 5
+    },
+    "next_step": "Speak with Ropunono at Windurst Waters North (F-7) to begin or continue this quest.",
+    "keywords": "General Ropunono Windurst Waters North F-7 4800 gil Heaven Cent"
+  },
+  {
+    "log_id": 2,
+    "quest_id": 6,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Windurst_Quests",
+    "start_npc": "Jatan-Paratan",
+    "start_zone": "Windurst Waters North (F-10)",
+    "reward": "Faerie Piccolo",
+    "requirements": {
+      "fame": 5
+    },
+    "next_step": "Speak with Jatan-Paratan at Windurst Waters North (F-10) to begin or continue this quest.",
+    "keywords": "General Jatan-Paratan Windurst Waters North F-10 Faerie Piccolo Wondering Minstrel"
+  },
+  {
+    "log_id": 2,
+    "quest_id": 51,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Windurst_Quests",
+    "start_npc": "Maysoon",
+    "start_zone": "Windurst Waters North (E-9)",
+    "reward": "Super Soup Pot",
+    "next_step": "Speak with Maysoon at Windurst Waters North (E-9) to begin or continue this quest.",
+    "keywords": "General Maysoon Windurst Waters North E-9 Super Soup Pot Hoist the Jelly, Roger"
+  },
+  {
+    "log_id": 2,
+    "quest_id": 14,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Windurst_Quests",
+    "start_npc": "Kerutoto",
+    "start_zone": "Windurst Waters South (J-8)",
+    "reward": "1000 gil",
+    "requirements": {
+      "fame": 1
+    },
+    "next_step": "Speak with Kerutoto at Windurst Waters South (J-8) to begin or continue this quest.",
+    "keywords": "General Kerutoto Windurst Waters South J-8 1000 gil Food for Thought"
+  },
+  {
+    "log_id": 2,
+    "quest_id": 0,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Windurst_Quests",
+    "start_npc": "Baren-Moren",
+    "start_zone": "Windurst Waters South (H-7)",
+    "reward": "Windshear Hat",
+    "requirements": {
+      "fame": 1
+    },
+    "next_step": "Speak with Baren-Moren at Windurst Waters South (H-7) to begin or continue this quest.",
+    "keywords": "General Baren-Moren Windurst Waters South H-7 Windshear Hat Hat in Hand"
+  },
+  {
+    "log_id": 2,
+    "quest_id": 37,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Windurst_Quests",
+    "start_npc": "Naiko-Paneiko",
+    "start_zone": "Windurst Waters South (C-11)",
+    "reward": "560 gil",
+    "requirements": {
+      "fame": 1
+    },
+    "next_step": "Speak with Naiko-Paneiko at Windurst Waters South (C-11) to begin or continue this quest.",
+    "keywords": "General Naiko-Paneiko Windurst Waters South C-11 560 gil Making Headlines"
+  },
+  {
+    "log_id": 2,
+    "quest_id": 50,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Windurst_Quests",
+    "start_npc": "Moari-Kaaori",
+    "start_zone": "Windurst Waters South (C-9)",
+    "reward": "Iron Sword",
+    "requirements": {
+      "fame": 1
+    },
+    "next_step": "Speak with Moari-Kaaori at Windurst Waters South (C-9) to begin or continue this quest.",
+    "keywords": "General Moari-Kaaori Windurst Waters South C-9 Iron Sword Say It with Flowers"
+  },
+  {
+    "log_id": 2,
+    "quest_id": 1,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Windurst_Quests",
+    "start_npc": "Baren-Moren",
+    "start_zone": "Windurst Waters South (H-7)",
+    "reward": "1500 gil",
+    "requirements": {
+      "fame": 3
+    },
+    "next_step": "Speak with Baren-Moren at Windurst Waters South (H-7) to begin or continue this quest.",
+    "keywords": "General Baren-Moren Windurst Waters South H-7 1500 gil A Feather in One's Cap"
+  },
+  {
+    "log_id": 2,
+    "quest_id": 15,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Windurst_Quests",
+    "start_npc": "Kenapa-Keppa",
+    "start_zone": "Windurst Waters South (J-9)",
+    "reward": "Power Gi",
+    "requirements": {
+      "fame": 3
+    },
+    "next_step": "Speak with Kenapa-Keppa at Windurst Waters South (J-9) to begin or continue this quest.",
+    "keywords": "General Kenapa-Keppa Windurst Waters South J-9 Power Gi Overnight Delivery"
+  },
+  {
+    "log_id": 2,
+    "quest_id": 16,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Windurst_Quests",
+    "start_npc": "Ohbiru-Dohbiru",
+    "start_zone": "Windurst Waters South (J-9)",
+    "reward": "900 gil",
+    "requirements": {
+      "fame": 4
+    },
+    "next_step": "Speak with Ohbiru-Dohbiru at Windurst Waters South (J-9) to begin or continue this quest.",
+    "keywords": "General Ohbiru-Dohbiru Windurst Waters South J-9 900 gil Water Way to Go!"
+  },
+  {
+    "log_id": 2,
+    "quest_id": 17,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Windurst_Quests",
+    "start_npc": "Kerutoto",
+    "start_zone": "Windurst Waters South (J-8)",
+    "reward": "Blue Ribbon, 3600 gil",
+    "requirements": {
+      "fame": 5
+    },
+    "next_step": "Speak with Kerutoto at Windurst Waters South (J-8) to begin or continue this quest.",
+    "keywords": "General Kerutoto Windurst Waters South J-8 Blue Ribbon, 3600 gil Blue Ribbon Blues"
+  },
+  {
+    "log_id": 2,
+    "quest_id": 80,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Windurst_Quests",
+    "start_npc": "Ohbiru-Dohbiru",
+    "start_zone": "Windurst Waters South (J-9)",
+    "reward": "Rhinostery Certificate",
+    "requirements": {
+      "fame": 6
+    },
+    "next_step": "Speak with Ohbiru-Dohbiru at Windurst Waters South (J-9) to begin or continue this quest.",
+    "keywords": "Fast Travel Ohbiru-Dohbiru Windurst Waters South J-9 Rhinostery Certificate Toraimarai Turmoil"
+  },
+  {
+    "log_id": 2,
+    "quest_id": 77,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Windurst_Quests",
+    "start_npc": "Honoi-Gomoi",
+    "start_zone": "Windurst Waters South (E-7)",
+    "reward": "8000 gil",
+    "requirements": {
+      "fame": 6
+    },
+    "next_step": "Speak with Honoi-Gomoi at Windurst Waters South (E-7) to begin or continue this quest.",
+    "keywords": "General Honoi-Gomoi Windurst Waters South E-7 8000 gil Wild Card"
+  },
+  {
+    "log_id": 2,
+    "quest_id": 9,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Windurst_Quests",
+    "start_npc": "Leepe-Hoppe",
+    "start_zone": "Windurst Waters South (J-9)",
+    "reward": "Fenrir unlocked",
+    "next_step": "Speak with Leepe-Hoppe at Windurst Waters South (J-9) to begin or continue this quest.",
+    "keywords": "Avatar Leepe-Hoppe Windurst Waters South J-9 Fenrir unlocked The Moonlit Path"
+  },
+  {
+    "log_id": 2,
+    "quest_id": 93,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Windurst_Quests",
+    "start_npc": "Kerutoto",
+    "start_zone": "Windurst Waters South (J-8)",
+    "reward": "Diabolos unlocked",
+    "next_step": "Speak with Kerutoto at Windurst Waters South (J-8) to begin or continue this quest.",
+    "keywords": "Avatar Kerutoto Windurst Waters South J-8 Diabolos unlocked Waking Dreams"
+  },
+  {
+    "log_id": 2,
+    "quest_id": 38,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Windurst_Quests",
+    "start_npc": "Naiko-Paneiko",
+    "start_zone": "Windurst Waters South (C-11)",
+    "reward": "1500 gil",
+    "next_step": "Speak with Naiko-Paneiko at Windurst Waters South (C-11) to begin or continue this quest.",
+    "keywords": "General Naiko-Paneiko Windurst Waters South C-11 1500 gil Scooped!"
+  },
+  {
+    "log_id": 2,
+    "quest_id": 90,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Windurst_Quests",
+    "start_npc": "Leepe-Hoppe",
+    "start_zone": "Windurst Waters South (J-9)",
+    "reward": "4000 gil",
+    "next_step": "Speak with Leepe-Hoppe at Windurst Waters South (J-9) to begin or continue this quest.",
+    "keywords": "General Leepe-Hoppe Windurst Waters South J-9 4000 gil Tuning In"
+  },
+  {
+    "log_id": 2,
+    "quest_id": 91,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Windurst_Quests",
+    "start_npc": "Leepe-Hoppe",
+    "start_zone": "Windurst Waters South (J-9)",
+    "reward": "Cache-nez, 6000 gil",
+    "next_step": "Speak with Leepe-Hoppe at Windurst Waters South (J-9) to begin or continue this quest.",
+    "keywords": "General Leepe-Hoppe Windurst Waters South J-9 Cache-nez, 6000 gil Tuning Out"
+  },
+  {
+    "log_id": 2,
+    "quest_id": 89,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Windurst_Quests",
+    "start_npc": "Pygmalion",
+    "start_zone": "Port Windurst (M-7)",
+    "reward": "500 gil",
+    "requirements": {
+      "fame": 1
+    },
+    "next_step": "Speak with Pygmalion at Port Windurst (M-7) to begin or continue this quest.",
+    "keywords": "General Pygmalion Port Windurst M-7 500 gil A Discerning Eye (Windurst)"
+  },
+  {
+    "log_id": 2,
+    "quest_id": 52,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Windurst_Quests",
+    "start_npc": "Tokaka",
+    "start_zone": "Port Windurst (C-8)",
+    "reward": "70 gil",
+    "requirements": {
+      "fame": 1
+    },
+    "next_step": "Speak with Tokaka at Port Windurst (C-8) to begin or continue this quest.",
+    "keywords": "General Tokaka Port Windurst C-8 70 gil Something Fishy"
+  },
+  {
+    "log_id": 2,
+    "quest_id": 53,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Windurst_Quests",
+    "start_npc": "Sigismund",
+    "start_zone": "Port Windurst (E-7)",
+    "reward": "Fish Scale Shield",
+    "requirements": {
+      "fame": 1
+    },
+    "next_step": "Speak with Sigismund at Port Windurst (E-7) to begin or continue this quest.",
+    "keywords": "General Sigismund Port Windurst E-7 Fish Scale Shield To Catch a Falling Star"
+  },
+  {
+    "log_id": 2,
+    "quest_id": 36,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Windurst_Quests",
+    "start_npc": "Kohlo-Lakolo",
+    "start_zone": "Port Windurst (G-5)",
+    "reward": "Justice Badge",
+    "requirements": {
+      "fame": 1
+    },
+    "next_step": "Speak with Kohlo-Lakolo at Port Windurst (G-5) to begin or continue this quest.",
+    "keywords": "General Kohlo-Lakolo Port Windurst G-5 Justice Badge Truth, Justice, and the Onion Way!"
+  },
+  {
+    "log_id": 2,
+    "quest_id": 40,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Windurst_Quests",
+    "start_npc": "Kohlo-Lakolo",
+    "start_zone": "Port Windurst (G-5)",
+    "reward": "Blaze Spikes scroll",
+    "requirements": {
+      "fame": 2
+    },
+    "next_step": "Speak with Kohlo-Lakolo at Port Windurst (G-5) to begin or continue this quest.",
+    "keywords": "Scroll Kohlo-Lakolo Port Windurst G-5 Blaze Spikes scroll Know One's Onions"
+  },
+  {
+    "log_id": 2,
+    "quest_id": 41,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Windurst_Quests",
+    "start_npc": "Kohlo-Lakolo",
+    "start_zone": "Port Windurst (G-5)",
+    "reward": "Heko Obi",
+    "requirements": {
+      "fame": 2
+    },
+    "next_step": "Speak with Kohlo-Lakolo at Port Windurst (G-5) to begin or continue this quest.",
+    "keywords": "General Kohlo-Lakolo Port Windurst G-5 Heko Obi Inspector's Gadget!"
+  },
+  {
+    "log_id": 2,
+    "quest_id": 3,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Windurst_Quests",
+    "start_npc": "Hakkuru-Rinkuru",
+    "start_zone": "Port Windurst (E-7)",
+    "reward": "1500 gil",
+    "requirements": {
+      "fame": 2
+    },
+    "next_step": "Speak with Hakkuru-Rinkuru at Port Windurst (E-7) to begin or continue this quest.",
+    "keywords": "General Hakkuru-Rinkuru Port Windurst E-7 1500 gil Making Amends"
+  },
+  {
+    "log_id": 2,
+    "quest_id": 23,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Windurst_Quests",
+    "start_npc": "Paytah",
+    "start_zone": "Port Windurst (I-7)",
+    "reward": "Dhalmel Mantle, Leather Ring",
+    "requirements": {
+      "fame": 3
+    },
+    "next_step": "Speak with Paytah at Port Windurst (I-7) to begin or continue this quest.",
+    "keywords": "General Paytah Port Windurst I-7 Dhalmel Mantle, Leather Ring All at Sea"
+  },
+  {
+    "log_id": 2,
+    "quest_id": 42,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Windurst_Quests",
+    "start_npc": "Kohlo-Lakolo",
+    "start_zone": "Port Windurst (G-5)",
+    "reward": "Bouncer Club",
+    "requirements": {
+      "fame": 3
+    },
+    "next_step": "Speak with Kohlo-Lakolo at Port Windurst (G-5) to begin or continue this quest.",
+    "keywords": "General Kohlo-Lakolo Port Windurst G-5 Bouncer Club Onion Rings"
+  },
+  {
+    "log_id": 2,
+    "quest_id": 8,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Windurst_Quests",
+    "start_npc": "Hakkuru-Rinkuru",
+    "start_zone": "Port Windurst (E-7)",
+    "reward": "6000 gil",
+    "requirements": {
+      "fame": 4
+    },
+    "next_step": "Speak with Hakkuru-Rinkuru at Port Windurst (E-7) to begin or continue this quest.",
+    "keywords": "General Hakkuru-Rinkuru Port Windurst E-7 6000 gil Making Amens!"
+  },
+  {
+    "log_id": 2,
+    "quest_id": 92,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Windurst_Quests",
+    "start_npc": "Chipmy-Popmy",
+    "start_zone": "Port Windurst (C-8)",
+    "reward": "Map of the Attohwa Chasm",
+    "requirements": {
+      "fame": 5
+    },
+    "next_step": "Speak with Chipmy-Popmy at Port Windurst (C-8) to begin or continue this quest.",
+    "keywords": "Map Chipmy-Popmy Port Windurst C-8 Map of the Attohwa Chasm One Good Deed?"
+  },
+  {
+    "log_id": 2,
+    "quest_id": 76,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Windurst_Quests",
+    "start_npc": "Kohlo-Lakolo",
+    "start_zone": "Port Windurst (G-5)",
+    "reward": "Star Necklace",
+    "requirements": {
+      "fame": 5
+    },
+    "next_step": "Speak with Kohlo-Lakolo at Port Windurst (G-5) to begin or continue this quest.",
+    "keywords": "General Kohlo-Lakolo Port Windurst G-5 Star Necklace Crying Over Onions"
+  },
+  {
+    "log_id": 2,
+    "quest_id": 78,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Windurst_Quests",
+    "start_npc": "Kohlo-Lakolo",
+    "start_zone": "Port Windurst (G-5)",
+    "reward": "Promise Badge",
+    "requirements": {
+      "fame": 5
+    },
+    "next_step": "Speak with Kohlo-Lakolo at Port Windurst (G-5) to begin or continue this quest.",
+    "keywords": "General Kohlo-Lakolo Port Windurst G-5 Promise Badge The Promise"
+  },
+  {
+    "log_id": 2,
+    "quest_id": 48,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Windurst_Quests",
+    "start_npc": "Hakkuru-Rinkuru",
+    "start_zone": "Port Windurst (E-7)",
+    "reward": "New Moon Armlets",
+    "requirements": {
+      "fame": 5
+    },
+    "next_step": "Speak with Hakkuru-Rinkuru at Port Windurst (E-7) to begin or continue this quest.",
+    "keywords": "General Hakkuru-Rinkuru Port Windurst E-7 New Moon Armlets Wonder Wands"
+  },
+  {
+    "log_id": 2,
+    "quest_id": 88,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Windurst_Quests",
+    "start_npc": "Dehn Harzhapan",
+    "start_zone": "Port Windurst (G-6)",
+    "reward": "Page from Miratete's Memoirs",
+    "requirements": {
+      "fame": 6
+    },
+    "next_step": "Speak with Dehn Harzhapan at Port Windurst (G-6) to begin or continue this quest.",
+    "keywords": "Escort Dehn Harzhapan Port Windurst G-6 Page from Miratete's Memoirs Escort for Hire (Windurst)"
+  },
+  {
+    "log_id": 2,
+    "quest_id": 86,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Windurst_Quests",
+    "start_npc": "Kuroido-Moido",
+    "start_zone": "Port Windurst (E-7)",
+    "reward": "Black Halo unlocked",
+    "next_step": "Speak with Kuroido-Moido at Port Windurst (E-7) to begin or continue this quest.",
+    "keywords": "WS Kuroido-Moido Port Windurst E-7 Black Halo unlocked Orastery Woes"
+  },
+  {
+    "log_id": 2,
+    "quest_id": 21,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Windurst_Quests",
+    "start_npc": "Ohruru",
+    "start_zone": "Port Windurst (E-7)",
+    "reward": "1000-1500 gil",
+    "next_step": "Speak with Ohruru at Port Windurst (E-7) to begin or continue this quest.",
+    "keywords": "General Ohruru Port Windurst E-7 1000-1500 gil Catch It If You Can!"
+  },
+  {
+    "log_id": 2,
+    "quest_id": 65,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Windurst_Quests",
+    "start_npc": "Ojha Rhawash",
+    "start_zone": "Windurst Walls (C-13)",
+    "reward": "Mog House exit",
+    "requirements": {
+      "fame": 1
+    },
+    "next_step": "Speak with Ojha Rhawash at Windurst Walls (C-13) to begin or continue this quest.",
+    "keywords": "Fast Travel Ojha Rhawash Windurst Walls C-13 Mog House exit Flower Child"
+  },
+  {
+    "log_id": 2,
+    "quest_id": 32,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Windurst_Quests",
+    "start_npc": "Shantotto",
+    "start_zone": "Windurst Walls (K-7)",
+    "reward": "Brass Rod",
+    "requirements": {
+      "fame": 1
+    },
+    "next_step": "Speak with Shantotto at Windurst Walls (K-7) to begin or continue this quest.",
+    "keywords": "General Shantotto Windurst Walls K-7 Brass Rod Curses, Foiled Again!"
+  },
+  {
+    "log_id": 2,
+    "quest_id": 34,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Windurst_Quests",
+    "start_npc": "Yoran-Oran",
+    "start_zone": "Windurst Walls (E-5)",
+    "reward": "120-5500 gil",
+    "requirements": {
+      "fame": 1
+    },
+    "next_step": "Speak with Yoran-Oran at Windurst Walls (E-5) to begin or continue this quest.",
+    "keywords": "General Yoran-Oran Windurst Walls E-5 120-5500 gil Mandragora-Mad"
+  },
+  {
+    "log_id": 2,
+    "quest_id": 10,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Windurst_Quests",
+    "start_npc": "Koru-Moru",
+    "start_zone": "Windurst Walls (E-7)",
+    "reward": "Compound Eye Circlet",
+    "requirements": {
+      "fame": 1
+    },
+    "next_step": "Speak with Koru-Moru at Windurst Walls (E-7) to begin or continue this quest.",
+    "keywords": "General Koru-Moru Windurst Walls E-7 Compound Eye Circlet Star Struck"
+  },
+  {
+    "log_id": 2,
+    "quest_id": 19,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Windurst_Quests",
+    "start_npc": "Ambrosius",
+    "start_zone": "Windurst Walls (J-12)",
+    "reward": "50-500 gil",
+    "requirements": {
+      "fame": 1
+    },
+    "next_step": "Speak with Ambrosius at Windurst Walls (J-12) to begin or continue this quest.",
+    "keywords": "General Ambrosius Windurst Walls J-12 50-500 gil The Postman Always K.O.'s Twice"
+  },
+  {
+    "log_id": 2,
+    "quest_id": 33,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Windurst_Quests",
+    "start_npc": "Shantotto",
+    "start_zone": "Windurst Walls (K-7)",
+    "reward": "Misery Staff",
+    "requirements": {
+      "fame": 2
+    },
+    "next_step": "Speak with Shantotto at Windurst Walls (K-7) to begin or continue this quest.",
+    "keywords": "General Shantotto Windurst Walls K-7 Misery Staff Curses, Foiled...Again!?"
+  },
+  {
+    "log_id": 2,
+    "quest_id": 35,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Windurst_Quests",
+    "start_npc": "Raamimi",
+    "start_zone": "Windurst Walls (F-7)",
+    "reward": "Mulsum x3",
+    "requirements": {
+      "fame": 2
+    },
+    "next_step": "Speak with Raamimi at Windurst Walls (F-7) to begin or continue this quest.",
+    "keywords": "General Raamimi Windurst Walls F-7 Mulsum x3 To Bee or Not to Bee?"
+  },
+  {
+    "log_id": 2,
+    "quest_id": 11,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Windurst_Quests",
+    "start_npc": "Koru-Moru",
+    "start_zone": "Windurst Walls (E-7)",
+    "reward": "Great Club",
+    "requirements": {
+      "fame": 3
+    },
+    "next_step": "Speak with Koru-Moru at Windurst Walls (E-7) to begin or continue this quest.",
+    "keywords": "General Koru-Moru Windurst Walls E-7 Great Club Blast from the Past"
+  },
+  {
+    "log_id": 2,
+    "quest_id": 63,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Windurst_Quests",
+    "start_npc": "Shantotto",
+    "start_zone": "Windurst Walls (K-7)",
+    "reward": "Warp II scroll",
+    "requirements": {
+      "fame": 4
+    },
+    "next_step": "Speak with Shantotto at Windurst Walls (K-7) to begin or continue this quest.",
+    "keywords": "Scroll Shantotto Windurst Walls K-7 Warp II scroll Curses, Foiled A-Golem!?"
+  },
+  {
+    "log_id": 2,
+    "quest_id": 79,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Windurst_Quests",
+    "start_npc": "Koru-Moru",
+    "start_zone": "Windurst Walls (E-7)",
+    "reward": "Vile Elixir, 10000 gil",
+    "requirements": {
+      "fame": 9
+    },
+    "next_step": "Speak with Koru-Moru at Windurst Walls (E-7) to begin or continue this quest.",
+    "keywords": "General Koru-Moru Windurst Walls E-7 Vile Elixir, 10000 gil Nothing Matters"
+  },
+  {
+    "log_id": 2,
+    "quest_id": 75,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Windurst_Quests",
+    "start_npc": "Ajido-Marujido",
+    "start_zone": "Windurst Walls (G-3)",
+    "reward": "Summoner unlocked",
+    "next_step": "Speak with Ajido-Marujido at Windurst Walls (G-3) to begin or continue this quest.",
+    "keywords": "SMN Flag Ajido-Marujido Windurst Walls G-3 Summoner unlocked I Can Hear a Rainbow"
+  },
+  {
+    "log_id": 2,
+    "quest_id": 87,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Windurst_Quests",
+    "start_npc": "Shantotto",
+    "start_zone": "Windurst Walls (K-7)",
+    "reward": "Retribution unlocked",
+    "next_step": "Speak with Shantotto at Windurst Walls (K-7) to begin or continue this quest.",
+    "keywords": "WS Shantotto Windurst Walls K-7 Retribution unlocked Blood and Glory"
+  },
+  {
+    "log_id": 2,
+    "quest_id": 81,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Windurst_Quests",
+    "start_npc": "Juroro",
+    "start_zone": "Windurst Walls (I-8)",
+    "reward": "Kukulcan's Staff",
+    "next_step": "Speak with Juroro at Windurst Walls (I-8) to begin or continue this quest.",
+    "keywords": "SMN AF1 Juroro Windurst Walls I-8 Kukulcan's Staff The Puppet Master"
+  },
+  {
+    "log_id": 2,
+    "quest_id": 82,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Windurst_Quests",
+    "start_npc": "Carbuncle",
+    "start_zone": "Windurst Walls (G-3)",
+    "reward": "Evoker's Spats",
+    "next_step": "Speak with Carbuncle at Windurst Walls (G-3) to begin or continue this quest.",
+    "keywords": "SMN AF2 Carbuncle Windurst Walls G-3 Evoker's Spats Class Reunion"
+  },
+  {
+    "log_id": 2,
+    "quest_id": 83,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Windurst_Quests",
+    "start_npc": "Carbuncle",
+    "start_zone": "Windurst Walls (I-9)",
+    "reward": "Evoker's Horn",
+    "next_step": "Speak with Carbuncle at Windurst Walls (I-9) to begin or continue this quest.",
+    "keywords": "SMN AF3 Carbuncle Windurst Walls I-9 Evoker's Horn Carbuncle Debacle"
+  },
+  {
+    "log_id": 2,
+    "quest_id": 66,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Windurst_Quests",
+    "start_npc": "Chumimi",
+    "start_zone": "Heavens Tower",
+    "reward": "Casting Wand",
+    "requirements": {
+      "fame": 1
+    },
+    "next_step": "Speak with Chumimi at Heavens Tower to begin or continue this quest.",
+    "keywords": "BLM AF1 Chumimi Heavens Tower Casting Wand The Three Magi"
+  },
+  {
+    "log_id": 2,
+    "quest_id": 67,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Windurst_Quests",
+    "start_npc": "Chumimi",
+    "start_zone": "Heavens Tower",
+    "reward": "Wizard's Sabots",
+    "requirements": {
+      "fame": 1
+    },
+    "next_step": "Speak with Chumimi at Heavens Tower to begin or continue this quest.",
+    "keywords": "BLM AF2 Chumimi Heavens Tower Wizard's Sabots Recollections"
+  },
+  {
+    "log_id": 2,
+    "quest_id": 68,
+    "source": "horizonxi",
+    "source_label": "HorizonXI Wiki city quest table",
+    "source_url": "https://horizonffxi.wiki/Category:Windurst_Quests",
+    "start_npc": "Chumimi",
+    "start_zone": "Heavens Tower",
+    "reward": "Wizard's Petasos",
+    "requirements": {
+      "fame": 1
+    },
+    "next_step": "Speak with Chumimi at Heavens Tower to begin or continue this quest.",
+    "keywords": "BLM AF3 Chumimi Heavens Tower Wizard's Petasos The Root of the Problem"
+  }
+]
