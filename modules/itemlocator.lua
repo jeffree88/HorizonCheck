@@ -1,8 +1,9 @@
 local M={};
 local HC;
-local buffer={''};
 local poll_at=0;
 local POLL_SECONDS=10;
+local NO_COUNTER_FALLBACK_SECONDS=120;
+local no_counter_refresh_at=0;
 
 local LOC_SHORT={
     ['INVENTORY']='Inv',['SAFE']='Safe',['STORAGE']='Storage',['TEMP']='Temp',['LOCKER']='Locker',
@@ -52,6 +53,15 @@ end
 function M.poll(c)
     local now=os.time(); if now-(tonumber(poll_at) or 0)<POLL_SECONDS then return false; end
     poll_at=now;
+    local token=(HC.modules.skills and HC.modules.skills.collection_scan_token and HC.modules.skills.collection_scan_token()) or nil;
+    -- On normal Ashita builds the inventory update counter makes this check
+    -- event-like: the expensive snapshot path runs only after a real inventory
+    -- change.  If the counter is unavailable, fall back to a two-minute safety
+    -- refresh instead of a scan every ten seconds.
+    if tostring(token or '')=='inv:na' then
+        if no_counter_refresh_at>0 and now-no_counter_refresh_at<NO_COUNTER_FALLBACK_SECONDS then return false; end
+        no_counter_refresh_at=now;
+    end
     return M.refresh_current(c,false);
 end
 
@@ -186,31 +196,21 @@ local function draw_rows(imgui,rows,id)
     end
 end
 
-function M.draw_search_matches(q)
-    local imgui=HC and HC.imgui or nil; if not imgui or compact(q)=='' then return; end
-    local rows=M.query(q,12);
-    if #rows==0 then return; end
+function M.draw_search_matches(q,rows)
+    local imgui=HC and HC.imgui or nil; if not imgui or compact(q)=='' then return 0; end
+    rows=type(rows)=='table' and rows or M.query(q,12);
+    if #rows==0 then return 0; end
     imgui.Spacing();
     imgui.Text('Across Your Characters'); imgui.SameLine(); imgui.TextDisabled(tostring(#rows)..' location match'..(#rows==1 and '' or 'es'));
     draw_rows(imgui,rows,'global');
+    return #rows;
 end
 
 function M.draw(c)
+    -- Compatibility entry point retained for older callers/plugins.  The user-
+    -- facing locator was merged into the global Find anything box in v7.9.16.
     local imgui=HC and HC.imgui or nil; if not imgui then return; end
-    M.poll(c);
-    if not imgui.CollapsingHeader('Account Item Locator##character_info_item_locator') then return; end
-    imgui.TextDisabled('Find where an item was last seen across your saved characters. Each character refreshes when you use HorizonCheck while logged into that character.');
-    local st=M.status();
-    imgui.TextDisabled(string.format('Saved inventories: %d character%s | %d item entries',tonumber(st.characters) or 0,(tonumber(st.characters) or 0)==1 and '' or 's',tonumber(st.items) or 0));
-    local ok=pcall(function() imgui.InputText('##hc_account_item_search',buffer,120); end);
-    if not ok then imgui.TextDisabled('Item search is unavailable in this UI build.'); return; end
-    imgui.SameLine();
-    if imgui.SmallButton('Refresh This Character##hc_account_item_refresh') then M.refresh_current(c,true); end
-    if tostring(buffer[1] or '')=='' then
-        imgui.TextDisabled('Try: Homam, Haubergeon, Rabbit Belt, Ancient Beastcoin...');
-        return;
-    end
-    draw_rows(imgui,M.query(buffer[1],30),'character_info');
+    imgui.TextDisabled('Account item lookup is available from Find anything at the top of HorizonCheck.');
 end
 
 function M.status()

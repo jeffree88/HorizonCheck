@@ -286,7 +286,7 @@ def source_contracts():
         'mission UI uses shared components': (ROOT/'modules'/'missions.lua','HC.modules.uikit.simple_table'),
         'anniversary UI uses shared progress labels': (ROOT/'modules'/'anniversary.lua','HC.modules.uikit.progress_label'),
         'job progression action-first summary': (ROOT/'modules'/'skills.lua',"Next Progression:"),
-        'job progression compact status summary': (ROOT/'modules'/'skills.lua',"Lv.%d/75 | Mapped quests %d/%d | Overall %d%%"),
+        'job progression compact status summary': (ROOT/'modules'/'skills.lua',"Lv.%d/75 | EXP %s/%s | Mapped quests %d/%d | Overall %d%%"),
         'clickable tab navigation request': (ROOT/'modules'/'ui.lua','function M.navigate'),
         'overview action navigation': (ROOT/'modules'/'smartdashboard.lua','navigation_for_action'),
         'search result navigation': (ROOT/'modules'/'search.lua','navigation_target'),

@@ -1205,7 +1205,7 @@ function M.draw(c,embedded)
     local l23=(HC.modules.uikit and HC.modules.uikit.progress_label) and HC.modules.uikit.progress_label('2023 - 1st Anniversary Scavenger Hunt',p23,#Y2023) or string.format('2023 - 1st Anniversary Scavenger Hunt - %d/%d',p23,#Y2023);
     local l24=(HC.modules.uikit and HC.modules.uikit.progress_label) and HC.modules.uikit.progress_label('2024 - 2nd Anniversary Item Hunt',p24,t24) or string.format('2024 - 2nd Anniversary Item Hunt - %d/%d',p24,t24);
     local l25=(HC.modules.uikit and HC.modules.uikit.progress_label) and HC.modules.uikit.progress_label('2025 - 3rd Anniversary Sehri Hunts',p25,#Y2025) or string.format('2025 - 3rd Anniversary Sehri Hunts - %d/%d',p25,#Y2025);
-    if sticky_anniversary_header('year_2023',l23,true) then draw_2023(c,a); end
+    if sticky_anniversary_header('year_2023',l23,false) then draw_2023(c,a); end
     anniversary_section_gap();
     if sticky_anniversary_header('year_2024',l24,false) then draw_2024(c,a); end
     anniversary_section_gap();

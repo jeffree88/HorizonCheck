@@ -278,7 +278,35 @@ function M.draw_bar(c)
     imgui.TextDisabled('Find anything:'); imgui.SameLine();
     local ok=pcall(function() imgui.InputText('##hc_global_search',buffer,160); end);
     if not ok then imgui.TextDisabled('Search input unavailable in this ImGui build.'); return; end
-    if M.active() then imgui.SameLine(); if imgui.SmallButton('Clear##hc_global_search_clear') then M.clear(); end else imgui.SameLine(); imgui.TextDisabled('quests, missions, gear, Assault, Limbus, HENM, events, items'); end
+
+    if M.active() then
+        imgui.SameLine();
+        if imgui.SmallButton('Clear##hc_global_search_clear') then M.clear(); end
+    end
+
+    -- v7.9.16: the global search is also the account item locator.  Keep the
+    -- inventory refresh control beside the one search box instead of carrying a
+    -- second search UI in Character Info.
+    local locator=HC.modules and HC.modules.itemlocator or nil;
+    if locator and locator.refresh_current then
+        imgui.SameLine();
+        if imgui.SmallButton('Refresh Items##hc_global_item_refresh') then
+            pcall(locator.refresh_current,c,true);
+        end
+        if imgui.IsItemHovered and imgui.IsItemHovered() and imgui.SetTooltip then
+            imgui.SetTooltip('Refresh this character\'s saved inventory locations for account-wide item search.');
+        end
+    end
+
+    imgui.SameLine();
+    if not M.active() then
+        imgui.TextDisabled('quests, missions, gear, Assault, Limbus, HENM, events, account items');
+    elseif locator and locator.status then
+        local oks,st=pcall(locator.status);
+        if oks and type(st)=='table' then
+            imgui.TextDisabled(string.format('%d saved char%s | %d item entries',tonumber(st.characters) or 0,(tonumber(st.characters) or 0)==1 and '' or 's',tonumber(st.items) or 0));
+        end
+    end
 end
 
 local function navigation_target(row)
@@ -315,8 +343,15 @@ function M.draw_results(c)
     local profiler=HC.modules.profiler;
     local results=nil;
     if profiler and profiler.measure then results=profiler.measure('search.query',M.query,M.text(),c,8); else results=M.query(M.text(),c,8); end
-    imgui.Text('Search Results'); imgui.SameLine(); imgui.TextDisabled(tostring(#results)..' shown');
-    if #results==0 then imgui.TextDisabled('No tracker records match "'..M.text()..'".'); end
+    local locator=HC.modules and HC.modules.itemlocator or nil;
+    local item_rows={};
+    if locator and locator.query then
+        local ok_items,rows=pcall(locator.query,M.text(),12);
+        if ok_items and type(rows)=='table' then item_rows=rows; end
+    end
+    local total=#results+#item_rows;
+    imgui.Text('Search Results'); imgui.SameLine(); imgui.TextDisabled(tostring(total)..' match'..(total==1 and '' or 'es'));
+    if total==0 then imgui.TextDisabled('No HorizonCheck or saved-account item records match "'..M.text()..'".'); end
     local table_ok=(imgui.BeginTable~=nil and imgui.TableSetupColumn~=nil and imgui.TableHeadersRow~=nil and imgui.TableNextRow~=nil and imgui.TableSetColumnIndex~=nil and imgui.EndTable~=nil);
     local flags=(HC.modules.uikit and HC.modules.uikit.table_flags and HC.modules.uikit.table_flags()) or (64+128+512);
     if #results>0 and table_ok and imgui.BeginTable('##hc_global_search_results_v790',6,flags) then
@@ -336,7 +371,7 @@ function M.draw_results(c)
     elseif #results>0 then
         for _,r in ipairs(results) do imgui.Text(r.kind..' - '..r.name); imgui.SameLine(); imgui.TextDisabled('['..tostring(r.state or '')..'] '..tostring(r.where or r.subtitle)..' | '..tostring(r.tab or '')); end
     end
-    if HC.modules.itemlocator and HC.modules.itemlocator.draw_search_matches then HC.modules.itemlocator.draw_search_matches(M.text()); end
+    if locator and locator.draw_search_matches then locator.draw_search_matches(M.text(),item_rows); end
 end
 
 function M.status(c) return {indexed=#build_index(c,false),active=M.active(),query=M.text()}; end

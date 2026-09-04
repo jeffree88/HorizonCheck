@@ -9,6 +9,27 @@ local function user_file(kind,name)
     return tostring(HC and HC.addon_path or '')..tostring(name or '');
 end
 
+local function reports_directory()
+    return tostring(user_file('reports','')):gsub('[\\/]+$','');
+end
+
+function M.open_reports_folder()
+    local path=reports_directory();
+    -- The path comes from Ashita's install directory, but reject embedded
+    -- quotes before handing it to the Windows shell as an extra safety guard.
+    if path=='' or path:find('"',1,true) then return false,path; end
+    local ok,result=pcall(function() return os.execute('explorer.exe "'..path..'"'); end);
+    if not ok or result==false or result==nil then return false,path; end
+    if type(result)=='number' and result~=0 then return false,path; end
+    return true,path;
+end
+
+local function report_folder_message()
+    local ok,path=M.open_reports_folder();
+    if ok then HC.msg('Opened HorizonCheck reports folder: '..tostring(path));
+    else HC.msg('Could not open the reports folder. Reports are saved at: '..tostring(path)); end
+end
+
 local cache={at=0,char=nil,data=nil};
 local CACHE_SECONDS=10;
 local manual_refresh=false;
@@ -444,6 +465,7 @@ function M.draw(c)
     if imgui.Button('Export Report##hc_release_health_export') then
         local path=M.export(c); HC.msg(path and ('Release health report written: '..path) or 'Could not write release health report.');
     end
+    if imgui.Button('Open Reports Folder##hc_release_health_open_reports') then report_folder_message(); end
     imgui.SameLine();
     if imgui.Button('Run Zone Sync##hc_release_health_sync') then if HC.modules.zonesync then HC.modules.zonesync.force('release health check'); end; M.invalidate(); end
 
@@ -476,6 +498,7 @@ function M.draw_settings(c)
     if imgui.Button('Export Health Report##hc_release_health_settings_export') then
         local path=M.export(c); HC.msg(path and ('Release health report written: '..path) or 'Could not write release health report.');
     end
+    if imgui.Button('Open Reports Folder##hc_release_health_settings_open_reports') then report_folder_message(); end
     if c.settings.release_health_expanded==true then
         for _,r in ipairs(s.rows) do
             local mark=state_label(r);
@@ -501,6 +524,19 @@ function M.export(c)
     f:write('\nAssault History\n'); for k,v in pairs(assault) do if type(v)~='table' then f:write(tostring(k)..': '..tostring(v)..'\n'); end end
     local guard=HC.modules.runtimeguard and HC.modules.runtimeguard.snapshot and HC.modules.runtimeguard.snapshot() or {};
     f:write('\nRuntime Guard\n'); for _,r in ipairs(guard.rows or {}) do f:write(string.format('%s | errors=%s | paused=%s | %s\n',tostring(r.name),tostring(r.total),tostring(r.quarantined),tostring(r.last_error or ''))); end
+    local diagnostic_errors=HC.modules.diagnostics and HC.modules.diagnostics.errors and HC.modules.diagnostics.errors() or {};
+    f:write('\nDiagnostics Errors\n');
+    if #diagnostic_errors==0 then
+        f:write('None\n');
+    else
+        for _,r in ipairs(diagnostic_errors) do
+            f:write(string.format('%s | count=%s | first=%s | last=%s | %s\n',
+                tostring(r.where or 'runtime'),tostring(r.count or 1),
+                r.first_at and os.date('%Y-%m-%d %H:%M:%S',r.first_at) or '?',
+                r.last_at and os.date('%Y-%m-%d %H:%M:%S',r.last_at) or '?',
+                tostring(r.err or 'unknown error')));
+        end
+    end
     f:close(); return path;
 end
 
@@ -516,6 +552,7 @@ function M.command(w)
     if sub~='health' and sub~='releasehealth' then return false; end
     local action=string.lower(tostring(w[3] or 'status'));
     if action=='export' then local path=M.export(); HC.msg(path and ('Release health report written: '..path) or 'Could not write release health report.');
+    elseif action=='folder' or action=='reports' then report_folder_message();
     elseif action=='sync' then if HC.modules.zonesync then HC.modules.zonesync.force('release health command'); end; HC.msg('Release synchronization scheduled.');
     else local s=build(HC.modules.state.get_char(),true); HC.msg(string.format('Release health: %s | %d waiting | %d attention.',s.state,s.waiting,s.attention)); end
     return true;

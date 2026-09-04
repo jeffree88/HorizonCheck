@@ -2,10 +2,11 @@ local M={};
 local HC;
 local cache={at=0,char=nil,data=nil};
 local account_cache={at=0,data=nil};
-local CACHE_SECONDS=2;
-local ACCOUNT_CACHE_SECONDS=5;
+local CACHE_SECONDS=5;
+local ACCOUNT_CACHE_SECONDS=10;
 local account_sort='name';
 local action_filter='all';
+local overview_session={char=nil,baseline={}};
 
 local function mission_totals(c)
     local done,total=0,0;
@@ -53,10 +54,7 @@ local function persist_profile_summary(c,skill,facts)
     local values={
         summary_version=2,job=tostring(skill.job or '---'),level=tonumber(skill.level) or 0,
         jobs_75=tonumber(skill.jobs_75) or 0,jobs_total=tonumber(skill.jobs_total) or 0,
-        mission_done=tonumber(facts.mission_done) or 0,mission_total=tonumber(facts.mission_total) or 0,
         outposts_have=tonumber(facts.outposts_have) or 0,outposts_total=tonumber(facts.outposts_total) or 0,
-        anniversary_done=tonumber(facts.anniversary_done) or 0,anniversary_total=tonumber(facts.anniversary_total) or 0,
-        seasonal_done=tonumber(facts.seasonal_done) or 0,seasonal_total=tonumber(facts.seasonal_total) or 0,
         overview_pct=tonumber(facts.overview_pct),
     };
     for k,v in pairs(values) do if v~=nil and p[k]~=v then p[k]=v; changed=true; end end
@@ -94,18 +92,26 @@ function M.snapshot(c,force)
     if HC.modules.skills and HC.modules.skills.overview_summary then
         local ok,s=pcall(HC.modules.skills.overview_summary); if ok and type(s)=='table' then skill=s; end
     end
-    local md,mt=mission_totals(c);
+    -- v7.9.26: Missions, Anniversary, and Seasonal Rewards were removed from
+    -- normal Overview in v7.9.23.  Do not keep recomputing those retired
+    -- summaries every few seconds just to populate invisible compatibility
+    -- fields.  Preserve any older saved profile values without live scans.
+    local profile=type(c.overview_profile)=='table' and c.overview_profile or {};
+    local md,mt=tonumber(profile.mission_done) or 0,tonumber(profile.mission_total) or 0;
     local op_have,op_total=0,0;
     if HC.modules.outposts and HC.modules.outposts.verified_count then
         local ok,a,b=pcall(HC.modules.outposts.verified_count,c); if ok then op_have=tonumber(a) or 0; op_total=tonumber(b) or 0; end
     end
-    local ann={};
-    if HC.modules.anniversary and HC.modules.anniversary.progress then local ok,a=pcall(HC.modules.anniversary.progress,c); if ok and type(a)=='table' then ann=a; end end
-    local seasonal={};
-    if HC.modules.seasonal and HC.modules.seasonal.progress then local ok,a=pcall(HC.modules.seasonal.progress,c); if ok and type(a)=='table' then seasonal=a; end end
+    local ann={y2023_done=0,y2023_total=0,y2024_done=0,y2024_total=0,y2025_done=0,y2025_total=0};
+    local seasonal={rewards_obtained=0,rewards=0};
 
+    local job_progress=nil;
+    if HC.modules.skills and HC.modules.skills.current_job_progress_detail then
+        local ok,jp=pcall(HC.modules.skills.current_job_progress_detail,c);
+        if ok and type(jp)=='table' then job_progress=jp; end
+    end
     local data={
-        char=char,skill=skill,mission_done=md,mission_total=mt,
+        char=char,skill=skill,current_job_progress=job_progress,mission_done=md,mission_total=mt,
         outposts_have=op_have,outposts_total=op_total,anniversary=ann,seasonal=seasonal,at=now,
     };
     local ad=(tonumber(ann.y2023_done) or 0)+(tonumber(ann.y2024_done) or 0)+(tonumber(ann.y2025_done) or 0);
@@ -202,14 +208,39 @@ function M.account_snapshot(force)
             if current_row and cache.data and type(cache.data.skill)=='table' then
                 row.jobs_75=tonumber(cache.data.skill.jobs_75) or row.jobs_75; row.jobs_total=tonumber(cache.data.skill.jobs_total) or row.jobs_total;
                 row.job=tostring(cache.data.skill.job or row.job or '---'); row.level=tonumber(cache.data.skill.level) or row.level;
-                row.mission_done=tonumber(cache.data.mission_done) or row.mission_done; row.mission_total=tonumber(cache.data.mission_total) or row.mission_total;
+                row.current_job_progress=type(cache.data.current_job_progress)=='table' and cache.data.current_job_progress or nil;
                 row.outposts_have=tonumber(cache.data.outposts_have) or row.outposts_have; row.outposts_total=tonumber(cache.data.outposts_total) or row.outposts_total;
-                local aa=cache.data.anniversary or {};
-                row.anniversary_done=(tonumber(aa.y2023_done) or 0)+(tonumber(aa.y2024_done) or 0)+(tonumber(aa.y2025_done) or 0);
-                row.anniversary_total=(tonumber(aa.y2023_total) or 0)+(tonumber(aa.y2024_total) or 0)+(tonumber(aa.y2025_total) or 0);
-                local ss=cache.data.seasonal or {};
-                row.seasonal_done=tonumber(ss.rewards_obtained) or row.seasonal_done; row.seasonal_total=tonumber(ss.rewards) or row.seasonal_total;
                 row.last_seen_at=now;
+            end
+
+            -- v7.9.21: keep the account comparison on the same 13-objective
+            -- weekly scale shown in the main header.  The saved weekly task
+            -- table contains the eight character-scoped objectives; the
+            -- account-wide Dynamis pool contributes three more and Limbus
+            -- contributes two character entries.
+            row.weekly_done=(row.weekly_valid==false) and 0 or ((row.weekly_task_done or 0)+account_used+(row.limbus_used or 0));
+            row.weekly_total=(row.weekly_valid==false) and 0 or ((row.weekly_task_total or 0)+5);
+
+            -- The logged-in character can use the authoritative live summary
+            -- instead of the compact saved-cycle approximation.
+            if current_row and HC.modules.weekly then
+                if HC.modules.weekly.progress then
+                    local ok,wp=pcall(HC.modules.weekly.progress,cc,false);
+                    if ok and type(wp)=='table' then
+                        row.daily_done=tonumber(wp.daily_done) or row.daily_done;
+                        row.daily_total=tonumber(wp.daily_total) or row.daily_total;
+                        row.weekly_done=tonumber(wp.weekly_done) or row.weekly_done;
+                        row.weekly_total=tonumber(wp.weekly_total) or row.weekly_total;
+                        row.daily_valid=true; row.weekly_valid=true;
+                    end
+                end
+                if HC.modules.weekly.daily_avatar_summary then
+                    local ok,av=pcall(HC.modules.weekly.daily_avatar_summary,cc);
+                    if ok and type(av)=='table' then
+                        row.avatar_done=tonumber(av.completed) or row.avatar_done;
+                        row.avatar_total=tonumber(av.total) or row.avatar_total;
+                    end
+                end
             end
 
             row.dynamis_complete=(row.dynamis_cap or 0)>0 and row.dynamis_used>=row.dynamis_cap;
@@ -405,6 +436,366 @@ local function draw_account_overview(imgui,c)
     end
 
     if #(a.rows or {})==0 then imgui.TextDisabled('No additional saved character profiles yet.'); end
+end
+
+local function format_overview_number(n)
+    n=math.floor(tonumber(n) or 0);
+    local str=tostring(n); local sign='';
+    if str:sub(1,1)=='-' then sign='-'; str=str:sub(2); end
+    local rev=str:reverse():gsub('(%d%d%d)','%1,'):reverse():gsub('^,','');
+    return sign..rev;
+end
+
+local function overview_ratio(done,total,valid)
+    if valid==false then return '—'; end
+    done=tonumber(done) or 0; total=tonumber(total) or 0;
+    if total<=0 then return '—'; end
+    return string.format('%d/%d',done,total);
+end
+
+local function draw_metric_grid(imgui,metrics,id)
+    local table_ok=HC.modules.uikit and HC.modules.uikit.table_supported(imgui) and HC.modules.uikit.wide_enough(imgui,620);
+    if table_ok and imgui.BeginTable('##hc_overview_metrics_'..tostring(id),4,HC.modules.uikit.table_flags()) then
+        imgui.TableSetupColumn('Metric',0,0.17); imgui.TableSetupColumn('Status',0,0.33);
+        imgui.TableSetupColumn('Metric',0,0.17); imgui.TableSetupColumn('Status',0,0.33);
+        for i=1,#metrics,2 do
+            imgui.TableNextRow();
+            local a=metrics[i]; local b=metrics[i+1];
+            imgui.TableSetColumnIndex(0); imgui.TextDisabled(tostring(a and a[1] or ''));
+            imgui.TableSetColumnIndex(1); if a then imgui.Text(tostring(a[2] or '—')); end
+            imgui.TableSetColumnIndex(2); imgui.TextDisabled(tostring(b and b[1] or ''));
+            imgui.TableSetColumnIndex(3); if b then imgui.Text(tostring(b[2] or '—')); end
+        end
+        imgui.EndTable();
+    else
+        for _,m in ipairs(metrics or {}) do
+            imgui.TextDisabled(tostring(m[1] or '')); imgui.SameLine(); imgui.Text(tostring(m[2] or '—'));
+        end
+    end
+end
+
+local function current_account_row(a)
+    for _,r in ipairs((a and a.rows) or {}) do if r.current==true then return r; end end
+    return nil;
+end
+
+local function overview_open(tab,focus)
+    local ui=HC.modules and HC.modules.ui or nil;
+    if ui and ui.navigate then ui.navigate(tab,focus); return true; end
+    return false;
+end
+
+local function overview_clickable_text(imgui,label,id,tab,focus,bright,tooltip)
+    if bright==false then imgui.TextDisabled(tostring(label or '—')); else imgui.Text(tostring(label or '—')); end
+    if tab and imgui.IsItemHovered and imgui.IsItemHovered() and imgui.SetTooltip then
+        imgui.SetTooltip(tostring(tooltip or 'Open '..tostring(tab)));
+    end
+    if tab and imgui.IsItemClicked and imgui.IsItemClicked() then overview_open(tab,focus); end
+end
+
+local function overview_age_long(at)
+    at=tonumber(at); if not at then return 'unknown'; end
+    local age=math.max(0,os.time()-at);
+    if age<120 then return 'just now'; end
+    if age<3600 then return tostring(math.floor(age/60))..'m ago'; end
+    if age<86400 then return tostring(math.floor(age/3600))..'h ago'; end
+    return tostring(math.floor(age/86400))..'d ago';
+end
+
+local function overview_available(total,used)
+    return math.max(0,(tonumber(total) or 0)-(tonumber(used) or 0));
+end
+
+-- v7.9.28: session-change markers intentionally live only in memory.  They
+-- reset on addon reload / character swap and never add state writes or scans.
+local function overview_session_delta(char,key,value)
+    char=tostring(char or 'Unknown');
+    if overview_session.char~=char then overview_session={char=char,baseline={}}; end
+    value=tonumber(value); if value==nil then return nil; end
+    if overview_session.baseline[key]==nil then overview_session.baseline[key]=value; return nil; end
+    local delta=value-(tonumber(overview_session.baseline[key]) or value);
+    return delta~=0 and delta or nil;
+end
+
+local function overview_delta_note(delta,unit)
+    delta=tonumber(delta); if not delta or delta==0 then return nil; end
+    unit=tostring(unit or '');
+    if unit~='' and unit:sub(1,1)~=' ' then unit=' '..unit; end
+    return string.format('%+d%s this session',delta,unit);
+end
+
+local function overview_join_notes(a,b)
+    a=tostring(a or ''); b=tostring(b or '');
+    if a=='' then return b~='' and b or nil; end
+    if b=='' then return a; end
+    return a..'  •  '..b;
+end
+
+local function overview_progress_card(done,total,valid,kind)
+    done=tonumber(done) or 0; total=tonumber(total) or 0;
+    if valid==false then return 'RESET','Saved cycle expired',false; end
+    if total<=0 then return '—',nil,false; end
+    local left=math.max(0,total-done);
+    local ratio=string.format('%d/%d',done,total);
+    if left<=0 then return 'COMPLETE',ratio,true; end
+    if kind=='jobs' then return tostring(done)..' AT 75',tostring(left)..' remaining',true; end
+    return tostring(left)..' LEFT',ratio,done>0;
+end
+
+local function overview_entry_card(available,total,label)
+    available=math.max(0,tonumber(available) or 0); total=math.max(0,tonumber(total) or 0);
+    label=tostring(label or 'entry');
+    if total<=0 then return 'POOL EMPTY','No '..label..' available',false; end
+    if available<=0 then return 'NO ENTRY','0 available',false; end
+    local noun=available==1 and label or (label..'s');
+    return 'READY',tostring(available)..' '..noun..' available',true;
+end
+
+local function overview_tooltip(title,detail,action)
+    local parts={tostring(title or '')};
+    if detail and tostring(detail)~='' then parts[#parts+1]=tostring(detail); end
+    if action and tostring(action)~='' then parts[#parts+1]=tostring(action); end
+    return table.concat(parts,'\n');
+end
+
+local function overview_section_break(imgui)
+    if HC.modules.uikit and HC.modules.uikit.section_gap then HC.modules.uikit.section_gap();
+    else imgui.Spacing(); imgui.Separator(); imgui.Spacing(); end
+end
+
+local function draw_overview_cards(imgui,metrics,id,preferred_columns)
+    metrics=type(metrics)=='table' and metrics or {};
+    local cols=tonumber(preferred_columns) or 3;
+    local width=HC.modules.uikit and HC.modules.uikit.window_width and HC.modules.uikit.window_width(imgui) or 0;
+    if width>0 and width<620 then cols=1; elseif width>0 and width<850 then cols=2; end
+    local table_ok=HC.modules.uikit and HC.modules.uikit.table_supported(imgui);
+    if table_ok and imgui.BeginTable('##hc_overview_cards_'..tostring(id),cols,HC.modules.uikit.table_flags()) then
+        for i,m in ipairs(metrics) do
+            if ((i-1)%cols)==0 and imgui.TableNextRow then imgui.TableNextRow(); end
+            if imgui.TableSetColumnIndex then imgui.TableSetColumnIndex((i-1)%cols); else imgui.TableNextColumn(); end
+            imgui.TextDisabled(string.upper(tostring(m.label or '')));
+            overview_clickable_text(imgui,m.value,m.id,m.tab,m.focus,m.bright,m.tooltip);
+            if m.note and tostring(m.note)~='' then imgui.TextDisabled(tostring(m.note)); end
+        end
+        imgui.EndTable();
+    else
+        for _,m in ipairs(metrics) do
+            imgui.TextDisabled(string.upper(tostring(m.label or ''))); imgui.SameLine();
+            overview_clickable_text(imgui,m.value,m.id,m.tab,m.focus,m.bright,m.tooltip);
+            if m.note and tostring(m.note)~='' then imgui.SameLine(); imgui.TextDisabled(tostring(m.note)); end
+        end
+    end
+end
+
+local function gear_ratio(g,have_key,total_key)
+    if type(g)~='table' then return '—'; end
+    local have=tonumber(g[have_key]); local total=tonumber(g[total_key]);
+    if have==nil or total==nil or total<=0 then return '—'; end
+    return string.format('%d/%d%s',have,total,(have>=total) and ' ✓' or '');
+end
+
+local function draw_character_identity(imgui,r,jp)
+    local job=tostring(r.job or '---'); local level=tonumber(r.level) or 0;
+    local table_ok=HC.modules.uikit and HC.modules.uikit.table_supported(imgui) and HC.modules.uikit.wide_enough(imgui,620);
+    if table_ok and imgui.BeginTable('##hc_overview_identity',3,HC.modules.uikit.table_flags()) then
+        imgui.TableSetupColumn('Character',0,0.34); imgui.TableSetupColumn('Leveling',0,0.36); imgui.TableSetupColumn('Current Job',0,0.30);
+        imgui.TableNextRow();
+        imgui.TableSetColumnIndex(0);
+        imgui.Text(tostring(r.name));
+        imgui.TextDisabled(string.format('%s Lv.%d  |  LIVE',job,level));
+        imgui.TableSetColumnIndex(1);
+        if jp then
+            overview_clickable_text(imgui,string.format('Lv.%d/75  |  %d%% overall',tonumber(jp.level) or level,tonumber(jp.overall_pct) or 0),
+                'identity_level','skills',{section='jobprogression',job=job},true,'Open current-job progression');
+            imgui.TextDisabled(string.format('%s / %s EXP',format_overview_number(jp.exp_done),format_overview_number(jp.exp_total)));
+        else
+            imgui.TextDisabled('Level progression unavailable');
+        end
+        imgui.TableSetColumnIndex(2);
+        if jp then
+            local maat=tostring(jp.maat or 'N/A'):gsub('%s*%[.-%]','');
+            imgui.Text(string.format('Mapped quests %d/%d',tonumber(jp.mapped_done) or 0,tonumber(jp.mapped_total) or 0));
+            imgui.TextDisabled('Maat '..maat..'  |  Skills '..tostring(tonumber(jp.skills_capped) or 0)..'/'..tostring(tonumber(jp.skills_total) or 0)..' capped');
+        else
+            imgui.TextDisabled('Job progression unavailable');
+        end
+        imgui.EndTable();
+    else
+        imgui.Text(string.format('%s  |  %s Lv.%d',tostring(r.name),job,level)); imgui.SameLine(); imgui.TextDisabled('| LIVE');
+        if jp then
+            overview_clickable_text(imgui,string.format('Lv.%d/75 | EXP %s/%s | Overall %d%%',tonumber(jp.level) or level,
+                format_overview_number(jp.exp_done),format_overview_number(jp.exp_total),tonumber(jp.overall_pct) or 0),
+                'identity_level_fallback','skills',{section='jobprogression',job=job},true,'Open current-job progression');
+        end
+    end
+end
+
+local function draw_current_character_overview(imgui,c,a)
+    local r=current_account_row(a);
+    local current=HC.modules.core.character_name();
+    if HC.modules.uikit then HC.modules.uikit.section_header('Current Character',current); else imgui.Text('Current Character - '..tostring(current)); imgui.Separator(); end
+    if not r then imgui.TextDisabled('Current character summary is still being prepared.'); return; end
+
+    local job=tostring(r.job or '---');
+    local jp=type(r.current_job_progress)=='table' and r.current_job_progress or nil;
+    draw_character_identity(imgui,r,jp);
+    if jp then
+        local exp_delta=overview_session_delta(current,'exp_done',jp.exp_done);
+        if exp_delta and exp_delta>0 then imgui.TextDisabled('+'..format_overview_number(exp_delta)..' EXP this session'); end
+    end
+
+    local dyn_cap=tonumber(r.dynamis_cap) or 0;
+    local dyn_avail=overview_available(dyn_cap,r.dynamis_used);
+    local lim_avail=overview_available(2,r.limbus_used);
+
+    local jobs_value,jobs_note,jobs_bright=overview_progress_card(r.jobs_75,r.jobs_total,true,'jobs');
+    jobs_note=overview_join_notes(jobs_note,overview_delta_note(overview_session_delta(current,'jobs75',r.jobs_75),'job'));
+    local out_value,out_note,out_bright=overview_progress_card(r.outposts_have,r.outposts_total,true);
+    out_note=overview_join_notes(out_note,overview_delta_note(overview_session_delta(current,'outposts',r.outposts_have),'outpost'));
+    local daily_value,daily_note,daily_bright=overview_progress_card(r.daily_done,r.daily_total,r.daily_valid);
+    daily_note=overview_join_notes(daily_note,overview_delta_note(overview_session_delta(current,'daily',r.daily_valid~=false and r.daily_done or nil),'objective'));
+    local avatar_value,avatar_note,avatar_bright=overview_progress_card(r.avatar_done,r.avatar_total,r.daily_valid);
+    avatar_note=overview_join_notes(avatar_note,overview_delta_note(overview_session_delta(current,'avatars',r.daily_valid~=false and r.avatar_done or nil),'fight'));
+    local weekly_value,weekly_note,weekly_bright=overview_progress_card(r.weekly_done,r.weekly_total,r.weekly_valid);
+    weekly_note=overview_join_notes(weekly_note,overview_delta_note(overview_session_delta(current,'weekly',r.weekly_valid~=false and r.weekly_done or nil),'objective'));
+    local dyn_value,dyn_note,dyn_bright=overview_entry_card(dyn_avail,dyn_cap,'entry');
+    dyn_note=overview_join_notes(dyn_note,overview_delta_note(overview_session_delta(current,'dynamis_available',dyn_avail),'entry'));
+    local lim_value,lim_note,lim_bright=overview_entry_card(lim_avail,2,'entry');
+    lim_note=overview_join_notes(lim_note,overview_delta_note(overview_session_delta(current,'limbus_available',lim_avail),'entry'));
+
+    imgui.Spacing();
+    if HC.modules.uikit then HC.modules.uikit.section_header('Character Status'); else imgui.Text('Character Status'); imgui.Separator(); end
+    draw_overview_cards(imgui,{
+        {label='Jobs at 75',value=jobs_value,note=jobs_note,id='jobs75',tab='skills',focus={section='jobprogression'},bright=jobs_bright,
+            tooltip=overview_tooltip('Jobs at 75',string.format('%d of %d jobs are level 75.',tonumber(r.jobs_75) or 0,tonumber(r.jobs_total) or 0),'Click to open Job Progression.')},
+        {label='Outposts',value=out_value,note=out_note,id='outposts',tab='dailyweekly',focus={section='outposts'},bright=out_bright,
+            tooltip=overview_tooltip('Outposts',string.format('%d of %d outpost warps verified.',tonumber(r.outposts_have) or 0,tonumber(r.outposts_total) or 0),'Click to open Conquest / Outpost Details.')},
+        {label='Daily',value=daily_value,note=daily_note,id='daily',tab='dailyweekly',focus={section='daily'},bright=daily_bright,
+            tooltip=overview_tooltip('Daily Objectives',r.daily_valid==false and 'This saved daily cycle has expired.' or string.format('%d/%d complete • %d remaining.',tonumber(r.daily_done) or 0,tonumber(r.daily_total) or 0,math.max(0,(tonumber(r.daily_total) or 0)-(tonumber(r.daily_done) or 0))),'Click to open Daily Objectives.')},
+        {label='Avatars',value=avatar_value,note=avatar_note,id='avatars',tab='dailyweekly',focus={section='avatars'},bright=avatar_bright,
+            tooltip=overview_tooltip('Daily Avatar Fights',r.daily_valid==false and 'This saved daily cycle has expired.' or string.format('%d/%d completed today • %d remaining.',tonumber(r.avatar_done) or 0,tonumber(r.avatar_total) or 0,math.max(0,(tonumber(r.avatar_total) or 0)-(tonumber(r.avatar_done) or 0))),'Click to open Daily Avatar Fights.')},
+        {label='Weekly',value=weekly_value,note=weekly_note,id='weekly',tab='dailyweekly',focus={section='weekly'},bright=weekly_bright,
+            tooltip=overview_tooltip('Weekly Objectives',r.weekly_valid==false and 'This saved Conquest cycle has expired.' or string.format('%d/%d complete • %d remaining, including entry counters.',tonumber(r.weekly_done) or 0,tonumber(r.weekly_total) or 0,math.max(0,(tonumber(r.weekly_total) or 0)-(tonumber(r.weekly_done) or 0))),'Click to open Weekly Objectives.')},
+        {label='Dynamis',value=dyn_value,note=dyn_note,id='dynamis',tab='dynamis',bright=dyn_bright,
+            tooltip=overview_tooltip('Dynamis',string.format('%d character entr%s available • shared account pool %d/%d used.',dyn_avail,dyn_avail==1 and 'y' or 'ies',tonumber(a and a.dynamis_used) or 0,tonumber(a and a.dynamis_cap) or 3),'Click to open Dynamis.')},
+        {label='Limbus',value=lim_value,note=lim_note,id='limbus',tab='limbus',bright=lim_bright,
+            tooltip=overview_tooltip('Limbus',string.format('%d of 2 character entries currently available.',lim_avail),'Click to open Limbus.')},
+    },'current_status',3);
+
+    imgui.Spacing();
+    if HC.modules.uikit then HC.modules.uikit.section_header('Current Job',job); else imgui.Text('Current Job - '..job); imgui.Separator(); end
+    if jp then
+        local maat=tostring(jp.maat or 'N/A'):gsub('%s*%[.-%]','');
+        local g=type(jp.gear)=='table' and jp.gear or nil;
+        local overall_delta=overview_session_delta(current,'overall_pct',jp.overall_pct);
+        local job_metrics={
+            {label='Level',value=string.format('%d/75',tonumber(jp.level) or tonumber(r.level) or 0),note=overview_delta_note(overview_session_delta(current,'job_level',jp.level),'level'),id='job_level',tab='skills',focus={section='jobprogression',job=job},bright=true,tooltip=overview_tooltip('Current Job Level','Level progress toward 75.','Click to open current-job progression.')},
+            {label='Overall',value=tostring(tonumber(jp.overall_pct) or 0)..'%',note=overall_delta and overview_delta_note(overall_delta,'%') or nil,id='job_overall',tab='skills',focus={section='jobprogression',job=job},bright=true,tooltip=overview_tooltip('Overall EXP Progress',string.format('%s / %s EXP toward Lv.75.',format_overview_number(jp.exp_done),format_overview_number(jp.exp_total)),'Click to open current-job progression.')},
+            {label='Maat',value=maat,id='job_maat',tab='skills',focus={section='jobprogression',job=job},bright=(jp.maat_won==true or maat=='N/A'),tooltip=overview_tooltip('Maat',maat=='N/A' and 'This job is not part of the original 15-job Maat set.' or ('Current Maat state: '..maat..'.'),'Click to open current-job progression.')},
+            {label='Mapped Quests',value=string.format('%d/%d',tonumber(jp.mapped_done) or 0,tonumber(jp.mapped_total) or 0),note=overview_delta_note(overview_session_delta(current,'mapped_quests',jp.mapped_done),'quest'),id='job_quests',tab='skills',focus={section='jobprogression',job=job},bright=true,tooltip=overview_tooltip('Mapped Job Quests',string.format('%d of %d mapped progression quests complete.',tonumber(jp.mapped_done) or 0,tonumber(jp.mapped_total) or 0),'Click to open current-job progression.')},
+            {label='Skills',value=string.format('%d/%d capped',tonumber(jp.skills_capped) or 0,tonumber(jp.skills_total) or 0),note=overview_delta_note(overview_session_delta(current,'skills_capped',jp.skills_capped),'skill'),id='job_skills',tab='skills',focus={section='skills'},bright=(tonumber(jp.skills_capped) or 0)>0,tooltip=overview_tooltip('Combat Skills',string.format('%d of %d tracked combat skills are capped.',tonumber(jp.skills_capped) or 0,tonumber(jp.skills_total) or 0),'Click to open Combat Skills.')},
+        };
+        if g then
+            local function add_gear_card(label,have_key,total_key,id)
+                local have,total=tonumber(g[have_key]) or 0,tonumber(g[total_key]) or 0;
+                local value,note,bright=overview_progress_card(have,total,true);
+                note=overview_join_notes(note,overview_delta_note(overview_session_delta(current,id,have),'piece'));
+                job_metrics[#job_metrics+1]={label=label,value=value,note=note,id=id,tab='skills',focus={section='jobprogression',job=job},bright=bright,
+                    tooltip=overview_tooltip(label,string.format('%d/%d pieces accounted for in the last observed collection summary.',have,total),'Click to open current-job gear.')};
+            end
+            add_gear_card('AF','af_have','af_total','job_af');
+            add_gear_card('AF +1','af1_have','af1_total','job_af1');
+            add_gear_card('Relic','relic_have','relic_total','job_relic');
+            add_gear_card('Relic -1','relicm1_have','relicm1_total','job_relicm1');
+        end
+        draw_overview_cards(imgui,job_metrics,'current_job',3);
+        if not g then imgui.TextDisabled('Gear summary appears here after Character Info has observed your AF / Relic collection.'); end
+    else
+        imgui.TextDisabled('Current-job progression is still being prepared.');
+    end
+end
+
+local function draw_other_characters_overview(imgui,a)
+    local others={};
+    for _,r in ipairs((a and a.rows) or {}) do if r.current~=true then others[#others+1]=r; end end
+    overview_section_break(imgui);
+    if HC.modules.uikit then HC.modules.uikit.section_header('Other Characters',tostring(#others)..' saved'); else imgui.Text('Other Characters'); imgui.Separator(); end
+    if #others==0 then imgui.TextDisabled('No other saved characters on this account yet.'); return; end
+
+    local table_ok=HC.modules.uikit and HC.modules.uikit.table_supported(imgui) and HC.modules.uikit.wide_enough(imgui,720);
+    if table_ok and imgui.BeginTable('##hc_overview_other_characters_v7928',6,HC.modules.uikit.table_flags()) then
+        imgui.TableSetupColumn('Character',0,0.24); imgui.TableSetupColumn('Job',0,0.13); imgui.TableSetupColumn('Daily',0,0.15);
+        imgui.TableSetupColumn('Weekly',0,0.15); imgui.TableSetupColumn('Dynamis',0,0.18); imgui.TableSetupColumn('Seen',0,0.15);
+        if imgui.TableHeadersRow then imgui.TableHeadersRow(); end
+        for _,r in ipairs(others) do
+            local job=tostring(r.job or '---'); local level=tonumber(r.level) or 0;
+            local daily_value=select(1,overview_progress_card(r.daily_done,r.daily_total,r.daily_valid));
+            local weekly_value=select(1,overview_progress_card(r.weekly_done,r.weekly_total,r.weekly_valid));
+            local dyn_cap=tonumber(r.dynamis_cap) or 0; local dyn_avail=overview_available(dyn_cap,r.dynamis_used);
+            local dyn_value=select(1,overview_entry_card(dyn_avail,dyn_cap,'entry'));
+            imgui.TableNextRow();
+            imgui.TableSetColumnIndex(0);
+            local open=imgui.CollapsingHeader(tostring(r.name)..'##overview_other_'..tostring(r.name));
+            imgui.TableSetColumnIndex(1); imgui.Text(string.format('%s Lv.%d',job,level));
+            imgui.TableSetColumnIndex(2); if r.daily_valid==false then imgui.TextDisabled(daily_value) else imgui.Text(daily_value) end
+            if imgui.IsItemHovered and imgui.IsItemHovered() and imgui.SetTooltip then imgui.SetTooltip(r.daily_valid==false and 'Saved daily cycle expired.' or string.format('%d/%d daily objectives complete.',tonumber(r.daily_done) or 0,tonumber(r.daily_total) or 0)); end
+            imgui.TableSetColumnIndex(3); if r.weekly_valid==false then imgui.TextDisabled(weekly_value) else imgui.Text(weekly_value) end
+            if imgui.IsItemHovered and imgui.IsItemHovered() and imgui.SetTooltip then imgui.SetTooltip(r.weekly_valid==false and 'Saved Conquest cycle expired.' or string.format('%d/%d weekly objectives complete.',tonumber(r.weekly_done) or 0,tonumber(r.weekly_total) or 0)); end
+            imgui.TableSetColumnIndex(4); if dyn_avail>0 then imgui.Text(dyn_value) else imgui.TextDisabled(dyn_value) end
+            if imgui.IsItemHovered and imgui.IsItemHovered() and imgui.SetTooltip then imgui.SetTooltip(string.format('%d Dynamis entr%s available for this saved character.',dyn_avail,dyn_avail==1 and 'y' or 'ies')); end
+            imgui.TableSetColumnIndex(5); imgui.TextDisabled(overview_age_long(r.last_seen_at));
+            if open then
+                local lim_avail=overview_available(2,r.limbus_used);
+                imgui.TableNextRow();
+                local expanded={
+                    {'Jobs 75',overview_ratio(r.jobs_75,r.jobs_total,true),true},
+                    {'Avatars',(r.daily_valid==false) and 'RESET' or overview_ratio(r.avatar_done,r.avatar_total,true),r.daily_valid~=false},
+                    {'Limbus',tostring(lim_avail)..' available',lim_avail>0},
+                    {'Outposts',overview_ratio(r.outposts_have,r.outposts_total,true),true},
+                    {'Last Seen',overview_age_long(r.last_seen_at),false},
+                    {'Data',((r.daily_valid==false or r.weekly_valid==false) and 'RESET-SCOPED' or 'SAVED'),not (r.daily_valid==false or r.weekly_valid==false)},
+                };
+                for i,m in ipairs(expanded) do
+                    imgui.TableSetColumnIndex(i-1); imgui.TextDisabled(string.upper(m[1]));
+                    if m[3] then imgui.Text(m[2]) else imgui.TextDisabled(m[2]) end
+                end
+            end
+        end
+        imgui.EndTable();
+    else
+        for _,r in ipairs(others) do
+            local job=tostring(r.job or '---'); local level=tonumber(r.level) or 0;
+            local daily_value=select(1,overview_progress_card(r.daily_done,r.daily_total,r.daily_valid));
+            local weekly_value=select(1,overview_progress_card(r.weekly_done,r.weekly_total,r.weekly_valid));
+            local dyn_cap=tonumber(r.dynamis_cap) or 0; local dyn_avail=overview_available(dyn_cap,r.dynamis_used);
+            local dyn_value=select(1,overview_entry_card(dyn_avail,dyn_cap,'entry'));
+            local header=string.format('%s — %s Lv.%d  |  %s  |  %s  |  %s  |  %s##overview_other_%s',
+                tostring(r.name),job,level,daily_value,weekly_value,dyn_value,overview_age_long(r.last_seen_at),tostring(r.name));
+            if imgui.CollapsingHeader(header) then
+                local lim_avail=overview_available(2,r.limbus_used);
+                draw_overview_cards(imgui,{
+                    {label='Jobs at 75',value=overview_ratio(r.jobs_75,r.jobs_total,true),bright=true},
+                    {label='Avatars',value=(r.daily_valid==false) and 'RESET' or overview_ratio(r.avatar_done,r.avatar_total,true),bright=r.daily_valid~=false},
+                    {label='Limbus',value=tostring(lim_avail)..' available',bright=lim_avail>0},
+                    {label='Outposts',value=overview_ratio(r.outposts_have,r.outposts_total,true),bright=true},
+                    {label='Last Seen',value=overview_age_long(r.last_seen_at),bright=false},
+                },'other_'..tostring(r.name),3);
+            end
+        end
+    end
+end
+
+local function draw_shared_account_overview(imgui,a)
+    overview_section_break(imgui);
+    if HC.modules.uikit then HC.modules.uikit.section_header('Shared Account'); else imgui.Text('Shared Account'); imgui.Separator(); end
+    local tags=(a and a.assault_tags~=nil) and (tostring(a.assault_tags)..'/4'..(((tonumber(a.assault_tags) or 0)>=4) and ' ✓' or '')) or '—';
+    local used=tonumber(a and a.dynamis_used) or 0; local cap=tonumber(a and a.dynamis_cap) or 3; local remaining=tonumber(a and a.dynamis_remaining) or 0;
+    local dyn_value=(remaining<=0) and 'POOL EMPTY' or 'READY';
+    draw_overview_cards(imgui,{
+        {label='Characters',value=tostring(a and a.characters or 0),bright=true,tooltip=overview_tooltip('Characters',tostring(a and a.characters or 0)..' saved character profiles on this account.')},
+        {label='Assault Tags',value=tags,id='shared_tags',tab='assault',bright=true,tooltip=overview_tooltip('Assault Tags',tags..' currently tracked.','Click to open Assault.')},
+        {label='Dynamis Pool',value=dyn_value,note=string.format('%d remaining  •  %d/%d used',remaining,used,cap),id='shared_dyn_pool',tab='dynamis',bright=remaining>0,tooltip=overview_tooltip('Shared Dynamis Pool',string.format('%d of %d account-wide entries used • %d remaining.',used,cap,remaining),'Click to open Dynamis.')},
+    },'shared',3);
 end
 
 local function navigation_for_action(row)
@@ -703,59 +1094,6 @@ local function draw_simple_next(imgui,c)
         imgui.TextDisabled('+'..tostring(#rows-shown)..' more ready option(s)');
     end
 
-    -- Keep the less urgent planner states available without putting them in a
-    -- new user's face. This replaces the old seven-button filter bar.
-    local extra={};
-    for _,tier in ipairs({'PREP','SOON','LOCKED'}) do
-        for _,r in ipairs((model and model.groups and model.groups[tier]) or {}) do
-            r.tier=tier; extra[#extra+1]=r;
-        end
-    end
-    if #extra>0 and imgui.CollapsingHeader('More Suggestions  '..tostring(#extra)..'##overview_more_suggestions') then
-        local n=math.min(8,#extra);
-        if table_ok and imgui.BeginTable('##overview_more_actions_v7834',2,flags) then
-            imgui.TableSetupColumn('Suggestion',0,0.92); imgui.TableSetupColumn('',0,0.08); imgui.TableHeadersRow();
-            for i=1,n do
-                local r=extra[i];
-                imgui.TableNextRow();
-                imgui.TableSetColumnIndex(0); imgui.TextDisabled(tostring(r.text or ''));
-                if r.reason and imgui.IsItemHovered and imgui.IsItemHovered() and imgui.SetTooltip then imgui.SetTooltip(tostring(r.reason)); end
-                imgui.TableSetColumnIndex(1); go_button(imgui,r,'more_'..tostring(i));
-            end
-            imgui.EndTable();
-        else
-            for i=1,n do imgui.TextDisabled(tostring(extra[i].text or '')); end
-        end
-        if #extra>n then imgui.TextDisabled('+'..tostring(#extra-n)..' more suggestion(s)'); end
-    end
-end
-
-local function draw_simple_readiness(imgui,c)
-    local r=HC.modules and HC.modules.readiness or nil; if not (r and r.rows) then return; end
-    local rows=r.rows(c,false) or {};
-    local prep={};
-    for _,x in ipairs(rows) do
-        if x.done~=true and x.state~='ACTIVE' and x.state~='READY' then prep[#prep+1]=x; end
-    end
-    if #prep==0 then return; end
-    imgui.Spacing();
-    if not imgui.CollapsingHeader('Things to Prepare  '..tostring(#prep)..'##overview_simple_prepare') then return; end
-    imgui.TextDisabled('These are not urgent. They are here when you want to get something ready for later.');
-    local flags=(HC.modules.uikit and HC.modules.uikit.table_flags and HC.modules.uikit.table_flags()) or (64+128+512);
-    local table_ok=imgui.BeginTable and imgui.TableSetupColumn and imgui.TableHeadersRow and imgui.TableNextRow and imgui.TableSetColumnIndex and imgui.EndTable;
-    if table_ok and imgui.BeginTable('##overview_simple_prepare_table',3,flags) then
-        imgui.TableSetupColumn('Content',0,0.24); imgui.TableSetupColumn('What it needs',0,0.68); imgui.TableSetupColumn('',0,0.08); imgui.TableHeadersRow();
-        for i,x in ipairs(prep) do
-            if i>8 then break; end
-            imgui.TableNextRow();
-            imgui.TableSetColumnIndex(0); imgui.Text(tostring(x.label or x.id or 'Content'));
-            imgui.TableSetColumnIndex(1); imgui.TextDisabled(tostring(x.reason or 'Check this activity for details.'));
-            imgui.TableSetColumnIndex(2);
-            if x.tab and HC.modules.ui and HC.modules.ui.navigate and imgui.SmallButton('Go##simple_readiness_'..tostring(i)) then HC.modules.ui.navigate(x.tab,x.focus); end
-        end
-        imgui.EndTable();
-        if #prep>8 then imgui.TextDisabled('+'..tostring(#prep-8)..' more item(s) to prepare'); end
-    end
 end
 
 function M.draw(c)
@@ -763,11 +1101,17 @@ function M.draw(c)
     imgui.Text('Overview');
     imgui.Separator();
 
-    draw_simple_next(imgui,c);
-    draw_simple_readiness(imgui,c);
+    -- v7.9.21: Overview is a true character/account status page.  Action
+    -- planning already has a permanent home in the Attention / Next Up strip,
+    -- so the normal Overview no longer duplicates a What-to-Do-Next list.
+    M.snapshot(c,false);
+    local a=M.account_snapshot(false);
+    draw_current_character_overview(imgui,c,a);
+    draw_other_characters_overview(imgui,a);
+    draw_shared_account_overview(imgui,a);
 
-    -- The original full planner is still useful for troubleshooting and power
-    -- users, but it is intentionally hidden from normal players.
+    -- Keep the old planner available only as a developer troubleshooting tool;
+    -- it is intentionally not part of the normal Overview experience.
     local developer=type(c.settings)=='table' and c.settings.developer_mode==true;
     if developer then
         imgui.Spacing();
@@ -777,8 +1121,6 @@ function M.draw(c)
             draw_zone_intelligence(imgui,c);
         end
     end
-
-    draw_account_overview(imgui,c);
 end
 
 function M.status(c) return M.snapshot(c,false); end

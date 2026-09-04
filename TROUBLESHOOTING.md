@@ -53,4 +53,6 @@ Use `/hcheck assaultprogress sync` after zoning to re-read the cached table. Mis
 
 ## Exporting one report for support
 
-Use `/hcheck health export`. The report includes synchronization, schema migration, runtime errors, performance health, and Assault history diagnostics.
+Use `/hcheck health export`. The report includes synchronization, schema migration, detailed runtime errors, performance health, and Assault history diagnostics.
+
+After exporting, select **Open Reports Folder** in Diagnostics or run `/hcheck health folder`. Attach the newest `horizoncheck_release_health_*.txt` file to the beta issue report. The report includes the character name but never includes account passwords or login credentials; it can be reviewed or redacted before sharing.

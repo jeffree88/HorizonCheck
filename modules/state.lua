@@ -194,16 +194,21 @@ local function save_now()
     return true;
 end
 
-function M.save()
-    -- Packet bursts during zoning can touch many independent detectors in the
-    -- same frame.  When a caller opens a save batch, preserve the old API but
-    -- collapse every save request into one deferred disk write.
+function M.save(immediate)
+    -- v7.9.26: hundreds of legacy detector call sites still use state.save().
+    -- An immediate full-table serialization at each of those sites can hitch the
+    -- game during packet bursts.  Treat ordinary save() as a coalesced request;
+    -- flush()/save(true) remain available for unload and explicit durability.
+    if immediate==true then
+        pending_save_due=nil;
+        save_deferred=false;
+        return save_now();
+    end
     if save_batch_depth > 0 then
         save_deferred = true;
         return true;
     end
-    pending_save_due = nil;
-    return save_now();
+    return M.request_save(2);
 end
 
 function M.request_save(delay_seconds)

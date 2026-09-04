@@ -46,6 +46,57 @@ local guilds = {
 local GP_MASTER_LIST_URL='https://horizonffxi.wiki/Guild_Points/Items';
 local HORIZON_WIKI_SEARCH_BASE='https://horizonffxi.wiki/Special:Search/';
 
+
+-- HorizonXI server-specific Guild Point turn-in values.
+-- The current embedded catalog covers Goldsmithing, which is the first guild
+-- wired to the daily item-count helper. Values are the NQ GP award per item
+-- and the daily GP cap from HorizonXI's Guild Points/Items table.
+-- Unknown/unverified rows deliberately fall back to the existing GP tracker
+-- instead of guessing a quantity.
+local GP_ITEM_VALUES={
+    Goldsmithing={
+        ['brass cap']={cap=2640,nq=327}, ['sapara']={cap=2080,nq=194},
+        ['copper hairpin']={cap=1280,nq=39}, ['copper ring']={cap=1200,nq=19},
+        ['brass hairpin']={cap=2560,nq=259}, ['brass baghnakhs']={cap=2800,nq=338},
+        ['brass dagger']={cap=2240,nq=186}, ['brass zaghnal']={cap=3520,nq=565},
+        ['brass knuckles']={cap=2240,nq=180}, ['brass leggings']={cap=2480,nq=248},
+        ['brass harness']={cap=3360,nq=497}, ['brass axe']={cap=2720,nq=312},
+        ["poet's circlet"]={cap=3200,nq=414}, ['brass mask']={cap=4160,nq=800},
+        ['brass rod']={cap=2240,nq=138}, ['silver hairpin']={cap=3040,nq=345},
+        ['brass hammer']={cap=3360,nq=463},
+        -- Silver Belt is currently marked unverified on the HorizonXI table.
+        ['brass finger gauntlets']={cap=4000,nq=736}, ['silver earring']={cap=3040,nq=345},
+        ['chain choker']={cap=4240,nq=810}, ['brass cuisses']={cap=4160,nq=768},
+        ['chain belt']={cap=4560,nq=1020}, ['silver mask']={cap=6080,nq=2850},
+        ['spark bilbo']={cap=4000,nq=669}, ['chain gorget']={cap=4560,nq=1020},
+        ['silver mittens']={cap=5840,nq=2350}, ['spark spear']={cap=2880,nq=240},
+        ['banded helm']={cap=6640,nq=4275}, ['buckler']={cap=6247,nq=3124,estimated=true},
+        ['mythril baselard']={cap=5600,nq=1976}, ['mythril ring']={cap=4240,nq=750},
+        ['silver mail']={cap=6640,nq=4400}, ['sollerets']={cap=6320,nq=3225},
+        ['silver bangles']={cap=4640,nq=992}, ['mythril earring']={cap=4240,nq=750},
+        ['gold ring']={cap=5520,nq=1750}, ['spark kris']={cap=6960,nq=6037},
+        ['mythril gorget']={cap=6160,nq=2805}, ['hydro baghnakhs']={cap=5520,nq=1794},
+        ['heater shield']={cap=6320,nq=3168}, ['gold earring']={cap=5520,nq=1750},
+        ['mythril degen']={cap=6240,nq=3100}, ['wingedge']={cap=5040,nq=1260},
+        ['mythril cuisses']={cap=6400,nq=3547}, ['gold bangles']={cap=6560,nq=3870},
+        ['mythril leggings']={cap=6480,nq=3630}, ['platinum ring']={cap=6960,nq=6200},
+        ['mythril gauntlets']={cap=6560,nq=3960}, ['mythril breastplate']={cap=7120,nq=7507},
+        ['mailbreaker']={cap=6240,nq=3037},
+        ['gold patas']={cap=7040,nq=6370}, ['diamond knuckles']={cap=6880,nq=5637},
+        ['gold sword']={cap=7520,nq=14640}, ['ashura']={cap=6320,nq=3250},
+        ['moonring blade']={cap=6560,nq=3990}, ['gold sabatons']={cap=6800,nq=4950},
+        ['gold buckler']={cap=6640,nq=4080}, ['gold cuisses']={cap=6560,nq=3937},
+        ['kazaridachi']={cap=7200,nq=7950}, ['diamond shield']={cap=6960,nq=5640},
+        ['golden spear']={cap=6880,nq=5460}, ['platinum bangles']={cap=6960,nq=5697},
+        ['platinum mace']={cap=7200,nq=8342}, ['epee']={cap=7360,nq=10920},
+        ['jeweled collar']={cap=6560,nq=3780}, ['jagdplaute']={cap=7520,nq=13545},
+        ['verdun']={cap=7600,nq=17340}, ['orichalcum dagger']={cap=7680,nq=22200},
+        ['muscle belt']={cap=5680,nq=1800}, ['brisingamen']={cap=7680,nq=21105},
+        ['orichalcum ring']={cap=7760,nq=29750}, ['koenig shield']={cap=7680,nq=22312},
+        ['millionaire desk']={cap=7760,nq=24500}, ['orichalcum earring']={cap=7760,nq=29750},
+    },
+};
+
 local function guild_trim(s)
     return tostring(s or ''):gsub('^%s+',''):gsub('%s+$','');
 end
@@ -321,6 +372,34 @@ local function compact_requested_item(s)
     low=low:gsub('^a%s+','');
     low=trim(low):gsub('%s+',' ');
     return low;
+end
+
+
+local function gp_item_info(g)
+    if type(g)~='table' then return nil; end
+    local guild=tostring(g.guild or '');
+    local rows=GP_ITEM_VALUES[guild];
+    if type(rows)~='table' then return nil; end
+    local key=compact_requested_item(g.requested_item);
+    if key=='' then return nil; end
+    return rows[key];
+end
+
+local function gp_items_to_cap(g)
+    local info=gp_item_info(g);
+    if not info or not tonumber(info.nq) or tonumber(info.nq)<=0 then return nil,info,nil; end
+    local remaining=tonumber(g.daily_remaining_gp);
+    if g.daily_status=='COMPLETE' then
+        remaining=0;
+    elseif remaining==nil then
+        local cap=math.max(0,math.floor(tonumber(info.cap) or 0));
+        local earned=math.max(0,math.floor(tonumber(g.daily_earned_gp) or 0));
+        remaining=math.max(0,cap-earned);
+    else
+        remaining=math.max(0,math.floor(remaining));
+    end
+    local count=math.ceil(remaining/tonumber(info.nq));
+    return math.max(0,count),info,remaining;
 end
 
 local function daily_progress(g)
@@ -640,7 +719,7 @@ function M.open_gp_master_list()
     return open_url(GP_MASTER_LIST_URL);
 end
 
-function M.draw_recipe_link(c,id)
+function M.draw_recipe_link(c,id,anchor_x)
     local imgui=HC and HC.imgui or nil;
     if not imgui then return false; end
     local item=M.requested_item(c);
@@ -648,6 +727,13 @@ function M.draw_recipe_link(c,id)
     local g=ensure(c);
     local label=(string.lower(tostring(g.guild or ''))=='fishing') and 'Item Wiki' or 'Recipe';
     id=tostring(id or 'guild_requested_item');
+    -- Text wrapping can leave Ashita's ImGui cursor at the end of the final
+    -- wrapped line inside a table cell.  Callers may pass the cell's original
+    -- X position so the action starts at the left edge of its new visual line
+    -- instead of being clipped against the next column after a resize.
+    if anchor_x~=nil and imgui.SetCursorPosX then
+        pcall(imgui.SetCursorPosX,anchor_x);
+    end
     if imgui.SmallButton(label..'##'..id) then
         M.open_requested_item_wiki(c);
     end
@@ -669,6 +755,10 @@ function M.status(c)
     local parts={guild,'GP '..tostring(math.floor(tonumber(g.points) or 0))};
     if g.requested_item~=nil and tostring(g.requested_item)~='' then
         parts[#parts+1]=compact_requested_item(g.requested_item);
+        local needed=gp_items_to_cap(g);
+        if needed~=nil then
+            parts[#parts+1]=(needed==0) and '0 NQ needed' or string.format('Need %d NQ',needed);
+        end
     else
         parts[#parts+1]='Request: --';
     end
@@ -713,13 +803,30 @@ function M.draw(c)
     end
     if g.requested_item ~= nil and tostring(g.requested_item) ~= '' then
         imgui.TextDisabled('Requested item: ' .. tostring(g.requested_item));
-        imgui.SameLine();
+        -- Action buttons live on their own line so resizing the HorizonCheck
+        -- window never pushes Recipe / Item Wiki beyond the content edge.
         M.draw_recipe_link(c,'guild_detail_recipe');
         imgui.SameLine();
         if imgui.SmallButton('GP Item List##guild_gp_master_list') then M.open_gp_master_list(); end
         if imgui.IsItemHovered and imgui.IsItemHovered() and imgui.SetTooltip then
             imgui.SetTooltip("Open HorizonXI's server-specific Guild Points/Items master list.");
         end
+    end
+
+    local needed_items,item_info,item_remaining=gp_items_to_cap(g);
+    if needed_items~=nil and item_info then
+        local item_name=recipe_item_name(g.requested_item) or 'requested item';
+        local suffix=item_info.estimated and ' (estimated)' or '';
+        imgui.TextDisabled(string.format(
+            'Daily item target: %s x%d (NQ) | %d GP each | %d GP cap',
+            item_name,needed_items,tonumber(item_info.nq) or 0,tonumber(item_info.cap) or 0
+        )..suffix);
+        if item_remaining~=nil and tonumber(item_info.cap) and item_remaining < tonumber(item_info.cap) then
+            imgui.TextDisabled(string.format('  Remaining today: %d GP | Need %d NQ to cap',
+                item_remaining,needed_items));
+        end
+    elseif g.requested_item~=nil and tostring(g.requested_item)~='' and tostring(g.guild or '')~='Unknown' then
+        imgui.TextDisabled('Daily item target: quantity unavailable for this request; use GP Item List for the server-specific value.');
     end
 
     local earned_gp,remaining_gp,max_gp,progress_pct=daily_progress(g);

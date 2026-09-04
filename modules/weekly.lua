@@ -35,7 +35,7 @@ local weekly = {
     { id='eco_warrior', name='Eco-Warrior', note='One Eco-Warrior completion per Conquest period. Rotation tracked separately below.' },
     { id='black_coffin', name='Black Coffin Weekly', note='Account-wide 3-step weekly chain. Failure locks the account until weekly reset.' },
     { id='chocobo_game', name='Chocobo Riding Game', note='Progress: READY -> IN PROGRESS -> COMPLETE. Tracks live elapsed time, route PBs, run history, and observed rewards.' },
-    { id='exp_ring', name='EXP Ring', note='Check weekly recharge/replacement eligibility. Ring status shown under Attention.' },
+    { id='exp_ring', name='EXP Ring', note='Charges and weekly recharge are tracked automatically. Recharge dialogue and inventory charge changes update this row.' },
     { id='conquest', name='Conquest / Outposts', note='Check regional control after tally, complete missing Supply Runs, unlock Outpost warps.' },
 };
 
@@ -599,6 +599,11 @@ local function draw_daily_objectives_table(c)
             end
 
             imgui.TableSetColumnIndex(1);
+            local status_column_x=nil;
+            if imgui.GetCursorPosX then
+                local ok,x=pcall(imgui.GetCursorPosX);
+                if ok then status_column_x=tonumber(x); end
+            end
             local status=completed and 'COMPLETE' or 'READY';
             if it.id=='guild_points' and HC.modules.guild then status=HC.modules.guild.status(c);
             elseif it.id=='isnm' and HC.modules.isnm then status=HC.modules.isnm.status(c);
@@ -609,8 +614,12 @@ local function draw_daily_objectives_table(c)
             if it.id=='guild_points' and HC.modules.guild and HC.modules.guild.draw_recipe_link then
                 local requested=HC.modules.guild.requested_item and HC.modules.guild.requested_item(c) or nil;
                 if requested then
-                    imgui.SameLine();
-                    HC.modules.guild.draw_recipe_link(c,'daily_weekly_gp_recipe');
+                    -- Keep the recipe action inside the Status column when the
+                    -- window/table is narrowed. ImGui does not automatically
+                    -- reset a button to the column edge after wrapped text, so
+                    -- anchor it to the original cell X on its next visual line.
+                    -- The table row then grows with both the text and button.
+                    HC.modules.guild.draw_recipe_link(c,'daily_weekly_gp_recipe',status_column_x);
                 end
             end
             if it.id=='plant_pots' and imgui.SmallButton('Relearn Pots##daily_table_relearn_pots') and HC.modules.plantpots then HC.modules.plantpots.relearn(); end
@@ -650,6 +659,7 @@ local function weekly_row_status(c,it,completed)
         return 'Tracks this for you';
     end
     if it.id=='chocobo_game' and HC.modules.chocobo then return HC.modules.chocobo.status(c); end
+    if it.id=='exp_ring' and HC.modules.rings and HC.modules.rings.status then return HC.modules.rings.status(c); end
     return completed and 'COMPLETE' or 'READY';
 end
 

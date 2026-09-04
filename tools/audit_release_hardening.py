@@ -34,8 +34,11 @@ eco = require_file('modules/eco.lua')
 rings = require_file('modules/rings.lua')
 learning = require_file('modules/learning.lua')
 prepare = require_file('tools/prepare_release.py')
+beta = require_file('BETA_TESTING.md')
+beta_issue = require_file('.github/ISSUE_TEMPLATE/beta_bug_report.yml')
+release_workflow = require_file('.github/workflows/release.yml')
 
-for rel in ('INSTALL.md', 'TROUBLESHOOTING.md', 'KNOWN_LIMITATIONS.md', 'CHANGELOG.md', 'RELEASE_CHECKLIST.md'):
+for rel in ('INSTALL.md', 'TROUBLESHOOTING.md', 'KNOWN_LIMITATIONS.md', 'CHANGELOG.md', 'RELEASE_CHECKLIST.md', 'BETA_TESTING.md'):
     require_file(rel)
 
 contracts = [
@@ -82,6 +85,12 @@ contracts = [
     ('initial sync Outpost step', "states.outpost_sync=='PASS'" in health and 'Talk to your Outpost NPC once.' in health),
     ('actionable synchronization health', "imgui.TableSetupColumn('Action'" in require_file('modules/synchealth.lua') and 'No action needed.' in require_file('modules/synchealth.lua')),
     ('character registry management', 'Character Registry' in require_file('modules/characterregistry.lua') and 'current character cannot be removed' in require_file('modules/characterregistry.lua')),
+    ('new profiles keep Developer Mode off', 'if new_profile then' in state and 'c.settings.developer_mode=false;' in state),
+    ('beta guide support flow', '/hcheck health export' in beta and 'Open Reports Folder' in beta and 'Developer Mode off' in beta),
+    ('beta issue form', 'HorizonCheck version' in beta_issue and 'release-health report' in beta_issue and 'Steps to reproduce' in beta_issue),
+    ('reports folder action', 'function M.open_reports_folder()' in health and 'explorer.exe' in health and "action=='folder'" in health),
+    ('release-health detailed errors', 'Diagnostics Errors' in health and 'HC.modules.diagnostics.errors' in health),
+    ('closed beta GitHub pre-release', '--prerelease' in release_workflow),
 ]
 for label, ok in contracts:
     if not ok:
@@ -172,12 +181,11 @@ for token in ('TRACENT_DROWSY_RIDDLES','TURN-IN COMPLETE','Capture-verified NPC 
         errors.append('Anniversary Tracent/Drowsy production tracker missing: ' + token)
 
 smartdashboard = require_file('modules/smartdashboard.lua')
-# v7.6.4 keeps Overview action-first: detailed Character / Activity /
-# Progression / Collections panels were intentionally removed because their
-# authoritative data already lives in dedicated tabs. Preserve the action
-# planner, Zone Intelligence, compact saved account summaries, and optional
-# collapsed Account / Characters comparison instead.
-for token in ('What Should I Do?','Zone Intelligence','Account / Characters','summary_version=2','Last Seen','POOL EMPTY'):
+# v7.9.21 keeps normal Overview status-first: it shows the logged-in
+# character, the other saved account characters, and shared account state.
+# Detailed action planning remains available only to Developer Mode. Preserve
+# the saved-profile/data-freshness plumbing used by that comparison.
+for token in ('Current Character','Other Characters','Shared Account','summary_version=2','Last Seen','POOL EMPTY'):
     if token not in smartdashboard:
         errors.append('Slim Overview missing production section/token: ' + token)
 for retired in ('Current Activity','Events & Collections','Current Job Gear','Permanent Unlocks'):

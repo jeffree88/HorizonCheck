@@ -1,5 +1,5 @@
 return {
-    version = '7.9.15',
+    version = '7.9.33',
     state_schema = 24,
     required = {
         'horizoncheck.lua',
@@ -14,6 +14,7 @@ return {
         'modules/diagnostics.lua',
         'modules/zonesync.lua',
         'modules/assaultprogress.lua',
+        'modules/reusableitems.lua',
         'modules/historyimport.lua',
         'modules/uikit.lua',
         'data/horizon_canonical_content.lua',
@@ -22,5 +23,6 @@ return {
         'KNOWN_LIMITATIONS.md',
         'CHANGELOG.md',
         'RELEASE_CHECKLIST.md',
+        'BETA_TESTING.md',
     },
 };

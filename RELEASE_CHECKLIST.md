@@ -70,3 +70,12 @@
 - [ ] Talking to the second NPC in a paired group cannot mark the first NPC's lane complete
 - [ ] Tracent/Drowsy counter dialogue remains the only capture-verified generic four-item turn-in completion proof
 - [ ] Unverified 2024 NPCs do not invent successful turn-in completion
+
+## Closed beta handoff
+
+- [ ] Fresh profiles start with Developer Mode off
+- [ ] `BETA_TESTING.md` is included in the ZIP
+- [ ] The GitHub beta issue form is present
+- [ ] `/hcheck health export` writes a report containing detailed Diagnostics errors
+- [ ] **Open Reports Folder** and `/hcheck health folder` open the report location
+- [ ] The tagged GitHub release is marked as a pre-release

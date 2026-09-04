@@ -8,6 +8,55 @@ local JOBS={
     [10]='BRD',[11]='RNG',[12]='SAM',[13]='NIN',[14]='DRG',[15]='SMN',[16]='BLU',[17]='COR',[18]='PUP',
 };
 
+-- HorizonXI / classic FFXI cumulative leveling curve through the Lv.75 cap.
+-- Overall job progress is EXP-weighted rather than level-count weighted, so
+-- later levels correctly represent much more of the 1-75 leveling journey.
+local EXP_TO_NEXT_75={
+    [1]=500,[2]=750,[3]=1000,[4]=1250,[5]=1500,[6]=1750,[7]=2000,[8]=2200,[9]=2400,[10]=2600,
+    [11]=2800,[12]=3000,[13]=3200,[14]=3400,[15]=3600,[16]=3800,[17]=4000,[18]=4200,[19]=4400,[20]=4600,
+    [21]=4800,[22]=5000,[23]=5100,[24]=5200,[25]=5300,[26]=5400,[27]=5500,[28]=5600,[29]=5700,[30]=5800,
+    [31]=5900,[32]=6000,[33]=6100,[34]=6200,[35]=6300,[36]=6400,[37]=6500,[38]=6600,[39]=6700,[40]=6800,
+    [41]=6900,[42]=7000,[43]=7100,[44]=7200,[45]=7300,[46]=7400,[47]=7500,[48]=7600,[49]=7700,[50]=7800,
+    [51]=8000,[52]=9200,[53]=10400,[54]=11600,[55]=12800,[56]=14000,[57]=15200,[58]=16400,[59]=17600,[60]=18800,
+    [61]=20000,[62]=21500,[63]=23000,[64]=24500,[65]=26000,[66]=27500,[67]=29000,[68]=30500,[69]=32000,[70]=34000,
+    [71]=36000,[72]=38000,[73]=40000,[74]=42000,
+};
+local EXP_AT_LEVEL_75={[1]=0};
+local EXP_TOTAL_TO_75=0;
+do
+    local running=0;
+    for level=1,74 do
+        running=running+(tonumber(EXP_TO_NEXT_75[level]) or 0);
+        EXP_AT_LEVEL_75[level+1]=running;
+    end
+    EXP_TOTAL_TO_75=running; -- 801,350 EXP from Lv.1 to Lv.75.
+end
+
+local function format_number(n)
+    n=math.floor(tonumber(n) or 0);
+    local str=tostring(n); local sign='';
+    if str:sub(1,1)=='-' then sign='-'; str=str:sub(2); end
+    local rev=str:reverse():gsub('(%d%d%d)','%1,'):reverse():gsub('^,','');
+    return sign..rev;
+end
+
+local function job_exp_progress(j)
+    local level=math.max(1,math.min(75,math.floor(tonumber(j and j.level or 1) or 1)));
+    local earned=tonumber(EXP_AT_LEVEL_75[level]) or 0;
+    -- Ashita exposes current-level EXP only for the equipped main job. Include
+    -- it when present so that job's percentage moves continuously while leveling.
+    if level<75 and j and j.exp_current~=nil then
+        local within=math.max(0,tonumber(j.exp_current) or 0);
+        local need=tonumber(EXP_TO_NEXT_75[level]) or 0;
+        if need>0 then within=math.min(within,need); end
+        earned=earned+within;
+    end
+    earned=math.max(0,math.min(EXP_TOTAL_TO_75,earned));
+    local pct=(EXP_TOTAL_TO_75>0) and math.floor((earned*100/EXP_TOTAL_TO_75)+0.5) or 0;
+    return earned,EXP_TOTAL_TO_75,pct;
+end
+
+
 local JOB_ORDER={
     {1,'WAR','Warrior'},{2,'MNK','Monk'},{3,'WHM','White Mage'},{4,'BLM','Black Mage'},{5,'RDM','Red Mage'},{6,'THF','Thief'},
     {7,'PLD','Paladin'},{8,'DRK','Dark Knight'},{9,'BST','Beastmaster'},{10,'BRD','Bard'},{11,'RNG','Ranger'},{12,'SAM','Samurai'},
@@ -742,10 +791,17 @@ function M.collection_scan_available(force)
 end
 
 function M.collection_scan_token()
-    -- Seasonal/collection trackers can use this to avoid rebuilding their
-    -- ownership view multiple times for the same inventory state.
+    -- Collection consumers need a token that changes only when the inventory
+    -- state changes.  Do not include gear_scan_cache.at here: that timestamp
+    -- advances whenever the shared five-second cache is rebuilt and previously
+    -- made the Account Item Locator believe inventory changed every ~10 seconds,
+    -- causing an unnecessary 17-container snapshot rebuild and visible stutter.
     local update_counter=inventory_update_counter();
-    return tostring(update_counter or 'na')..':'..tostring(gear_scan_cache.at or 0);
+    if update_counter~=nil then return 'inv:'..tostring(update_counter); end
+    -- Older Ashita builds may not expose GetContainerUpdateCounter.  Keep a
+    -- stable fallback token; itemlocator.lua performs a very low-frequency
+    -- safety refresh for that case rather than forcing rhythmic scans.
+    return 'inv:na';
 end
 
 local function collection_resource_aliases(item_id)
@@ -1081,6 +1137,43 @@ function M.gear_collection_snapshot(force)
 
         out.jobs[job]=row;
     end
+
+    -- v7.9.27: remember a compact, last-known gear summary when Character Info
+    -- (or another collection screen) already performed the expensive ownership
+    -- scan. Overview reads only this saved summary and never initiates a new
+    -- 17-container scan just to decorate the dashboard.
+    pcall(function()
+        local c=HC.modules.state and HC.modules.state.get_char and HC.modules.state.get_char() or nil;
+        if type(c)~='table' then return; end
+        c.overview_profile=type(c.overview_profile)=='table' and c.overview_profile or {};
+        c.overview_profile.job_gear=type(c.overview_profile.job_gear)=='table' and c.overview_profile.job_gear or {};
+        local changed=false;
+        local function first_five(set)
+            local have,total=0,0;
+            for i,it in ipairs(type(set)=='table' and set.items or {}) do
+                if i>5 then break; end
+                total=total+1; if it and it.obtained==true then have=have+1; end
+            end
+            return have,total;
+        end
+        for job,row in pairs(out.jobs or {}) do
+            local dst=type(c.overview_profile.job_gear[job])=='table' and c.overview_profile.job_gear[job] or {};
+            local af_h,af_t=first_five(row.sets and row.sets.af);
+            local af1_h,af1_t=first_five(row.sets and row.sets.af_p1);
+            local rel_h,rel_t=first_five(row.sets and row.sets.relic);
+            local rel1_h,rel1_t=first_five(row.sets and row.sets.relic_p1);
+            local relm1_h,relm1_t=first_five(row.sets and row.sets.relic_m1);
+            local vals={af_have=af_h,af_total=af_t,af1_have=af1_h,af1_total=af1_t,
+                relic_have=rel_h,relic_total=rel_t,relic1_have=rel1_h,relic1_total=rel1_t,
+                relicm1_have=relm1_h,relicm1_total=relm1_t,at=os.time()};
+            for k,v in pairs(vals) do
+                if k~='at' and dst[k]~=v then dst[k]=v; changed=true; end
+            end
+            if changed or not dst.at then dst.at=vals.at; end
+            c.overview_profile.job_gear[job]=dst;
+        end
+        if changed and HC.modules.state and HC.modules.state.request_save then HC.modules.state.request_save(2); end
+    end);
     return out;
 end
 
@@ -1219,6 +1312,13 @@ local function all_job_levels(force)
     end
     if HC.modules.profiler and HC.modules.profiler.cache then HC.modules.profiler.cache('skills.job_levels',false); end
     local p=get_player();
+    local main_job_id=nil; local main_exp_current=nil;
+    if p then
+        pcall(function()
+            if p.GetMainJob then main_job_id=tonumber(p:GetMainJob()); end
+            if p.GetExpCurrent then main_exp_current=tonumber(p:GetExpCurrent()); end
+        end);
+    end
     local out={};
     for _,j in ipairs(JOB_ORDER) do
         local level=nil;
@@ -1227,7 +1327,10 @@ local function all_job_levels(force)
         end
         if level==nil then level=0; end
         level=math.max(0,math.min(75,math.floor(level)));
-        out[#out+1]={id=j[1],abbr=j[2],name=j[3],level=level};
+        out[#out+1]={
+            id=j[1],abbr=j[2],name=j[3],level=level,
+            exp_current=(main_job_id==j[1] and level>0 and level<75) and main_exp_current or nil,
+        };
     end
     job_levels_cache={at=now,rows=out};
     return out;
@@ -1371,6 +1474,38 @@ end
 
 
 local job_plan_cache={character=nil,at=0,plans={}};
+local current_job_static_cache={at=0,job=nil,level=nil,data=nil};
+local CURRENT_JOB_STATIC_CACHE_SECONDS=30;
+
+local function current_job_static_detail(c,job,level)
+    local now=os.time();
+    if current_job_static_cache.data and current_job_static_cache.job==job and current_job_static_cache.level==level
+        and now-(tonumber(current_job_static_cache.at) or 0)<CURRENT_JOB_STATIC_CACHE_SECONDS then
+        return current_job_static_cache.data;
+    end
+    local maat_label,maat_won=maat_status(c,tostring(job),tonumber(level) or 0);
+    local capped,total=0,0;
+    for _,group in ipairs(GROUPS or {}) do
+        if tostring(group.title)~='Automaton' then
+            for _,row in ipairs(group.rows or {}) do
+                local cap=skill_cap(row[2],job,level);
+                if cap and tonumber(cap) and tonumber(cap)>0 then
+                    total=total+1;
+                    local v=read_index(row[1]);
+                    if v and tonumber(v.value) and tonumber(v.value)>=tonumber(cap) then capped=capped+1; end
+                end
+            end
+        end
+    end
+    local saved=nil;
+    if type(c)=='table' and type(c.overview_profile)=='table' and type(c.overview_profile.job_gear)=='table' then
+        saved=c.overview_profile.job_gear[tostring(job)];
+    end
+    local out={maat=maat_label,maat_won=maat_won==true,skills_capped=capped,skills_total=total,gear=type(saved)=='table' and saved or nil};
+    current_job_static_cache={at=now,job=job,level=level,data=out};
+    return out;
+end
+
 local function cached_job_plan(c,abbr,level_now)
     local now=os.time();
     if job_plan_cache.character~=c or (now-tonumber(job_plan_cache.at or 0))>=2 then
@@ -1388,6 +1523,33 @@ local function cached_job_plan(c,abbr,level_now)
     end
     job_plan_cache.plans[key]=plan or false;
     return plan;
+end
+
+-- v7.9.22: compact live progression detail for the logged-in main job.
+-- This is the same EXP-weighted data shown by the expanded Character Info job
+-- row, exposed so Overview does not invent a second progression calculation.
+function M.current_job_progress_detail(c)
+    c=c or (HC.modules.state and HC.modules.state.get_char and HC.modules.state.get_char()) or {};
+    local job,level=current_job_level();
+    if not job or not level then return nil; end
+    local target=nil;
+    for _,j in ipairs(all_job_levels(false) or {}) do
+        if tostring(j.abbr)==tostring(job) then target=j; break; end
+    end
+    if not target then return nil; end
+    local exp_done,exp_total,pct=job_exp_progress(target);
+    local plan=cached_job_plan(c,job,level);
+    local qdone=tonumber(plan and plan.completed_job_quests) or 0;
+    local qtotal=qdone+#(plan and plan.pending or {});
+    local static=current_job_static_detail(c,job,level);
+    return {
+        job=tostring(job),level=tonumber(level) or 0,
+        exp_done=tonumber(exp_done) or 0,exp_total=tonumber(exp_total) or EXP_TOTAL_TO_75,
+        mapped_done=qdone,mapped_total=qtotal,overall_pct=tonumber(pct) or 0,
+        maat=static and static.maat or 'N/A',maat_won=static and static.maat_won==true or false,
+        skills_capped=tonumber(static and static.skills_capped) or 0,skills_total=tonumber(static and static.skills_total) or 0,
+        gear=static and static.gear or nil,
+    };
 end
 
 local function progression_piece_progress(names,stored_names,owned_ids,stored_ids,job,set,kind)
@@ -1414,7 +1576,7 @@ end
 
 job_progress_summary=function(c,j)
     local level=math.max(0,math.min(75,tonumber(j.level or 0) or 0));
-    local pct=math.floor((level*100/75)+0.5);
+    local _,_,pct=job_exp_progress(j);
     local remaining={};
     if level<75 then remaining[1]=string.format('%d level%s to Lv.75',75-level,(75-level)==1 and '' or 's'); end
     return {
@@ -1428,11 +1590,11 @@ job_progress_summary=function(c,j)
 end
 
 local function job_progression_score(c,j,plan,gear_row)
-    -- Overall progress is intentionally level-only. Gear, mapped quests, and
-    -- Maat remain useful detail, but they no longer dilute the simple Lv.1-75
-    -- progress percentage shown in the compact Character Info job list.
-    local level=math.max(0,math.min(75,tonumber(j.level or 0) or 0));
-    return math.floor((level*100/75)+0.5);
+    -- Overall progress is intentionally leveling-only; gear, mapped quests,
+    -- and Maat never change it. Unlike the retired equal-per-level ratio, this uses the
+    -- actual 801,350 EXP curve from Lv.1 to Lv.75.
+    local _,_,pct=job_exp_progress(j);
+    return pct;
 end
 
 local function job_gear_summary(row,id)
@@ -1546,7 +1708,8 @@ local function draw_job_progression_sections(c,navigation_focus)
                     local next_text,next_reason=next_progression_text(c,j,plan,gear_row);
                     imgui.Text('Next Progression: '..tostring(next_text));
                     if next_reason and next_reason~='' then imgui.SameLine(); imgui.TextDisabled('['..tostring(next_reason)..']'); end
-                    imgui.TextDisabled(string.format('Lv.%d/75 | Mapped quests %d/%d | Overall %d%%',level_now,qdone,qtotal,overall_score));
+                    local exp_done,exp_total=job_exp_progress(j);
+                    imgui.TextDisabled(string.format('Lv.%d/75 | EXP %s/%s | Mapped quests %d/%d | Overall %d%%',level_now,format_number(exp_done),format_number(exp_total),qdone,qtotal,overall_score));
                     if imgui.Separator then imgui.Separator(); end
                     local maat_label,maat_won,maat_meta=maat_status(c,tostring(j.abbr),level_now);
                     if maat_won==true then

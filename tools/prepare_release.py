@@ -65,6 +65,7 @@ def write_release_manifest(stage: Path, version: str):
         'modules/diagnostics.lua',
         'modules/zonesync.lua',
         'modules/assaultprogress.lua',
+        'modules/reusableitems.lua',
         'modules/historyimport.lua',
         'modules/uikit.lua',
         'data/horizon_canonical_content.lua',
@@ -73,6 +74,7 @@ def write_release_manifest(stage: Path, version: str):
         'KNOWN_LIMITATIONS.md',
         'CHANGELOG.md',
         'RELEASE_CHECKLIST.md',
+        'BETA_TESTING.md',
     ]
     lines = ["return {", f"    version = '{version}',", "    state_schema = 24,", "    required = {"]
     lines.extend(f"        '{name}'," for name in required)

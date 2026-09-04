@@ -1,3 +1,133 @@
+## v7.9.33
+- Prepares HorizonCheck for closed beta with a focused `BETA_TESTING.md` guide covering installation, smoke tests, high-risk scenarios, and consistent problem reporting.
+- Adds a structured GitHub beta bug-report form for version, install type, UI conditions, reproduction steps, screenshots, and the exported release-health report.
+- Adds **Open Reports Folder** to Release Health and Settings plus `/hcheck health folder`, available with Developer Mode off.
+- Expands `/hcheck health export` with the detailed deduplicated Diagnostics error list so tester reports include actionable runtime failures.
+- Adds release contracts protecting the new-user `Developer Mode = off` default and the beta support workflow.
+- Marks tag-built GitHub releases as pre-releases for the closed-beta period.
+
+## v7.9.32
+- Fixes the Daily / Weekly **Recipe / Item Wiki** button still being clipped after the Guild Point status wrapped at narrow window widths.
+- Anchors the action to the left edge of the Status column on its own responsive line, allowing the complete button and the table row to resize together.
+
+## v7.9.31
+- Makes the Guild Point **Recipe / Item Wiki** action resize-safe in Daily / Weekly: it now flows onto its own line inside the Status cell instead of being clipped when the window or table column is narrowed.
+- Keeps the full GP status text wrapped to the current table-column edge while allowing the row height to expand naturally.
+- Applies the same responsive layout to the detailed Guild Points requested-item actions so the Recipe button stays visible at narrow window widths.
+
+## v7.9.30
+- Fixes a false EXP Ring weekly-complete notification that could fire while logging into or switching to another character.
+- Reusable-item inventory caches are now explicitly character-owned and are cleared whenever the active character changes.
+- The first live charge observation for each reusable item after login/character switch is treated as a baseline only, so an older saved charge count cannot be mistaken for a recharge.
+- Genuine same-session charge increases and capture-verified NPC recharge dialogue still update EXP Ring tracking normally.
+- Changes the completion notification wording from `fully recharged` to the more accurate `recharge confirmed`, avoiding misleading messages for non-max charge increases.
+
+## v7.9.29
+- Adds a daily Guild Point item-count helper for **Goldsmithing** using HorizonXI's server-specific Guild Points/Items values.
+- After the Guild Union NPC reveals today's request, the compact status now shows the number of NQ items needed to reach the daily GP cap (for example `Need 2 NQ`).
+- Uses the NPC's live `GP remaining` value when available, so the count automatically decreases after partial turn-ins; otherwise it derives the starting target from the item's HorizonXI daily cap.
+- Adds a detailed `Daily item target` line with GP per NQ item and the daily cap, while unknown/unverified requests fall back safely instead of guessing.
+
+## v7.9.28
+- Polishes **Overview** with dynamic status wording so cards read `COMPLETE`, `READY`, `NO ENTRY`, `RESET`, or `x LEFT` instead of forcing every state into a fraction.
+- Keeps the exact counts as subdued secondary notes and adds richer hover details for Daily, Avatars, Weekly, Dynamis, Limbus, Outposts, current-job progression, and collection cards.
+- Adds lightweight in-memory **session change indicators** such as `+1 objective this session`, `+1 piece this session`, and earned EXP since the addon/session baseline; these reset on reload and never write to saved state.
+- Replaces long free-form Other Character headers with an aligned six-column comparison (`Character | Job | Daily | Weekly | Dynamis | Seen`) while keeping each character collapsed by default.
+- Expanding an offline character exposes a second aligned detail row for Jobs at 75, Avatars, Limbus, Outposts, Last Seen, and reset-scoped data freshness.
+- Adds subtle separators between Current Character, Other Characters, and Shared Account so the dashboard reads as distinct sections without adding large visual blocks.
+- Preserves the v7.9.26 performance baseline: all new Overview behavior is read-only, cached/in-memory, and performs no new inventory or ownership scans.
+
+## v7.9.27
+- Redesigns **Overview** into a more visual character command center while keeping it a true status overview rather than a planner.
+- Adds a bordered identity panel for the logged-in character with live job/level, EXP toward Lv.75, Overall %, mapped quests, Maat, and capped combat-skill summary.
+- Replaces the old label/value grid with responsive dashboard cards for Jobs at 75, Outposts, Daily, Avatars, Weekly, Dynamis, and Limbus.
+- Adds a dedicated **Current Job** card group with level, Overall %, Maat, mapped quests, skills, and last-known AF / AF+1 / Relic / Relic -1 collection totals.
+- AF / Relic summaries are persisted only when Character Info or another collection screen has already performed the full ownership scan; Overview never starts a new 17-container inventory scan, preserving the v7.9.26 performance baseline.
+- Keeps other account characters collapsed by default with compact reset/entry/last-seen information and a cleaner expanded card layout.
+- Simplifies **Shared Account** to Characters, Assault Tags, and the shared Dynamis pool.
+- Keeps progress bars, Missions, Anniversary, Seasonal rewards, and What-to-Do-Next content out of normal Overview.
+
+## v7.9.26
+- Backend performance cleanup aimed at reducing intermittent in-game hitches.
+- Coalesced legacy `state.save()` calls into deferred writes; unload still flushes state immediately.
+- Reusable-item/EXP-ring tracking now handles normal `0x020` updates by re-reading only the changed slot instead of scanning all inventory/storage/wardrobe containers.
+- Removed noisy reusable-item invalidation from generic `0x01D/0x01E/0x01F` packet traffic.
+- Global Attention urgency is evaluated on a small cache instead of sorting planner rows every rendered frame.
+- Overview no longer recomputes hidden Missions/Anniversary/Seasonal summaries that were removed from the visible dashboard.
+- Increased read-only Overview cache windows while preserving event/zone invalidation.
+
+## v7.9.25
+
+- Fixes a likely rhythmic ~10-second stutter while HorizonCheck is open by making the shared collection scan token depend only on the native inventory update counter instead of the five-second cache timestamp.
+- Account Item Locator no longer rebuilds its saved 17-container inventory snapshot merely because another tracker refreshed the shared collection cache.
+- Clients without `GetContainerUpdateCounter()` now use a two-minute Account Item Locator safety refresh rather than a ten-second full-scan cadence.
+- Keeps manual `Refresh Items` behavior unchanged for immediate on-demand snapshot refreshes.
+
+## v7.9.24
+
+- Redesigns **Overview** as a compact character/account dashboard without progress bars.
+- Gives the logged-in character a focused live summary with EXP-weighted current-job progression, jobs at 75, Outposts, Daily, Avatars, Weekly, Dynamis, and Limbus.
+- Replaces the wide saved-character table with compact collapsed character cards; expanding a character shows Jobs at 75, Avatars, Limbus availability, Outposts, and last-seen age.
+- Keeps a dedicated **Shared Account** block for Assault Tags and the shared Dynamis pool.
+- Makes current-character Overview values act as navigation links when the ImGui click API is available, including deep links to Job Progression, Daily / Weekly sections, Dynamis, Limbus, and Outposts.
+- Adds the missing Outposts navigation focus so Overview can open **Conquest / Outpost Details** directly.
+- Keeps Missions, Anniversary, Seasonal rewards, planner suggestions, timestamps, evidence labels, and progress bars out of the normal Overview.
+
+## v7.9.23
+
+- Simplifies the true Overview by removing Missions, Anniversary, and Seasonal reward progress from the current-character summary.
+- Removes Missions and Events from the saved-character comparison; the comparison now keeps Outposts as the permanent progression field alongside reset/entry status.
+- Keeps those trackers fully available in their dedicated tabs; this change only reduces Overview density.
+
+## v7.9.22
+
+- Adds the logged-in main job's EXP-weighted progression line directly to Overview: `Lv.x/75 | EXP earned/801,350 | Mapped quests x/y | Overall z%`.
+- Reuses Character Info's existing live EXP curve and mapped-job-quest planner so Overview and Job Progression always report the same numbers.
+- The equipped job continues to include live current-level EXP, so Overall progress moves as EXP is earned.
+
+## v7.9.21
+
+- Rebuilds the normal **Overview** as a true character/account status page instead of another **What to Do Next** planner.
+- Adds a dedicated **Current Character** summary with live job/level, jobs at 75, missions, Daily Objectives, avatar fights, full 13-part Weekly Objectives progress, Dynamis/Limbus entries, Outposts, Anniversary, and Seasonal reward progress.
+- Adds an always-visible **Other Characters** comparison for saved account characters, including last-known job/level, jobs at 75, reset progress, Dynamis/Limbus, missions, outposts/events, and data freshness.
+- Adds a compact **Shared Account** summary for saved character count, Assault Tags, and the shared Dynamis entry pool.
+- Uses live `weekly.progress()` and avatar status for the logged-in character while keeping offline reset-scoped values explicitly expired after their reset.
+- Keeps the detailed action planner only in Developer Mode because the global Attention / Next Up strip already owns action-oriented guidance.
+
+## v7.9.20
+
+- Simplifies the normal Overview by removing the **More Suggestions** section.
+- Removes **Things to Prepare** from the normal Overview so lower-priority readiness information no longer overwhelms the dashboard.
+- Keeps **What to Do Next** as the focused action list; detailed planning remains available in Developer Mode.
+
+## v7.9.19
+- Changes the **2023 - 1st Anniversary Scavenger Hunt** year section to start **collapsed** after addon load/reload, matching the 2024 and 2025 Anniversary sections.
+- The section still stays open or closed for the current session after the player explicitly toggles it.
+- Adds a regression contract so the 2023 Anniversary section does not accidentally return to default-open behavior.
+
+## v7.9.18
+- Changes Character Info job **Overall** progress from the old `level / 75` ratio to the actual classic/HorizonXI EXP curve from Lv.1 to Lv.75.
+- Uses **801,350 total EXP** as 100%, so later levels correctly account for much more progression than early levels.
+- Includes current-level EXP for the actively equipped main job through Ashita's live `GetExpCurrent()` value; other jobs use the cumulative EXP required to reach their saved level.
+- Expanded job rows now show cumulative EXP explicitly, for example `EXP 441,850/801,350`, alongside mapped quest progress.
+- Adds regression coverage that locks the Lv.75 total at 801,350 EXP and prevents a return to the old level-count percentage.
+
+## v7.9.17
+- Adds a shared **Reusable Item** framework for charge-based gear so item modules can use one inventory-Extra parser, cached scanner, event stream, and state record instead of maintaining separate charge logic.
+- Moves EXP-ring charge scanning onto that shared framework while preserving the existing low-cost `rings.scan()` compatibility cache.
+- Automatically records EXP-ring uses when inventory charge data decreases, so the displayed charge count follows actual ring use without a manual checkbox.
+- Uses the capture-verified Emitt recharge dialogue to set **Empress Band** to **10/10**, record the Conquest Point cost, and mark the weekly EXP-ring recharge complete immediately.
+- Protects NPC recharge dialogue from packet-order races so an older inventory update cannot briefly look like a ring use immediately after a full recharge.
+- Upgrades the Daily / Weekly EXP Ring row to show the live ring name, charge count, charge state, and whether this week's recharge has been used.
+- Integrates EXP-ring charge state into **What to Do Next**: empty or low-charge rechargeable rings surface automatically when the weekly recharge is still available, while full or already-recharged rings stay out of the way.
+
+## v7.9.16
+- Merges **Account Item Locator** into the global **Find anything** search so HorizonCheck has one search box instead of two.
+- Global search now counts both tracker matches and saved-character item-location matches in one result total.
+- Adds **Refresh Items** beside the global search to refresh the current character's saved account inventory snapshot without visiting Character Info.
+- Removes the redundant Account Item Locator panel from Character Info while keeping its saved snapshots, background refresh, and account-wide location results intact.
+- Improves the empty-result wording so item-only matches no longer appear underneath a misleading "no tracker records" message.
+
 ## v7.9.15
 - Adds a **Universal Ownership Engine** that becomes the shared item-ownership path for Assault rewards, Limbus, HENM, Seasonal Events, Sea/Sky, Anniversary items, and Account Item Locator ID resolution. It reuses the existing cached inventory/wardrobe scan and includes Porter Moogle proof plus saved offline-character snapshots.
 - Adds account-wide ownership queries that distinguish **live current-character** ownership from **saved offline-character** locations instead of treating old snapshots as live data.

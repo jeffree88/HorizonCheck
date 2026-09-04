@@ -120,12 +120,28 @@ end
 local function ring_engine(c,wremain)
     local out={id='exp_ring',label='EXP Ring',state='DONE',actions={},timers={},reset='conquest'}; local m=HC.modules.rings;
     if not m or not m.scan then out.state='UNKNOWN'; out.reason='ring scanner unavailable'; return out; end
-    local ok,ring=pcall(m.scan); if not ok or not ring then out.reason='no rechargeable ring detected'; return out; end
+    local ok,ring=pcall(m.scan); if not ok or not ring then out.reason='no EXP ring detected'; return out; end
     local max=tonumber(ring.max or 0); local charges=tonumber(ring.charges);
-    if ring.rechargeable and charges and charges<max and not (type(c.weekly)=='table' and c.weekly.exp_ring==true) then
-        out.state='READY'; out.reason='weekly recharge available'; local tier=(wremain and wremain<=6*3600) and 'DO NOW' or 'READY';
-        out.actions[#out.actions+1]=row(tier,tier=='DO NOW' and 8 or 24,string.format('EXP Ring - %s %d/%d charges | weekly recharge not yet recorded',tostring(ring.name),charges,max),'rings',tier=='DO NOW' and {urgency='SOON'} or nil);
-    else out.reason='no recharge action needed'; end
+    local recharge_used=(type(c.weekly)=='table' and c.weekly.exp_ring==true);
+    out.ring_name=ring.name; out.charges=charges; out.max_charges=max; out.recharge_used=recharge_used;
+    if not ring.rechargeable then out.reason=string.format('%s %s/%s charges | non-rechargeable',tostring(ring.name),tostring(charges or '?'),tostring(max)); return out; end
+    if charges==nil then out.state='VERIFY'; out.reason='charge count unavailable'; return out; end
+    if charges<=0 then
+        if not recharge_used then
+            out.state='READY'; out.reason='empty | weekly recharge available';
+            out.actions[#out.actions+1]=row('DO NOW',5,string.format('EXP Ring - %s is empty | recharge available this week',tostring(ring.name)),'rings',{urgency='SOON'});
+        else out.state='PREP'; out.reason='empty | weekly recharge already used'; end
+        return out;
+    end
+    if charges<max and not recharge_used then
+        local low_threshold=math.max(1,math.ceil(max*0.30));
+        local low=charges<=low_threshold;
+        out.state='READY'; out.reason=low and 'low charges | weekly recharge available' or 'weekly recharge available';
+        local tier=(low or (wremain and wremain<=6*3600)) and 'DO NOW' or 'READY';
+        out.actions[#out.actions+1]=row(tier,tier=='DO NOW' and 8 or 24,string.format('EXP Ring - %s %d/%d charges | recharge available this week',tostring(ring.name),charges,max),'rings',tier=='DO NOW' and {urgency='SOON'} or nil);
+    elseif charges<max then
+        out.reason=string.format('%s %d/%d charges | weekly recharge already used',tostring(ring.name),charges,max);
+    else out.reason=string.format('%s full at %d/%d charges',tostring(ring.name),charges,max); end
     return out;
 end
 

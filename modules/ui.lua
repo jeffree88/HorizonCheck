@@ -100,6 +100,9 @@ local function dense_ui(c)
 end
 
 
+local global_attention_cache={at=0,value=false};
+local GLOBAL_ATTENTION_CACHE_SECONDS=2;
+
 local function safe_draw(name,fn,...)
     if type(fn)~='function' then return false,'draw function unavailable'; end
     local guard=HC and HC.modules and HC.modules.runtimeguard or nil;
@@ -358,14 +361,19 @@ function M.draw()
                 -- v7.7.12: keep global Attention visible on every tab, including
                 -- Overview, whenever there is an actual urgent DO NOW activity.
                 -- Empty/non-urgent Attention still consumes no space.
-                local show_global_attention=false;
-                if HC.modules.planner and HC.modules.planner.build and HC.modules.planner.has_urgent then
-                    local ok_model,model=pcall(HC.modules.planner.build,c,false);
-                    if ok_model and type(model)=='table' then
-                        local ok_urgent,urgent=pcall(HC.modules.planner.has_urgent,c,model);
-                        show_global_attention=(ok_urgent and urgent==true);
+                local now_attention=os.time();
+                if now_attention-(tonumber(global_attention_cache.at) or 0)>=GLOBAL_ATTENTION_CACHE_SECONDS then
+                    local value=false;
+                    if HC.modules.planner and HC.modules.planner.build and HC.modules.planner.has_urgent then
+                        local ok_model,model=pcall(HC.modules.planner.build,c,false);
+                        if ok_model and type(model)=='table' then
+                            local ok_urgent,urgent=pcall(HC.modules.planner.has_urgent,c,model);
+                            value=(ok_urgent and urgent==true);
+                        end
                     end
+                    global_attention_cache.at=now_attention; global_attention_cache.value=value;
                 end
+                local show_global_attention=global_attention_cache.value==true;
                 if show_global_attention then
                     safe_draw('Attention',HC.modules.weekly.draw_attention,c);
                     imgui.Separator();
@@ -430,7 +438,7 @@ function M.draw()
 
                         if HC.modules.outposts then
                             imgui.Spacing();
-                            if focus_objective=='conquest' and imgui.SetNextItemOpen then
+                            if (focus_objective=='conquest' or focus_section=='outposts') and imgui.SetNextItemOpen then
                                 pcall(imgui.SetNextItemOpen,true,rawget(_G,'ImGuiCond_Always') or 1);
                             end
                             if imgui.CollapsingHeader('Conquest / Outpost Details##dailyweekly_outpost_details') then
@@ -552,15 +560,9 @@ function M.draw()
                     end
 
                     if tab_visible(c,'skills') and begin_tab_item(imgui,'Character Info##hctab_skills','skills') then
-                        -- Account-wide item lookup is a frequent utility, so keep it
-                        -- at the very top of Character Info instead of below the long
-                        -- skills / fame / job progression content.
-                        if HC.modules.itemlocator and HC.modules.itemlocator.draw then
-                            safe_draw('Account Item Locator',HC.modules.itemlocator.draw,c);
-                            imgui.Spacing();
-                            imgui.Separator();
-                            imgui.Spacing();
-                        end
+                        -- v7.9.16: account-wide item lookup now shares the global
+                        -- Find anything search at the top of HorizonCheck.  Keeping
+                        -- a second search box here only duplicated the same feature.
                         if HC.modules.skills and HC.modules.skills.draw then
                             safe_draw('Character Info',HC.modules.skills.draw,c);
                         else

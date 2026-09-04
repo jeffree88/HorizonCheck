@@ -51,5 +51,8 @@ The `Game\addons\horizoncheck\` folder should contain addon code/data only after
 - `/hcheck diagnostics` — open Diagnostics
 - `/hcheck health` — summarize release health
 - `/hcheck health export` — write a release-health report
+- `/hcheck health folder` — open the folder containing release-health reports
 - `/hcheck setup` — reopen Initial Synchronization
 - `/hcheck selftest` — run module self-test
+
+Closed-beta testers should also read `BETA_TESTING.md` for the smoke-test checklist and bug-report instructions.

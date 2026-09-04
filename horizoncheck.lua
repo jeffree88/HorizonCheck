@@ -1,9 +1,9 @@
--- HorizonCheck v7.9.15
+-- HorizonCheck v7.9.33
 -- Modular rewrite for HorizonXI / Ashita v4.
 
 addon.name = 'horizoncheck';
 addon.author = 'OpenAI';
-addon.version = '7.9.15';
+addon.version = '7.9.33';
 addon.desc = 'HorizonXI daily/weekly activity dashboard.';
 addon.link = 'https://horizonxi.com/';
 
@@ -25,7 +25,7 @@ local function loadmod(name)
 end
 
 local HC = {
-    version = '7.9.15',
+    version = '7.9.33',
     imgui = imgui_ok and imgui or nil,
     chat = chat_ok and chat or nil,
     addon_path = addon.path,
@@ -238,6 +238,7 @@ local order = {
     'haap',
     'assault',
     'assaultprogress',
+    'reusableitems',
     'rings',
     'enm',
     'skills',
@@ -323,6 +324,8 @@ local function self_test()
         keyitems = { 'probe', 'status', 'draw', 'ownership_name', 'ownership_id', 'evidence_key', 'poll', 'index_status', 'permanent_snapshot', 'known_id' },
         assault = { 'status', 'packet_status', 'sync_status' },
         assaultprogress = { 'count', 'is_complete', 'sync_native_history', 'native_status', 'native_diagnostics', 'draw_native_diagnostics', 'native_rows' },
+        reusableitems = { 'register', 'subscribe', 'invalidate', 'scan', 'group', 'primary', 'status', 'definition', 'all_definitions', 'on_text', 'poll' },
+        rings = { 'scan', 'status', 'all', 'draw', 'draw_attention' },
         ownership = { 'resolve_ids', 'current', 'owned', 'location', 'location_ids', 'count', 'account', 'refresh', 'status' },
         eco = { 'sync_status' },
         fame = { 'status', 'sync_status' },
@@ -348,7 +351,7 @@ local function self_test()
         synchealth = { 'snapshot', 'status', 'draw', 'invalidate' },
         characterregistry = { 'snapshot', 'status', 'draw', 'remove', 'invalidate' },
         itemlocator = { 'poll', 'refresh_current', 'query', 'draw_search_matches', 'draw', 'status' },
-        releasehealth = { 'status', 'setup_status', 'draw_setup', 'draw_settings', 'draw', 'export', 'reopen_setup', 'invalidate', 'initial_sync_report' },
+        releasehealth = { 'status', 'setup_status', 'draw_setup', 'draw_settings', 'draw', 'export', 'open_reports_folder', 'reopen_setup', 'invalidate', 'initial_sync_report' },
         catalog_integrity = { 'run', 'status', 'draw' },
         catalog_coverage = { 'snapshot', 'issues', 'invalidate', 'draw', 'status', 'work_queue' },
         planner = { 'build', 'draw', 'status', 'classify', 'ranked' },
@@ -431,8 +434,9 @@ ashita.events.register('unload', 'horizoncheck_unload', function()
     if HC.modules.learning and HC.modules.learning.active and HC.modules.learning.active() then
         pcall(HC.modules.learning.stop, 'addon unload');
     end
-    if HC.modules.state and HC.modules.state.save then
-        pcall(HC.modules.state.save);
+    if HC.modules.state then
+        if HC.modules.state.flush then pcall(HC.modules.state.flush);
+        elseif HC.modules.state.save then pcall(HC.modules.state.save,true); end
     end
 end);
 
@@ -593,6 +597,7 @@ ashita.events.register('d3d_present', 'horizoncheck_present', function()
     run_present_poll('selfheal',5.0,'selfheal','self-healing provider poll',now_clock);
     run_present_poll('zonesync',0.50,'zonesync','zone sync poll',now_clock);
     run_present_poll('plantpots',0.25,'plantpots','plantpots poll',now_clock);
+    run_present_poll('reusableitems',0.25,'reusableitems','reusable item poll',now_clock);
 
     -- Account inventory snapshots only matter while the UI is visible and the
     -- item locator has its own change-token cache. Poll it here instead of from

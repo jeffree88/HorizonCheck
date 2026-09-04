@@ -1,0 +1,96 @@
+name: HorizonCheck Beta Bug Report
+description: Report incorrect tracking, runtime errors, performance problems, or UI issues found during closed beta.
+title: "[Beta] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for testing HorizonCheck. Please attach a screenshot for visual issues and the newest release-health report when possible.
+
+  - type: input
+    id: version
+    attributes:
+      label: HorizonCheck version
+      placeholder: v7.9.33
+    validations:
+      required: true
+
+  - type: dropdown
+    id: install_type
+    attributes:
+      label: Installation type
+      options:
+        - Fresh installation
+        - Upgrade from an earlier version
+    validations:
+      required: true
+
+  - type: dropdown
+    id: ui_density
+    attributes:
+      label: UI mode
+      options:
+        - Normal
+        - Dense
+        - Not applicable
+    validations:
+      required: true
+
+  - type: input
+    id: display
+    attributes:
+      label: Display and window size
+      description: Include screen resolution, UI scale if known, and whether the HorizonCheck window was narrow or wide.
+      placeholder: 1920x1080, Normal UI, narrow HorizonCheck window
+
+  - type: input
+    id: area
+    attributes:
+      label: Affected tab or tracker
+      placeholder: Daily / Weekly - Guild Points
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: What happened?
+      description: Describe the incorrect result, error, slowdown, or visual problem.
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: What did you expect?
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Opened Daily / Weekly
+        2. Resized the window
+        3. Guild Point status wrapped
+        4. Recipe button was clipped
+    validations:
+      required: true
+
+  - type: textarea
+    id: attachments
+    attributes:
+      label: Screenshot and release-health report
+      description: Drag in screenshots and the newest horizoncheck_release_health_*.txt file. You may redact the character name first.
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Final checks
+      options:
+        - label: I confirmed the problem occurs on the version listed above.
+          required: true
+        - label: I included the exact error text or a screenshot when available.
+          required: true
+
